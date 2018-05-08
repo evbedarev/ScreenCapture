@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class KillMonsterNovice implements KillMonster{
-    private static final String ROOT_DIR = "./src/main/resources/KillMonstersNovice/";
+    private static final String ROOT_DIR = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\KillMonstersNovice\\";
     private static final String WILDCARD = "fragm*";
     private final Capture capture;
     private final Mouse mouse;
