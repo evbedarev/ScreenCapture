@@ -1,7 +1,19 @@
+package find_image;
+
 import java.awt.image.BufferedImage;
+
+/**
+ * Ищет искомый фрагмент в скриншоте.
+ */
 
 public class FindImageHard implements FindImage {
 
+    /**
+     * Find fragment of image in screenshot slowly.
+     * @param screenShot - screenshot (png)
+     * @param fragment - required fragment (png)
+     * @return - int[] {x,y} or int[0]
+     */
     @Override
     public int[] findImage(BufferedImage screenShot, BufferedImage fragment) {
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {

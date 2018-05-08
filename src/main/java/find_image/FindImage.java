@@ -1,3 +1,5 @@
+package find_image;
+
 import java.awt.image.BufferedImage;
 
 public interface FindImage {

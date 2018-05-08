@@ -1,20 +1,30 @@
+import find_fragments.FindFragmentFiles;
+import find_image.FindImageHard;
+import storage_image.StorageImage;
+import storage_image.StorageImageFile;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class main {
     public static void main(String[] args) throws IOException, AWTException, InterruptedException {
-        Capture capture = new Capture("somefile");
-        BufferedImage image = capture.loadImageFromFile("./src/main/resources/" + "somefile.jpg");
-        Thread.currentThread().sleep(1000);
-        BufferedImage fragment = capture.loadImageFromFile("./src/main/resources/" + "fragment.png");
-        findImage(image, fragment);
+        StorageImage storageImage = new StorageImageFile();
+        FindFragmentFiles fragmentFiles = new FindFragmentFiles("fragm*", "./src/main/resources/");
         takeScreenShot();
+        Thread.currentThread().sleep(1000);
+        BufferedImage image = storageImage.load("./src/main/resources/" + "somefile.png");
+        for (BufferedImage fragment: fragmentFiles.fragments()) {
+            findImage(image, fragment);
+        }
+
+//        BufferedImage fragment = storageImage.load("./src/main/resources/" + "fragment.png");
+//        findImage(image, fragment);
     }
 
-    private static void takeScreenShot() throws IOException, AWTException {
-        Capture capture = new Capture("somefile");
-        capture.takeScreenShot();
+    private static void takeScreenShot() throws AWTException {
+        Capture capture = new Capture();
+        capture.takeScreenShot("somefile");
     }
 
     private static void findImage(BufferedImage screenShot, BufferedImage fragment) throws AWTException {
