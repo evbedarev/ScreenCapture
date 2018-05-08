@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindFragmentFiles {
+public class FindFragmentFiles implements FindFragments{
     private final String wildCard;
     private final String rootDir;
 
