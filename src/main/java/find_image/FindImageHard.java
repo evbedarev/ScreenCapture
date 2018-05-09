@@ -31,12 +31,10 @@ public class FindImageHard implements FindImage {
                             continue __columnspan;
                     }
                 }
-                System.out.println("Find");
                 return Optional.of(new int[] {x, y});
 
             }
         }
-        System.out.println("not find");
         return Optional.empty();
     }
 }

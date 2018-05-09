@@ -11,7 +11,7 @@ public class Keys {
 
     public void keyPress(int keyMask) throws InterruptedException {
         robot.keyPress(keyMask);
-        Thread.sleep(100);
+        Thread.sleep(200);
         robot.keyRelease(keyMask);
     }
 }
