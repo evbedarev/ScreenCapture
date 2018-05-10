@@ -3,9 +3,13 @@ package logic;
 import checks.CheckHP;
 import key_and_mouse.Keys;
 import logic.kill_monster.KillMonster;
+
 import logic.kill_monster.Poring;
 import logic.kill_monster.Rocker;
+import logic.kill_monster.SavageBaby;
 import logic.take_loot.Bottle;
+import logic.take_loot.Card;
+import logic.take_loot.RockerLeg;
 import logic.take_loot.TakeLoot;
 
 import java.awt.*;
@@ -22,19 +26,18 @@ public class LogicForNovice {
         Keys keys = new Keys();
 //      KillMonster killMonster = new Poring();
         KillMonster killMonster = new Rocker();
-        TakeLoot bottle = new Bottle();
+        KillMonster killMonster1 = new SavageBaby();
 
 
         while (true) {
-            if (killMonster.findAndKill()) {
+            if (killMonster.findAndKill() || killMonster1.findAndKill()) {
                 count = 0;
-                checkMyHp(9);
-//                Thread.sleep(3000);
-                bottle.takeLoot();
+                checkMyHp(7);
+                pickUpLoot();
             } else {
                 count++;
                 Thread.sleep(1000);
-                bottle.takeLoot();
+                pickUpLoot();
             }
             if (count > 10) {
                 keys.keyPress(KeyEvent.VK_F2);
@@ -50,6 +53,23 @@ public class LogicForNovice {
             checkHP.checkHp();
             Thread.sleep(1000);
         }
+    }
+
+    private void pickUpLoot() throws AWTException,
+            IOException,
+            InterruptedException {
+
+        TakeLoot rockerLeg = new RockerLeg();
+        TakeLoot card = new Card();
+
+        if (card.takeLoot()) {
+            Thread.sleep(10000);
+        }
+
+        if (rockerLeg.takeLoot()) {
+            Thread.sleep(1000);
+        }
+
     }
 
 }

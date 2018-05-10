@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public interface TakeLoot {
-    void takeLoot() throws
+    boolean takeLoot() throws
             IOException,
             AWTException,
             InterruptedException;

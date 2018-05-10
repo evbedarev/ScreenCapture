@@ -20,7 +20,7 @@ public class Settings {
 
             screenWidth = Integer.parseInt(properties.getProperty("SCREEN_WIDTH"));
             screenHeight = Integer.parseInt(properties.getProperty("SCREEN_HEIGHT"));
-            rootDir = properties.getProperty("ROOT_DIR");
+            rootDir = (String) properties.getProperty("ROOT_DIR");
 
             rgbHp = Integer.parseInt(properties.getProperty("RGB_HP"));
             xHp = Integer.parseInt(properties.getProperty("X_HP"));

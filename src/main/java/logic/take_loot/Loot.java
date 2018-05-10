@@ -32,7 +32,7 @@ public class Loot implements TakeLoot {
     }
 
     @Override
-    public void takeLoot() throws
+    public boolean takeLoot() throws
             IOException,
             AWTException,
             InterruptedException {
@@ -50,7 +50,9 @@ public class Loot implements TakeLoot {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 mouse.mouseClick(x + 18, y + 20);
+                return true;
             }
         }
+        return false;
     }
 }
