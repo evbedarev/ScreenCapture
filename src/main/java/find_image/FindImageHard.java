@@ -19,7 +19,7 @@ public class FindImageHard implements FindImage {
      */
     @Override
     public Optional<int[]> findImage(BufferedImage screenShot,
-                                                           BufferedImage fragment) {
+                                     BufferedImage fragment) {
 
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {

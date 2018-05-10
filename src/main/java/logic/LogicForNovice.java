@@ -1,7 +1,9 @@
 package logic;
 
 import checks.CheckHP;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import key_and_mouse.Keys;
+import key_and_mouse.Mouse;
 import logic.kill_monster.KillMonster;
 
 import logic.kill_monster.Poring;
@@ -14,14 +16,19 @@ import logic.take_loot.TakeLoot;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.Externalizable;
 import java.io.IOException;
 
 public class LogicForNovice {
     int count = 0;
+    Mouse mouse;
+
+    public LogicForNovice() throws Exception {
+        mouse = new Mouse();
+    }
+
     public void start() throws
-            IOException,
-            AWTException,
-            InterruptedException {
+            Exception {
 
         Keys keys = new Keys();
 //      KillMonster killMonster = new Poring();
@@ -31,9 +38,7 @@ public class LogicForNovice {
 
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
-                count = 0;
-                checkMyHp(7);
-                pickUpLoot();
+                duringTheFight();
             } else {
                 count++;
                 Thread.sleep(1000);
@@ -53,6 +58,14 @@ public class LogicForNovice {
             checkHP.checkHp();
             Thread.sleep(1000);
         }
+    }
+
+    private void duringTheFight() throws Exception{
+        count = 0;
+        checkMyHp(7);
+        mouse.mouseClick(1000,450);
+        Thread.sleep(1000);
+        pickUpLoot();
     }
 
     private void pickUpLoot() throws AWTException,
