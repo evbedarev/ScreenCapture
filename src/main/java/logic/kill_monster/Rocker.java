@@ -6,6 +6,6 @@ public class Rocker extends Monster {
     public Rocker() throws AWTException {
         super();
         super.wildcard = "fragm*";
-        super.rootDir = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\KillMonsters\\Rocker\\";
+        super.rootDir = settings.rootDir + "KillMonsters\\Rocker\\";
     }
 }

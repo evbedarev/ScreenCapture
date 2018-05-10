@@ -6,6 +6,7 @@ import find_image.FindImageHard;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import main.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class Loot implements TakeLoot {
     String rootDir = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\Loot\\Bottleq\\";
     String wildcard = "fragmq*";
+    Settings settings;
 
     final Capture capture;
     final Mouse mouse;
@@ -22,6 +24,7 @@ public class Loot implements TakeLoot {
     final FindImageHard findImageHard;
 
     public Loot() throws AWTException {
+        settings = Settings.instance();
         capture = new Capture();
         mouse = new Mouse();
         keys = new Keys();

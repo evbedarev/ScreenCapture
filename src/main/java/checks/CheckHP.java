@@ -2,21 +2,26 @@ package checks;
 
 import key_and_mouse.Keys;
 import logic.Capture;
+import main.Settings;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHP {
-    private static final int RGB_HP = -6507025;
-    public static final int X_HP = 98;
-    public static final int Y_HP = 82;
+    private final int RGB_HP;
+    private final int X_HP;
+    private final int Y_HP;
     Capture capture;
     Keys keys;
 
     public CheckHP() throws AWTException {
+        Settings settings = Settings.instance();
         capture = new Capture();
         keys = new Keys();
+        RGB_HP = settings.rgbHp;
+        X_HP = settings.xHp;
+        Y_HP = settings.yHp;
     }
 
     public void checkHp()  throws InterruptedException {

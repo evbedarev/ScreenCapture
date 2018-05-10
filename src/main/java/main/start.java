@@ -1,3 +1,5 @@
+package main;
+
 import logic.LogicForNovice;
 import logic.kill_monster.KillMonster;
 
@@ -13,6 +15,5 @@ public class start {
 
         LogicForNovice logicForNovice = new LogicForNovice();
         logicForNovice.start();
-
     }
 }

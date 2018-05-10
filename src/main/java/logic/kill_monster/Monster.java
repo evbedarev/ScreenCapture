@@ -6,6 +6,7 @@ import find_image.FindImageHard;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import main.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,8 +21,10 @@ public class Monster implements KillMonster {
     private final Mouse mouse;
     private final Keys keys;
     private final FindImageHard findImageHard;
+    Settings settings;
 
     public Monster() throws AWTException {
+        settings = Settings.instance();
         capture = new Capture();
         mouse = new Mouse();
         keys = new Keys();
