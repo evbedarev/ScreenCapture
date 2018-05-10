@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Capture {
     private static final int SCREEN_WIDTH = 1600;
     private static final int SCREEN_HEIGHT = 900;
-    private static final String ROOT_DIR = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\";
+    private static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
     private StorageImage storageImage = new StorageImageFile();
     private Robot robot;
 
