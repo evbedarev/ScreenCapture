@@ -16,9 +16,11 @@ import java.io.IOException;
 public class LogicForNovice {
     int count = 0;
     Mouse mouse;
+    CheckHP checkHP;
 
     public LogicForNovice() throws Exception {
         mouse = new Mouse();
+        checkHP = new CheckHP();
     }
 
     public void start() throws
@@ -37,6 +39,7 @@ public class LogicForNovice {
                 count++;
                 Thread.sleep(1000);
                 pickUpLoot();
+                checkHP.needHeal();
             }
             if (count > 10) {
                 keys.keyPress(KeyEvent.VK_F2);
@@ -46,8 +49,7 @@ public class LogicForNovice {
             }
         }
     }
-    private void checkMyHp(int times) throws AWTException, InterruptedException {
-        CheckHP checkHP = new CheckHP();
+    private void checkMyHp(int times) throws Exception {
         for (int i = 0; i < times; i++) {
             checkHP.checkHp();
             Thread.sleep(1000);

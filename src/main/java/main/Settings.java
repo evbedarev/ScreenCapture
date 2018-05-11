@@ -13,6 +13,9 @@ public class Settings {
     public int rgbHp;
     public int xHp;
     public int yHp;
+    public int rgbHpHeal;
+    public int xHpHeal;
+    public int yHpHeal;
 
     public int x_left;
     public int x_right;
@@ -31,6 +34,10 @@ public class Settings {
             rgbHp = Integer.parseInt(properties.getProperty("RGB_HP"));
             xHp = Integer.parseInt(properties.getProperty("X_HP"));
             yHp = Integer.parseInt(properties.getProperty("Y_HP"));
+
+            rgbHpHeal = Integer.parseInt(properties.getProperty("RGB_HP_HEAL"));
+            xHpHeal = Integer.parseInt(properties.getProperty("X_HP_HEAL"));
+            yHpHeal = Integer.parseInt(properties.getProperty("Y_HP_HEAL"));
 
             x_left = Integer.parseInt(properties.getProperty("EXCLUDE_X_LEFT"));
             x_right = Integer.parseInt(properties.getProperty("EXCLUDE_X_RIGHT"));
