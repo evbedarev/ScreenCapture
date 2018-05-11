@@ -55,4 +55,12 @@ public class Loot implements TakeLoot {
         }
         return false;
     }
+
+    @Override
+    public void pickUp() throws Exception {
+        TakeLoot takeLoot = this;
+        while (takeLoot.takeLoot()) {
+            Thread.sleep(1000);
+        }
+    }
 }

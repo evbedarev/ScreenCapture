@@ -8,4 +8,5 @@ public interface TakeLoot {
             IOException,
             AWTException,
             InterruptedException;
+    void pickUp() throws Exception;
 }

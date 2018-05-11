@@ -9,9 +9,6 @@ import logic.take_loot.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import java.io.Externalizable;
-import java.io.IOException;
-
 public class LogicForNovice {
     int count = 0;
     Mouse mouse;
@@ -67,21 +64,14 @@ public class LogicForNovice {
     private void pickUpLoot() throws Exception {
         TakeLoot rockerLeg = new PowderOfButterfly();
         pickUpCard();
-
-        while (rockerLeg.takeLoot()) {
-            Thread.sleep(1000);
-        }
+        rockerLeg.pickUp();
     }
 
     private void pickUpCard() throws Exception {
         TakeLoot card = new Card();
         TakeLoot clothes = new Clothes();
-        while (card.takeLoot()) {
-            Thread.sleep(1000);
-        }
-        while (clothes.takeLoot()) {
-            Thread.sleep(1000);
-        }
+        card.pickUp();
+        clothes.pickUp();
     }
 
 }
