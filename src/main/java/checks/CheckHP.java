@@ -54,5 +54,4 @@ public class CheckHP {
             mouse.mouseClick(800, 400);
         }
     }
-
 }

@@ -40,11 +40,11 @@ public class LogicForNovice {
                 Thread.sleep(1000);
                 pickUpLoot();
             }
-            if (count > 10) {
+            if (count > 5) {
                 keys.keyPress(KeyEvent.VK_F2);
                 Thread.sleep(500);
                 keys.keyPress(KeyEvent.VK_ENTER);
-                count = 5;
+                count = 3;
             }
         }
     }
