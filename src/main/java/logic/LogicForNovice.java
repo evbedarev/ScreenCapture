@@ -39,7 +39,6 @@ public class LogicForNovice {
                 count++;
                 Thread.sleep(1000);
                 pickUpLoot();
-                checkHP.needHeal();
             }
             if (count > 10) {
                 keys.keyPress(KeyEvent.VK_F2);
@@ -52,6 +51,7 @@ public class LogicForNovice {
     private void checkMyHp(int times) throws Exception {
         for (int i = 0; i < times; i++) {
             checkHP.checkHp();
+            pickUpCard();
             Thread.sleep(1000);
         }
     }
@@ -61,24 +61,24 @@ public class LogicForNovice {
         checkMyHp(7);
         mouse.mouseClick(1000,450);
         Thread.sleep(1000);
+        checkHP.needHeal();
         pickUpLoot();
     }
 
-    private void pickUpLoot() throws AWTException,
-            IOException,
-            InterruptedException {
-
+    private void pickUpLoot() throws Exception {
         TakeLoot rockerLeg = new PowderOfButterfly();
-        TakeLoot card = new Card();
-
-        if (card.takeLoot()) {
-            Thread.sleep(10000);
-        }
+        pickUpCard();
 
         if (rockerLeg.takeLoot()) {
             Thread.sleep(2000);
         }
+    }
 
+    private void pickUpCard() throws Exception {
+        TakeLoot card = new Card();
+        if (card.takeLoot()) {
+            Thread.sleep(10000);
+        }
     }
 
 }
