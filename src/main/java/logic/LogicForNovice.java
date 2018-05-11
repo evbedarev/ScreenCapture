@@ -6,7 +6,6 @@ import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 
 import logic.take_loot.*;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -40,11 +39,11 @@ public class LogicForNovice {
                 Thread.sleep(1000);
                 pickUpLoot();
             }
-            if (count > 10) {
+            if (count > 6) {
                 keys.keyPress(KeyEvent.VK_F2);
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 keys.keyPress(KeyEvent.VK_ENTER);
-                count = 5;
+                count = 3;
             }
         }
     }
@@ -69,15 +68,19 @@ public class LogicForNovice {
         TakeLoot rockerLeg = new PowderOfButterfly();
         pickUpCard();
 
-        if (rockerLeg.takeLoot()) {
-            Thread.sleep(2000);
+        while (rockerLeg.takeLoot()) {
+            Thread.sleep(1000);
         }
     }
 
     private void pickUpCard() throws Exception {
         TakeLoot card = new Card();
-        if (card.takeLoot()) {
-            Thread.sleep(10000);
+        TakeLoot clothes = new Clothes();
+        while (card.takeLoot()) {
+            Thread.sleep(1000);
+        }
+        while (clothes.takeLoot()) {
+            Thread.sleep(1000);
         }
     }
 
