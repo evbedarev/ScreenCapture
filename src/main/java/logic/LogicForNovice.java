@@ -3,18 +3,13 @@ package logic;
 import checks.CheckHP;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.kill_monster.KillMonster;
+import logic.kill_monster.*;
 
-import logic.kill_monster.Poring;
-import logic.kill_monster.Rocker;
-import logic.kill_monster.SavageBaby;
-import logic.take_loot.Bottle;
-import logic.take_loot.Card;
-import logic.take_loot.RockerLeg;
-import logic.take_loot.TakeLoot;
+import logic.take_loot.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
 import java.io.Externalizable;
 import java.io.IOException;
 
@@ -31,8 +26,8 @@ public class LogicForNovice {
 
         Keys keys = new Keys();
 //      KillMonster killMonster = new Poring();
-        KillMonster killMonster = new Rocker();
-        KillMonster killMonster1 = new SavageBaby();
+        KillMonster killMonster = new ThiefBug();
+        KillMonster killMonster1 = new Creamy();
 
 
         while (true) {
@@ -71,7 +66,7 @@ public class LogicForNovice {
             IOException,
             InterruptedException {
 
-        TakeLoot rockerLeg = new RockerLeg();
+        TakeLoot rockerLeg = new PowderOfButterfly();
         TakeLoot card = new Card();
 
         if (card.takeLoot()) {
@@ -79,7 +74,7 @@ public class LogicForNovice {
         }
 
         if (rockerLeg.takeLoot()) {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
 
     }
