@@ -1,7 +1,6 @@
 package logic;
 
 import checks.CheckHP;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.KillMonster;

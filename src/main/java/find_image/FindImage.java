@@ -6,4 +6,7 @@ import java.util.Optional;
 
 public interface FindImage {
     Optional<int[]> findImage (BufferedImage screenShot, BufferedImage fragment);
+    Optional<int[]> findImageExcludeArea (BufferedImage screenShot, BufferedImage fragment);
+    Optional<int[]> findImageExcludeArea (BufferedImage screenShot, BufferedImage fragment,
+                                          int[] xy);
 }

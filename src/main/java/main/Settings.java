@@ -9,9 +9,15 @@ public class Settings {
     public int screenWidth;
     public int screenHeight;
     public String rootDir;
+
     public int rgbHp;
     public int xHp;
     public int yHp;
+
+    public int x_left;
+    public int x_right;
+    public int y_up;
+    public int y_down;
 
     public Settings() {
         try (InputStream file = new FileInputStream(new File(PATH_TO_PROP))) {
@@ -25,6 +31,11 @@ public class Settings {
             rgbHp = Integer.parseInt(properties.getProperty("RGB_HP"));
             xHp = Integer.parseInt(properties.getProperty("X_HP"));
             yHp = Integer.parseInt(properties.getProperty("Y_HP"));
+
+            x_left = Integer.parseInt(properties.getProperty("EXCLUDE_X_LEFT"));
+            x_right = Integer.parseInt(properties.getProperty("EXCLUDE_X_RIGHT"));
+            y_up = Integer.parseInt(properties.getProperty("EXCLUDE_Y_UP"));
+            y_down = Integer.parseInt(properties.getProperty("EXCLUDE_Y_DOWN"));
 
         } catch (IOException exception) {
             exception.printStackTrace();

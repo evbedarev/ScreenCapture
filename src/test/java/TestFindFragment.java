@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class TestFindFragment {
-    private static final String ROOT_DIR = "/home/mj/Projects/ScreenCapture/src/main/resources/forTests/";
+    private static final String ROOT_DIR = "/home/mj/Projects/ScreenCapture/src/main/resources/for_test/";
     private static final String WILDCARD = "frag*";
     private static final String NEW_FRAGMENT_FILE = "fragment123.png";
 

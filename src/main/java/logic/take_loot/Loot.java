@@ -45,7 +45,7 @@ public class Loot implements TakeLoot {
                 rootDir);
 
         for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findImage(screenShot, fragment);
+            Optional<int[]> xy = findImageHard.findImageExcludeArea(screenShot, fragment);
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
