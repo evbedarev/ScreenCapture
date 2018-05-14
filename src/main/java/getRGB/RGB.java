@@ -54,10 +54,10 @@ public class RGB {
 
     public static void findPixelRgb() throws Exception {
         StorageImage storageImage = new StorageImageFile();
-        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/KillMonsters/Attack/fragment.png");
+        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/KillMonsters/Attack/fragment1.png");
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x=0; x < image.getWidth(); x++) {
-                if (image.getRGB(x,y) == -3552801) {
+                if (image.getRGB(x,y) == -3552800) {
                     System.out.println("x=" + x + " y=" + y);
                 }
             }
