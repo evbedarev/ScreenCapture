@@ -6,7 +6,6 @@ import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 
 import logic.take_loot.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class LogicForNovice {
@@ -30,7 +29,7 @@ public class LogicForNovice {
 
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
-                Thread.sleep(1500);
+                Thread.sleep(500);
                 duringTheFight();
             } else {
                 count++;
@@ -52,9 +51,9 @@ public class LogicForNovice {
     }
 
     private void duringTheFight() throws Exception {
-//        KillMonster attack = new Attack();
+        KillMonster attack = new Attack();
         count = 0;
-        for (int i=1; i < 3; i++) {
+        while (attack.findAndKill()) {
             checkMyHp();
             Thread.sleep(1000);
         }
