@@ -30,41 +30,47 @@ public class LogicForNovice {
 
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
+                Thread.sleep(1500);
                 duringTheFight();
             } else {
                 count++;
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 pickUpLoot();
             }
-            if (count > 6) {
+            if (count > 2) {
                 keys.keyPress(KeyEvent.VK_F2);
                 Thread.sleep(1000);
                 keys.keyPress(KeyEvent.VK_ENTER);
-                count = 3;
+                count = 1;
             }
         }
     }
-    private void checkMyHp(int times) throws Exception {
-        for (int i = 0; i < times; i++) {
-            checkHP.checkHp();
-            pickUpCard();
-            Thread.sleep(1000);
-        }
+    private void checkMyHp() throws Exception {
+        checkHP.checkHp();
+        pickUpCard();
+        Thread.sleep(1000);
     }
 
-    private void duringTheFight() throws Exception{
+    private void duringTheFight() throws Exception {
+//        KillMonster attack = new Attack();
         count = 0;
-        checkMyHp(7);
-        mouse.mouseClick(1000,450);
-        Thread.sleep(1000);
+        for (int i=1; i < 3; i++) {
+            checkMyHp();
+            Thread.sleep(1000);
+        }
+//        Thread.sleep(4000);
+        mouse.mouseClick(1000, 450);
         checkHP.needHeal();
         pickUpLoot();
     }
 
     private void pickUpLoot() throws Exception {
-        TakeLoot rockerLeg = new PowderOfButterfly();
+        TakeLoot powderOfButterfly = new PowderOfButterfly();
+        TakeLoot honey = new Honey();
+        
         pickUpCard();
-        rockerLeg.pickUp();
+        powderOfButterfly.pickUp();
+        honey.pickUp();
     }
 
     private void pickUpCard() throws Exception {
