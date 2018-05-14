@@ -29,7 +29,7 @@ public class LogicForNovice {
 
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 duringTheFight();
             } else {
                 count++;
@@ -55,7 +55,7 @@ public class LogicForNovice {
         count = 0;
         while (attack.findAndKill()) {
             checkMyHp();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
 //        Thread.sleep(4000);
         mouse.mouseClick(1000, 450);
