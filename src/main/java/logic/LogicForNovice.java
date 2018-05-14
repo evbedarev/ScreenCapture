@@ -53,9 +53,9 @@ public class LogicForNovice {
     private void duringTheFight() throws Exception {
         KillMonster attack = new Attack();
         count = 0;
-        while (attack.findAndKill()) {
+        while (((Attack) attack).killOrNot()) {
             checkMyHp();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
 //        Thread.sleep(4000);
         mouse.mouseClick(1000, 450);

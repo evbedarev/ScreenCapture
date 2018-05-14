@@ -9,14 +9,17 @@ import java.util.*;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
-//        System.out.println("________________________________________");
-//        findRGB("/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag.png", "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag1.png");
-//        System.out.println("________________________________________");
-//        findRGB("/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag.png", "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag2.png");
-//        System.out.println("________________________________________");
-//        findRGB("/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag.png", "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag3.png");
-//        System.out.println("________________________________________");
-//        findRGB("/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag.png", "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/frag4.png");
+        System.out.println("________________________________________");
+        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
+        System.out.println("________________________________________");
+        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
+        System.out.println("________________________________________");
+        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag3.png");
+        System.out.println("________________________________________");
+        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag4.png");
+        System.out.println("________________________________________");
+        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag5.png");
+
         findPixelRgb();
     }
 
@@ -51,17 +54,17 @@ public class RGB {
             }
         }
     }
-
+//-3552801
+    //-395017
     public static void findPixelRgb() throws Exception {
         StorageImage storageImage = new StorageImageFile();
-        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/KillMonsters/Attack/fragment1.png");
+        BufferedImage image = storageImage.load("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x=0; x < image.getWidth(); x++) {
-                if (image.getRGB(x,y) == -3552800) {
+                if (image.getRGB(x,y) == -395017) {
                     System.out.println("x=" + x + " y=" + y);
                 }
             }
         }
-
     }
 }

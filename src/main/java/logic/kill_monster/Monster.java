@@ -17,10 +17,10 @@ public class Monster implements KillMonster {
     String rootDir = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\KillMonsters\\";
     String wildcard = "fragm*";
 
-    private final Capture capture;
-    private final Mouse mouse;
-    private final Keys keys;
-    private final FindImageHard findImageHard;
+    final Capture capture;
+    final Mouse mouse;
+    final Keys keys;
+    final FindImageHard findImageHard;
     Settings settings;
 
     public Monster() throws AWTException {

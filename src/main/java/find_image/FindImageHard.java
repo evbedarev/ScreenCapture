@@ -1,6 +1,8 @@
 package find_image;
 
 import main.Settings;
+import storage_image.StorageImage;
+import storage_image.StorageImageFile;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
@@ -138,6 +140,20 @@ public class FindImageHard implements FindImage {
                 }
                 return Optional.of(new int[] {x, y});
 
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<int[]> findPixel(BufferedImage screenShot, int[] rgb) {
+        for (int i:rgb) {
+            for (int y = 0; y < screenShot.getHeight(); y++) {
+                for (int x = 0; x < screenShot.getWidth(); x++) {
+                    if (screenShot.getRGB(x, y) == i) {
+                        return Optional.of(new int[] {x, y});
+                    }
+                }
             }
         }
         return Optional.empty();
