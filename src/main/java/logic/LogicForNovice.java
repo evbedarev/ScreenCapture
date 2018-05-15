@@ -25,8 +25,6 @@ public class LogicForNovice {
 //      KillMonster killMonster = new Poring();
         KillMonster killMonster = new ThiefBug();
         KillMonster killMonster1 = new Creamy();
-
-
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
                 Thread.sleep(1000);
@@ -52,10 +50,15 @@ public class LogicForNovice {
 
     private void duringTheFight() throws Exception {
         KillMonster attack = new Attack();
+        int atk = 1;
         count = 0;
         while (((Attack) attack).killOrNot()) {
+            atk++;
             checkMyHp();
             Thread.sleep(1000);
+            if (atk > 20) {
+                break;
+            }
         }
 //        Thread.sleep(4000);
         mouse.mouseClick(1000, 450);
