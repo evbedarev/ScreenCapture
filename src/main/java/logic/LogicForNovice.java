@@ -6,7 +6,7 @@ import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 
 import logic.take_loot.*;
-import java.awt.*;
+
 import java.awt.event.KeyEvent;
 
 public class LogicForNovice {
@@ -26,7 +26,6 @@ public class LogicForNovice {
 //      KillMonster killMonster = new Poring();
         KillMonster killMonster = new ThiefBug();
         KillMonster killMonster1 = new Creamy();
-
 
         while (true) {
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
@@ -55,8 +54,7 @@ public class LogicForNovice {
     private void duringTheFight() throws Exception{
         count = 0;
         checkMyHp(7);
-        mouse.mouseClick(1000,450);
-        Thread.sleep(1000);
+        stepAside();
         checkHP.needHeal();
         pickUpLoot();
     }
@@ -72,6 +70,26 @@ public class LogicForNovice {
         TakeLoot clothes = new Clothes();
         card.pickUp();
         clothes.pickUp();
+    }
+
+    private void stepAside() throws Exception{
+        double t = 2 * Math.PI * Math.random();
+        double minRadius = 75;
+        double maxRadius = 150;
+
+        double x = minRadius * Math.cos(t);
+        double y = minRadius * Math.sin(t);
+
+        double x1 = maxRadius * Math.cos(t);
+        double y1 = maxRadius * Math.sin(t);
+
+        double mediumX = x + Math.random()*(x1 - x);
+        double mediumR = mediumX/Math.cos(t);
+        double mediumY = mediumR * Math.sin(t);
+
+        mouse.mouseClick(800 + (int) Math.round(mediumX),
+                450 + (int) Math.round(mediumY));
+        Thread.sleep(1000);
     }
 
 }
