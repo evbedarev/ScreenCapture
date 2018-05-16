@@ -11,10 +11,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class LogicForNovice extends Thread{
     private int count = 0;
-    private int threadId = 0;
+    private int threadId;
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
-    private final AtomicInteger atomicInt = new AtomicInteger(0);
+    private final static AtomicInteger atomicInt = new AtomicInteger(0);
 
     public LogicForNovice(int threadId) throws Exception {
         this.threadId = threadId;
@@ -38,7 +38,7 @@ public class LogicForNovice extends Thread{
         }
     }
 
-    public void mainHandle() throws Exception {
+    private void mainHandle() throws Exception {
 
         if (threadId == 0) {
             Keys keys = new Keys();
@@ -59,9 +59,9 @@ public class LogicForNovice extends Thread{
                 keys.keyPress(KeyEvent.VK_ENTER);
                 count = 1;
             }
-
             if (atomicInt.get() > 60) {
-                System.out.println("60 Seconds left");
+                System.out.println("60");
+                atomicInt.set(0);
             }
         }
 
