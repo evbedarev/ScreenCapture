@@ -50,7 +50,6 @@ public class FindImageHard implements FindImage {
         int y_up = settings.y_up;
         int y_down = settings.y_down;
 
-
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {
 
@@ -67,9 +66,7 @@ public class FindImageHard implements FindImage {
                             continue __columnspan;
                     }
                 }
-
                 return Optional.of(new int[] {x, y});
-
             }
         }
         return Optional.empty();
@@ -85,13 +82,10 @@ public class FindImageHard implements FindImage {
     @Override
     public Optional<int[]> findImageExcludeArea(BufferedImage screenShot,
                                                 BufferedImage fragment, int[] xy) {
-
         int x_left = xy[0];
         int x_rigth = xy[1];
         int y_up = xy[2];
         int y_down = xy[3];
-
-
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {
 
@@ -108,7 +102,6 @@ public class FindImageHard implements FindImage {
                     }
                 }
                 return Optional.of(new int[] {x, y});
-
             }
         }
         return Optional.empty();
@@ -128,7 +121,6 @@ public class FindImageHard implements FindImage {
                 if (x < x_left && x > x_rigth && y < y_up && y > y_down ) {
                     continue;
                 }
-
                 if (screenShot.getRGB(x, y) != fragment.getRGB(0,0))
                     continue;
 
@@ -139,7 +131,6 @@ public class FindImageHard implements FindImage {
                     }
                 }
                 return Optional.of(new int[] {x, y});
-
             }
         }
         return Optional.empty();

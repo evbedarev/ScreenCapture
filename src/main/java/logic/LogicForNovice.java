@@ -7,25 +7,43 @@ import logic.kill_monster.*;
 
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class LogicForNovice {
-    int count = 0;
-    Mouse mouse;
-    CheckHP checkHP;
+public class LogicForNovice extends Thread{
+    private int count = 0;
+    private int threadId = 0;
+    private final Mouse mouse = new Mouse();
+    private final CheckHP checkHP = new CheckHP();
+    private final AtomicInteger atomicInt = new AtomicInteger(0);
 
-    public LogicForNovice() throws Exception {
-        mouse = new Mouse();
-        checkHP = new CheckHP();
+    public LogicForNovice(int threadId) throws Exception {
+        this.threadId = threadId;
     }
 
-    public void start() throws
-            Exception {
+    public void createThread() throws Exception {
+        Thread thread = new LogicForNovice(1);
+        thread.start();
+    }
 
-        Keys keys = new Keys();
-//      KillMonster killMonster = new Poring();
-        KillMonster killMonster = new ThiefBug();
-        KillMonster killMonster1 = new Creamy();
-        while (true) {
+    @Override
+    public void run() {
+        try {
+            createThread();
+            while (true) {
+                   mainHandle();
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void mainHandle() throws Exception {
+
+        if (threadId == 0) {
+            Keys keys = new Keys();
+    //      KillMonster killMonster = new Poring();
+            KillMonster killMonster = new ThiefBug();
+            KillMonster killMonster1 = new Creamy();
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
                 Thread.sleep(1000);
                 duringTheFight();
@@ -40,8 +58,19 @@ public class LogicForNovice {
                 keys.keyPress(KeyEvent.VK_ENTER);
                 count = 1;
             }
+
+            if (atomicInt.get() > 60) {
+                System.out.println("60 Seconds left");
+            }
+        }
+
+        if (threadId == 1) {
+            atomicInt.incrementAndGet();
+            sleep(1000);
         }
     }
+
+
     private void checkMyHp() throws Exception {
         checkHP.checkHp();
         pickUpCard();
@@ -68,7 +97,6 @@ public class LogicForNovice {
     private void pickUpLoot() throws Exception {
         TakeLoot powderOfButterfly = new PowderOfButterfly();
         TakeLoot honey = new Honey();
-        
         pickUpCard();
         powderOfButterfly.pickUp();
         honey.pickUp();
@@ -81,16 +109,16 @@ public class LogicForNovice {
         clothes.pickUp();
     }
 
-    private void stepAside() throws Exception{
+    private void stepAside() throws Exception {
         double t = 2 * Math.PI * Math.random();
         double minRadius = 75;
         double maxRadius = 150;
 
         double x = minRadius * Math.cos(t);
-        double y = minRadius * Math.sin(t);
+//        double y = minRadius * Math.sin(t);
 
         double x1 = maxRadius * Math.cos(t);
-        double y1 = maxRadius * Math.sin(t);
+//        double y1 = maxRadius * Math.sin(t);
 
         double mediumX = x + Math.random()*(x1 - x);
         double mediumR = mediumX/Math.cos(t);
