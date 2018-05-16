@@ -60,8 +60,7 @@ public class LogicForNovice {
                 break;
             }
         }
-//        Thread.sleep(4000);
-        mouse.mouseClick(1000, 450);
+        stepAside();
         checkHP.needHeal();
         pickUpLoot();
     }
@@ -80,6 +79,25 @@ public class LogicForNovice {
         TakeLoot clothes = new Clothes();
         card.pickUp();
         clothes.pickUp();
+    }
+
+    private void stepAside() throws Exception{
+        double t = 2 * Math.PI * Math.random();
+        double minRadius = 75;
+        double maxRadius = 150;
+
+        double x = minRadius * Math.cos(t);
+        double y = minRadius * Math.sin(t);
+
+        double x1 = maxRadius * Math.cos(t);
+        double y1 = maxRadius * Math.sin(t);
+
+        double mediumX = x + Math.random()*(x1 - x);
+        double mediumR = mediumX/Math.cos(t);
+        double mediumY = mediumR * Math.sin(t);
+
+        mouse.mouseClick(800 + (int) Math.round(mediumX),
+                450 + (int) Math.round(mediumY));
     }
 
 }
