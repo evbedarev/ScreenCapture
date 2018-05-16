@@ -21,14 +21,15 @@ public class LogicForNovice extends Thread{
     }
 
     public void createThread() throws Exception {
-        Thread thread = new LogicForNovice(1);
-        thread.start();
+        for (int i=0; i < 2; i++) {
+            Thread thread = new LogicForNovice(i);
+            thread.start();
+        }
     }
 
     @Override
     public void run() {
         try {
-            createThread();
             while (true) {
                    mainHandle();
             }
