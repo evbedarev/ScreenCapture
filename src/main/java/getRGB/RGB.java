@@ -20,7 +20,7 @@ public class RGB {
 //        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag5.png");
 
 //        findPixelRgb(-395017);
-        showRGB(new int[] {1582,64}, "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/fragment2.png");
+        showRGB(new int[] {1493,51}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
     }
 
     public static void findRGB(String path1, String path2) throws Exception {

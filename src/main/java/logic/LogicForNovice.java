@@ -37,6 +37,7 @@ public class LogicForNovice extends Thread{
     @Override
     public void run() {
         try {
+
             while (true) {
                    mainHandle();
             }
@@ -50,7 +51,7 @@ public class LogicForNovice extends Thread{
         if (threadId == 0) {
             Keys keys = new Keys();
     //      KillMonster killMonster = new Poring();
-            KillMonster killMonster = new ThiefBug();
+            KillMonster killMonster = new Goblin();
             KillMonster killMonster1 = new Creamy();
             if (killMonster.findAndKill() || killMonster1.findAndKill()) {
                 Thread.sleep(1000);
@@ -73,9 +74,9 @@ public class LogicForNovice extends Thread{
 
             if (!verifyMap.onDesiredLocation()) {
                 System.out.println("Нахожусь не на карте!!");
-                sleep(10000);
+                sleep(1000);
                 countForSendMsg++;
-                if (countForSendMsg == 10) {
+                if (countForSendMsg == 100) {
                     sendMessage.send(new MsgLocationChanged());
                 }
             } else {

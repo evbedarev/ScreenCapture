@@ -6,7 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GefField05 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1582,64, -6280000, -1200000};
+    public static final int[] PORTAL_RGB = new int[] {1493,51, -6280000, -1200000};
+//    public static final int[] PORTAL_RGB = new int[] {1582,64, -6280000, -1200000};
     public static final int[] PORTAL_RGB_1 = new int[] {1464,101, -6280000, -1200000};
     Capture capture;
 
@@ -24,6 +25,6 @@ public class GefField05 implements VerifyMap {
     public boolean onDesiredLocation() {
         BufferedImage image = capture.takeScreenShot();
         int rgb = image.getRGB(PORTAL_RGB[0], PORTAL_RGB[1]);
-        return ((rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3]) || (rgb > PORTAL_RGB_1[2] && rgb < PORTAL_RGB_1[3]) );
+        return (rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3]);
     }
 }

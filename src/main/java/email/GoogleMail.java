@@ -7,8 +7,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class GoogleMail {
-    private static final String USERNAME = "@gmail.com";
-    private static final String PASSWORD = "";
+    private static final String USERNAME = "madjo1985@gmail.com";
+    private static final String PASSWORD = "Ghbdtn85";
 
 
     public void sendMessage(String subject, String text) {
