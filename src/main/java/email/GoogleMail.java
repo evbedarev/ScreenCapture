@@ -7,11 +7,12 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class GoogleMail {
+    private static final String USERNAME = "@gmail.com";
+    private static final String PASSWORD = "";
 
-    public void sendMessage(Message message) {
 
-        final String username = "@gmail.com";
-        final String password = "";
+    public void sendMessage(String subject, String text) {
+
 
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -22,22 +23,21 @@ public class GoogleMail {
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
+                        return new PasswordAuthentication(USERNAME, PASSWORD);
                     }
                 });
 
         try {
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(username));
-//            message.setRecipients(Message.RecipientType.TO,
-//                    InternetAddress.parse("madjo1985@gmail.com"));
-//            message.setSubject("Testing Subject");
-//            message.setText("Dear Mail Crawler,"
-//                    + "\n\n No spam to my email, please!");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(USERNAME));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(USERNAME));
+            message.setSubject("message  from Bot: Location changed");
+            message.setText("Location changed");
 
             Transport.send(message);
 
-            System.out.println("Done");
+//            System.out.println("Done");
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);

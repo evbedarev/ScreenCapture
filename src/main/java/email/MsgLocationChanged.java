@@ -1,18 +1,11 @@
 package email;
 
-public class MsgLocationChanged {
-//    GoogleMail
-//
-//    public MsgLocationChanged() {
-//    }
-//
-//    public sendMsg() {
-//        //            Message message = new MimeMessage(session);
-////            message.setFrom(new InternetAddress(username));
-////            message.setRecipients(Message.RecipientType.TO,
-////                    InternetAddress.parse("madjo1985@gmail.com"));
-////            message.setSubject("Testing Subject");
-////            message.setText("Dear Mail Crawler,"
-////                    + "\n\n No spam to my email, please!");
-//    }
+public class MsgLocationChanged implements EmailMessage {
+    private static final String SUBJECT = "msg from bot: location changed";
+    private static final String TEXT = "location changed";
+    GoogleMail googleMail = new GoogleMail();
+
+    public void sendMsg() {
+        googleMail.sendMessage(SUBJECT, TEXT);
+    }
 }

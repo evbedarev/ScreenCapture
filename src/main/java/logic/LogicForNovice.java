@@ -3,6 +3,8 @@ package logic;
 import checks.CheckHP;
 import checks.GefField05;
 import checks.VerifyMap;
+import email.MsgLocationChanged;
+import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.*;
@@ -18,6 +20,7 @@ public class LogicForNovice extends Thread{
     private final CheckHP checkHP = new CheckHP();
     private final static AtomicInteger atomicInt = new AtomicInteger(0);
     private VerifyMap verifyMap = new GefField05();
+    private SendMessage sendMessage = new SendMessage();
 
     public LogicForNovice(int threadId) throws Exception {
         this.threadId = threadId;
@@ -68,8 +71,9 @@ public class LogicForNovice extends Thread{
             }
 
             while (!verifyMap.onDesiredLocation()) {
-                sleep(2000);
+                sendMessage.send(new MsgLocationChanged());
                 System.out.println("Нахожусь не на карте!!");
+                sleep(1800000);
             }
         }
 
