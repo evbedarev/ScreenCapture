@@ -22,7 +22,7 @@ public class CheckHP {
 
     public CheckHP() throws AWTException {
         Settings settings = Settings.instance();
-        capture = new Capture();
+        capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();
 

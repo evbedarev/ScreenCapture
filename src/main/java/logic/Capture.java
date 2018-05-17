@@ -7,7 +7,13 @@ import storage_image.StorageImageFile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+
+/**
+ * Singleton
+ * Класс для создания скриншота экрана
+ */
 public class Capture {
+    static private Capture instance;
     private final int SCREEN_WIDTH;
     private final int SCREEN_HEIGHT;
     private final String ROOT_DIR;
@@ -31,6 +37,13 @@ public class Capture {
     public BufferedImage takeScreenShot() {
         Rectangle rectangle = new Rectangle(SCREEN_WIDTH, SCREEN_HEIGHT);
         return robot.createScreenCapture(rectangle);
+    }
+
+    static public Capture instance() throws AWTException {
+        if (instance == null) {
+            instance = new Capture();
+        }
+        return  instance;
     }
 
 

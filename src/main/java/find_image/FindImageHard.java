@@ -40,6 +40,12 @@ public class FindImageHard implements FindImage {
         return Optional.empty();
     }
 
+    /**
+     * Ищет фрагмент в скриншоте, исключая заданную область.
+     * @param screenShot - скриншот.
+     * @param fragment - фрагмент изображения.
+     * @return
+     */
     @Override
     public Optional<int[]> findImageExcludeArea(BufferedImage screenShot,
                                      BufferedImage fragment) {

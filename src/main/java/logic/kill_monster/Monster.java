@@ -17,7 +17,7 @@ public class Monster implements KillMonster {
     String rootDir = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\KillMonsters\\";
     String wildcard = "fragm*";
 
-    final Capture capture;
+    Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindImageHard findImageHard;
@@ -25,7 +25,7 @@ public class Monster implements KillMonster {
 
     public Monster() throws AWTException {
         settings = Settings.instance();
-        capture = new Capture();
+        capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindImageHard();

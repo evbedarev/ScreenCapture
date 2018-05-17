@@ -18,14 +18,14 @@ public class Loot implements TakeLoot {
     String wildcard = "fragmq*";
     Settings settings;
 
-    final Capture capture;
+    Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindImageHard findImageHard;
 
     public Loot() throws AWTException {
         settings = Settings.instance();
-        capture = new Capture();
+        capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindImageHard();

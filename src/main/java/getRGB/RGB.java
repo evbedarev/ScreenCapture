@@ -19,7 +19,8 @@ public class RGB {
 //        System.out.println("________________________________________");
 //        findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag5.png");
 
-        findPixelRgb(-395017);
+//        findPixelRgb(-395017);
+        showRGB(new int[] {1582,64}, "/home/mj/Projects/ScreenCapture/src/main/resources/getRGB/fragment2.png");
     }
 
     public static void findRGB(String path1, String path2) throws Exception {
@@ -73,5 +74,12 @@ public class RGB {
                 }
             }
         }
+    }
+
+    public static void showRGB(int[] xy, String pathImage) throws Exception {
+        StorageImage storageImage = new StorageImageFile();
+        BufferedImage image = storageImage.load(pathImage);
+        System.out.println(image.getRGB(xy[0], xy[1]));
+
     }
 }

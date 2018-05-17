@@ -1,6 +1,8 @@
 package logic;
 
 import checks.CheckHP;
+import checks.GefField05;
+import checks.VerifyMap;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.*;
@@ -15,6 +17,7 @@ public class LogicForNovice extends Thread{
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
     private final static AtomicInteger atomicInt = new AtomicInteger(0);
+    private VerifyMap verifyMap = new GefField05();
 
     public LogicForNovice(int threadId) throws Exception {
         this.threadId = threadId;
@@ -63,6 +66,10 @@ public class LogicForNovice extends Thread{
                 System.out.println("60");
                 atomicInt.set(0);
             }
+
+            while (!verifyMap.onDesiredLocation()) {
+                sleep(2000);
+            }
         }
 
         if (threadId == 1) {
@@ -70,7 +77,6 @@ public class LogicForNovice extends Thread{
             sleep(1000);
         }
     }
-
 
     private void checkMyHp() throws Exception {
         checkHP.checkHp();
