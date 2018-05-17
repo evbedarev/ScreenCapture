@@ -69,6 +69,7 @@ public class LogicForNovice extends Thread{
 
             while (!verifyMap.onDesiredLocation()) {
                 sleep(2000);
+                System.out.println("Нахожусь не на карте!!");
             }
         }
 
