@@ -53,7 +53,7 @@ public class LogicForNovice extends Thread{
     //      KillMonster killMonster = new Poring();
             KillMonster killMonster = new Goblin();
             KillMonster killMonster1 = new Creamy();
-            if (killMonster.findAndKill() || killMonster1.findAndKill()) {
+            if (killMonster.findAndKill()) {
                 Thread.sleep(1000);
                 duringTheFight();
             } else {

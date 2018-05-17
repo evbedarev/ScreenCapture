@@ -61,6 +61,7 @@ public class Loot implements TakeLoot {
         TakeLoot takeLoot = this;
         while (takeLoot.takeLoot()) {
             Thread.sleep(1000);
+            System.out.println("TAKE " + this.toString() );
         }
     }
 }

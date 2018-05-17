@@ -27,6 +27,7 @@ public class Attack extends Monster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
 //                mouse.mouseClick(x + 18, y + 40);
+//                System.out.println("Attacking");
                 return true;
         }
         return false;
