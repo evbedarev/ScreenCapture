@@ -70,7 +70,7 @@ public class LogicForNovice extends Thread{
                 atomicInt.set(0);
             }
 
-            while (!verifyMap.onDesiredLocation()) {
+            if (!verifyMap.onDesiredLocation()) {
                 sendMessage.send(new MsgLocationChanged());
                 System.out.println("Нахожусь не на карте!!");
                 sleep(1800000);
