@@ -8,10 +8,10 @@ import java.util.Properties;
 
 public class GoogleMail {
 
-    public static void main(String[] args) {
+    public void sendMessage(Message message) {
 
-        final String username = "madjo1985@gmail.com";
-        final String password = "Ghbdtn85";
+        final String username = "@gmail.com";
+        final String password = "";
 
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -27,14 +27,13 @@ public class GoogleMail {
                 });
 
         try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("madjo1985@gmail.com"));
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n No spam to my email, please!");
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(username));
+//            message.setRecipients(Message.RecipientType.TO,
+//                    InternetAddress.parse("madjo1985@gmail.com"));
+//            message.setSubject("Testing Subject");
+//            message.setText("Dear Mail Crawler,"
+//                    + "\n\n No spam to my email, please!");
 
             Transport.send(message);
 
