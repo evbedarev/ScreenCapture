@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class LogicForNovice extends Thread{
     private int count = 0;
+    private int countForSendMsg = 0;
     private int threadId;
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
@@ -71,9 +72,14 @@ public class LogicForNovice extends Thread{
             }
 
             if (!verifyMap.onDesiredLocation()) {
-                sendMessage.send(new MsgLocationChanged());
                 System.out.println("Нахожусь не на карте!!");
-                sleep(1800000);
+                sleep(10000);
+                countForSendMsg++;
+                if (countForSendMsg == 10) {
+                    sendMessage.send(new MsgLocationChanged());
+                }
+            } else {
+                countForSendMsg = 0;
             }
         }
 
