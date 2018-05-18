@@ -22,9 +22,11 @@ public class LogicForNovice extends Thread{
     private final static AtomicInteger atomicInt = new AtomicInteger(0);
     private VerifyMap verifyMap = new GefField05();
     private SendMessage sendMessage = new SendMessage();
+    private Keys keys;
 
     public LogicForNovice(int threadId) throws Exception {
         this.threadId = threadId;
+        keys = new Keys();
     }
 
     public void createThread() throws Exception {
@@ -49,10 +51,17 @@ public class LogicForNovice extends Thread{
     private void mainHandle() throws Exception {
 
         if (threadId == 0) {
-            Keys keys = new Keys();
+
     //      KillMonster killMonster = new Poring();
             KillMonster killMonster = new Goblin();
             KillMonster killMonster1 = new Creamy();
+            KillMonster awareMonster = new GoblinLeader();
+
+
+            if (awareMonster.findAndKill()) {
+                System.out.println("GOBLIN LEADER");
+                teleport();
+            }
             if (killMonster.findAndKill()) {
                 Thread.sleep(1000);
                 duringTheFight();
@@ -62,10 +71,7 @@ public class LogicForNovice extends Thread{
                 pickUpLoot();
             }
             if (count > 2) {
-                keys.keyPress(KeyEvent.VK_F2);
-                Thread.sleep(1000);
-                keys.keyPress(KeyEvent.VK_ENTER);
-                count = 1;
+                teleport();
             }
             if (atomicInt.get() > 60) {
                 System.out.println("60");
@@ -145,6 +151,13 @@ public class LogicForNovice extends Thread{
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
+    }
+
+    private void teleport() throws InterruptedException {
+        keys.keyPress(KeyEvent.VK_F2);
+        Thread.sleep(1000);
+        keys.keyPress(KeyEvent.VK_ENTER);
+        count = 1;
     }
 
 }
