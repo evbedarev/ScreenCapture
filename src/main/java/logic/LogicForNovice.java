@@ -130,8 +130,10 @@ public class LogicForNovice extends Thread{
     private void pickUpCard() throws Exception {
         TakeLoot card = new Card();
         TakeLoot clothes = new Clothes();
+        TakeLoot mask = new Mask();
         card.pickUp();
         clothes.pickUp();
+        mask.pickUp();
     }
 
     private void stepAside() throws Exception {
