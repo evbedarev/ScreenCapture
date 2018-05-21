@@ -58,6 +58,7 @@ public class LogicForNovice extends Thread{
                 KillMonster goToWarp = new Warp();
                 System.out.println("Нахожусь не на карте!!");
                 goToWarp.findAndKill();
+                stepAside();
                 sleep(1000);
                 countForSendMsg++;
                 if (countForSendMsg == 100) {
