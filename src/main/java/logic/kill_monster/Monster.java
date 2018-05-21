@@ -9,6 +9,7 @@ import logic.Capture;
 import main.Settings;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Optional;
@@ -58,6 +59,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 mouse.mouseClick(x + 18, y + 20);
+
                 System.out.println("Killing monster: " + this.toString());
                 return true;
             }

@@ -23,10 +23,12 @@ public class LogicForNovice extends Thread{
     private VerifyMap verifyMap = new GefField05();
     private SendMessage sendMessage = new SendMessage();
     private Keys keys;
+    private Attack attack;
 
     public LogicForNovice(int threadId) throws Exception {
         this.threadId = threadId;
         keys = new Keys();
+        attack = new Attack();
     }
 
     public void createThread() throws Exception {
@@ -52,41 +54,45 @@ public class LogicForNovice extends Thread{
 
         if (threadId == 0) {
 
-    //      KillMonster killMonster = new Poring();
-            KillMonster killMonster = new Goblin();
-            KillMonster killMonster1 = new Creamy();
-            KillMonster awareMonster = new GoblinLeader();
-
-
-            if (awareMonster.findAndKill()) {
-                System.out.println("GOBLIN LEADER");
-                teleport();
-            }
-            if (killMonster.findAndKill()) {
-                Thread.sleep(1000);
-                duringTheFight();
-            } else {
-                count++;
-                Thread.sleep(500);
-                pickUpLoot();
-            }
-            if (count > 2) {
-                teleport();
-            }
-            if (atomicInt.get() > 60) {
-                System.out.println("60");
-                atomicInt.set(0);
-            }
-
-            if (!verifyMap.onDesiredLocation()) {
+            while (!verifyMap.onDesiredLocation()) {
+                KillMonster goToWarp = new Warp();
                 System.out.println("Нахожусь не на карте!!");
+                goToWarp.findAndKill();
                 sleep(1000);
                 countForSendMsg++;
                 if (countForSendMsg == 100) {
                     sendMessage.send(new MsgLocationChanged());
                 }
-            } else {
-                countForSendMsg = 0;
+            }
+            countForSendMsg = 0;
+
+    //      KillMonster killMonster = new Poring();
+//            KillMonster killMonster1 = new Creamy();
+            KillMonster killMonster = new Goblin();
+            KillMonster awareMonster = new GoblinLeader();
+
+            while (killMonster.findAndKill()) {
+                if (awareMonster.findAndKill()) {
+                    System.out.println("GOBLIN LEADER");
+                    teleport();
+                }
+
+                Thread.sleep(1000);
+                duringTheFight();
+            }
+
+            count++;
+            stepAside();
+            checkHP.needHeal();
+            pickUpLoot();
+
+            if (count > 2) {
+                teleport();
+            }
+            Thread.sleep(2000);
+            if (atomicInt.get() > 60) {
+                System.out.println("60");
+                atomicInt.set(0);
             }
         }
 
@@ -103,20 +109,16 @@ public class LogicForNovice extends Thread{
     }
 
     private void duringTheFight() throws Exception {
-        KillMonster attack = new Attack();
         int atk = 1;
-        count = 0;
-        while (((Attack) attack).killOrNot()) {
+            count = 0;
+        while (attack.killOrNot()) {
             atk++;
             checkMyHp();
-            Thread.sleep(1000);
+            Thread.sleep(500);
             if (atk > 20) {
                 break;
             }
         }
-        stepAside();
-        checkHP.needHeal();
-        pickUpLoot();
     }
 
     private void pickUpLoot() throws Exception {
@@ -130,9 +132,11 @@ public class LogicForNovice extends Thread{
     private void pickUpCard() throws Exception {
         TakeLoot card = new Card();
         TakeLoot clothes = new Clothes();
+        TakeLoot shield = new Shield();
         TakeLoot mask = new Mask();
         card.pickUp();
         clothes.pickUp();
+        shield.pickUp();
         mask.pickUp();
     }
 
