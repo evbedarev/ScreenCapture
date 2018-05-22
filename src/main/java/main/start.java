@@ -1,6 +1,5 @@
 package main;
 
-import logic.LogicForNovice;
 import logic.LogicGefField11;
 
 public class start {

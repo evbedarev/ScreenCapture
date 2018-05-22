@@ -22,7 +22,7 @@ public class Location extends Thread {
     final Mouse mouse = new Mouse();
     final CheckHP checkHP = new CheckHP();
     final static AtomicInteger atomicInt = new AtomicInteger(0);
-    VerifyMap verifyMap = new GefField05();
+    VerifyMap verifyMap;
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
