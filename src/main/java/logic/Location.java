@@ -35,7 +35,7 @@ public class Location extends Thread {
 
     public void createThread() throws Exception {
         for (int i=0; i < 2; i++) {
-            Thread thread = new LogicForNovice(i);
+            Thread thread = new Location(i);
             thread.start();
         }
     }

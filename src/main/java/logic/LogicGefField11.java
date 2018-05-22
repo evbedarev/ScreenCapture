@@ -15,6 +15,13 @@ public class LogicGefField11 extends Location {
         super(threadId);
     }
 
+    public void createThread() throws Exception {
+        for (int i=0; i < 2; i++) {
+            Thread thread = new LogicGefField11(i);
+            thread.start();
+        }
+    }
+
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
