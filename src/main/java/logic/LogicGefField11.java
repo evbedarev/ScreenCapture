@@ -1,11 +1,16 @@
 package logic;
 
+import checks.GefField05;
+import checks.GefField11;
+import checks.VerifyMap;
 import email.MsgLocationChanged;
 import logic.kill_monster.Goblin;
 import logic.kill_monster.GoblinLeader;
 import logic.kill_monster.KillMonster;
 
 public class LogicGefField11 extends Location {
+    VerifyMap verifyMap = new GefField11();
+
     public LogicGefField11(int threadId) throws Exception {
         super(threadId);
     }
