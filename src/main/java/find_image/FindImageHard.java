@@ -1,8 +1,6 @@
 package find_image;
 
-import main.Settings;
-import storage_image.StorageImage;
-import storage_image.StorageImageFile;
+import main.Prop;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
@@ -50,11 +48,10 @@ public class FindImageHard implements FindImage {
     public Optional<int[]> findImageExcludeArea(BufferedImage screenShot,
                                      BufferedImage fragment) {
 
-        Settings settings = Settings.instance();
-        int x_left = settings.x_left;
-        int x_rigth = settings.x_right;
-        int y_up = settings.y_up;
-        int y_down = settings.y_down;
+        int x_left = Prop.getExcludeXLeft();
+        int x_rigth = Prop.getExcludeXRight();
+        int y_up = Prop.getExcludeYUp();
+        int y_down = Prop.getExcludeYDown();
 
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {

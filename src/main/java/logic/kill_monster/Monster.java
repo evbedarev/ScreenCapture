@@ -6,7 +6,6 @@ import find_image.FindImageHard;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
-import main.Settings;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,17 +14,15 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Monster implements KillMonster {
-    String rootDir = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\KillMonsters\\";
+    String rootDir = "";
     String wildcard = "fragm*";
 
     Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindImageHard findImageHard;
-    Settings settings;
 
     public Monster() throws AWTException {
-        settings = Settings.instance();
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();

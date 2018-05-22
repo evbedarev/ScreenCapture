@@ -1,7 +1,6 @@
 package logic;
 
 import checks.CheckHP;
-import checks.GefField05;
 import checks.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
@@ -15,7 +14,7 @@ import logic.take_loot.*;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Location extends Thread {
+public class Location extends Thread implements Logic {
     int count = 0;
     int countForSendMsg = 0;
     int threadId;
@@ -33,6 +32,7 @@ public class Location extends Thread {
         attack = new Attack();
     }
 
+    @Override
     public void createThread() throws Exception {
         for (int i=0; i < 2; i++) {
             Thread thread = new Location(i);
@@ -124,6 +124,7 @@ public class Location extends Thread {
             goToWarp.findAndKill();
             sleep(2000);
             teleport();
+            sleep(2000);
             countForSendMsg++;
             if (countForSendMsg == 100) {
                 sendMessage.send(new MsgLocationChanged());

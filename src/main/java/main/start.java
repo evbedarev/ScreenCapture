@@ -1,11 +1,13 @@
 package main;
 
+import logic.Logic;
 import logic.LogicGefField11;
 
 public class start {
+    static Logic logic;
 
     public static void main(String[] args) throws Exception {
-        LogicGefField11 logicGefField11 = new LogicGefField11(0);
-        logicGefField11.createThread();
+        logic = new LogicGefField11(0);
+        logic.createThread();
     }
 }

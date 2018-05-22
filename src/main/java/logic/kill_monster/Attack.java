@@ -2,6 +2,7 @@ package logic.kill_monster;
 
 import find_fragments.FindFragmentFiles;
 import find_fragments.FindFragments;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,7 @@ public class Attack extends Monster {
     public Attack() throws AWTException {
         super();
         super.wildcard = "fragm*";
-        super.rootDir = settings.rootDir + "KillMonsters\\Attack\\";
+        super.rootDir = Prop.getRootDir() + "KillMonsters\\Attack\\";
     }
 
     public boolean killOrNot() throws Exception {

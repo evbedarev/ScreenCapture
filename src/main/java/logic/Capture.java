@@ -1,6 +1,6 @@
 package logic;
 
-import main.Settings;
+import main.Prop;
 import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 
@@ -21,11 +21,10 @@ public class Capture {
     private Robot robot;
 
     public Capture() throws AWTException {
-        Settings settings = Settings.instance();
         robot = new Robot();
-        SCREEN_WIDTH = settings.screenWidth;
-        SCREEN_HEIGHT = settings.screenHeight;
-        ROOT_DIR = settings.rootDir;
+        SCREEN_WIDTH =Prop.getScreenWidth();
+        SCREEN_HEIGHT = Prop.getScreenHeight();
+        ROOT_DIR = Prop.getRootDir();
     }
 
     public void takeScreenShotToFile(String fileName) {

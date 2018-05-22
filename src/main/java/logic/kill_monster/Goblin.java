@@ -1,5 +1,7 @@
 package logic.kill_monster;
 
+import main.Prop;
+
 import java.awt.*;
 
 public class Goblin extends Monster {
@@ -8,6 +10,6 @@ public class Goblin extends Monster {
     public Goblin() throws AWTException {
         super();
         super.wildcard = "fragm*";
-        super.rootDir = settings.rootDir + "KillMonsters\\Goblin\\";
+        super.rootDir = Prop.getRootDir() + "KillMonsters\\Goblin\\";
     }
 }

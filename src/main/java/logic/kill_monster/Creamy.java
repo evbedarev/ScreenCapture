@@ -1,11 +1,13 @@
 package logic.kill_monster;
 
+import main.Prop;
+
 import java.awt.*;
 
 public class Creamy extends Monster {
     public Creamy() throws AWTException {
         super();
         super.wildcard = "fragm*";
-        super.rootDir = settings.rootDir + "KillMonsters\\Creamy\\";
+        super.rootDir = Prop.getRootDir() + "KillMonsters\\Creamy\\";
     }
 }

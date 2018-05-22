@@ -3,7 +3,7 @@ package checks;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
-import main.Settings;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -21,18 +21,17 @@ public class CheckHP {
     Mouse mouse;
 
     public CheckHP() throws AWTException {
-        Settings settings = Settings.instance();
         capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();
 
-        RGB_HP = settings.rgbHp;
-        X_HP = settings.xHp;
-        Y_HP = settings.yHp;
+        RGB_HP = Prop.getRgbHp();
+        X_HP = Prop.getxHp();
+        Y_HP = Prop.getyHp();
 
-        RGB_HP_HEAL = settings.rgbHpHeal;
-        X_HP_HEAL = settings.xHpHeal;
-        Y_HP_HEAL = settings.yHpHeal;
+        RGB_HP_HEAL = Prop.getRgbHpHeal();
+        X_HP_HEAL = Prop.getxHp();
+        Y_HP_HEAL = Prop.getyHp();
     }
 
     public void checkHp() throws Exception {

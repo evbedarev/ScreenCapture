@@ -12,10 +12,7 @@ public class LogicGefField05 extends Location {
 
     @Override
     public void createThread() throws Exception {
-        for (int i=0; i < 2; i++) {
-            Thread thread = new LogicGefField05(i);
-            thread.start();
-        }
+        this.start();
     }
 
     @Override
