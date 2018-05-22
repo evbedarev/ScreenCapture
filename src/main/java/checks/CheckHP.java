@@ -30,8 +30,8 @@ public class CheckHP {
         Y_HP = Prop.getyHp();
 
         RGB_HP_HEAL = Prop.getRgbHpHeal();
-        X_HP_HEAL = Prop.getxHp();
-        Y_HP_HEAL = Prop.getyHp();
+        X_HP_HEAL = Prop.getxHpHeal();
+        Y_HP_HEAL = Prop.getyHpHeal();
     }
 
     public void checkHp() throws Exception {

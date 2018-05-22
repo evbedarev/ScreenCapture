@@ -2,7 +2,6 @@ package main;
 
 /**
  * Properies
- * SIGELTON
  */
 public class Prop {
     private static final int SCREEN_WIDTH = 1600;
@@ -14,14 +13,6 @@ public class Prop {
     private static final int Y_HP = 82;
 
     private static final int EXCLUDE_X_LEFT = 715;
-
-    public static String getEMAIL() {
-        return EMAIL;
-    }
-
-    public static String getEmailPass() {
-        return EMAIL_PASS;
-    }
 
     private static final int EXCLUDE_X_RIGHT = 740;
     private static final int EXCLUDE_Y_UP = 105;
@@ -85,4 +76,12 @@ public class Prop {
     public static int getyHpHeal() {
         return Y_HP_HEAL;
     }
+    public static String getEMAIL() {
+        return EMAIL;
+    }
+
+    public static String getEmailPass() {
+        return EMAIL_PASS;
+    }
+
 }

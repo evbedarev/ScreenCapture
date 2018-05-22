@@ -25,6 +25,8 @@ public class GefField05 implements VerifyMap {
     public boolean onDesiredLocation() {
         BufferedImage image = capture.takeScreenShot();
         int rgb = image.getRGB(PORTAL_RGB[0], PORTAL_RGB[1]);
-        return (rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3]);
+        int rgb1 = image.getRGB(PORTAL_RGB_1[0], PORTAL_RGB_1[1]);
+        return (rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3]) ||
+                (rgb1 > PORTAL_RGB[2] && rgb1 < PORTAL_RGB[3]);
     }
 }
