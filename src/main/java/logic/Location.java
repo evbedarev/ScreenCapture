@@ -119,12 +119,15 @@ public class Location extends Thread implements Logic {
 
     void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
+            sleep(5000);
             KillMonster goToWarp = new Warp();
             System.out.println("Нахожусь не на карте!!");
             goToWarp.findAndKill();
             sleep(2000);
-            teleport();
-            sleep(2000);
+            if (verifyMap.onDesiredLocation()) {
+                teleport();
+                sleep(2000);
+            }
             countForSendMsg++;
             if (countForSendMsg == 100) {
                 sendMessage.send(new MsgLocationChanged());
