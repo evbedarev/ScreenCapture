@@ -10,6 +10,7 @@ import logic.kill_monster.Attack;
 import logic.kill_monster.KillMonster;
 import logic.kill_monster.Warp;
 import logic.take_loot.*;
+import org.apache.log4j.Logger;
 
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,11 +22,14 @@ public class Location extends Thread implements Logic {
     final Mouse mouse = new Mouse();
     final CheckHP checkHP = new CheckHP();
     final static AtomicInteger atomicInt = new AtomicInteger(0);
+    private final Logger logger = Logger.getLogger(this.getClass());
+
     VerifyMap verifyMap;
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
     KillMonster awareMonster;
+    KillMonster killMonster;
 
     Location(int threadId) throws Exception {
         this.threadId = threadId;
@@ -111,17 +115,33 @@ public class Location extends Thread implements Logic {
     }
 
     void teleport() throws Exception {
-        keys.keyPress(KeyEvent.VK_F2);
-        Thread.sleep(1000);
-        keys.keyPress(KeyEvent.VK_ENTER);
-        count = 0;
+        findAndKill();
+        pickUpLoot();
+        if (count > 2) {
+            keys.keyPress(KeyEvent.VK_F2);
+            Thread.sleep(1000);
+            keys.keyPress(KeyEvent.VK_ENTER);
+            Thread.sleep(2000);
+            count = 0;
+            logger.info("TELEPORTING count=" + count);
+        }
+    }
+
+    void findAndKill() throws Exception{
+        awareMonster();
+        while (killMonster.findAndKill()) {
+            count = 0;
+            awareMonster();
+            Thread.sleep(1000);
+            duringTheFight();
+        }
     }
 
     void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
             sleep(5000);
             KillMonster goToWarp = new Warp();
-            System.out.println("Нахожусь не на карте!!");
+            logger.info("Нахожусь не на карте!!");
             goToWarp.findAndKill();
             sleep(2000);
             if (verifyMap.onDesiredLocation()) {
@@ -138,7 +158,7 @@ public class Location extends Thread implements Logic {
 
     void awareMonster() throws Exception {
         if (awareMonster != null && awareMonster.findAndKill()) {
-            System.out.println("GOBLIN LEADER");
+            logger.info("GOBLIN LEADER, TELEPORT");
             teleport();
         }
     }

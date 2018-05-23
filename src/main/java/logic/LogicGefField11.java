@@ -8,12 +8,11 @@ import logic.kill_monster.KillMonster;
 import java.awt.event.KeyEvent;
 
 public class LogicGefField11 extends Location {
-    KillMonster killMonster;
     public LogicGefField11(int threadId) throws Exception {
         super(threadId);
         super.verifyMap =  new GefField11();
         super.awareMonster = new GoblinLeader();
-        killMonster = new Goblin();
+        super.killMonster = new Goblin();
     }
 
     @Override
@@ -48,15 +47,6 @@ public class LogicGefField11 extends Location {
         }
     }
 
-    void findAndKill() throws Exception{
-        awareMonster();
-        while (killMonster.findAndKill()) {
-            count = 0;
-            awareMonster();
-            Thread.sleep(1000);
-            duringTheFight();
-        }
-    }
 
     @Override
     void duringTheFight() throws Exception {
@@ -71,18 +61,4 @@ public class LogicGefField11 extends Location {
             }
         }
     }
-
-    @Override
-    void teleport() throws Exception {
-        findAndKill();
-        pickUpLoot();
-        if (count > 2) {
-            keys.keyPress(KeyEvent.VK_F2);
-            Thread.sleep(1000);
-            keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(2000);
-            count = 0;
-        }
-    }
-
 }
