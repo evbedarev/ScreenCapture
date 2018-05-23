@@ -7,7 +7,6 @@ import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.Attack;
-import logic.kill_monster.Goblin;
 import logic.kill_monster.KillMonster;
 import logic.kill_monster.Warp;
 import logic.take_loot.*;
@@ -36,10 +35,9 @@ public class Location extends Thread implements Logic {
 
     @Override
     public void createThread() throws Exception {
-        for (int i=0; i < 2; i++) {
-            Thread thread = new Location(i);
-            thread.start();
-        }
+        Thread thread = new Location(1);
+        thread.start();
+        this.start();
     }
 
     @Override

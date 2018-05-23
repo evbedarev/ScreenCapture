@@ -18,10 +18,9 @@ public class LogicGefField11 extends Location {
 
     @Override
     public void createThread() throws Exception {
-        for (int i=0; i < 2; i++) {
-            Thread thread = new LogicGefField11(i);
-            thread.start();
-        }
+        Thread thread = new LogicGefField11(1);
+        thread.start();
+        this.start();
     }
 
     @Override
@@ -33,10 +32,7 @@ public class LogicGefField11 extends Location {
             stepAside();
             checkHP.checkHp();
             pickUpLoot();
-
-            if (count > 2) {
-                teleport();
-            }
+            teleport();
 
             Thread.sleep(2000);
             if (atomicInt.get() > 60) {
@@ -80,11 +76,13 @@ public class LogicGefField11 extends Location {
     void teleport() throws Exception {
         findAndKill();
         pickUpLoot();
-        keys.keyPress(KeyEvent.VK_F2);
-        Thread.sleep(1000);
-        keys.keyPress(KeyEvent.VK_ENTER);
-        Thread.sleep(2000);
-        count = 0;
+        if (count > 2) {
+            keys.keyPress(KeyEvent.VK_F2);
+            Thread.sleep(1000);
+            keys.keyPress(KeyEvent.VK_ENTER);
+            Thread.sleep(2000);
+            count = 0;
+        }
     }
 
 }
