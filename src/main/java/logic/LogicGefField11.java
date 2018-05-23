@@ -25,17 +25,7 @@ public class LogicGefField11 extends Location {
 
         if (threadId == 0) {
             locationCheck();
-            KillMonster killMonster = new Goblin();
-
-            awareMonster();
-            while (killMonster.findAndKill()) {
-                count = 0;
-                awareMonster();
-                Thread.sleep(1000);
-                duringTheFight();
-            }
-
-            count++;
+            findAndKill();
             stepAside();
             checkHP.checkHp();
             pickUpLoot();
@@ -49,6 +39,7 @@ public class LogicGefField11 extends Location {
                 System.out.println("60");
                 atomicInt.set(0);
             }
+            count++;
         }
 
         if (threadId == 1) {
@@ -56,4 +47,30 @@ public class LogicGefField11 extends Location {
             sleep(1000);
         }
     }
+
+    void findAndKill() throws Exception{
+        KillMonster killMonster = new Goblin();
+        awareMonster();
+        while (killMonster.findAndKill()) {
+            count = 0;
+            awareMonster();
+            Thread.sleep(1000);
+            duringTheFight();
+        }
+    }
+
+    @Override
+    void duringTheFight() throws Exception {
+        int atk = 1;
+        while (attack.killOrNot()) {
+            atk++;
+            checkMyHp();
+            Thread.sleep(500);
+            if (atk > 20) {
+                stepAside();
+                findAndKill();
+            }
+        }
+    }
+
 }
