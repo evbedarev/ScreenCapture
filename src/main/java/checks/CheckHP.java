@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHP {
+
     private final int RGB_HP;
     private final int X_HP;
     private final int Y_HP;

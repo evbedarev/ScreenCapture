@@ -3,9 +3,6 @@ package logic;
 import checks.GefField11;
 import logic.kill_monster.Goblin;
 import logic.kill_monster.GoblinLeader;
-import logic.kill_monster.KillMonster;
-
-import java.awt.event.KeyEvent;
 
 public class LogicGefField11 extends Location {
     public LogicGefField11(int threadId) throws Exception {
