@@ -6,10 +6,10 @@ import logic.kill_monster.GoblinLeader;
 import logic.kill_monster.KillMonster;
 
 public class LogicGefField11 extends Location {
-
     public LogicGefField11(int threadId) throws Exception {
         super(threadId);
         super.verifyMap =  new GefField11();
+        super.awareMonster = new GoblinLeader();
     }
 
     @Override
@@ -26,14 +26,11 @@ public class LogicGefField11 extends Location {
         if (threadId == 0) {
             locationCheck();
             KillMonster killMonster = new Goblin();
-            KillMonster awareMonster = new GoblinLeader();
 
+            awareMonster();
             while (killMonster.findAndKill()) {
-                if (awareMonster.findAndKill()) {
-                    System.out.println("GOBLIN LEADER");
-                    teleport();
-                }
-
+                count = 0;
+                awareMonster();
                 Thread.sleep(1000);
                 duringTheFight();
             }

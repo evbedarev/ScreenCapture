@@ -25,6 +25,7 @@ public class Location extends Thread implements Logic {
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
+    KillMonster awareMonster;
 
     Location(int threadId) throws Exception {
         this.threadId = threadId;
@@ -64,13 +65,13 @@ public class Location extends Thread implements Logic {
 
     void duringTheFight() throws Exception {
         int atk = 1;
-        count = 0;
         while (attack.killOrNot()) {
             atk++;
             checkMyHp();
             Thread.sleep(500);
             if (atk > 20) {
-                break;
+                stepAside();
+                atk = 1;
             }
         }
     }
@@ -134,6 +135,13 @@ public class Location extends Thread implements Logic {
             }
         }
         countForSendMsg = 0;
+    }
+
+    void awareMonster() throws Exception {
+        if (awareMonster != null && awareMonster.findAndKill()) {
+            System.out.println("GOBLIN LEADER");
+            teleport();
+        }
     }
 
 
