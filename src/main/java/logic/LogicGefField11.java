@@ -40,7 +40,7 @@ public class LogicGefField11 extends Location {
 
             count++;
             stepAside();
-            checkHP.needHeal();
+            checkHP.checkHp();
             pickUpLoot();
 
             if (count > 2) {

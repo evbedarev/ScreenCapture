@@ -9,18 +9,15 @@ public class Prop {
     private static final String ROOT_DIR = "C:\\java\\ScreenCapture\\src\\main\\resources\\";
 
     private static final int RGB_HP = -6507025;
-    private static final int X_HP = 98;
+    private static final int X_HP = 154;
     private static final int Y_HP = 82;
+    private static final int X_HP_HEAL = 145;
+    private static final int X_HP_TO_RUN = 99;
 
     private static final int EXCLUDE_X_LEFT = 715;
-
     private static final int EXCLUDE_X_RIGHT = 740;
     private static final int EXCLUDE_Y_UP = 105;
     private static final int EXCLUDE_Y_DOWN = 130;
-
-    private static final int RGB_HP_HEAL = -6507025;
-    private static final int X_HP_HEAL = 145;
-    private static final int Y_HP_HEAL = 82;
 
     private static final String EMAIL = "";
     private static final String EMAIL_PASS = "";
@@ -65,23 +62,20 @@ public class Prop {
         return EXCLUDE_Y_DOWN;
     }
 
-    public static int getRgbHpHeal() {
-        return RGB_HP_HEAL;
-    }
-
     public static int getxHpHeal() {
         return X_HP_HEAL;
     }
 
-    public static int getyHpHeal() {
-        return Y_HP_HEAL;
-    }
     public static String getEMAIL() {
         return EMAIL;
     }
 
     public static String getEmailPass() {
         return EMAIL_PASS;
+    }
+
+    public static int getxHpToRun() {
+        return X_HP_TO_RUN;
     }
 
 }

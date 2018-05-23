@@ -13,9 +13,7 @@ public class CheckHP {
     private final int RGB_HP;
     private final int X_HP;
     private final int Y_HP;
-    private final int RGB_HP_HEAL;
     private final int X_HP_HEAL;
-    private final int Y_HP_HEAL;
     Capture capture;
     Keys keys;
     Mouse mouse;
@@ -28,26 +26,36 @@ public class CheckHP {
         RGB_HP = Prop.getRgbHp();
         X_HP = Prop.getxHp();
         Y_HP = Prop.getyHp();
-
-        RGB_HP_HEAL = Prop.getRgbHpHeal();
         X_HP_HEAL = Prop.getxHpHeal();
-        Y_HP_HEAL = Prop.getyHpHeal();
     }
 
     public void checkHp() throws Exception {
-        if (needPotion()) {
+        BufferedImage image = capture.takeScreenShot();
+
+        if (lessThenHalfHp(image)) {
+            keys.keyPress(KeyEvent.VK_F2);
+            Thread.sleep(1000);
+            keys.keyPress(KeyEvent.VK_ENTER);
+        }
+
+        if (needPotion(image)) {
             keys.keyPress(KeyEvent.VK_F1);
         }
     }
 
-    private boolean needPotion() {
-        BufferedImage image = capture.takeScreenShot();
+    private boolean needPotion(BufferedImage image) {
         return image.getRGB(X_HP,Y_HP) != RGB_HP;
     }
 
+    private boolean lessThenHalfHp(BufferedImage image) {
+        return image.getRGB(99,Y_HP) != RGB_HP;
+    }
+
+
+
     public void needHeal() throws Exception{
         BufferedImage image = capture.takeScreenShot();
-        if (image.getRGB(X_HP_HEAL,Y_HP_HEAL) != RGB_HP_HEAL) {
+        if (image.getRGB(X_HP_HEAL,Y_HP) != RGB_HP) {
             keys.keyPress(KeyEvent.VK_F1);
 //            Thread.sleep(500);
 //            mouse.mouseClick(800, 400);
