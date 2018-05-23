@@ -32,11 +32,11 @@ public class CheckHP {
     public void checkHp() throws Exception {
         BufferedImage image = capture.takeScreenShot();
 
-        if (lessThenHalfHp(image)) {
-            keys.keyPress(KeyEvent.VK_F2);
-            Thread.sleep(1000);
-            keys.keyPress(KeyEvent.VK_ENTER);
-        }
+//        if (lessThenHalfHp(image)) {
+//            keys.keyPress(KeyEvent.VK_F2);
+//            Thread.sleep(1000);
+//            keys.keyPress(KeyEvent.VK_ENTER);
+//        }
 
         if (needPotion(image)) {
             keys.keyPress(KeyEvent.VK_F1);

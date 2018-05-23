@@ -112,7 +112,7 @@ public class Location extends Thread implements Logic {
                 450 + (int) Math.round(mediumY));
     }
 
-    void teleport() throws InterruptedException {
+    void teleport() throws Exception {
         keys.keyPress(KeyEvent.VK_F2);
         Thread.sleep(1000);
         keys.keyPress(KeyEvent.VK_ENTER);

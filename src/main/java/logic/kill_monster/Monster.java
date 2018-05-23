@@ -6,6 +6,7 @@ import find_image.FindImageHard;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -21,6 +22,7 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys;
     final FindImageHard findImageHard;
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     public Monster() throws AWTException {
         capture = Capture.instance();
@@ -56,8 +58,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 mouse.mouseClick(x + 18, y + 20);
-
-                System.out.println("Killing monster: " + this.toString());
+                logger.info("Killing monster, coordinates: x=" + (x+18) + " y=" + (y + 20));
                 return true;
             }
         }
