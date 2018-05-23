@@ -115,7 +115,7 @@ public class Location extends Thread implements Logic {
         keys.keyPress(KeyEvent.VK_F2);
         Thread.sleep(1000);
         keys.keyPress(KeyEvent.VK_ENTER);
-        count = 1;
+        count = 0;
     }
 
     void locationCheck() throws Exception {
