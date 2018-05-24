@@ -48,8 +48,8 @@ public class Loot implements TakeLoot {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                mouse.mouseClick(x + 18, y + 20);
-                logger.info("Taking loot, coordinates: x=" + (x+18) + " y=" + (y + 20));
+                mouse.mouseClick(x , y );
+                logger.info("Taking loot, coordinates: x=" + x + " y=" + y);
                 return true;
             }
         }

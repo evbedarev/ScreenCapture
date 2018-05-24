@@ -89,10 +89,16 @@ public class FindImageHard implements FindImage {
         int x_rigth = xy[1];
         int y_up = xy[2];
         int y_down = xy[3];
+
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {
 
                 if (x > x_left && x < x_rigth && y > y_up && y < y_down ) {
+                    continue;
+                }
+
+                //Исключаем персонажа из поиска
+                if (x > 790 && x < 827 && y > 402 && y < 510) {
                     continue;
                 }
 

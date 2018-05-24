@@ -6,7 +6,7 @@ package main;
 public class Prop {
     private static final int SCREEN_WIDTH = 1600;
     private static final int SCREEN_HEIGHT = 900;
-    private static final String ROOT_DIR = "C:\\java\\ScreenCapture\\src\\main\\resources\\";
+    private static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
 
     private static final int RGB_HP = -6507025;
     private static final int X_HP = 154;
@@ -19,8 +19,8 @@ public class Prop {
     private static final int EXCLUDE_Y_UP = 105;
     private static final int EXCLUDE_Y_DOWN = 130;
 
-    private static final String EMAIL = "";
-    private static final String EMAIL_PASS = "";
+    private static final String EMAIL = "madjo1985@gmail.com";
+    private static final String EMAIL_PASS = "Ghbdtn85";
 
     public static int getScreenWidth() {
         return SCREEN_WIDTH;

@@ -15,7 +15,8 @@ public class RGB {
 //        List<Integer> equalsTwo = new ArrayList<>();
 //        System.out.println("________________________________________");
 //        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
-//        System.out.println("________________________________________");
+//        System.out.println("___________" +
+//                "_____________________________");
 //        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
 //        System.out.println("________________________________________");
 //
@@ -48,7 +49,7 @@ public class RGB {
 //            }
 //        }
 //        showRGB(new int[] {1580,74}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
-        findPixelRgb(-5208194);
+        findPixelRgb(-8103334);
     }
 
     public static List<Integer> findRGB(String path1, String path2) throws Exception {

@@ -28,9 +28,9 @@ public class LogicGefField05 extends Location {
             Thread.sleep(1000);
             pickUpLoot();
         }
-        if (count > 6) {
+        if (count > 2) {
             teleport();
-            count = 3;
+            count = 1;
         }
     }
 
