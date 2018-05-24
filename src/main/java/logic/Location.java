@@ -121,7 +121,8 @@ public class Location extends Thread implements Logic {
             keys.keyPress(KeyEvent.VK_F2);
             Thread.sleep(1000);
             keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+            stepAside();
             count = 0;
             logger.info("TELEPORTING count=" + count);
         }
