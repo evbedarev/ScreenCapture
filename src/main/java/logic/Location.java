@@ -31,12 +31,16 @@ public class Location extends Thread implements Logic {
     KillMonster awareMonster;
     KillMonster killMonster;
 
-    TakeLoot loot1 = new PowderOfButterfly();
-    TakeLoot loot2 = new Honey();
-    TakeLoot card = new Card();
-    TakeLoot clothes = new Clothes();
-    TakeLoot shield = new Shield();
-    TakeLoot mask = new Mask();
+    TakeLoot[] usefulLoot = new TakeLoot[] {
+            new Card(),
+            new Clothes(),
+            new Shield(),
+            new Mask()
+    };
+    TakeLoot[] loot = new TakeLoot[] {
+            new PowderOfButterfly(),
+            new Honey()
+    };
 
     Location(int threadId) throws Exception {
         this.threadId = threadId;
@@ -87,15 +91,15 @@ public class Location extends Thread implements Logic {
 
     void pickUpLoot() throws Exception {
         pickUpCard();
-        loot1.pickUp();
-        loot2.pickUp();
+        for (TakeLoot takeLoot: loot) {
+            takeLoot.pickUp();
+        }
     }
 
     void pickUpCard() throws Exception {
-        card.pickUp();
-        clothes.pickUp();
-        shield.pickUp();
-        mask.pickUp();
+        for (TakeLoot takeLoot: usefulLoot) {
+            takeLoot.pickUp();
+        }
     }
 
     void stepAside() throws Exception {
