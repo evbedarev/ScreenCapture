@@ -25,12 +25,11 @@ public class LogicGefField11 extends Location {
         if (threadId == 0) {
             locationCheck();
             findAndKill();
-            stepAside();
             checkHP.checkHp();
             pickUpLoot();
             teleport();
-
             Thread.sleep(2000);
+
             if (atomicInt.get() > 60) {
                 System.out.println("60");
                 atomicInt.set(0);

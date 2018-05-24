@@ -31,6 +31,13 @@ public class Location extends Thread implements Logic {
     KillMonster awareMonster;
     KillMonster killMonster;
 
+    TakeLoot loot1 = new PowderOfButterfly();
+    TakeLoot loot2 = new Honey();
+    TakeLoot card = new Card();
+    TakeLoot clothes = new Clothes();
+    TakeLoot shield = new Shield();
+    TakeLoot mask = new Mask();
+
     Location(int threadId) throws Exception {
         this.threadId = threadId;
         keys = new Keys();
@@ -63,7 +70,6 @@ public class Location extends Thread implements Logic {
     void checkMyHp() throws Exception {
         checkHP.checkHp();
         pickUpCard();
-        Thread.sleep(1000);
     }
 
     void duringTheFight() throws Exception {
@@ -80,18 +86,12 @@ public class Location extends Thread implements Logic {
     }
 
     void pickUpLoot() throws Exception {
-        TakeLoot powderOfButterfly = new PowderOfButterfly();
-        TakeLoot honey = new Honey();
         pickUpCard();
-        powderOfButterfly.pickUp();
-        honey.pickUp();
+        loot1.pickUp();
+        loot2.pickUp();
     }
 
     void pickUpCard() throws Exception {
-        TakeLoot card = new Card();
-        TakeLoot clothes = new Clothes();
-        TakeLoot shield = new Shield();
-        TakeLoot mask = new Mask();
         card.pickUp();
         clothes.pickUp();
         shield.pickUp();
@@ -135,6 +135,9 @@ public class Location extends Thread implements Logic {
             Thread.sleep(1000);
             duringTheFight();
         }
+
+        if (!killMonster.findAndKill() && count ==0)
+            stepAside();
     }
 
     void locationCheck() throws Exception {
