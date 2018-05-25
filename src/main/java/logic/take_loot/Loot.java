@@ -21,7 +21,7 @@ public class Loot implements TakeLoot {
     final Mouse mouse;
     final Keys keys;
     final FindImageHard findImageHard;
-    private final Logger logger = Logger.getLogger(this.getClass());
+    final Logger logger = Logger.getLogger(this.getClass());
 
     public Loot() throws AWTException {
         capture = Capture.instance();
@@ -60,7 +60,7 @@ public class Loot implements TakeLoot {
     public void pickUp() throws Exception {
         TakeLoot takeLoot = this;
         while (takeLoot.takeLoot()) {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         }
     }
 }

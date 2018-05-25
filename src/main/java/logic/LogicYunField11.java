@@ -34,7 +34,7 @@ public class LogicYunField11 extends Location {
             checkHP.checkHp();
             pickUpLoot();
             teleport();
-            Thread.sleep(2000);
+            Thread.sleep(500);
 
             if (atomicInt.get() > 60) {
                 System.out.println("60");

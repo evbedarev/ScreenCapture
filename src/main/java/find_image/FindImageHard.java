@@ -104,6 +104,7 @@ public class FindImageHard implements FindImage {
 
                 if (screenShot.getRGB(x, y) != fragment.getRGB(0,0))
                     continue;
+
                 for (int yy = 0; yy < fragment.getHeight(); yy++) {
                     for (int xx = 0; xx < fragment.getWidth(); xx++) {
                         if (screenShot.getRGB(x + xx, y + yy) != fragment.getRGB(xx , yy))
@@ -153,6 +154,40 @@ public class FindImageHard implements FindImage {
                     if (screenShot.getRGB(x, y) == i) {
                         return Optional.of(new int[] {x, y});
                     }
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    public  Optional<int[]> findImage2Pixels(BufferedImage screenShot, int[] rgb) {
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
+                if (screenShot.getRGB(x, y) == rgb[0]) {
+                    System.out.println("Find first rgb" + rgb[0] + " at " + x + "," + y );
+                    System.out.println("Area is " + (x-15) + ","+ (x+15) + ","+ (y-19) + ","+ (y+19));
+                    return findImageInArea(screenShot, rgb[1], new int[] {x-15,x+15,y-19,y+19});
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    public Optional<int[]> findImageInArea(BufferedImage screenShot, int rgb, int[] xy) {
+
+        int x_left = xy[0];
+        int x_rigth = xy[1];
+        int y_up = xy[2];
+        int y_down = xy[3];
+
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
+                if (x < x_left || x > x_rigth || y < y_up || y > y_down ) {
+                    continue;
+                }
+                if (screenShot.getRGB(x, y) == rgb) {
+                    System.out.println("Find secont rgb " + rgb + " at " + x + "," + y);
+                    return Optional.of(new int[]{x, y});
                 }
             }
         }

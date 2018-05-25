@@ -53,7 +53,7 @@ public class Monster implements KillMonster {
                 rootDir);
 
         for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findImage(screenShot, fragment);
+            Optional<int[]> xy = findImageHard.findImageExcludeArea(screenShot, fragment, new int[] {785, 827, 402, 505});
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];

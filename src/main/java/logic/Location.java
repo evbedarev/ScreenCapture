@@ -121,7 +121,7 @@ public class Location extends Thread implements Logic {
     void teleport() throws Exception {
         findAndKill();
         pickUpLoot();
-        if (count > 2) {
+        if (count > 1) {
             keys.keyPress(KeyEvent.VK_F2);
             Thread.sleep(1000);
             keys.keyPress(KeyEvent.VK_ENTER);
