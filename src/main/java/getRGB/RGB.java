@@ -9,46 +9,46 @@ import java.util.*;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
-        List<Integer> firsRGB = new ArrayList<>();
-        List<Integer> secondRGB = new ArrayList<>();
-        List<Integer> equalsOne = new ArrayList<>();
-        List<Integer> equalsTwo = new ArrayList<>();
-        System.out.println("________________________________________");
-        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
-        System.out.println("___________" +
-                "_____________________________");
-        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
-        System.out.println("________________________________________");
-
-        for (Integer i: firsRGB) {
-            for (Integer j: secondRGB) {
-                if (i.equals(j)) {
-                    equalsOne.add(i);
-                }
-            }
-        }
-
-        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag3.png");
-        System.out.println("________________________________________");
-        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag4.png");
-        System.out.println("________________________________________");
-
-        for (Integer i: firsRGB) {
-            for (Integer j: secondRGB) {
-                if (i.equals(j)) {
-                    equalsTwo.add(i);
-                }
-            }
-        }
-
-        for (Integer i: equalsOne) {
-            for (Integer j: equalsTwo) {
-                if (i.equals(j)) {
-                    System.out.println("equals RGB = " + i);
-                }
-            }
-        }
-//        showRGB(new int[] {1580,74}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        List<Integer> firsRGB = new ArrayList<>();
+//        List<Integer> secondRGB = new ArrayList<>();
+//        List<Integer> equalsOne = new ArrayList<>();
+//        List<Integer> equalsTwo = new ArrayList<>();
+//        System.out.println("________________________________________");
+//        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
+//        System.out.println("___________" +
+//                "_____________________________");
+//        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
+//        System.out.println("________________________________________");
+//
+//        for (Integer i: firsRGB) {
+//            for (Integer j: secondRGB) {
+//                if (i.equals(j)) {
+//                    equalsOne.add(i);
+//                }
+//            }
+//        }
+//
+//        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag3.png");
+//        System.out.println("________________________________________");
+//        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag4.png");
+//        System.out.println("________________________________________");
+//
+//        for (Integer i: firsRGB) {
+//            for (Integer j: secondRGB) {
+//                if (i.equals(j)) {
+//                    equalsTwo.add(i);
+//                }
+//            }
+//        }
+//
+//        for (Integer i: equalsOne) {
+//            for (Integer j: equalsTwo) {
+//                if (i.equals(j)) {
+//                    System.out.println("equals RGB = " + i);
+//                }
+//            }
+//        }
+        showRGB(new int[] {1580,74}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-131329);
     }
 

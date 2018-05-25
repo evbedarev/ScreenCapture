@@ -155,7 +155,7 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void teleport() throws Exception {
-        if (count > 70) {
+        if (count > 40) {
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);

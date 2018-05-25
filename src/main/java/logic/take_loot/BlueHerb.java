@@ -11,7 +11,7 @@ public class BlueHerb extends Loot {
         super.rootDir = Prop.getRootDir() + "Loot\\BlueHerb\\";
 
         super.mainRgb = -14083973;
-        super.subImageSize = new int[] {10,10};
-        super.ancillaryRgb = new int[] {-11451996};
+        super.subImageSize = new int[] {35,35};
+        super.ancillaryRgb = new int[] {-14083973};
     }
 }
