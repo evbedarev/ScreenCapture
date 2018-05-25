@@ -13,8 +13,8 @@ public class LogicYunField11 extends Location {
         super.loot = new TakeLoot[] {
 //                new AntelopeHorn(),
                 new AntelopeSkin(),
-//                new BlueHerb(),
-//                new Bottle()
+                new BlueHerb(),
+                new Bottle()
         };
     }
 
@@ -29,18 +29,21 @@ public class LogicYunField11 extends Location {
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
-//            locationCheck();
-//            findAndKill();
-//            checkHP.checkHp();
+            locationCheck();
+            findAndKill();
+            Thread.sleep(500);
+            checkHP.checkHp();
+            Thread.sleep(500);
             pickUpLoot();
-//            teleport();
+            Thread.sleep(500);
+            teleport();
             Thread.sleep(500);
 
             if (atomicInt.get() > 60) {
                 System.out.println("60");
                 atomicInt.set(0);
             }
-            count++;
+            super.count++;
         }
 
         if (threadId == 1) {
@@ -54,6 +57,7 @@ public class LogicYunField11 extends Location {
     void duringTheFight() throws Exception {
         int atk = 1;
         while (attack.killOrNot()) {
+            count = 0;
             atk++;
             checkMyHp();
             Thread.sleep(500);

@@ -13,6 +13,10 @@ public class Attack extends Monster {
         super();
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "KillMonsters\\Attack\\";
+
+        super.mainRgb = -329224;
+        super.subImageSize = new int[] {10,10};
+        super.ancillaryRgb = new int[] {-329224};
     }
 
     public boolean killOrNot() throws Exception {
@@ -23,7 +27,12 @@ public class Attack extends Monster {
                 wildcard,
                 rootDir);
 
-            Optional<int[]> xy = findImageHard.findPixel(screenShot, new int [] {-3552801,-395017});
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
+                    screenShot,
+                    mainRgb,
+                    subImageSize,
+                    ancillaryRgb);
+
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];

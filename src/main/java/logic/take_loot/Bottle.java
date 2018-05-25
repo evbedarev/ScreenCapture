@@ -10,5 +10,9 @@ public class Bottle extends Loot {
         super();
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "Loot\\Bottle\\";
+
+        super.mainRgb = -131329;
+        super.subImageSize = new int[] {10,16};
+        super.ancillaryRgb = new int[] {-7894124, -8618875};
     }
 }

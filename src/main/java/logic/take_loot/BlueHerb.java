@@ -9,5 +9,9 @@ public class BlueHerb extends Loot {
         super();
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "Loot\\BlueHerb\\";
+
+        super.mainRgb = -14083973;
+        super.subImageSize = new int[] {10,10};
+        super.ancillaryRgb = new int[] {-11451996};
     }
 }

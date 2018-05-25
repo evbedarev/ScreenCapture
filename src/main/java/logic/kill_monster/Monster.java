@@ -1,8 +1,6 @@
 package logic.kill_monster;
 
-import find_fragments.FindFragmentFiles;
-import find_fragments.FindFragments;
-import find_image.FindImageHard;
+import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
@@ -21,14 +19,19 @@ public class Monster implements KillMonster {
     Capture capture;
     final Mouse mouse;
     final Keys keys;
-    final FindImageHard findImageHard;
+    final FindPixels findImageHard;
     private final Logger logger = Logger.getLogger(this.getClass());
+
+    int mainRgb;
+    int[] subImageSize;
+    int[] ancillaryRgb;
+
 
     public Monster() throws AWTException {
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
-        findImageHard = new FindImageHard();
+        findImageHard = new FindPixels();
     }
 
     /**
@@ -46,22 +49,23 @@ public class Monster implements KillMonster {
             InterruptedException{
 
         BufferedImage screenShot = capture.takeScreenShot();
+        logger.debug("Finding monster " + this.toString());
 
         //It's bad, later change. Need to load in constructor.
-        FindFragments fragmentFiles = new FindFragmentFiles(
-                wildcard,
-                rootDir);
 
-        for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findImageExcludeArea(screenShot, fragment, new int[] {785, 827, 402, 505});
-            if (xy.isPresent()) {
-                int x = xy.get()[0];
-                int y = xy.get()[1];
-                mouse.mouseClick(x + 18, y + 20);
-                logger.info("Killing monster, coordinates: x=" + (x+18) + " y=" + (y + 20));
-                return true;
-            }
+        Optional<int[]> xy = findImageHard.findPixelsInImage(
+                screenShot,
+                mainRgb,
+                subImageSize,
+                ancillaryRgb);
+        if (xy.isPresent()) {
+            int x = xy.get()[0];
+            int y = xy.get()[1];
+            mouse.mouseClick(x + 18, y + 20);
+            logger.info("Killing monster, coordinates: x=" + (x+18) + " y=" + (y + 20));
+            return true;
         }
+
         return false;
     }
 }

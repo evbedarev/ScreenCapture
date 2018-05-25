@@ -11,6 +11,6 @@ public class AntelopeSkin extends Loot {
         super.rootDir = Prop.getRootDir() + "Loot\\AntelopeSkin\\";
         super.mainRgb = -3958390;
         super.subImageSize = new int[] {10,10};
-        super.ancillaryRgb = new int[] {-3761012, 5208194};
+        super.ancillaryRgb = new int[] {-3761012, -2181723, -5405573};
     }
 }

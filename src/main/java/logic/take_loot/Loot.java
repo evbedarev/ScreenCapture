@@ -1,8 +1,5 @@
 package logic.take_loot;
 
-import find_fragments.FindFragmentFiles;
-import find_fragments.FindFragments;
-import find_image.FindImageHard;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -41,25 +38,20 @@ public class Loot implements TakeLoot {
             InterruptedException {
 
         BufferedImage screenShot = capture.takeScreenShot();
-
+        logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
-        FindFragments fragmentFiles = new FindFragmentFiles(
-                wildcard,
-                rootDir);
+        Optional<int[]> xy = findImageHard.findPixelsInImage(
+                screenShot,
+                mainRgb,
+                subImageSize,
+                ancillaryRgb);
 
-        for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
-                    mainRgb,
-                    subImageSize,
-                    ancillaryRgb);
-            if (xy.isPresent()) {
-                int x = xy.get()[0];
-                int y = xy.get()[1];
-                mouse.mouseClick(x , y );
-                logger.info("Taking loot, coordinates: x=" + x + " y=" + y);
-                return true;
-            }
+        if (xy.isPresent()) {
+            int x = xy.get()[0];
+            int y = xy.get()[1];
+            mouse.mouseClick(x , y );
+            logger.info("Taking loot, coordinates: x=" + x + " y=" + y);
+            return true;
         }
         return false;
     }

@@ -50,9 +50,10 @@ public class Location extends Thread implements Logic {
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new Location(1);
-        thread.start();
-        this.start();
+        System.out.println(threadId);
+//        Thread thread = new Location(1);
+//        thread.start();
+//        this.start();
     }
 
     @Override
@@ -72,7 +73,7 @@ public class Location extends Thread implements Logic {
 
     void checkMyHp() throws Exception {
         checkHP.checkHp();
-        pickUpCard();
+//        pickUpCard();
     }
 
     void duringTheFight() throws Exception {
@@ -86,11 +87,14 @@ public class Location extends Thread implements Logic {
                 atk = 1;
             }
         }
+        pickUpLoot();
     }
 
     void pickUpLoot() throws Exception {
-        pickUpCard();
+//        pickUpCard();
         for (TakeLoot takeLoot: loot) {
+//            if (takeLoot.takeLoot())
+//                count = 0;
             takeLoot.pickUp();
         }
     }
@@ -118,30 +122,28 @@ public class Location extends Thread implements Logic {
     }
 
     void teleport() throws Exception {
-        findAndKill();
-        pickUpLoot();
-        if (count > 1) {
+        if (count > 5) {
             keys.keyPress(KeyEvent.VK_F2);
             Thread.sleep(1000);
             keys.keyPress(KeyEvent.VK_ENTER);
             Thread.sleep(1000);
             stepAside();
-            count = 0;
             logger.info("TELEPORTING count=" + count);
+            count = 0;
         }
     }
 
     void findAndKill() throws Exception{
-        awareMonster();
+//        awareMonster();
         while (killMonster.findAndKill()) {
             count = 0;
-            awareMonster();
-            Thread.sleep(1000);
+//            awareMonster();
+            Thread.sleep(3000);
             duringTheFight();
         }
 
-        if (!killMonster.findAndKill() && count ==0)
-            stepAside();
+//        if (!killMonster.findAndKill() && count ==0)
+//            stepAside();
     }
 
     void locationCheck() throws Exception {
