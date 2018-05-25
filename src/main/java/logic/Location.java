@@ -58,7 +58,6 @@ public class Location extends Thread implements Logic {
     @Override
     public void run() {
         try {
-
             while (true) {
                 mainHandle();
             }
