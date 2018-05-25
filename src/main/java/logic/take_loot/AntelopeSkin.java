@@ -9,5 +9,8 @@ public class AntelopeSkin extends Loot {
         super();
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "Loot\\AntelopeSkin\\";
+        super.mainRgb = -3958390;
+        super.subImageSize = new int[] {10,10};
+        super.ancillaryRgb = new int[] {-3761012, 5208194};
     }
 }

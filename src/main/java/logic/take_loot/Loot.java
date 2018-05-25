@@ -3,6 +3,7 @@ package logic.take_loot;
 import find_fragments.FindFragmentFiles;
 import find_fragments.FindFragments;
 import find_image.FindImageHard;
+import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
@@ -20,14 +21,17 @@ public class Loot implements TakeLoot {
     Capture capture;
     final Mouse mouse;
     final Keys keys;
-    final FindImageHard findImageHard;
+    final FindPixels findImageHard;
     final Logger logger = Logger.getLogger(this.getClass());
+    int mainRgb;
+    int[] subImageSize;
+    int[] ancillaryRgb;
 
     public Loot() throws AWTException {
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
-        findImageHard = new FindImageHard();
+        findImageHard = new FindPixels();
     }
 
     @Override
@@ -44,7 +48,11 @@ public class Loot implements TakeLoot {
                 rootDir);
 
         for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findImageExcludeArea(screenShot, fragment);
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
+                    screenShot,
+                    mainRgb,
+                    subImageSize,
+                    ancillaryRgb);
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
