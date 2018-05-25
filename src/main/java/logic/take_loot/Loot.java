@@ -14,7 +14,6 @@ import java.util.Optional;
 public class Loot implements TakeLoot {
     String rootDir = "";
     String wildcard = "fragmq*";
-
     Capture capture;
     final Mouse mouse;
     final Keys keys;
@@ -38,7 +37,7 @@ public class Loot implements TakeLoot {
             InterruptedException {
 
         BufferedImage screenShot = capture.takeScreenShot();
-        logger.debug("Finding loot " + this.toString());
+        logger.info("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
         Optional<int[]> xy = findImageHard.findPixelsInImage(
                 screenShot,
@@ -51,6 +50,7 @@ public class Loot implements TakeLoot {
             int y = xy.get()[1];
             mouse.mouseClick(x , y );
             logger.info("Taking loot, coordinates: x=" + x + " y=" + y);
+            Thread.sleep(200);
             return true;
         }
         return false;

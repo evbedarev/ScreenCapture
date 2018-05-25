@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class YunField11 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1489,84, -6280000, -1200000};
-    public static final int[] PORTAL_RGB_1 = new int[] {1577,88, -6280000, -1200000};
+    public static final int[] PORTAL_RGB = new int[] {1489,50, -6280000, -1200000};
+    public static final int[] PORTAL_RGB_1 = new int[] {1577,54, -6280000, -1200000};
     Capture capture;
 
 

@@ -7,7 +7,6 @@ import logic.Capture;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Optional;
@@ -49,7 +48,7 @@ public class Monster implements KillMonster {
             InterruptedException{
 
         BufferedImage screenShot = capture.takeScreenShot();
-        logger.debug("Finding monster " + this.toString());
+        logger.info("Finding monster " + this.toString());
 
         //It's bad, later change. Need to load in constructor.
 
@@ -63,6 +62,7 @@ public class Monster implements KillMonster {
             int y = xy.get()[1];
             mouse.mouseClick(x + 18, y + 20);
             logger.info("Killing monster, coordinates: x=" + (x+18) + " y=" + (y + 20));
+            Thread.sleep(200);
             return true;
         }
 

@@ -11,6 +11,6 @@ public class Goat extends Monster {
         super.rootDir = Prop.getRootDir() + "KillMonsters\\Goat\\";
         super.mainRgb = -1523808;
         super.subImageSize = new int[] {30,30};
-        super.ancillaryRgb = new int[] {-6062224, -7839907};
+        super.ancillaryRgb = new int[] {-6062224, -5403528};
     }
 }
