@@ -105,6 +105,8 @@ public class LogicYunField11 extends Thread implements Logic {
             Thread.sleep(3000);
             duringTheFight();
         }
+        if (count == 0)
+            stepAside();
     }
 
     void duringTheFight() throws Exception {
@@ -155,7 +157,7 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void teleport() throws Exception {
-        if (count > 40) {
+        if (count > 20) {
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
