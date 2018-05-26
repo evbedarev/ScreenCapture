@@ -1,13 +1,15 @@
 package logic.take_loot;
 
 import main.Prop;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 
 public class Bottle extends Loot {
 
-    public Bottle() throws AWTException {
+    public Bottle(Logger logger) throws AWTException {
         super();
+        super.logger = logger;
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "Loot\\Bottle\\";
         super.mainRgb = -8618875;

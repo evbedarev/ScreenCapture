@@ -18,7 +18,7 @@ public class Loot implements TakeLoot {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    final Logger logger = Logger.getLogger(this.getClass());
+    Logger logger;
     int mainRgb;
     int[] subImageSize;
     int[] ancillaryRgb;
@@ -31,12 +31,17 @@ public class Loot implements TakeLoot {
     }
 
     @Override
-    public boolean takeLoot() throws
+    public boolean take() throws IOException, AWTException, InterruptedException {
+        BufferedImage screenShot = capture.takeScreenShot();
+        return takeLoot(screenShot);
+    }
+
+    @Override
+    public boolean takeLoot(BufferedImage screenShot) throws
             IOException,
             AWTException,
             InterruptedException {
 
-        BufferedImage screenShot = capture.takeScreenShot();
         logger.info("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
         Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -58,8 +63,7 @@ public class Loot implements TakeLoot {
 
     @Override
     public void pickUp() throws Exception {
-        TakeLoot takeLoot = this;
-        while (takeLoot.takeLoot()) {
+        while (take()) {
             Thread.sleep(1500);
         }
     }

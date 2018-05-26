@@ -18,13 +18,14 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class LogicYunField11 extends Thread implements Logic {
-    int count = 0;
-    int countForSendMsg = 0;
-    int threadId;
-    final Mouse mouse = new Mouse();
-    final CheckHP checkHP = new CheckHP();
-    final static AtomicInteger atomicInt = new AtomicInteger(0);
-    private final Logger logger = Logger.getLogger(this.getClass());
+
+    private int count = 0;
+    private int countForSendMsg = 0;
+    private final int threadId;
+    private final Mouse mouse = new Mouse();
+    private final CheckHP checkHP = new CheckHP();
+    private final static AtomicInteger atomicInt = new AtomicInteger(0);
+    private Logger logger = Logger.getLogger(this.getClass());
 
     VerifyMap verifyMap;
     SendMessage sendMessage = new SendMessage();
@@ -32,29 +33,29 @@ public class LogicYunField11 extends Thread implements Logic {
     Attack attack;
     KillMonster killMonster;
 
-    TakeLoot[] usefulLoot = new TakeLoot[] {
+    private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(),
             new Clothes(),
             new Shield(),
             new Mask()
     };
 
-    TakeLoot[] loot;
+    private final TakeLoot[] loot;
 
 
     public LogicYunField11(int threadId) throws Exception {
         System.out.println(threadId);
         verifyMap =  new YunField11();
-        killMonster = new Goat();
+        killMonster = new Goat(logger);
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
-                new AntelopeSkin(),
-                new BlueHerb(),
-                new Bottle()
+                new AntelopeSkin(logger),
+                new BlueHerb(logger),
+                new Bottle(logger)
         };
-
         keys = new Keys();
         attack = new Attack();
+        this.threadId = threadId;
     }
 
     public void createThread() throws Exception {
@@ -99,7 +100,7 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void findAndKill() throws Exception{
-        while (killMonster.findAndKill()) {
+        while (killMonster.kill()) {
             count = 0;
             logger.info("Set count to " + count);
             Thread.sleep(3000);
@@ -174,7 +175,7 @@ public class LogicYunField11 extends Thread implements Logic {
             sleep(5000);
             KillMonster goToWarp = new Warp();
             logger.info("Нахожусь не на карте!!");
-            goToWarp.findAndKill();
+            goToWarp.kill();
             sleep(2000);
             if (verifyMap.onDesiredLocation()) {
                 teleport();

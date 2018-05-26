@@ -19,7 +19,7 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    private final Logger logger = Logger.getLogger(this.getClass());
+    Logger logger;
 
     int mainRgb;
     int[] subImageSize;
@@ -33,8 +33,14 @@ public class Monster implements KillMonster {
         findImageHard = new FindPixels();
     }
 
+    @Override
+    public boolean kill() throws AWTException, InterruptedException {
+        BufferedImage screenShot = capture.takeScreenShot();
+        return findAndKill(screenShot);
+    }
+
     /**
-     *
+     * Ищет пиксели а экране и жмет при нахождении.
      * @return boolean;
      * @throws IOException
      * @throws AWTException
@@ -42,12 +48,10 @@ public class Monster implements KillMonster {
      */
 
     @Override
-    public boolean findAndKill() throws
-            IOException,
+    public boolean findAndKill(BufferedImage screenShot) throws
             AWTException,
             InterruptedException{
 
-        BufferedImage screenShot = capture.takeScreenShot();
         logger.info("Finding monster " + this.toString());
 
         //It's bad, later change. Need to load in constructor.
@@ -57,6 +61,7 @@ public class Monster implements KillMonster {
                 mainRgb,
                 subImageSize,
                 ancillaryRgb);
+
         if (xy.isPresent()) {
             int x = xy.get()[0];
             int y = xy.get()[1];
@@ -65,7 +70,6 @@ public class Monster implements KillMonster {
             Thread.sleep(200);
             return true;
         }
-
         return false;
     }
 }
