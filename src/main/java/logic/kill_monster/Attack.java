@@ -15,7 +15,7 @@ public class Attack extends Monster {
         super.rootDir = Prop.getRootDir() + "KillMonsters\\Attack\\";
 
         super.mainRgb = -329224;
-        super.subImageSize = new int[] {10,10};
+        super.subImageSize = new int[] {20,20};
         super.ancillaryRgb = new int[] {-329224};
     }
 

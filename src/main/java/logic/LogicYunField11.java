@@ -7,10 +7,7 @@ import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.kill_monster.Attack;
-import logic.kill_monster.Goat;
-import logic.kill_monster.KillMonster;
-import logic.kill_monster.Warp;
+import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
 
@@ -173,7 +170,7 @@ public class LogicYunField11 extends Thread implements Logic {
     void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
             sleep(5000);
-            KillMonster goToWarp = new Warp();
+            KillMonster goToWarp = new Warp(logger);
             logger.info("Нахожусь не на карте!!");
             goToWarp.kill();
             sleep(2000);

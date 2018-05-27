@@ -14,10 +14,10 @@ public class RGB {
 //        List<Integer> equalsOne = new ArrayList<>();
 //        List<Integer> equalsTwo = new ArrayList<>();
 //        System.out.println("________________________________________");
-//        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
+//        firsRGB = findRGB("C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag1.png");
 //        System.out.println("___________" +
 //                "_____________________________");
-//        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
+//        secondRGB = findRGB("C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag2.png");
 //        System.out.println("________________________________________");
 //
 //        for (Integer i: firsRGB) {
@@ -28,9 +28,9 @@ public class RGB {
 //            }
 //        }
 //
-//        firsRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag3.png");
+//        firsRGB = findRGB("C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag3.png");
 //        System.out.println("________________________________________");
-//        secondRGB = findRGB("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\frag4.png");
+//        secondRGB = findRGB("C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag.png", "C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\frag4.png");
 //        System.out.println("________________________________________");
 //
 //        for (Integer i: firsRGB) {
@@ -48,8 +48,8 @@ public class RGB {
 //                }
 //            }
 //        }
-        showRGB(new int[] {1580,74}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
-//        findPixelRgb(-131329);
+//        showRGB(new int[] {1580,74}, "C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        findPixelRgb(-1793);
     }
 
     public static List<Integer> findRGB(String path1, String path2) throws Exception {
@@ -97,7 +97,7 @@ public class RGB {
      */
     public static void findPixelRgb(int intRGB) throws Exception {
         StorageImage storageImage = new StorageImageFile();
-        BufferedImage image = storageImage.load("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        BufferedImage image = storageImage.load("C:\\java\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/for_test/fragment_picture.png");
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x=0; x < image.getWidth(); x++) {
