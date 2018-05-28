@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Optional;
 
 public class Loot implements TakeLoot {
@@ -31,14 +30,13 @@ public class Loot implements TakeLoot {
     }
 
     @Override
-    public boolean take() throws IOException, AWTException, InterruptedException {
+    public boolean take() throws AWTException, InterruptedException {
         BufferedImage screenShot = capture.takeScreenShot();
         return takeLoot(screenShot);
     }
 
     @Override
     public boolean takeLoot(BufferedImage screenShot) throws
-            IOException,
             AWTException,
             InterruptedException {
 
@@ -54,7 +52,7 @@ public class Loot implements TakeLoot {
             int x = xy.get()[0];
             int y = xy.get()[1];
             mouse.mouseClick(x , y );
-            logger.info("Taking loot, coordinates: x=" + x + " y=" + y);
+            logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
             return true;
         }

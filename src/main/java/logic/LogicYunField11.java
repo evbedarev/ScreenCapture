@@ -29,12 +29,15 @@ public class LogicYunField11 extends Thread implements Logic {
     Keys keys;
     Attack attack;
     KillMonster killMonster;
+    KillMonster killMonster1;
+    KillMonster killMonster2;
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
-            new Card(),
-            new Clothes(),
-            new Shield(),
-            new Mask()
+            new Card(logger),
+            new Card1(logger)
+//            new Clothes(),
+//            new Shield(),
+//            new Mask()
     };
 
     private final TakeLoot[] loot;
@@ -44,6 +47,9 @@ public class LogicYunField11 extends Thread implements Logic {
         System.out.println(threadId);
         verifyMap =  new YunField11();
         killMonster = new Goat(logger);
+        killMonster1 = new Mark1(logger);
+        killMonster2 = new Mark2(logger);
+
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
                 new AntelopeSkin(logger),
@@ -74,7 +80,7 @@ public class LogicYunField11 extends Thread implements Logic {
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
-            locationCheck();
+//            locationCheck();
             if (count == 0)
                 stepAside();
             findAndKill();
@@ -93,11 +99,11 @@ public class LogicYunField11 extends Thread implements Logic {
 
     void checkMyHp() throws Exception {
         checkHP.checkHp();
-//        pickUpCard();
+        pickUpCard();
     }
 
     void findAndKill() throws Exception{
-        while (killMonster.kill()) {
+        while (killMonster1.kill() || killMonster2.kill()) {
             count = 0;
             logger.info("Set count to " + count);
             Thread.sleep(3000);
@@ -124,7 +130,7 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void pickUpLoot() throws Exception {
-//        pickUpCard();
+        pickUpCard();
         for (TakeLoot takeLoot: loot) {
             takeLoot.pickUp();
         }
