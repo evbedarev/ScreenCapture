@@ -19,9 +19,9 @@
 //    public void mainHandle() throws Exception {
 //        locationCheck();
 //        KillMonster killMonster = new ThiefBug();
-//        KillMonster killMonster1 = new Creamy();
+//        KillMonster killMark1 = new Creamy();
 //
-//        if (killMonster.findAndKill() || killMonster1.findAndKill()) {
+//        if (killMonster.findAndKill() || killMark1.findAndKill()) {
 //            duringTheFight();
 //        } else {
 //            count++;

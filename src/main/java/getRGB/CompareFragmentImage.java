@@ -45,7 +45,7 @@ public class CompareFragmentImage {
 
         for (Integer i: equalsOne) {
             for (Integer j: equalsTwo) {
-                if (i == j) {
+                if (i.equals(j)) {
                     logger.info("All images equals RGB = " + i);
                 }
             }

@@ -1,17 +1,16 @@
 package find_image;
-
 import main.Prop;
 import org.apache.log4j.Logger;
-
+import static java.lang.Math.abs;
 import java.awt.image.BufferedImage;
-import java.util.Optional;
+import java.util.*;
 
 public class FindPixels implements FindPixelsInImage {
     final Logger logger = Logger.getLogger(this.getClass());
-    int x_left = Prop.getExcludeXLeft();
-    int x_rigth = Prop.getExcludeXRight();
-    int y_up = Prop.getExcludeYUp();
-    int y_down = Prop.getExcludeYDown();
+    private final int x_left = Prop.getExcludeXLeft();
+    private final int x_rigth = Prop.getExcludeXRight();
+    private final int y_up = Prop.getExcludeYUp();
+    private final int y_down = Prop.getExcludeYDown();
 
     @Override
     public Optional<int[]> findPixelsInImage(
@@ -19,28 +18,49 @@ public class FindPixels implements FindPixelsInImage {
             int mainRgb,
             int[] subImgCoord,
             int[] ancillaryRgb) {
+        List<int[]> listCoords = new ArrayList<>();
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
 
-    for (int y = 0; y < screenShot.getHeight(); y++) {
-        for (int x = 0; x < screenShot.getWidth(); x++) {
+                if (x > x_left && x < x_rigth && y > y_up && y < y_down ) {
+                    continue;
+                }
 
-            if (x > x_left && x < x_rigth && y > y_up && y < y_down ) {
-                continue;
-            }
+                if (screenShot.getRGB(x, y) == mainRgb) {
+                    logger.debug( " coordinates is " + x + ',' + y );
 
-            if (screenShot.getRGB(x, y) == mainRgb) {
-                logger.debug( " coordinates is " + x + ',' + y );
-                if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-                    logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
-                    return Optional.of(new int[] {x, y});
+                    if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
+                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+                        listCoords.add(new int[] {x, y});
+                    }
                 }
             }
         }
-    }
-    return Optional.empty();
+        if (listCoords.size() > 0) {
+            logger.info("Size of listCoords is: " + listCoords.size());
+            return Optional.of(findNearestFragment(listCoords));
+        }
+        return Optional.empty();
     }
 
     /**
-     *
+     * Определяет ближайшие координаты к центру экрана по оси Х
+     * @param listCoords - список всех найденых объектов на экране
+     * @return
+     */
+    private int[] findNearestFragment(List<int[]> listCoords) {
+        int screenCenter = Prop.getScreenWidth()/2;
+        Collections.sort(listCoords, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return Integer.compare(abs(o1[0] - screenCenter), abs(o2[0] - screenCenter));
+            }
+        });
+        logger.info("return coords of fragment: x=" + listCoords.get(0)[0] + " y=" + listCoords.get(0)[1]);
+        return listCoords.get(0);
+    }
+
+    /**
      * @param screenshot - снимок экрана
      * @param xy - 2 координаты точки вокруг которой надо вырезать изображение
      * @param subImgCoord - половина ширины и высоты вырезаемого участка.
@@ -53,30 +73,30 @@ public class FindPixels implements FindPixelsInImage {
             int[] subImgCoord,
             int[] ancillaryRgb)
     {
-            int x = xy[0];
-            int y = xy[1];
-            int x_up_left = x - subImgCoord[0];
-            int y_up_left = y - subImgCoord[1];
+        int x = xy[0];
+        int y = xy[1];
+        int x_up_left = x - subImgCoord[0];
+        int y_up_left = y - subImgCoord[1];
 
-            if (x_up_left < 0 || x_up_left + subImgCoord[0]*2 > 1600) {
+        if (x_up_left < 0 || x_up_left + subImgCoord[0]*2 > 1600) {
+            return false;
+        }
+        if (y_up_left < 0 || y_up_left + subImgCoord[1]*2 > 900) {
+            return false;
+        }
+
+        int width = subImgCoord[0]*2;
+        int height = subImgCoord[1]*2;
+        BufferedImage image = screenshot.getSubimage(x_up_left,y_up_left,width,height);
+
+        for (int rgb:ancillaryRgb) {
+            if (!findPixel(image, rgb).isPresent()) {
                 return false;
             }
-            if (y_up_left < 0 || y_up_left + subImgCoord[1]*2 > 900) {
-                return false;
-            }
-
-            int width = subImgCoord[0]*2;
-            int height = subImgCoord[1]*2;
-            BufferedImage image = screenshot.getSubimage(x_up_left,y_up_left,width,height);
-
-            for (int rgb:ancillaryRgb) {
-                if (!findPixel(image, rgb).isPresent()) {
-                    return false;
-                }
-            }
-            logger.debug("Find rgb " + ancillaryRgb + " in area x_up=" + x_up_left +
-                    "y_up_left " + y_up_left + " width " + width + " height " + height);
-            return true;
+        }
+        logger.debug("Find rgb " + ancillaryRgb + " in area x_up=" + x_up_left +
+                "y_up_left " + y_up_left + " width " + width + " height " + height);
+        return true;
     }
 
     public Optional<int[]> findPixel(BufferedImage screenShot, int ancillaryRgb) {

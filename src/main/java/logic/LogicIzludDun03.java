@@ -14,8 +14,7 @@ import org.apache.log4j.Logger;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class LogicYunField11 extends Thread implements Logic {
-
+public class LogicIzludDun03 extends Thread implements Logic {
     private int count = 0;
     private int countForSendMsg = 0;
     private final int threadId;
@@ -28,23 +27,20 @@ public class LogicYunField11 extends Thread implements Logic {
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
-    KillMonster killMonster;
+    KillMonster killMark1;
+    KillMonster killMark2;
+    KillMonster killPhen;
 
-    private final TakeLoot[] usefulLoot = new TakeLoot[] {
-            new Card(logger),
-            new Card1(logger)
-//            new Clothes(),
-//            new Shield(),
-//            new Mask()
-    };
-
+    private final TakeLoot[] usefulLoot;
     private final TakeLoot[] loot;
 
 
-    public LogicYunField11(int threadId) throws Exception {
+    public LogicIzludDun03(int threadId) throws Exception {
         System.out.println(threadId);
         verifyMap =  new YunField11();
-        killMonster = new Goat(logger);
+        killMark1 = new Mark1(logger);
+        killMark2 = new Mark2(logger);
+        killPhen = new Phen(logger);
 
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
@@ -52,6 +48,15 @@ public class LogicYunField11 extends Thread implements Logic {
                 new BlueHerb(logger),
                 new Bottle(logger)
         };
+
+        usefulLoot = new TakeLoot[] {
+                new Card(logger),
+                new Card1(logger)
+//            new Clothes(),
+//            new Shield(),
+//            new Mask()
+        };
+
         keys = new Keys();
         attack = new Attack(logger);
         this.threadId = threadId;
@@ -76,7 +81,7 @@ public class LogicYunField11 extends Thread implements Logic {
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
-            locationCheck();
+//            locationCheck();
             if (count == 0)
                 stepAside();
             findAndKill();
@@ -99,10 +104,10 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void findAndKill() throws Exception{
-        while (killMonster.kill()) {
+        while (killMark1.kill() || killMark2.kill()) {
             count = 0;
             logger.info("Set count to " + count);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             duringTheFight();
         }
         if (count == 0)
@@ -117,7 +122,7 @@ public class LogicYunField11 extends Thread implements Logic {
             atk++;
             checkMyHp();
             Thread.sleep(500);
-            if (atk > 100) {
+            if (atk > 20) {
                 stepAside();
                 findAndKill();
                 atk=1;
@@ -157,7 +162,7 @@ public class LogicYunField11 extends Thread implements Logic {
     }
 
     void teleport() throws Exception {
-        if (count > 25) {
+        if (count > 20) {
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
