@@ -20,17 +20,17 @@ public class LogicIzludDun03 extends Thread implements Logic {
     private final int threadId;
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
-    private final static AtomicInteger atomicInt = new AtomicInteger(0);
+    private final static AtomicInteger ATOMIC_INT = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
 
-    VerifyMap verifyMap;
-    SendMessage sendMessage = new SendMessage();
-    Keys keys;
-    Attack attack;
-    KillMonster killMark;
-    KillMonster killSwordfish;
-    KillMonster killPhen;
-    KillMonster killMerman;
+    private final VerifyMap verifyMap;
+    private final SendMessage sendMessage = new SendMessage();
+    private final Keys keys;
+    private final Attack attack;
+    private final KillMonster killMark;
+    private final KillMonster killSwordfish;
+    private final KillMonster killPhen;
+    private final KillMonster killMerman;
 
     private final TakeLoot[] usefulLoot;
     private final TakeLoot[] loot;
@@ -95,7 +95,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
         }
 
         if (threadId == 1) {
-            atomicInt.incrementAndGet();
+            ATOMIC_INT.incrementAndGet();
             sleep(1000);
         }
     }
@@ -153,7 +153,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
      * куда будет отходить перс
      * @throws Exception
      */
-    void stepAside() throws Exception {
+    private void stepAside() throws Exception {
         double t = 2 * Math.PI * Math.random();
         double minRadius = 75;
         double maxRadius = 150;
@@ -170,7 +170,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
         sleep(1000);
     }
 
-    void teleport() throws Exception {
+    private void teleport() throws Exception {
         if (count > 20) {
             logger.info("TELEPORTING count=" + count);
             count = 0;
@@ -183,7 +183,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
         }
     }
 
-    void locationCheck() throws Exception {
+    private void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
             sleep(5000);
             KillMonster goToWarp = new Warp(logger);
