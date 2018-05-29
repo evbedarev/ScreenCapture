@@ -70,7 +70,7 @@
 //            countForSendMsg = 0;
 //
 //    //      KillMonster killMonster = new Poring();
-////            KillMonster killMark1 = new Creamy();
+////            KillMonster killMark = new Creamy();
 //            KillMonster killMonster = new Goblin();
 //            KillMonster awareMonster = new GoblinLeader();
 //

@@ -27,8 +27,8 @@ public class LogicIzludDun03 extends Thread implements Logic {
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
-    KillMonster killMark1;
-    KillMonster killMark2;
+    KillMonster killMark;
+    KillMonster killSwordfish;
     KillMonster killPhen;
     KillMonster killMerman;
 
@@ -39,10 +39,10 @@ public class LogicIzludDun03 extends Thread implements Logic {
     public LogicIzludDun03(int threadId) throws Exception {
         System.out.println(threadId);
         verifyMap =  new IzludDun03();
-        killMark1 = new Mark1(logger);
-        killMark2 = new Mark2(logger);
+        killMark = new Mark(logger);
         killPhen = new Phen(logger);
         killMerman = new Merman(logger);
+        killSwordfish = new Swordfish(logger);
 
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
@@ -71,16 +71,16 @@ public class LogicIzludDun03 extends Thread implements Logic {
     }
 
     public void run() {
-        try {
-            while (true) {
+        while (true) {
+            try {
                 mainHandle();
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
-        } catch (Exception exception) {
-            exception.printStackTrace();
         }
     }
 
-    public void mainHandle() throws Exception {
+    private void mainHandle() throws Exception {
 
         if (threadId == 0) {
             locationCheck();
@@ -106,10 +106,10 @@ public class LogicIzludDun03 extends Thread implements Logic {
     }
 
     void findAndKill() throws Exception{
-        while (killMark1.kill() ||
-                killMark2.kill() ||
-                killPhen.kill() ||
-                killMerman.kill()) {
+        while (killSwordfish.kill() ||
+                killMerman.kill() ||
+                killMark.kill() ||
+                killPhen.kill()) {
             count = 0;
             logger.info("Set count to " + count);
             Thread.sleep(3000);
@@ -148,7 +148,11 @@ public class LogicIzludDun03 extends Thread implements Logic {
         }
     }
 
-
+    /**
+     * Вычисляет рэндомную точку между двух окружностей вокруг центра,
+     * куда будет отходить перс
+     * @throws Exception
+     */
     void stepAside() throws Exception {
         double t = 2 * Math.PI * Math.random();
         double minRadius = 75;
