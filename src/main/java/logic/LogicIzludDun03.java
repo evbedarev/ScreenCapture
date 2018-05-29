@@ -1,8 +1,8 @@
 package logic;
 
 import checks.CheckHP;
+import checks.IzludDun03;
 import checks.VerifyMap;
-import checks.YunField11;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
@@ -30,6 +30,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
     KillMonster killMark1;
     KillMonster killMark2;
     KillMonster killPhen;
+    KillMonster killMerman;
 
     private final TakeLoot[] usefulLoot;
     private final TakeLoot[] loot;
@@ -37,10 +38,11 @@ public class LogicIzludDun03 extends Thread implements Logic {
 
     public LogicIzludDun03(int threadId) throws Exception {
         System.out.println(threadId);
-        verifyMap =  new YunField11();
+        verifyMap =  new IzludDun03();
         killMark1 = new Mark1(logger);
         killMark2 = new Mark2(logger);
         killPhen = new Phen(logger);
+        killMerman = new Merman(logger);
 
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
@@ -81,7 +83,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
-//            locationCheck();
+            locationCheck();
             if (count == 0)
                 stepAside();
             findAndKill();
@@ -104,7 +106,10 @@ public class LogicIzludDun03 extends Thread implements Logic {
     }
 
     void findAndKill() throws Exception{
-        while (killMark1.kill() || killMark2.kill()) {
+        while (killMark1.kill() ||
+                killMark2.kill() ||
+                killPhen.kill() ||
+                killMerman.kill()) {
             count = 0;
             logger.info("Set count to " + count);
             Thread.sleep(3000);
