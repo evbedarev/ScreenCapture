@@ -37,7 +37,7 @@ public class FindPixels implements FindPixelsInImage {
             }
         }
         if (listCoords.size() > 0) {
-            logger.info("Size of listCoords is: " + listCoords.size());
+            logger.debug("Size of listCoords is: " + listCoords.size());
             return Optional.of(findNearestFragment(listCoords));
         }
         return Optional.empty();
@@ -56,7 +56,7 @@ public class FindPixels implements FindPixelsInImage {
                 return Integer.compare(abs(o1[0] - screenCenter), abs(o2[0] - screenCenter));
             }
         });
-        logger.info("return coords of fragment: x=" + listCoords.get(0)[0] + " y=" + listCoords.get(0)[1]);
+        logger.debug("return coords of fragment: x=" + listCoords.get(0)[0] + " y=" + listCoords.get(0)[1]);
         return listCoords.get(0);
     }
 

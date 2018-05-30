@@ -40,7 +40,7 @@ public class Loot implements TakeLoot {
             AWTException,
             InterruptedException {
 
-        logger.info("Finding loot " + this.toString());
+        logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
         Optional<int[]> xy = findImageHard.findPixelsInImage(
                 screenShot,

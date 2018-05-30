@@ -52,7 +52,7 @@ public class Monster implements KillMonster {
             AWTException,
             InterruptedException{
 
-        logger.info("Finding monster " + this.toString());
+        logger.debug("Finding monster " + this.toString());
 
         //It's bad, later change. Need to load in constructor.
 

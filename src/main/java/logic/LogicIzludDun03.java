@@ -91,7 +91,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
             pickUpLoot();
             teleport();
             count++;
-            logger.info("Incrase count by 1, count=" + count);
+            logger.debug("Incrase count by 1, count=" + count);
         }
 
         if (threadId == 1) {
@@ -111,7 +111,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
                 killMark.kill() ||
                 killPhen.kill()) {
             count = 0;
-            logger.info("Set count to " + count);
+            logger.debug("Set count to " + count);
             Thread.sleep(3000);
             duringTheFight();
         }
@@ -123,7 +123,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
         int atk = 1;
         while (attack.killOrNot()) {
             count = 0;
-            logger.info("Set count to " + count);
+            logger.debug("Set count to " + count);
             atk++;
             checkMyHp();
             Thread.sleep(500);
@@ -174,7 +174,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
         if (count > 20) {
             logger.info("TELEPORTING count=" + count);
             count = 0;
-            logger.info("Set count to " + count);
+            logger.debug("Set count to " + count);
             keys.keyPress(KeyEvent.VK_F2);
             Thread.sleep(1000);
             keys.keyPress(KeyEvent.VK_ENTER);
