@@ -1,13 +1,15 @@
 package logic.kill_monster;
 
-import main.Prop;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 
 public class Rocker extends Monster {
-    public Rocker() throws AWTException {
+    public Rocker(Logger logger) throws AWTException {
         super();
-        super.wildcard = "fragm*";
-        super.rootDir = Prop.getRootDir() + "KillMonsters\\Rocker\\";
+        super.logger = logger;
+        super.mainRgb = -5386595;
+        super.subImageSize = new int[] {50,50};
+        super.ancillaryRgb = new int[] {-5649765, -4860254};
     }
 }
