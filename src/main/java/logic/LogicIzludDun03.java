@@ -127,7 +127,7 @@ public class LogicIzludDun03 extends Thread implements Logic {
             atk++;
             checkMyHp();
             Thread.sleep(500);
-            if (atk > 20) {
+            if (atk > 100) {
                 stepAside();
                 findAndKill();
                 atk=1;

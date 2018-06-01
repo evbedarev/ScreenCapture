@@ -29,7 +29,7 @@
 //    Keys keys;
 //    Attack attack;
 //    KillMonster awareMonster;
-//    KillMonster killMonster;
+//    KillMonster creamy;
 //
 //    TakeLoot[] usefulLoot = new TakeLoot[] {
 //            new Card(),
@@ -135,7 +135,7 @@
 //
 //    void findAndKill() throws Exception{
 ////        awareMonster();
-//        while (killMonster.findAndKill()) {
+//        while (creamy.findAndKill()) {
 //            count = 0;
 ////            awareMonster();
 //            Thread.sleep(3000);

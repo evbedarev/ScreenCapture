@@ -69,12 +69,12 @@
 //            }
 //            countForSendMsg = 0;
 //
-//    //      KillMonster killMonster = new Poring();
+//    //      KillMonster creamy = new Poring();
 ////            KillMonster killMark = new Creamy();
-//            KillMonster killMonster = new Goblin();
+//            KillMonster creamy = new Goblin();
 //            KillMonster awareMonster = new GoblinLeader();
 //
-//            while (killMonster.kill()) {
+//            while (creamy.kill()) {
 //                if (awareMonster.kill()) {
 //                    System.out.println("GOBLIN LEADER");
 //                    teleport();

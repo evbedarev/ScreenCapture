@@ -1,12 +1,11 @@
 package logic;
 
-import checks.CheckHP;
-import checks.GefField05;
-import checks.VerifyMap;
+import checks.*;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logic.Logic;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
@@ -14,7 +13,7 @@ import org.apache.log4j.Logger;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class LogicGefField05 extends Thread implements Logic {
+public class LogicPayField07 extends Thread implements Logic {
     private int count = 0;
     private int countForSendMsg = 0;
     private final int threadId;
@@ -27,9 +26,7 @@ public class LogicGefField05 extends Thread implements Logic {
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
-    KillMonster creamy;
-    KillMonster thiefBug;
-    KillMonster smokie;
+    KillMonster killMonster;
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
@@ -42,18 +39,16 @@ public class LogicGefField05 extends Thread implements Logic {
     private final TakeLoot[] loot;
 
 
-    public LogicGefField05(int threadId) throws Exception {
+    public LogicPayField07(int threadId) throws Exception {
         System.out.println(threadId);
-        verifyMap =  new GefField05();
-        creamy = new Creamy(logger);
-        thiefBug = new ThiefBug(logger);
-        smokie = new Smokie(logger);
+        verifyMap =  new PayField07();
+        killMonster = new Bigfoot(logger);
 
         loot = new TakeLoot[] {
 //                new AntelopeHorn(),
 //                new AntelopeSkin(logger),
-                new BlueHerb(logger)
-//                new Bottle(logger)
+//                new BlueHerb(logger),
+                new Bottle(logger)
         };
         keys = new Keys();
         attack = new Attack(logger);
@@ -87,7 +82,7 @@ public class LogicGefField05 extends Thread implements Logic {
             pickUpLoot();
             teleport();
             count++;
-            logger.debug("Incrase count by 1, count=" + count);
+            logger.info("Incrase count by 1, count=" + count);
         }
 
         if (threadId == 1) {
@@ -102,13 +97,11 @@ public class LogicGefField05 extends Thread implements Logic {
     }
 
     void findAndKill() throws Exception{
-        while (thiefBug.kill() ||
-                smokie.kill() ||
-                creamy.kill()) {
+        while (killMonster.kill()) {
             count = 0;
-            logger.debug("Set count to " + count);
+            logger.info("Set count to " + count);
             checkHP.checkHp();
-            Thread.sleep(3000);
+            Thread.sleep(500);
             duringTheFight();
         }
         if (count == 0)
@@ -119,7 +112,7 @@ public class LogicGefField05 extends Thread implements Logic {
         int atk = 1;
         while (attack.killOrNot()) {
             count = 0;
-            logger.debug("Set count to " + count);
+            logger.info("Set count to " + count);
             atk++;
             checkMyHp();
             Thread.sleep(500);
@@ -193,5 +186,4 @@ public class LogicGefField05 extends Thread implements Logic {
         }
         countForSendMsg = 0;
     }
-
 }

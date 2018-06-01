@@ -9,7 +9,7 @@
 //        super(threadId);
 //        super.verifyMap =  new GefField11();
 //        super.awareMonster = new GoblinLeader();
-//        super.killMonster = new Goblin();
+//        super.creamy = new Goblin();
 //    }
 //
 //    @Override
