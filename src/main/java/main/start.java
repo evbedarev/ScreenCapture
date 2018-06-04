@@ -8,7 +8,7 @@ public class start {
     static Logic logic;
 
     public static void main(String[] args) throws Exception {
-        logic = new LogicGefField05(0);
+        logic = new LogicGefField11(0);
         logic.createThread();
     }
 }

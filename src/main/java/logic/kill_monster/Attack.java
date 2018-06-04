@@ -8,16 +8,15 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
-
+//-329224
+//-3553057
 public class Attack extends Monster {
     public Attack(Logger logger) throws AWTException {
         super();
-        super.wildcard = "fragm*";
-        super.rootDir = Prop.getRootDir() + "KillMonsters\\Attack\\";
         super.logger = logger;
-        super.mainRgb = -329224;
-        super.subImageSize = new int[] {20,20};
-        super.ancillaryRgb = new int[] {-329224};
+        super.mainRgb = -460553;
+        super.subImageSize = new int[] {40,40};
+        super.ancillaryRgb = new int[] {-3553057};
     }
 
     public boolean killOrNot() throws Exception {
@@ -39,7 +38,7 @@ public class Attack extends Monster {
                 int y = xy.get()[1];
 //                mouse.mouseClick(x + 18, y + 40);
 //                System.out.println("Attacking");
-                logger.info("Attacking !");
+                logger.info(this.toString() + " Attacking !");
                 return true;
         }
         return false;

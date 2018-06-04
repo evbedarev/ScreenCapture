@@ -31,6 +31,7 @@ public class LogicGefField05 extends Thread implements Logic {
     SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
+    Attack2 attack2;
     KillMonster creamy;
     KillMonster thiefBug;
     KillMonster smokie;
@@ -59,6 +60,7 @@ public class LogicGefField05 extends Thread implements Logic {
         smokie = new Smokie(logger);
         keys = new Keys();
         attack = new Attack(logger);
+        attack2 = new Attack2(logger);
         this.threadId = threadId;
         System.out.println(threadId);
     }
@@ -132,7 +134,7 @@ public class LogicGefField05 extends Thread implements Logic {
 
     void duringTheFight() throws Exception {
         int atk = 1;
-        while (attack.killOrNot()) {
+        while (attack.killOrNot() || attack2.killOrNot()) {
             count = 0;
             logger.debug("Set count to " + count);
             atk++;
@@ -208,5 +210,4 @@ public class LogicGefField05 extends Thread implements Logic {
         }
         countForSendMsg = 0;
     }
-
 }

@@ -6,7 +6,7 @@ package main;
 public class Prop {
     private static final int SCREEN_WIDTH = 1600;
     private static final int SCREEN_HEIGHT = 900;
-    private static final String ROOT_DIR = "C:\\java\\ScreenCapture\\src\\main\\resources\\";
+    private static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
 
     private static final int RGB_HP = -6507025;
     private static final int X_HP = 104;

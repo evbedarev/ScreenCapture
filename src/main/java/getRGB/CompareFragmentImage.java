@@ -26,27 +26,35 @@ public class CompareFragmentImage {
      * @throws Exception
      */
     public void getRgb() throws Exception {
-        List<Integer> equalsOne;
-        List<Integer> equalsTwo;
-        equalsOne = copareImages(ROOT_PATH + "getRGB\\frag1.png", ROOT_PATH + "getRGB\\frag2.png");
-        equalsTwo = copareImages(ROOT_PATH + "getRGB\\frag3.png", ROOT_PATH + "getRGB\\frag4.png");
+        HashMap<Integer, List<RgbClass>> equalsOne;
+        HashMap<Integer, List<RgbClass>> equalsTwo;
+        equalsOne = compareImages(ROOT_PATH + "getRGB\\frag1.png", ROOT_PATH + "getRGB\\frag2.png");
+        equalsTwo = compareImages(ROOT_PATH + "getRGB\\frag3.png", ROOT_PATH + "getRGB\\frag4.png");
 
         logger.info("Equals rgb for fragments 0, 1 ,2 is:");
-        for (Integer i: equalsOne) {
-            logger.info("equals RGB = " + i);
+        for (Map.Entry<Integer, List<RgbClass>> entry: equalsOne.entrySet()) {
+            for (RgbClass rgbClass: entry.getValue()) {
+                logger.info("equals RGB = " + entry.getKey() + " x=" + rgbClass.getX() + " y=" + rgbClass.getY());
+            }
+
         }
 
 
         logger.info("Equals rgb for fragments 0, 3 ,4 is:");
-        for (Integer i: equalsTwo) {
-            logger.info("equals RGB = " + i);
+        for (Map.Entry<Integer, List<RgbClass>> entry: equalsTwo.entrySet()) {
+            for (RgbClass rgbClass: entry.getValue()) {
+                logger.info("equals RGB = " + entry.getKey() + " x=" + rgbClass.getX()
+                        + " y=" + rgbClass.getY());
+            }
         }
 
-
-        for (Integer i: equalsOne) {
-            for (Integer j: equalsTwo) {
-                if (i.equals(j)) {
-                    logger.info("All images equals RGB = " + i);
+        for (Map.Entry<Integer, List<RgbClass>> entryOne: equalsOne.entrySet()) {
+            for (Map.Entry<Integer, List<RgbClass>> entryTwo: equalsTwo.entrySet()) {
+                if (entryOne.getKey().equals(entryTwo.getKey())) {
+                    for (RgbClass rgbClass: entryOne.getValue()) {
+                        logger.info("All images equals RGB = " + entryOne.getKey() + " x=" + rgbClass.getX()
+                                + " y=" + rgbClass.getY());
+                    }
                 }
             }
         }
@@ -59,24 +67,25 @@ public class CompareFragmentImage {
      * @return - Возвращает список одинаковых цветов ргб.
      * @throws Exception
      */
-    private  List<Integer> copareImages(String pathFragment1, String pathFragment2) throws Exception {
-        List<Integer> firsRGB;
-        List<Integer> secondRGB;
-        List<Integer> equalsOne = new ArrayList<>();
+    private HashMap<Integer, List<RgbClass>> compareImages(String pathFragment1, String pathFragment2) throws Exception {
+        HashMap<Integer, List<RgbClass>> firstMapRgb;
+        HashMap<Integer, List<RgbClass>> secMapRgb;
+        HashMap<Integer, List<RgbClass>> resultMapRgb = new HashMap<>();
+
 
         logger.info("Finding common pixels in images: " + PATH_FRAGMENT + " & " + pathFragment1);
-        firsRGB = findRGB(PATH_FRAGMENT, pathFragment1);
+        firstMapRgb = findRGB(PATH_FRAGMENT, pathFragment1);
         logger.info("Finding common pixels in images: " + PATH_FRAGMENT + " & " + pathFragment2);
-        secondRGB = findRGB(PATH_FRAGMENT, pathFragment2);
+        secMapRgb = findRGB(PATH_FRAGMENT, pathFragment2);
 
-        for (Integer i: firsRGB) {
-            for (Integer j: secondRGB) {
-                if (i.equals(j)) {
-                    equalsOne.add(i);
+        for (Map.Entry<Integer, List<RgbClass>> entryOne: firstMapRgb.entrySet()) {
+            for (Map.Entry<Integer, List<RgbClass>> entryTwo: secMapRgb.entrySet()) {
+                if (entryOne.getKey().equals(entryTwo.getKey())) {
+                    resultMapRgb.put(entryOne.getKey(), entryOne.getValue());
                 }
             }
         }
-        return equalsOne;
+        return resultMapRgb;
     }
 
     /**
@@ -86,7 +95,7 @@ public class CompareFragmentImage {
      * @return - Список схожих ргб.
      * @throws Exception
      */
-    public static List<Integer> findRGB(String path1, String path2) throws Exception {
+    public static HashMap<Integer, List<RgbClass>> findRGB(String path1, String path2) throws Exception {
         HashMap<Integer, List<RgbClass>> mapRgb = new HashMap<>();
         StorageImage storageImage = new StorageImageFile();
         List<RgbClass> rgbClassList;
@@ -118,6 +127,6 @@ public class CompareFragmentImage {
                 logger.info("x: " + rgbClass.getX() + " y: " + rgbClass.getY());
             }
         }
-        return rgbList;
+        return mapRgb;
     }
 }
