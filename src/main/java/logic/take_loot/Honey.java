@@ -1,13 +1,15 @@
 package logic.take_loot;
 
 import main.Prop;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 
 public class Honey extends Loot {
-    public Honey() throws AWTException {
-        super();
-        super.wildcard = "fragm*";
-        super.rootDir = Prop.getRootDir() + "Loot\\Honey\\";
+    public Honey(Logger logger) throws AWTException {
+        super.logger = logger;
+        super.mainRgb = -9745846;
+        super.subImageSize = new int[] {50,50};
+        super.ancillaryRgb = new int[] {-2177380,-2576481, -2181723};
     }
 }
