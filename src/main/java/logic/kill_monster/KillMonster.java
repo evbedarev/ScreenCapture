@@ -11,8 +11,5 @@ public interface KillMonster {
             AWTException,
             InterruptedException;
 
-    boolean kill() throws
-            IOException,
-            AWTException,
-            InterruptedException;
+    boolean kill() throws Exception;
 }

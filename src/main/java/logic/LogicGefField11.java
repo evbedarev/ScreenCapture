@@ -7,10 +7,12 @@ import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logic.find_element.FragmentElement;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -20,13 +22,15 @@ public class LogicGefField11 extends Thread implements Logic {
     private final int threadId;
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
-    private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
+    private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
+    private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
 
-    private static final int DEFENDER = KeyEvent.VK_F5;
+    private static final int GUARD = KeyEvent.VK_F5;
     private static final int REFLECT_SHIELD = KeyEvent.VK_F6;
     private static final int AWAKING_POTION = KeyEvent.VK_F9;
+    private static final int DEFENDER = KeyEvent.VK_F7;
 
     VerifyMap verifyMap;
     SendMessage sendMessage = new SendMessage();
@@ -47,6 +51,7 @@ public class LogicGefField11 extends Thread implements Logic {
 
     private final TakeLoot[] loot = new TakeLoot[] {
             new Honey(logger),
+            new Scell(logger)
 //                new AntelopeSkin(logger),
 //                new BlueHerb(logger)
 //                new Bottle(logger)
@@ -97,24 +102,31 @@ public class LogicGefField11 extends Thread implements Logic {
         }
 
         if (threadId == 1) {
-            ATOMIC_DEFENDER.incrementAndGet();
+            ATOMIC_GUARD.incrementAndGet();
             ATOMIC_AWAKENING.incrementAndGet();
+            ATOMIC_DEFENDER.incrementAndGet();
             sleep(1000);
         }
     }
 
     void checkCast() throws InterruptedException {
-        if (ATOMIC_DEFENDER.get() > 300) {
-            keys.keyPress(DEFENDER);
+        if (ATOMIC_GUARD.get() > 300) {
+            keys.keyPress(GUARD);
             sleep(2000);
             keys.keyPress(REFLECT_SHIELD);
-            ATOMIC_DEFENDER.set(0);
+            ATOMIC_GUARD.set(0);
         }
 
         if (ATOMIC_AWAKENING.get() > 1800) {
             keys.keyPress(AWAKING_POTION);
             sleep(1000);
             ATOMIC_AWAKENING.set(0);
+        }
+
+        if (ATOMIC_DEFENDER.get() > 180) {
+//            keys.keyPress(DEFENDER);
+            sleep(1000);
+            ATOMIC_DEFENDER.set(0);
         }
     }
 
@@ -208,12 +220,32 @@ public class LogicGefField11 extends Thread implements Logic {
         }
     }
 
+    void findWaprPortal() throws Exception {
+        KillMonster goToWarp = new Warp(logger);
+        double t = Math.PI/6;
+        double radius = 125;
+        int i = 0;
+        int x;
+        int y;
+        while (!goToWarp.kill()) {
+            i++;
+            sleep(200);
+            if (i%20 == 0) {
+                t += Math.PI/6;
+                x = (int) Math.round(radius * Math.cos(t));
+                y = (int) Math.round(radius * Math.sin(t));
+                mouse.mouseMove(800 + x, 450 + y);
+            }
+            if (verifyMap.onDesiredLocation())
+                break;
+        }
+    }
+
     void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
             sleep(5000);
-            KillMonster goToWarp = new Warp(logger);
             logger.info("Нахожусь не на карте!!");
-            goToWarp.kill();
+            findWaprPortal();
             sleep(2000);
             if (verifyMap.onDesiredLocation()) {
                 teleport();

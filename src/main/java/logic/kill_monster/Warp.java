@@ -8,8 +8,8 @@ public class Warp extends Monster {
     public Warp(Logger logger) throws AWTException {
         super();
         super.logger = logger;
-        super.mainRgb = -1183233;
+        super.mainRgb = -5331258;
         super.subImageSize = new int[] {100,100};
-        super.ancillaryRgb = new int[] {-1051905};
+        super.ancillaryRgb = new int[] {-16514044, -16119285, -4870195};
     }
 }

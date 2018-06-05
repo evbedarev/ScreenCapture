@@ -22,4 +22,8 @@ public class Mouse {
         Thread.sleep(sleepTime);
         robot.mouseRelease(button_mask);
     }
+
+    public void mouseMove(int x, int y) {
+        robot.mouseMove(x,y);
+    }
 }
