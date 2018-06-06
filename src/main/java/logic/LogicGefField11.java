@@ -26,11 +26,6 @@ public class LogicGefField11 extends Thread implements Logic {
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
 
-    private static final int GUARD = KeyEvent.VK_F5;
-    private static final int REFLECT_SHIELD = KeyEvent.VK_F6;
-    private static final int AWAKING_POTION = KeyEvent.VK_F9;
-    private static final int DEFENDER = KeyEvent.VK_F7;
-
     VerifyMap verifyMap;
     SendMessage sendMessage = new SendMessage();
     Keys keys;
@@ -108,15 +103,13 @@ public class LogicGefField11 extends Thread implements Logic {
 
     void checkCast() throws InterruptedException {
         if (ATOMIC_GUARD.get() > 300) {
-            keys.keyPress(GUARD);
-            sleep(2000);
-            keys.keyPress(REFLECT_SHIELD);
+            actions.castGuard();
+            actions.castReflectShield();
             ATOMIC_GUARD.set(0);
         }
 
         if (ATOMIC_AWAKENING.get() > 1800) {
-            keys.keyPress(AWAKING_POTION);
-            sleep(1000);
+            actions.drinkAwaikeningPotion();
             ATOMIC_AWAKENING.set(0);
         }
 
