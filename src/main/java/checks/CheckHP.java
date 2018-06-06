@@ -37,6 +37,7 @@ public class CheckHP {
         BufferedImage image = capture.takeScreenShot();
         if (lessThenHalfHp(image)) {
             actions.teleport();
+            Thread.sleep(30000);
         }
 
         if (needPotion(image)) {
