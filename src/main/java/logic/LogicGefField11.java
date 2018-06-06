@@ -39,7 +39,8 @@ public class LogicGefField11 extends Thread implements Logic {
             new Card(logger),
             new Card1(logger),
             new Clothes(logger),
-            new Shield(logger)
+            new Shield(logger),
+            new Mask(logger)
     };
 
 
@@ -126,10 +127,10 @@ public class LogicGefField11 extends Thread implements Logic {
     }
 
     void runFromMonster() throws Exception {
-        if (awareMonster.kill()) {
-            logger.info("GOBLIN LEADER");
-            actions.teleport();
-        }
+//        if (awareMonster.kill()) {
+//            logger.info("GOBLIN LEADER");
+//            actions.teleport();
+//        }
     }
 
     void findAndKill() throws Exception{
