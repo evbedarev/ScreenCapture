@@ -1,13 +1,13 @@
 package logic.take_loot;
 
-import main.Prop;
-
+import org.apache.log4j.Logger;
 import java.awt.*;
 
 public class Mask extends Loot {
-    public Mask() throws AWTException {
-        super();
-        super.wildcard = "fragm*";
-        super.rootDir = Prop.getRootDir() + "Loot\\Mask\\";
-    }
+    public Mask(Logger logger) throws AWTException {
+        super.logger = logger;
+        super.mainRgb = -931161;
+        super.subImageSize = new int[] {50,50};
+        super.ancillaryRgb = new int[] {-534867,-8105390};
+}
 }
