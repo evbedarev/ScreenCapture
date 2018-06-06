@@ -1,17 +1,16 @@
-package checks;
+package checks.location;
 
 import logic.Capture;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-//Change to propery file!!
-public class GefField05 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1582,64, -6280000, -1200000};
-    public static final int[] PORTAL_RGB_1 = new int[] {1464,101, -6280000, -1200000};
+public class GefField11 implements VerifyMap {
+    public static final int[] PORTAL_RGB = new int[] {1493,51, -6280000, -1200000};
+    public static final int[] PORTAL_RGB_1 = new int[] {1580,74, -6280000, -1200000};
     Capture capture;
 
-    public GefField05() throws AWTException {
+    public GefField11() throws AWTException {
         capture = Capture.instance();
     }
 

@@ -1,25 +1,19 @@
-package checks;
+package checks.location;
 
 import logic.Capture;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class PrtField07 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1583,109, -6280000, -1200000};
-    public static final int[] PORTAL_RGB_1 = new int[] {1464,77, -6280000, -1200000};
+public class YunField11 implements VerifyMap {
+    public static final int[] PORTAL_RGB = new int[] {1489,50, -6280000, -1200000};
+    public static final int[] PORTAL_RGB_1 = new int[] {1577,54, -6280000, -1200000};
     Capture capture;
 
-    public PrtField07() throws AWTException {
+
+    public YunField11() throws AWTException {
         capture = Capture.instance();
     }
-
-    /**
-     * Проверяет находится ли RGB пикселя в нужном промежутке значений.
-     * PORTAL_RGB - array {x,y, minimal value RGB, max value RGB}
-     * @return boolean
-     */
-
     @Override
     public boolean onDesiredLocation() {
         BufferedImage image = capture.takeScreenShot();

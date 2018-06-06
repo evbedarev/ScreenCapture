@@ -1,8 +1,8 @@
 package logic;
 
 import checks.CheckHP;
-import checks.VerifyMap;
-import checks.YunField11;
+import checks.location.VerifyMap;
+import checks.location.YunField11;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;

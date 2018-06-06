@@ -1,11 +1,12 @@
 package logic;
 
 import checks.*;
+import checks.location.PayField07;
+import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.Logic;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;

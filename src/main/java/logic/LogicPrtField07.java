@@ -1,9 +1,8 @@
 package logic;
 
 import checks.CheckHP;
-import checks.PrtField07;
-import checks.VerifyMap;
-import checks.YunField11;
+import checks.location.PrtField07;
+import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
@@ -11,7 +10,6 @@ import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;

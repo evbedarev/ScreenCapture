@@ -1,8 +1,8 @@
 //package logic;
 //
 //import checks.CheckHP;
-//import checks.GefField05;
-//import checks.VerifyMap;
+//import checks.location.GefField05;
+//import checks.location.VerifyMap;
 //import email.MsgLocationChanged;
 //import email.SendMessage;
 //import key_and_mouse.Keys;

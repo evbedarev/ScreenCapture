@@ -1,8 +1,8 @@
 package logic;
 
 import checks.CheckHP;
-import checks.IzludDun03;
-import checks.VerifyMap;
+import checks.location.IzludDun03;
+import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;

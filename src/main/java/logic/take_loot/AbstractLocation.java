@@ -1,15 +1,5 @@
 package logic.take_loot;
 
-import checks.CheckHP;
-import checks.GefField05;
-import checks.VerifyMap;
-import email.SendMessage;
-import key_and_mouse.Keys;
-import key_and_mouse.Mouse;
-import logic.kill_monster.Attack;
-
-import java.util.concurrent.atomic.AtomicInteger;
-
 abstract class AbstractLocation extends Thread{
 //    int count = 0;
 //    int countForSendMsg = 0;

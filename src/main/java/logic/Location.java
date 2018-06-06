@@ -1,7 +1,7 @@
 //package logic;
 //
 //import checks.CheckHP;
-//import checks.VerifyMap;
+//import checks.location.VerifyMap;
 //import email.MsgLocationChanged;
 //import email.SendMessage;
 //import key_and_mouse.Keys;

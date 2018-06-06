@@ -1,18 +1,17 @@
 package logic;
 
+import actions.Actions;
 import checks.CheckHP;
-import checks.GefField11;
-import checks.VerifyMap;
+import checks.location.GefField11;
+import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.find_element.FragmentElement;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -39,22 +38,19 @@ public class LogicGefField11 extends Thread implements Logic {
     Attack2 attack2;
     KillMonster goblin;
     KillMonster awareMonster;
+    Actions actions;
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
             new Card1(logger),
             new Clothes(logger),
             new Shield(logger)
-//            new Mask()
     };
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
             new Honey(logger),
             new Scell(logger)
-//                new AntelopeSkin(logger),
-//                new BlueHerb(logger)
-//                new Bottle(logger)
     };
 
 
@@ -67,6 +63,7 @@ public class LogicGefField11 extends Thread implements Logic {
         attack2 = new Attack2(logger);
         this.threadId = threadId;
         System.out.println(threadId);
+        actions = Actions.instance();
     }
 
     public void createThread() throws Exception {
@@ -138,10 +135,7 @@ public class LogicGefField11 extends Thread implements Logic {
     void runFromMonster() throws Exception {
         if (awareMonster.kill()) {
             logger.info("GOBLIN LEADER");
-            keys.keyPress(KeyEvent.VK_F2);
-            Thread.sleep(1000);
-            keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(1000);
+            actions.teleport();
         }
     }
 
@@ -212,10 +206,7 @@ public class LogicGefField11 extends Thread implements Logic {
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
-            keys.keyPress(KeyEvent.VK_F2);
-            Thread.sleep(1000);
-            keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(1000);
+            actions.teleport();
             stepAside();
         }
     }

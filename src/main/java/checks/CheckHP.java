@@ -1,5 +1,6 @@
 package checks;
 
+import actions.Actions;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
@@ -18,11 +19,13 @@ public class CheckHP {
     Capture capture;
     Keys keys;
     Mouse mouse;
+    Actions actions;
 
     public CheckHP() throws AWTException {
         capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();
+        actions = Actions.instance();
 
         RGB_HP = Prop.getRgbHp();
         X_HP = Prop.getxHp();
@@ -32,6 +35,9 @@ public class CheckHP {
 
     public void checkHp() throws Exception {
         BufferedImage image = capture.takeScreenShot();
+        if (lessThenHalfHp(image)) {
+            actions.teleport();
+        }
 
         if (needPotion(image)) {
             keys.keyPress(KeyEvent.VK_F1);
@@ -45,8 +51,6 @@ public class CheckHP {
     private boolean lessThenHalfHp(BufferedImage image) {
         return image.getRGB(99,Y_HP) != RGB_HP;
     }
-
-
 
     public void needHeal() throws Exception{
         BufferedImage image = capture.takeScreenShot();
