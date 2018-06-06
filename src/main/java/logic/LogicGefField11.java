@@ -167,7 +167,8 @@ public class LogicGefField11 extends Thread implements Logic {
         }
     }
 
-    void teleport() throws Exception {
+    void
+    teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
             logger.info("TELEPORTING count=" + count);

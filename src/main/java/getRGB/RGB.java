@@ -10,8 +10,8 @@ import java.util.*;
 public class RGB {
     public static void main(String[] args) throws Exception {
         CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-        compareFragmentImage.getRgb();
-//        showRGB(new int[] {2,0}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Loot\\Card\\fragment1.png");
+//        compareFragmentImage.getRgb();
+        showRGB(new int[] {0,0}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Loot\\Shield\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 
