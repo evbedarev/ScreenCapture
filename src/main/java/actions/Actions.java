@@ -1,6 +1,8 @@
 package actions;
 
+import checks.LocationCheck;
 import key_and_mouse.Keys;
+import key_and_mouse.Mouse;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -8,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Actions {
     static private Actions instance;
     Keys keys;
+    Mouse mouse;
 
     private static final int GUARD = KeyEvent.VK_F5;
     private static final int REFLECT_SHIELD = KeyEvent.VK_F6;
@@ -16,6 +19,7 @@ public class Actions {
 
     public Actions() throws AWTException {
         keys = new Keys();
+        mouse = new Mouse();
     }
 
     public void teleport() throws InterruptedException {
@@ -45,6 +49,24 @@ public class Actions {
 
     public void drinkAwaikeningPotion() throws InterruptedException {
         keys.keyPress(AWAKENING_POTION);
+    }
+
+    public void stepAside(LocationCheck locationCheck) throws Exception {
+        locationCheck.locationCheck();
+        double t = 2 * Math.PI * Math.random();
+        double minRadius = 75;
+        double maxRadius = 150;
+
+        double x = minRadius * Math.cos(t);
+        double x1 = maxRadius * Math.cos(t);
+
+        double mediumX = x + Math.random()*(x1 - x);
+        double mediumR = mediumX/Math.cos(t);
+        double mediumY = mediumR * Math.sin(t);
+
+        mouse.mouseClick(800 + (int) Math.round(mediumX),
+                450 + (int) Math.round(mediumY));
+        Thread.sleep(1000);
     }
 
     static public Actions instance() throws AWTException {

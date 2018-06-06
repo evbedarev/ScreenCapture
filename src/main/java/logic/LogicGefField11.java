@@ -5,7 +5,6 @@ import checks.CheckHP;
 import checks.location.GefField11;
 import checks.LocationCheck;
 import key_and_mouse.Keys;
-import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
@@ -15,7 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LogicGefField11 extends Thread implements Logic {
     private int count = 0;
     private final int threadId;
-    private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
@@ -75,10 +73,9 @@ public class LogicGefField11 extends Thread implements Logic {
     public void mainHandle() throws Exception {
 
         if (threadId == 0) {
-            runFromMonster();
             locationCheck.locationCheck();
             if (count == 0)
-                stepAside();
+               actions.stepAside(locationCheck);
             findAndKill();
             checkHP.checkHp();
             pickUpLoot();
@@ -138,7 +135,7 @@ public class LogicGefField11 extends Thread implements Logic {
             duringTheFight();
         }
         if (count == 0)
-            stepAside();
+            actions.stepAside(locationCheck);
     }
 
     void duringTheFight() throws Exception {
@@ -150,7 +147,7 @@ public class LogicGefField11 extends Thread implements Logic {
             checkMyHp();
             Thread.sleep(1000);
             if (atk > 100) {
-                stepAside();
+                actions.stepAside(locationCheck);
                 findAndKill();
                 atk=1;
             }
@@ -170,24 +167,6 @@ public class LogicGefField11 extends Thread implements Logic {
         }
     }
 
-
-    void stepAside() throws Exception {
-        double t = 2 * Math.PI * Math.random();
-        double minRadius = 75;
-        double maxRadius = 150;
-
-        double x = minRadius * Math.cos(t);
-        double x1 = maxRadius * Math.cos(t);
-
-        double mediumX = x + Math.random()*(x1 - x);
-        double mediumR = mediumX/Math.cos(t);
-        double mediumY = mediumR * Math.sin(t);
-
-        mouse.mouseClick(800 + (int) Math.round(mediumX),
-                450 + (int) Math.round(mediumY));
-        sleep(1000);
-    }
-
     void teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
@@ -195,7 +174,7 @@ public class LogicGefField11 extends Thread implements Logic {
             count = 0;
             logger.info("Set count to " + count);
             actions.teleport();
-            stepAside();
+            actions.stepAside(locationCheck);
         }
     }
 }
