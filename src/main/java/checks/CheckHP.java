@@ -37,7 +37,7 @@ public class CheckHP {
         BufferedImage image = capture.takeScreenShot();
         if (lessThenHalfHp(image)) {
             actions.teleport();
-            Thread.sleep(30000);
+            Thread.sleep(10000);
         }
 
         if (needPotion(image)) {
@@ -50,7 +50,7 @@ public class CheckHP {
     }
 
     private boolean lessThenHalfHp(BufferedImage image) {
-        return image.getRGB(99,Y_HP) != RGB_HP;
+        return image.getRGB(138,Y_HP) != RGB_HP;
     }
 
     public void needHeal() throws Exception{
