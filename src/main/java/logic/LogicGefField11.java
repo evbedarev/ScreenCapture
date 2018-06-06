@@ -3,21 +3,17 @@ package logic;
 import actions.Actions;
 import checks.CheckHP;
 import checks.location.GefField11;
-import checks.location.VerifyMap;
-import email.MsgLocationChanged;
-import email.SendMessage;
+import checks.LocationCheck;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
 
-import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class LogicGefField11 extends Thread implements Logic {
     private int count = 0;
-    private int countForSendMsg = 0;
     private final int threadId;
     private final Mouse mouse = new Mouse();
     private final CheckHP checkHP = new CheckHP();
@@ -26,14 +22,13 @@ public class LogicGefField11 extends Thread implements Logic {
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
 
-    VerifyMap verifyMap;
-    SendMessage sendMessage = new SendMessage();
     Keys keys;
     Attack attack;
     Attack2 attack2;
     KillMonster goblin;
     KillMonster awareMonster;
     Actions actions;
+    private LocationCheck locationCheck = new LocationCheck(new GefField11(), logger);
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
@@ -50,7 +45,6 @@ public class LogicGefField11 extends Thread implements Logic {
 
 
     public LogicGefField11(int threadId) throws Exception {
-        verifyMap =  new GefField11();
         goblin = new Goblin(logger);
         awareMonster = new GoblinLeader(logger);
         keys = new Keys();
@@ -81,7 +75,7 @@ public class LogicGefField11 extends Thread implements Logic {
 
         if (threadId == 0) {
             runFromMonster();
-            locationCheck();
+            locationCheck.locationCheck();
             if (count == 0)
                 stepAside();
             findAndKill();
@@ -202,44 +196,5 @@ public class LogicGefField11 extends Thread implements Logic {
             actions.teleport();
             stepAside();
         }
-    }
-
-    void findWaprPortal() throws Exception {
-        KillMonster goToWarp = new Warp(logger);
-        double t = Math.PI/6;
-        double radius = 125;
-        int i = 0;
-        int x;
-        int y;
-        while (!goToWarp.kill()) {
-            i++;
-            sleep(200);
-            if (i%20 == 0) {
-                t += Math.PI/6;
-                x = (int) Math.round(radius * Math.cos(t));
-                y = (int) Math.round(radius * Math.sin(t));
-                mouse.mouseMove(800 + x, 450 + y);
-            }
-            if (verifyMap.onDesiredLocation())
-                break;
-        }
-    }
-
-    void locationCheck() throws Exception {
-        while (!verifyMap.onDesiredLocation()) {
-            sleep(5000);
-            logger.info("Нахожусь не на карте!!");
-            findWaprPortal();
-            sleep(2000);
-            if (verifyMap.onDesiredLocation()) {
-                teleport();
-                sleep(2000);
-            }
-            countForSendMsg++;
-            if (countForSendMsg == 100) {
-                sendMessage.send(new MsgLocationChanged());
-            }
-        }
-        countForSendMsg = 0;
     }
 }
