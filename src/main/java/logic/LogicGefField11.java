@@ -167,7 +167,7 @@ public class LogicGefField11 extends Thread implements Logic {
             atk++;
             checkMyHp();
             Thread.sleep(1000);
-            if (atk > 20) {
+            if (atk > 100) {
                 stepAside();
                 findAndKill();
                 atk=1;
