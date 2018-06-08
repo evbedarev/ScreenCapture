@@ -5,13 +5,12 @@ import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 
 import java.awt.image.BufferedImage;
-import java.util.*;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
         CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-//        compareFragmentImage.getRgb();
-        showRGB(new int[] {0,0}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Loot\\Shield\\fragment.png");
+        compareFragmentImage.getRgb();
+//        showRGB(new int[] {0,0}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Loot\\Shield\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 

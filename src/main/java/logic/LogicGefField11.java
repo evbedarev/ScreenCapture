@@ -33,7 +33,8 @@ public class LogicGefField11 extends Thread implements Logic {
             new Card1(logger),
             new Clothes(logger),
             new Shield(logger),
-            new Mask(logger)
+            new Mask(logger),
+            new Coupon(logger)
     };
 
 
