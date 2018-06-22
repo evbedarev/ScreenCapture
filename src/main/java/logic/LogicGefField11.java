@@ -6,26 +6,18 @@ import checks.location.GefField11;
 import checks.LocationCheck;
 import logic.kill_monster.*;
 import logic.take_loot.*;
-import org.apache.log4j.Logger;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class LogicGefField11 extends Thread implements Logic {
-    private int count = 0;
+public class LogicGefField11 extends LogicLocation {
+    private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
     private final CheckHP checkHP = new CheckHP(true);
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
-    private Logger logger = Logger.getLogger(this.getClass());
-    private Thread logicLocation = new LogicGefField11(1);
-
-    private Attack attack;
-    private Attack2 attack2;
-    KillMonster goblin;
-    KillMonster awareMonster;
-    Actions actions;
-    private LocationCheck locationCheck = new LocationCheck(new GefField11(), logger);
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
@@ -42,28 +34,17 @@ public class LogicGefField11 extends Thread implements Logic {
     };
 
     public LogicGefField11(int threadId) throws Exception {
-        goblin = new Goblin(logger);
-        awareMonster = new GoblinLeader(logger);
+        countOfAttacks = COUNT_OF_ATTACKS;
         attack = new Attack(logger);
         attack2 = new Attack2(logger);
         this.threadId = threadId;
         actions = Actions.instance();
-    }
+        locationCheck = new LocationCheck(new GefField11(), logger);
 
-    public void createThread() throws Exception {
-        Thread thread = new LogicGefField11(1);
-        thread.start();
-        start();
-    }
+        killMonsterList = Stream
+                .of(new Goblin(logger), new GoblinLeader(logger))
+                .collect(Collectors.toList());
 
-    public void run() {
-        try {
-            while (true) {
-                mainHandle();
-            }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
     }
 
     public void mainHandle() throws Exception {
@@ -71,7 +52,8 @@ public class LogicGefField11 extends Thread implements Logic {
             locationCheck.locationCheck();
             if (count == 0)
                actions.stepAside(locationCheck);
-            findAndKill();
+            killMonsterList.forEach(this::findAndKill);
+//            findAndKill();
             checkMyHp();
             actions.pickUpCard(usefulLoot);
             actions.pickUpLoot(loot);
@@ -118,36 +100,6 @@ public class LogicGefField11 extends Thread implements Logic {
 //            logger.info("GOBLIN LEADER");
 //            actions.teleport();
 //        }
-    }
-
-    void findAndKill() throws Exception{
-        while (goblin.kill())
-        {
-            count = 0;
-            runFromMonster();
-            logger.debug("Set count to " + count);
-            checkMyHp();
-            Thread.sleep(500);
-            duringTheFight();
-        }
-        if (count == 0)
-            actions.stepAside(locationCheck);
-    }
-
-    void duringTheFight() throws Exception {
-        int atk = 1;
-        while (attack.killOrNot() || attack2.killOrNot()) {
-            count = 0;
-            logger.debug("Set count to " + count);
-            atk++;
-            checkMyHp();
-            Thread.sleep(1000);
-            if (atk > 100) {
-                actions.stepAside(locationCheck);
-                findAndKill();
-                atk=1;
-            }
-        }
     }
 
     void teleport() throws Exception {
