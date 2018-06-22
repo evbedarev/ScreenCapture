@@ -19,7 +19,7 @@ public class LogicGefField05 extends Thread implements Logic {
     private int countForSendMsg = 0;
     private final int threadId;
     private final Mouse mouse = new Mouse();
-    private final CheckHP checkHP = new CheckHP();
+    private final CheckHP checkHP = new CheckHP(true);
     public final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     public final static AtomicInteger ATOMIC_REFLECT = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());

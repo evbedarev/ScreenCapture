@@ -19,7 +19,7 @@ public class LogicPrtField07 extends Thread implements Logic{
     private int countForSendMsg = 0;
     private final int threadId;
     private final Mouse mouse = new Mouse();
-    private final CheckHP checkHP = new CheckHP();
+    private final CheckHP checkHP = new CheckHP(true);
     private final static AtomicInteger atomicInt = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
 

@@ -3,27 +3,38 @@ package actions;
 import checks.LocationCheck;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logic.take_loot.TakeLoot;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
+import static main.Prop.*;
 
 public class Actions {
     static private Actions instance;
     Keys keys;
     Mouse mouse;
 
-    private static final int GUARD = KeyEvent.VK_F5;
-    private static final int REFLECT_SHIELD = KeyEvent.VK_F6;
-    private static final int AWAKENING_POTION = KeyEvent.VK_F9;
-    private static final int DEFENDER = KeyEvent.VK_F7;
+    private static final int GUARD = getGUARD();
+    private static final int REFLECT_SHIELD = getREFLECT();
+    private static final int AWAKENING_POTION = getAwakeningPotion();
+    private static final int DEFENDER = getDEFENDER();
+    private static final int TELEPORT = getTeleportKey();
 
     public Actions() throws AWTException {
         keys = new Keys();
         mouse = new Mouse();
     }
 
+    static public Actions instance() throws AWTException {
+        if (instance == null) {
+            instance = new Actions();
+        }
+        return instance;
+    }
+
     public void teleport() throws InterruptedException {
-        keys.keyPress(KeyEvent.VK_F2);
+        keys.keyPress(TELEPORT);
         Thread.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);
         Thread.sleep(1000);
@@ -69,10 +80,16 @@ public class Actions {
         Thread.sleep(1000);
     }
 
-    static public Actions instance() throws AWTException {
-        if (instance == null) {
-            instance = new Actions();
+    public void pickUpLoot(TakeLoot[] loot) throws Exception {
+        for (TakeLoot takeLoot: loot) {
+            takeLoot.pickUp();
         }
-        return instance;
     }
+
+    public void pickUpCard(TakeLoot[] usefulLoot) throws Exception {
+        for (TakeLoot takeLoot: usefulLoot) {
+            takeLoot.pickUp();
+        }
+    }
+
 }

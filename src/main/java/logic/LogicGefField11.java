@@ -4,7 +4,6 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.location.GefField11;
 import checks.LocationCheck;
-import key_and_mouse.Keys;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import org.apache.log4j.Logger;
@@ -14,15 +13,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LogicGefField11 extends Thread implements Logic {
     private int count = 0;
     private final int threadId;
-    private final CheckHP checkHP = new CheckHP();
+    private final CheckHP checkHP = new CheckHP(true);
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     private Logger logger = Logger.getLogger(this.getClass());
+    private Thread logicLocation = new LogicGefField11(1);
 
-    Keys keys;
-    Attack attack;
-    Attack2 attack2;
+    private Attack attack;
+    private Attack2 attack2;
     KillMonster goblin;
     KillMonster awareMonster;
     Actions actions;
@@ -36,28 +35,24 @@ public class LogicGefField11 extends Thread implements Logic {
             new Mask(logger)
     };
 
-
     private final TakeLoot[] loot = new TakeLoot[] {
             new Honey(logger),
             new Scell(logger)
     };
 
-
     public LogicGefField11(int threadId) throws Exception {
         goblin = new Goblin(logger);
         awareMonster = new GoblinLeader(logger);
-        keys = new Keys();
         attack = new Attack(logger);
         attack2 = new Attack2(logger);
         this.threadId = threadId;
-        System.out.println(threadId);
         actions = Actions.instance();
     }
 
     public void createThread() throws Exception {
         Thread thread = new LogicGefField11(1);
         thread.start();
-        this.start();
+        start();
     }
 
     public void run() {
@@ -71,17 +66,17 @@ public class LogicGefField11 extends Thread implements Logic {
     }
 
     public void mainHandle() throws Exception {
-
         if (threadId == 0) {
             locationCheck.locationCheck();
             if (count == 0)
                actions.stepAside(locationCheck);
             findAndKill();
-            checkHP.checkHp();
-            pickUpLoot();
+            checkMyHp();
+            actions.pickUpCard(usefulLoot);
+            actions.pickUpLoot(loot);
             teleport();
             count++;
-            logger.debug("Incrase count by 1, count=" + count);
+            logger.debug("Increase count by 1, count=" + count);
             checkCast();
         }
 
@@ -113,8 +108,8 @@ public class LogicGefField11 extends Thread implements Logic {
     }
 
     void checkMyHp() throws Exception {
+        actions.pickUpCard(usefulLoot);
         checkHP.checkHp();
-        pickUpCard();
     }
 
     void runFromMonster() throws Exception {
@@ -130,7 +125,7 @@ public class LogicGefField11 extends Thread implements Logic {
             count = 0;
             runFromMonster();
             logger.debug("Set count to " + count);
-            checkHP.checkHp();
+            checkMyHp();
             Thread.sleep(500);
             duringTheFight();
         }
@@ -154,21 +149,7 @@ public class LogicGefField11 extends Thread implements Logic {
         }
     }
 
-    void pickUpLoot() throws Exception {
-        pickUpCard();
-        for (TakeLoot takeLoot: loot) {
-            takeLoot.pickUp();
-        }
-    }
-
-    void pickUpCard() throws Exception {
-        for (TakeLoot takeLoot: usefulLoot) {
-            takeLoot.pickUp();
-        }
-    }
-
-    void
-    teleport() throws Exception {
+    void teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
             logger.info("TELEPORTING count=" + count);
