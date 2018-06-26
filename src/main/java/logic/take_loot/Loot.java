@@ -54,6 +54,7 @@ public class Loot implements TakeLoot {
             mouse.mouseClick(x , y );
             logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
+            mouse.mouseMove(1000, 600);
             return true;
         }
         return false;

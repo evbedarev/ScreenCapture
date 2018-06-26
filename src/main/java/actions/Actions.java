@@ -78,6 +78,7 @@ public class Actions {
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
         Thread.sleep(1000);
+        locationCheck.locationCheck();
     }
 
     public void pickUpLoot(TakeLoot[] loot) throws Exception {

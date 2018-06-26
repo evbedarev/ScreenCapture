@@ -106,11 +106,13 @@ public class LogicYunField11 extends LogicLocation {
 
     void teleport() throws Exception {
         runFromMonster();
+
         if (count > 10) {
             actions.stepAside(locationCheck, new int[] {250, 350});
             sleep(1500);
             actions.pickUpCard(usefulLoot);
             actions.pickUpLoot(loot);
+
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
@@ -119,7 +121,8 @@ public class LogicYunField11 extends LogicLocation {
         }
     }
 
-    void runFromMonster() throws Exception {
+    void runFromMonster() throws
+            Exception {
 //        if (awareMonster.kill()) {
 //            logger.info("GOBLIN LEADER");
 //            actions.teleport();
