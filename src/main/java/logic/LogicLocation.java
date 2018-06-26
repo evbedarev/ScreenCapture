@@ -2,9 +2,7 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
-import logic.kill_monster.Attack;
-import logic.kill_monster.Attack2;
-import logic.kill_monster.KillMonster;
+import logic.kill_monster.*;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -14,17 +12,13 @@ public abstract class LogicLocation extends Thread implements Logic {
     static int countOfAttacks = 0;
     static List<KillMonster> killMonsterList;
     int count = 0;
-    Attack attack;
-    Attack2 attack2;
+    static AttackInterface attack;
+    static AttackInterface attack2;
     Logger logger = Logger.getLogger(this.getClass());
     Actions actions;
     LocationCheck locationCheck;
 
-    public void createThread() throws Exception {
-        Thread thread = new LogicGefField11(1);
-        thread.start();
-        start();
-    }
+    public abstract void createThread() throws Exception;
 
     public void run() {
         try {
@@ -45,7 +39,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             Thread.sleep(1000);
             if (atk > countOfAttacks) {
-                actions.stepAside(locationCheck);
+                actions.stepAside(locationCheck, new int[] {75, 150});
                 killMonsterList.forEach(this::findAndKill);
                 atk=1;
             }
@@ -62,8 +56,8 @@ public abstract class LogicLocation extends Thread implements Logic {
                 Thread.sleep(500);
                 duringTheFight();
             }
-            if (count == 0)
-                actions.stepAside(locationCheck);
+//            if (count == 0)
+//                actions.stepAside(locationCheck);
 
         } catch (Exception exception) {
             exception.printStackTrace();

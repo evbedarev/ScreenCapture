@@ -4,11 +4,11 @@ import actions.Actions;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import static main.Prop.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import static  main.Prop.*;
 
 public class CheckHP {
 
@@ -38,7 +38,7 @@ public class CheckHP {
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             actions.teleport();
-            Thread.sleep(10000);
+            Thread.sleep(30000);
         }
 
         if (getHEAL() != 0) {

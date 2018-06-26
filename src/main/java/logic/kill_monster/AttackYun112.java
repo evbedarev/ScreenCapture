@@ -2,21 +2,21 @@ package logic.kill_monster;
 
 import find_fragments.FindFragmentFiles;
 import find_fragments.FindFragments;
-import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
+
 //-329224
 //-3553057
-public class Attack extends Monster implements AttackInterface {
-    public Attack(Logger logger) throws AWTException {
+public class AttackYun112 extends Monster implements AttackInterface {
+    public AttackYun112(Logger logger) throws AWTException {
         super();
         super.logger = logger;
-        super.mainRgb = -460553;
+        super.mainRgb = -3487264;
         super.subImageSize = new int[] {40,40};
-        super.ancillaryRgb = new int[] {-3553057};
+        super.ancillaryRgb = new int[] {-329481};
     }
 
     public boolean killOrNot() throws Exception {

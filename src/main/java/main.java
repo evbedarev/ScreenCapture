@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class main {
-    public static void main(String[] args) throws IOException, AWTException, InterruptedException {
+    public static void
+    main(String[] args) throws IOException, AWTException, InterruptedException {
         StorageImage storageImage = new StorageImageFile();
         FindFragments fragmentFiles = new FindFragmentFiles(
                 "fragm*",

@@ -47,11 +47,18 @@ public class LogicGefField11 extends LogicLocation {
 
     }
 
+    @Override
+    public void createThread() throws Exception {
+        Thread thread = new LogicGefField11(1);
+        thread.start();
+        start();
+    }
+
     public void mainHandle() throws Exception {
         if (threadId == 0) {
             locationCheck.locationCheck();
             if (count == 0)
-               actions.stepAside(locationCheck);
+               actions.stepAside(locationCheck, new int[] {100, 130});
             killMonsterList.forEach(this::findAndKill);
 //            findAndKill();
             checkMyHp();
@@ -105,11 +112,14 @@ public class LogicGefField11 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
+            actions.stepAside(locationCheck, new int[] {250, 350});
+            actions.pickUpCard(usefulLoot);
+            actions.pickUpLoot(loot);
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
             actions.teleport();
-            actions.stepAside(locationCheck);
+            actions.stepAside(locationCheck, new int[] {75, 150});
         }
     }
 }

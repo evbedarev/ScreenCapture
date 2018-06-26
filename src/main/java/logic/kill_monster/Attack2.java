@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 //-395017, -3487264
-public class Attack2 extends Monster {
+public class Attack2 extends Monster implements AttackInterface {
     public Attack2(Logger logger) throws AWTException {
         super();
         super.logger = logger;

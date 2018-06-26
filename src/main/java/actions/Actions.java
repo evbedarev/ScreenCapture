@@ -62,11 +62,11 @@ public class Actions {
         keys.keyPress(AWAKENING_POTION);
     }
 
-    public void stepAside(LocationCheck locationCheck) throws Exception {
+    public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
         locationCheck.locationCheck();
         double t = 2 * Math.PI * Math.random();
-        double minRadius = 75;
-        double maxRadius = 150;
+        double minRadius = radiuses[0];
+        double maxRadius = radiuses[1];
 
         double x = minRadius * Math.cos(t);
         double x1 = maxRadius * Math.cos(t);
