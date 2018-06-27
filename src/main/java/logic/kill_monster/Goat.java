@@ -10,7 +10,6 @@ public class Goat extends Monster {
         super.logger = logger;
         super.mainRgb = -7907755;
         super.subImageSize = new int[] {120,120};
-        super.ancillaryRgb = new int[] {-4876673, -1852259, -1194845, -2312552
-        };
+        super.ancillaryRgb = new int[] {-1194845,-1457759,-2575466, -5272967};
     }
 }

@@ -19,9 +19,9 @@ public class TakeLootArround implements TakeLoot {
     Logger logger;
     int mainRgb  = -1184260;
     int[] subImageSize = new int[] {100,100};
-    int[] ancillaryRgb = new int[] {-1250309};
+    int[] ancillaryRgb = new int[] {-1184260};
     //-1250053,
-    double angle = Math.PI/3;
+    double angle = Math.PI/4;
 
     public TakeLootArround(Logger logger) throws AWTException {
         this.logger = logger;
@@ -73,7 +73,7 @@ public class TakeLootArround implements TakeLoot {
 
             mouse.mouseMove(800 + (int) Math.round(x),
                     450 + (int) Math.round(y));
-            angle = angle + Math.PI/3;
+            angle = angle + Math.PI/4;
             Thread.sleep(200);
             pickUp();
         }
@@ -83,7 +83,7 @@ public class TakeLootArround implements TakeLoot {
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(600);
+            Thread.sleep(800);
         }
     }
 }
