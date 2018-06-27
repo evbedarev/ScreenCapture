@@ -11,5 +11,6 @@ public class Honey extends Loot {
         super.mainRgb = -9745846;
         super.subImageSize = new int[] {50,50};
         super.ancillaryRgb = new int[] {-2177380,-2576481, -2181723};
+        super.takeLootArround = new TakeLootArround(logger);
     }
 }

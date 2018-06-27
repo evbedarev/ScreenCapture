@@ -10,5 +10,6 @@ public class Card1 extends  Loot {
         super.mainRgb = -6707798;
         super.subImageSize = new int[] {50,50};
         super.ancillaryRgb = new int[] {-8418418, -4999009};
+        super.takeLootArround = new TakeLootArround(logger);
     }
 }

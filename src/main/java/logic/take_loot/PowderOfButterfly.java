@@ -9,5 +9,6 @@ public class PowderOfButterfly extends Loot {
             super();
             super.wildcard = "fragm*";
             super.rootDir = Prop.getRootDir() + "Loot\\PowderOfButterfly\\";
+        super.takeLootArround = new TakeLootArround(logger);
     }
 }

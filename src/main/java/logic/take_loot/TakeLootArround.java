@@ -10,20 +10,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-public class Loot implements TakeLoot {
-    String rootDir = "";
-    String wildcard = "fragmq*";
-    Capture capture;
+public class TakeLootArround implements TakeLoot {
+    Capture
+            capture;
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
     Logger logger;
-    int mainRgb;
-    int[] subImageSize;
-    int[] ancillaryRgb;
-    TakeLootArround takeLootArround;
+    int mainRgb  = -1184260;
+    int[] subImageSize = new int[] {100,100};
+    int[] ancillaryRgb = new int[] {-1250309};
+    //-1250053,
+    double angle = Math.PI/3;
 
-    public Loot() throws AWTException {
+    public TakeLootArround(Logger logger) throws AWTException {
+        this.logger = logger;
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
@@ -56,16 +57,33 @@ public class Loot implements TakeLoot {
             mouse.mouseClick(x , y );
             logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
+//            mouse.mouseMove(1000, 600);
             return true;
         }
         return false;
     }
 
+
+    public void moveMouseArround() throws Exception {
+        while (angle < 3 * Math.PI) {
+            double radius = 55;
+
+            double x = radius * Math.cos(angle);
+            double y = radius * Math.sin(angle);
+
+            mouse.mouseMove(800 + (int) Math.round(x),
+                    450 + (int) Math.round(y));
+            angle = angle + Math.PI/3;
+            Thread.sleep(200);
+            pickUp();
+        }
+        angle = Math.PI/3;
+    }
+
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(1500);
-            takeLootArround.moveMouseArround();
+            Thread.sleep(600);
         }
     }
 }

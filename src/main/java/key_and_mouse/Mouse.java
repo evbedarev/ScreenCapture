@@ -22,6 +22,11 @@ public class Mouse {
         Thread.sleep(sleepTime);
         robot.mouseRelease(button_mask);
     }
+    public void leftClick() throws InterruptedException {
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        Thread.sleep(50);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+    }
 
     public void mouseMove(int x, int y) {
         robot.mouseMove(x,y);

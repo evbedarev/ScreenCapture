@@ -10,5 +10,6 @@ public class Shield extends Loot {
         super.mainRgb = -10855846;
         super.subImageSize = new int[] {50,50};
         super.ancillaryRgb = new int[] {-5395027, -15195863};
+        super.takeLootArround = new TakeLootArround(logger);
     }
 }

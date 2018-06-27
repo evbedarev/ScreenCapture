@@ -15,5 +15,6 @@ public class Bottle extends Loot {
         super.mainRgb = -8618875;
         super.subImageSize = new int[] {20,25};
         super.ancillaryRgb = new int[] {-8618875};
+        super.takeLootArround = new TakeLootArround(logger);
     }
 }

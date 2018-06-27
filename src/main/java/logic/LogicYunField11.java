@@ -43,6 +43,7 @@ public class LogicYunField11 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField11(), logger);
+        takeLootArround = new TakeLootArround(logger);
 
         killMonsterList = Stream
                 .of(new Goat(logger))
@@ -59,8 +60,10 @@ public class LogicYunField11 extends LogicLocation {
     public void mainHandle() throws Exception {
         if (threadId == 0) {
             locationCheck.locationCheck();
-            if (count == 0)
-                actions.stepAside(locationCheck, new int[] {100, 130});
+//            if (count == 0)
+//                actions.stepAside(locationCheck, new int[]{100, 130});
+            if (count ==9)
+                takeLootArround.moveMouseArround();
             killMonsterList.forEach(this::findAndKill);
 //            findAndKill();
             checkMyHp();
@@ -122,6 +125,8 @@ public class LogicYunField11 extends LogicLocation {
     }
 
     void runFromMonster() throws
+
+
             Exception {
 //        if (awareMonster.kill()) {
 //            logger.info("GOBLIN LEADER");
