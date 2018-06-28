@@ -41,6 +41,9 @@ public class Prop {
     private TakeLoot[] usefulLoot;
     private TakeLoot[] loot;
 
+    private static final double FIND_LOOT_SMALL_RADIUS = 55;
+    private static final double FIND_LOOT_LARGE_RADIUS = 85;
+
     public TakeLoot[] getUsefulLoot() throws AWTException {
         return new TakeLoot[] {
                 new Card(logger),
@@ -130,6 +133,14 @@ public class Prop {
 
     public static int getxHpToRun() {
         return X_HP_TO_RUN;
+    }
+
+    public static double getFindLootSmallRadius() {
+        return FIND_LOOT_SMALL_RADIUS;
+    }
+
+    public static double getFindLootLargeRadius() {
+        return FIND_LOOT_LARGE_RADIUS;
     }
 
 }

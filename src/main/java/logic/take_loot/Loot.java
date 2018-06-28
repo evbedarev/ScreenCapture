@@ -4,6 +4,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
@@ -65,8 +66,8 @@ public class Loot implements TakeLoot {
     public void pickUp() throws Exception {
         while (take()) {
             Thread.sleep(1500);
-            takeLootArround.moveMouseArround(55.0);
-            takeLootArround.moveMouseArround(75.0);
+            takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
+            takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
         }
     }
 }
