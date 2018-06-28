@@ -10,6 +10,6 @@ public class Coupon extends Loot {
         super.mainRgb = -555942;
         super.subImageSize = new int[] {50,60};
         super.ancillaryRgb = new int[] {-2190204,-14667};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }

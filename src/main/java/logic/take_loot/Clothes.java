@@ -10,7 +10,7 @@ public class Clothes extends Loot {
         super.mainRgb = -7245729;
         super.subImageSize = new int[] {100,100};
         super.ancillaryRgb = new int[] {-6061455,-7508901};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }
 

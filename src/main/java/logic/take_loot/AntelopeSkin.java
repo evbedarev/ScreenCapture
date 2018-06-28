@@ -11,6 +11,6 @@ public class AntelopeSkin extends Loot {
         super.mainRgb = -5208194;
         super.subImageSize = new int[] {40,40};
         super.ancillaryRgb = new int[] {-3761012};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }

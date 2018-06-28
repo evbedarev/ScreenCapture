@@ -9,6 +9,6 @@ public class RockerLeg extends  Loot{
         super();
         super.wildcard = "fragm*";
         super.rootDir = Prop.getRootDir() + "Loot\\RockerLeg\\";
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }

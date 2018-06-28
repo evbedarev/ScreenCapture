@@ -4,13 +4,14 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-public class TakeLootArround implements TakeLoot {
+public class LootAround implements TakeLoot {
     Capture capture;
     final Mouse mouse;
     final Keys keys;
@@ -22,12 +23,38 @@ public class TakeLootArround implements TakeLoot {
     //-1250053,
     double angle = Math.PI/6;
 
-    public TakeLootArround(Logger logger) throws AWTException {
+    public LootAround(Logger logger) throws AWTException {
         this.logger = logger;
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindPixels();
+    }
+
+    public void takeLootAround() throws Exception {
+        moveMouseAround(Prop.getFindLootSmallRadius());
+        moveMouseAround(Prop.getFindLootLargeRadius());
+    }
+
+    private void moveMouseAround(double radius) throws Exception {
+        while (angle < 3 * Math.PI) {
+            double x = radius * Math.cos(angle);
+            double y = radius * Math.sin(angle);
+
+            mouse.mouseMove(800 + (int) Math.round(x),
+                    450 + (int) Math.round(y));
+            angle = angle + Math.PI/6;
+            Thread.sleep(100);
+            pickUp();
+        }
+        angle = Math.PI/6;
+    }
+
+    @Override
+    public void pickUp() throws Exception {
+        while (take()) {
+            Thread.sleep(800);
+        }
     }
 
     @Override
@@ -55,32 +82,9 @@ public class TakeLootArround implements TakeLoot {
 
             mouse.mouseClick(x , y );
             logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
-//            mouse.mouseMove(1000, 600);
+            Thread.sleep(100);
             return true;
         }
         return false;
-    }
-
-
-    public void moveMouseArround(double radius) throws Exception {
-        while (angle < 3 * Math.PI) {
-            double x = radius * Math.cos(angle);
-            double y = radius * Math.sin(angle);
-
-            mouse.mouseMove(800 + (int) Math.round(x),
-                    450 + (int) Math.round(y));
-            angle = angle + Math.PI/6;
-            Thread.sleep(100);
-            pickUp();
-        }
-        angle = Math.PI/6;
-    }
-
-    @Override
-    public void pickUp() throws Exception {
-        while (take()) {
-            Thread.sleep(800);
-        }
     }
 }

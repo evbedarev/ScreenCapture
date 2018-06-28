@@ -11,6 +11,6 @@ public class BlueHerb extends Loot {
         super.mainRgb = -14083973;
         super.subImageSize = new int[] {35,35};
         super.ancillaryRgb = new int[] {-14083973};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }

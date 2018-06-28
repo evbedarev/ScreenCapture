@@ -6,7 +6,6 @@ import checks.LocationCheck;
 import checks.location.YunField11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
-import main.Prop;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -45,7 +44,7 @@ public class LogicYunField11 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField11(), logger);
-        takeLootArround = new TakeLootArround(logger);
+        lootAround = new LootAround(logger);
 
         killMonsterList = Stream
                 .of(new Goat(logger))
@@ -110,8 +109,7 @@ public class LogicYunField11 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
-            takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
-            takeLootArround.moveMouseArround(Prop.getFindLootLargeRadius());
+            lootAround.takeLootAround();
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});
 //            sleep(1500);

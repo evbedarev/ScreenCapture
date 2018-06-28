@@ -22,7 +22,7 @@ public class Loot implements TakeLoot {
     int mainRgb;
     int[] subImageSize;
     int[] ancillaryRgb;
-    TakeLootArround takeLootArround;
+    LootAround lootAround;
 
     public Loot() throws AWTException {
         capture = Capture.instance();
@@ -66,8 +66,7 @@ public class Loot implements TakeLoot {
     public void pickUp() throws Exception {
         while (take()) {
             Thread.sleep(1500);
-            takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
-            takeLootArround.moveMouseArround(Prop.getFindLootLargeRadius());
+            lootAround.takeLootAround();
         }
     }
 }

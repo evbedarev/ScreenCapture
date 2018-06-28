@@ -9,6 +9,6 @@ public class Mask extends Loot {
         super.mainRgb = -931161;
         super.subImageSize = new int[] {50,50};
         super.ancillaryRgb = new int[] {-534867,-8105390};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
 }
 }

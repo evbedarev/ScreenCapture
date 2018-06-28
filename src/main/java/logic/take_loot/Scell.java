@@ -10,6 +10,6 @@ public class Scell extends Loot {
         super.mainRgb = -4361423;
         super.subImageSize = new int[] {32,32};
         super.ancillaryRgb = new int[] {-2712502};
-        super.takeLootArround = new TakeLootArround(logger);
+        super.lootAround = new LootAround(logger);
     }
 }

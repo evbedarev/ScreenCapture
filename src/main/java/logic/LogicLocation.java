@@ -3,7 +3,7 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import logic.kill_monster.*;
-import logic.take_loot.TakeLootArround;
+import logic.take_loot.LootAround;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     Logger logger = Logger.getLogger(this.getClass());
     Actions actions;
     LocationCheck locationCheck;
-    TakeLootArround takeLootArround;
+    LootAround lootAround;
 
     public abstract void createThread() throws Exception;
 
@@ -57,7 +57,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                 checkMyHp();
                 Thread.sleep(500);
                 duringTheFight();
-//                if (!monster.kill()) takeLootArround.moveMouseArround();
+//                if (!monster.kill()) lootAround.moveMouseArround();
             }
 //            if (count == 0)
 //                actions.stepAside(locationCheck);
