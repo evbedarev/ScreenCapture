@@ -42,7 +42,7 @@ public class Prop {
     private TakeLoot[] loot;
 
     private static final double FIND_LOOT_SMALL_RADIUS = 55;
-    private static final double FIND_LOOT_LARGE_RADIUS = 85;
+    private static final double FIND_LOOT_LARGE_RADIUS = 95;
 
     public TakeLoot[] getUsefulLoot() throws AWTException {
         return new TakeLoot[] {
