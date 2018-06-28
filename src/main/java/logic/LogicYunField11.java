@@ -108,7 +108,8 @@ public class LogicYunField11 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > 10) {
-            takeLootArround.moveMouseArround();
+            takeLootArround.moveMouseArround(55.0);
+            takeLootArround.moveMouseArround(75.0);
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});
 //            sleep(1500);

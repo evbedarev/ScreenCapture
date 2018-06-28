@@ -65,7 +65,8 @@ public class Loot implements TakeLoot {
     public void pickUp() throws Exception {
         while (take()) {
             Thread.sleep(1500);
-            takeLootArround.moveMouseArround();
+            takeLootArround.moveMouseArround(55.0);
+            takeLootArround.moveMouseArround(75.0);
         }
     }
 }

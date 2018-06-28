@@ -1,6 +1,5 @@
 package logic.take_loot;
 
-import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;

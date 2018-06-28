@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class TakeLootArround implements TakeLoot {
-    Capture
-            capture;
+    Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
@@ -64,17 +63,15 @@ public class TakeLootArround implements TakeLoot {
     }
 
 
-    public void moveMouseArround() throws Exception {
+    public void moveMouseArround(double radius) throws Exception {
         while (angle < 3 * Math.PI) {
-            double radius = 55;
-
             double x = radius * Math.cos(angle);
             double y = radius * Math.sin(angle);
 
             mouse.mouseMove(800 + (int) Math.round(x),
                     450 + (int) Math.round(y));
             angle = angle + Math.PI/4;
-            Thread.sleep(200);
+            Thread.sleep(100);
             pickUp();
         }
         angle = Math.PI/3;
