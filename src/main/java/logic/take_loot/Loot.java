@@ -67,7 +67,7 @@ public class Loot implements TakeLoot {
         while (take()) {
             Thread.sleep(1500);
             takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
-            takeLootArround.moveMouseArround(Prop.getFindLootSmallRadius());
+            takeLootArround.moveMouseArround(Prop.getFindLootLargeRadius());
         }
     }
 }
