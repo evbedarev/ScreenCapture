@@ -74,7 +74,7 @@ public class TakeLootArround implements TakeLoot {
             Thread.sleep(100);
             pickUp();
         }
-        angle = Math.PI/3;
+        angle = Math.PI/4;
     }
 
     @Override
