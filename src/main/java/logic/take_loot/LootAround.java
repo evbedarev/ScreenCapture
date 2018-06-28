@@ -12,7 +12,8 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class LootAround implements TakeLoot {
-    Capture capture;
+    Capture
+            capture;
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
@@ -21,7 +22,8 @@ public class LootAround implements TakeLoot {
     int[] subImageSize = new int[] {100,100};
     int[] ancillaryRgb = new int[] {-1184260};
     //-1250053,
-    double angle = Math.PI/6;
+    double smallAngle = Math.PI/4;
+    double largeAnge = Math.PI/5;
 
     public LootAround(Logger logger) throws AWTException {
         this.logger = logger;
@@ -32,28 +34,28 @@ public class LootAround implements TakeLoot {
     }
 
     public void takeLootAround() throws Exception {
-        moveMouseAround(Prop.getFindLootSmallRadius());
-        moveMouseAround(Prop.getFindLootLargeRadius());
+        moveMouseAround(Prop.getFindLootSmallRadius(),smallAngle);
+        moveMouseAround(Prop.getFindLootLargeRadius(),largeAnge);
     }
 
-    private void moveMouseAround(double radius) throws Exception {
+    private void moveMouseAround(double radius, double angle) throws Exception {
+        double increment = angle;
         while (angle < 3 * Math.PI) {
             double x = radius * Math.cos(angle);
             double y = radius * Math.sin(angle);
 
             mouse.mouseMove(800 + (int) Math.round(x),
                     450 + (int) Math.round(y));
-            angle = angle + Math.PI/6;
-            Thread.sleep(100);
+            angle += increment;
+            Thread.sleep(200);
             pickUp();
         }
-        angle = Math.PI/6;
     }
 
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(800);
+            Thread.sleep(600);
         }
     }
 

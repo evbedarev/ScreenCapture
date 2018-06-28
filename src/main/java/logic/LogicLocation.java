@@ -50,8 +50,8 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     void findAndKill(KillMonster monster) {
         try {
-            int i = 0;
-                while (monster.kill() || i++ < 2) {
+            for (int  cnt=0; cnt < 2; cnt++)
+                while (monster.kill()) {
                     count = 0;
                     runFromMonster();
                     logger.debug("Set count to " + count);
