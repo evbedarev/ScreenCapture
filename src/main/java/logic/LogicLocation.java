@@ -50,17 +50,15 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     void findAndKill(KillMonster monster) {
         try {
-            while (monster.kill()) {
-                count = 0;
-                runFromMonster();
-                logger.debug("Set count to " + count);
-                checkMyHp();
-                Thread.sleep(500);
-                duringTheFight();
-//                if (!monster.kill()) lootAround.moveMouseArround();
-            }
-//            if (count == 0)
-//                actions.stepAside(locationCheck);
+            int i = 0;
+                while (monster.kill() || i++ < 2) {
+                    count = 0;
+                    runFromMonster();
+                    logger.debug("Set count to " + count);
+                    checkMyHp();
+                    Thread.sleep(500);
+                    duringTheFight();
+                }
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -69,7 +67,6 @@ public abstract class LogicLocation extends Thread implements Logic {
 
 
     public abstract void mainHandle() throws Exception;
-
     abstract void checkCast() throws InterruptedException;
     abstract void runFromMonster() throws Exception;
     abstract void checkMyHp() throws Exception;
