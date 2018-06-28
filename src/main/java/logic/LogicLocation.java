@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public abstract class LogicLocation extends Thread implements Logic {
-    static int countOfAttacks = 0;
+    static int countOfAttacks = 100;
     static List<KillMonster> killMonsterList;
     int count = 0;
     static AttackInterface attack;
@@ -41,7 +41,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             Thread.sleep(1000);
             if (atk > countOfAttacks) {
-//                actions.stepAside(locationCheck, new int[] {75, 150});
+                actions.stepAside(locationCheck, new int[] {75, 150});
                 killMonsterList.forEach(this::findAndKill);
                 atk=1;
             }
@@ -58,6 +58,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                     checkMyHp();
                     Thread.sleep(500);
                     duringTheFight();
+                    cnt = 0;
                 }
 
         } catch (Exception exception) {
