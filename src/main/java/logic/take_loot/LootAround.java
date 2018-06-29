@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Optional;
 
 public class LootAround implements TakeLoot {
@@ -17,10 +18,7 @@ public class LootAround implements TakeLoot {
     final Keys keys;
     final FindPixels findImageHard;
     Logger logger;
-    int mainRgb  = -1184260;
-    int[] subImageSize = new int[] {100,100};
-    int[] ancillaryRgb = new int[] {-1184260};
-    //-1250053,
+    List<RgbParameter> rgbParameterList;
     double smallAngle = Math.PI/4;
     double largeAnge = Math.PI/5;
 
@@ -30,6 +28,15 @@ public class LootAround implements TakeLoot {
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindPixels();
+
+        rgbParameterList.add(new RgbParameter(-1184260,
+                new int[] {100,100},
+                new int[] {-1184260}));
+
+        rgbParameterList.add(new RgbParameter(-1250309,
+                new int[] {100,100},
+                new int[] {-1250309}));
+
     }
 
     public void takeLootAround() throws Exception {
@@ -73,20 +80,22 @@ public class LootAround implements TakeLoot {
 
         logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
-        Optional<int[]> xy = findImageHard.findPixelsInImage(
-                screenShot,
-                mainRgb,
-                subImageSize,
-                ancillaryRgb);
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
+                    screenShot,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb());
 
-        if (xy.isPresent()) {
-            int x = xy.get()[0];
-            int y = xy.get()[1];
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
 
-            mouse.mouseClick(x , y );
-            logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(100);
-            return true;
+                mouse.mouseClick(x, y);
+                logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                Thread.sleep(100);
+                return true;
+            }
         }
         return false;
     }
