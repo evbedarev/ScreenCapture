@@ -9,8 +9,6 @@ import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static main.Prop.*;
-
 public class Actions {
     static private Actions instance;
     Keys keys;

@@ -8,6 +8,6 @@ public class Poring extends Monster {
     public Poring() throws AWTException {
         super();
         super.wildcard = "fragm*";
-        super.rootDir = Prop.getRootDir() + "KillMonsters\\Poring\\";
+        super.rootDir = Prop.ROOT_DIR + "KillMonsters\\Poring\\";
     }
 }

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class FragmentElement implements KillMonster {
-    String rootDir = Prop.getRootDir() + "objects\\warp\\";
+    String rootDir = Prop.ROOT_DIR + "objects\\warp\\";
     String wildcard = "fragm*";
 
     private final Capture capture;

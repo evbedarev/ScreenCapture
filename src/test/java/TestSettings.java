@@ -5,6 +5,6 @@ public class TestSettings {
 
     @Test
     public void testingSettings() {
-        assertTrue(Prop.getScreenWidth() == 1600);
+        assertTrue(Prop.SCREEN_WIDTH == 1600);
     }
 }

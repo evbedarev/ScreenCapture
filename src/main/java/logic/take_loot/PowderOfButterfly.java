@@ -8,7 +8,7 @@ public class PowderOfButterfly extends Loot {
     public PowderOfButterfly() throws AWTException {
             super();
             super.wildcard = "fragm*";
-            super.rootDir = Prop.getRootDir() + "Loot\\PowderOfButterfly\\";
+            super.rootDir = Prop.ROOT_DIR + "Loot\\PowderOfButterfly\\";
         super.lootAround = new LootAround(logger);
     }
 }

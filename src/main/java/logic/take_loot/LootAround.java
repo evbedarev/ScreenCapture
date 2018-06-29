@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public class LootAround implements TakeLoot {
     final Keys keys;
     final FindPixels findImageHard;
     Logger logger;
-    List<RgbParameter> rgbParameterList;
+    List<RgbParameter> rgbParameterList = new ArrayList<>();
     double smallAngle = Math.PI/4;
     double largeAnge = Math.PI/5;
 
@@ -35,14 +36,18 @@ public class LootAround implements TakeLoot {
 
         rgbParameterList.add(new RgbParameter(-1250309,
                 new int[] {100,100},
-                new int[] {-1250309}));
+                new int[] {-460549}));
+
+        rgbParameterList.add(new RgbParameter(-1250310,
+                new int[] {100,100},
+                new int[] {-1052678}));
 
     }
 
     public void takeLootAround() throws Exception {
         if (Prop.NEED_AROUND_LOOT_SEARCH) {
             moveMouseAround(Prop.FIND_LOOT_SMALL_RADIUS, smallAngle);
-            moveMouseAround(Prop.FIND_LOOT_LARGE_RADIUS, largeAnge);
+//            moveMouseAround(Prop.FIND_LOOT_LARGE_RADIUS, largeAnge);
         }
     }
 
