@@ -7,10 +7,6 @@ import java.util.*;
 
 public class FindPixels implements FindPixelsInImage {
     final Logger logger = Logger.getLogger(this.getClass());
-    private final int x_left = Prop.getExcludeXLeft();
-    private final int x_rigth = Prop.getExcludeXRight();
-    private final int y_up = Prop.getExcludeYUp();
-    private final int y_down = Prop.getExcludeYDown();
 
     @Override
     public Optional<int[]> findPixelsInImage(
@@ -22,7 +18,10 @@ public class FindPixels implements FindPixelsInImage {
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
 
-                if (x > x_left && x < x_rigth && y > y_up && y < y_down ) {
+                if (x > Prop.EXCLUDE_X_LEFT
+                        && x < Prop.EXCLUDE_X_RIGHT
+                        && y > Prop.EXCLUDE_Y_UP
+                        && y < Prop.EXCLUDE_Y_DOWN ) {
                     continue;
                 }
 
@@ -49,7 +48,7 @@ public class FindPixels implements FindPixelsInImage {
      * @return
      */
     private int[] findNearestFragment(List<int[]> listCoords) {
-        int screenCenter = Prop.getScreenWidth()/2;
+        int screenCenter = Prop.SCREEN_WIDTH/2;
         Collections.sort(listCoords, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {

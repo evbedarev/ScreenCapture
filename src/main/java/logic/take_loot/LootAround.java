@@ -12,8 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class LootAround implements TakeLoot {
-    Capture
-            capture;
+    Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
@@ -34,8 +33,10 @@ public class LootAround implements TakeLoot {
     }
 
     public void takeLootAround() throws Exception {
-        moveMouseAround(Prop.getFindLootSmallRadius(),smallAngle);
-        moveMouseAround(Prop.getFindLootLargeRadius(),largeAnge);
+        if (Prop.NEED_AROUND_LOOT_SEARCH) {
+            moveMouseAround(Prop.FIND_LOOT_SMALL_RADIUS, smallAngle);
+            moveMouseAround(Prop.FIND_LOOT_LARGE_RADIUS, largeAnge);
+        }
     }
 
     private void moveMouseAround(double radius, double angle) throws Exception {

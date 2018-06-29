@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class CompareFragmentImage {
 
-    private static final String ROOT_PATH = Prop.getRootDir();
+    private static final String ROOT_PATH = Prop.ROOT_DIR;
     private static final String PATH_FRAGMENT = ROOT_PATH + "getRGB\\frag.png";
     public static final  Logger logger = Logger.getLogger(CompareFragmentImage.class.getName());
 

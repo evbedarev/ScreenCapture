@@ -22,9 +22,9 @@ public class Capture {
 
     public Capture() throws AWTException {
         robot = new Robot();
-        SCREEN_WIDTH =Prop.getScreenWidth();
-        SCREEN_HEIGHT = Prop.getScreenHeight();
-        ROOT_DIR = Prop.getRootDir();
+        SCREEN_WIDTH =Prop.SCREEN_WIDTH;
+        SCREEN_HEIGHT = Prop.SCREEN_HEIGHT;
+        ROOT_DIR = Prop.ROOT_DIR;
     }
 
     public void takeScreenShotToFile(String fileName) {

@@ -4,6 +4,7 @@ import checks.LocationCheck;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.take_loot.TakeLoot;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,12 +15,6 @@ public class Actions {
     static private Actions instance;
     Keys keys;
     Mouse mouse;
-
-    private static final int GUARD = getGUARD();
-    private static final int REFLECT_SHIELD = getREFLECT();
-    private static final int AWAKENING_POTION = getAwakeningPotion();
-    private static final int DEFENDER = getDEFENDER();
-    private static final int TELEPORT = getTeleportKey();
 
     public Actions() throws AWTException {
         keys = new Keys();
@@ -34,7 +29,7 @@ public class Actions {
     }
 
     public void teleport() throws InterruptedException {
-        keys.keyPress(TELEPORT);
+        keys.keyPress(Prop.TELEPORT_KEY);
         Thread.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);
         Thread.sleep(1000);
@@ -49,17 +44,17 @@ public class Actions {
     }
 
     public void castGuard() throws InterruptedException {
-        keys.keyPress(GUARD);
+        keys.keyPress(Prop.GUARD);
         Thread.sleep(1000);
     }
 
     public void castReflectShield() throws InterruptedException {
-        keys.keyPress(REFLECT_SHIELD);
+        keys.keyPress(Prop.REFLECT);
         Thread.sleep(1000);
     }
 
     public void drinkAwaikeningPotion() throws InterruptedException {
-        keys.keyPress(AWAKENING_POTION);
+        keys.keyPress(Prop.AWAKENING_POTION);
     }
 
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {

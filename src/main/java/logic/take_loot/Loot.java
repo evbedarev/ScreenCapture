@@ -4,7 +4,6 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
-import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;

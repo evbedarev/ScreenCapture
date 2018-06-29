@@ -48,10 +48,10 @@ public class FindImageHard implements FindImage {
     public Optional<int[]> findImageExcludeArea(BufferedImage screenShot,
                                      BufferedImage fragment) {
 
-        int x_left = Prop.getExcludeXLeft();
-        int x_rigth = Prop.getExcludeXRight();
-        int y_up = Prop.getExcludeYUp();
-        int y_down = Prop.getExcludeYDown();
+        int x_left = Prop.EXCLUDE_X_LEFT;
+        int x_rigth = Prop.EXCLUDE_X_RIGHT;
+        int y_up = Prop.EXCLUDE_Y_UP;
+        int y_down = Prop.EXCLUDE_Y_DOWN;
 
         for (int y = 0; y < screenShot.getHeight() - fragment.getHeight(); y++) {
             __columnspan: for (int x=0; x < screenShot.getWidth() - fragment.getWidth(); x++) {
