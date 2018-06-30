@@ -49,7 +49,6 @@ public class Prop {
     public TakeLoot[] getUsefulLoot() throws AWTException {
         return new TakeLoot[] {
                 new Card(logger),
-                new Card1(logger),
                 new Clothes(logger),
                 new Shield(logger),
                 new Mask(logger)

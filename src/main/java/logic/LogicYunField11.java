@@ -22,7 +22,6 @@ public class LogicYunField11 extends LogicLocation {
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
-            new Card1(logger),
 //            new Clothes(logger),
             new Shield(logger),
 //            new Mask(logger),

@@ -4,23 +4,22 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import logic.RgbParameter;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Loot implements TakeLoot {
-    String rootDir = "";
-    String wildcard = "fragmq*";
+    List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
     Logger logger;
-    int mainRgb;
-    int[] subImageSize;
-    int[] ancillaryRgb;
     LootAround lootAround;
 
     public Loot() throws AWTException {
@@ -43,20 +42,22 @@ public class Loot implements TakeLoot {
 
         logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
-        Optional<int[]> xy = findImageHard.findPixelsInImage(
-                screenShot,
-                mainRgb,
-                subImageSize,
-                ancillaryRgb);
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
+                    screenShot,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb());
 
-        if (xy.isPresent()) {
-            int x = xy.get()[0];
-            int y = xy.get()[1];
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
 
-            mouse.mouseClick(x , y );
-            logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
-            return true;
+                mouse.mouseClick(x, y);
+                logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                Thread.sleep(100);
+                return true;
+            }
         }
         return false;
     }
