@@ -35,7 +35,8 @@ public class Prop {
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
     public static final int HEAL_KEY = 0;
-    public static final int DEFENDER = KeyEvent.VK_F7;
+    public static final int
+            DEFENDER = KeyEvent.VK_F7;
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
