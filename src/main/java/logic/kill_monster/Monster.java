@@ -49,7 +49,7 @@ public class Monster implements KillMonster {
             AWTException,
             InterruptedException{
 
-        logger.debug("Finding loot " + this.toString());
+        logger.debug("Finding monster " + this.toString());
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -63,7 +63,7 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
                 return true;
             }

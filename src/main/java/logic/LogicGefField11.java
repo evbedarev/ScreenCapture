@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LogicGefField11 extends LogicLocation {
+
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
     private final CheckHP checkHP = new CheckHP(true);
@@ -21,30 +22,30 @@ public class LogicGefField11 extends LogicLocation {
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
-            new Card1(logger),
-            new Clothes(logger),
+//            new Clothes(logger),
             new Shield(logger),
             new Mask(logger),
             new Coupon(logger)
     };
 
+
     private final TakeLoot[] loot = new TakeLoot[] {
-            new Honey(logger),
-            new Scell(logger)
+            new Scell(logger),
     };
+
 
     public LogicGefField11(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new Attack(logger);
-        attack2 = new Attack2(logger);
+        attack = new AttackGef05(logger);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField11(), logger);
+        lootAround = new LootAround(logger);
 
         killMonsterList = Stream
-                .of(new Goblin(logger), new GoblinLeader(logger))
-                .collect(Collectors.toList());
-
+                .of(
+                        new Goblin(logger)
+                ).collect(Collectors.toList());
     }
 
     @Override
@@ -57,8 +58,8 @@ public class LogicGefField11 extends LogicLocation {
     public void mainHandle() throws Exception {
         if (threadId == 0) {
             locationCheck.locationCheck();
-            if (count == 0)
-               actions.stepAside(locationCheck, new int[] {100, 130});
+//            if (count == 0)
+//                actions.stepAside(locationCheck, new int[]{100, 130});
             killMonsterList.forEach(this::findAndKill);
 //            findAndKill();
             checkMyHp();
@@ -76,6 +77,11 @@ public class LogicGefField11 extends LogicLocation {
             ATOMIC_DEFENDER.incrementAndGet();
             sleep(1000);
         }
+    }
+
+    void checkMyHp() throws Exception {
+        actions.pickUpCard(usefulLoot);
+        checkHP.checkHp();
     }
 
     void checkCast() throws InterruptedException {
@@ -97,9 +103,22 @@ public class LogicGefField11 extends LogicLocation {
         }
     }
 
-    void checkMyHp() throws Exception {
-        actions.pickUpCard(usefulLoot);
-        checkHP.checkHp();
+    void teleport() throws Exception {
+        runFromMonster();
+        if (count > 10) {
+            lootAround.takeLootAround();
+            sleep(500);
+//            actions.stepAside(locationCheck, new int[] {250, 350});
+//            sleep(1500);
+            actions.pickUpCard(usefulLoot);
+            actions.pickUpLoot(loot);
+
+            logger.info("TELEPORTING count=" + count);
+            count = 0;
+            logger.info("Set count to " + count);
+            actions.teleport();
+            actions.stepAside(locationCheck, new int[] {75, 150} );
+        }
     }
 
     void runFromMonster() throws Exception {
@@ -107,19 +126,5 @@ public class LogicGefField11 extends LogicLocation {
 //            logger.info("GOBLIN LEADER");
 //            actions.teleport();
 //        }
-    }
-
-    void teleport() throws Exception {
-        runFromMonster();
-        if (count > 10) {
-            actions.stepAside(locationCheck, new int[] {250, 350});
-            actions.pickUpCard(usefulLoot);
-            actions.pickUpLoot(loot);
-            logger.info("TELEPORTING count=" + count);
-            count = 0;
-            logger.info("Set count to " + count);
-            actions.teleport();
-            actions.stepAside(locationCheck, new int[] {75, 150});
-        }
     }
 }

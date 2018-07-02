@@ -19,7 +19,7 @@ public class Prop {
     public static final boolean NEED_AROUND_LOOT_SEARCH = true;
 
     public static final int RGB_HP = -6507025;
-    public static final int X_HP = 104;
+    public static final int X_HP = 130;
     public static final int Y_HP = 82;
     public static final int X_HP_HEAL = 0; //Only for acolyte
     public static final int X_HP_TO_RUN = 110;

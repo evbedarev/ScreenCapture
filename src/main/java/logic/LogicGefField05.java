@@ -4,17 +4,8 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.GefField05;
-import checks.location.VerifyMap;
-import checks.location.YunField11;
-import email.MsgLocationChanged;
-import email.SendMessage;
-import key_and_mouse.Keys;
-import key_and_mouse.Mouse;
 import logic.kill_monster.*;
 import logic.take_loot.*;
-import org.apache.log4j.Logger;
-
-import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,26 +29,29 @@ public class LogicGefField05 extends LogicLocation {
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
-            new PowderOfButterfly(logger),
+//            new PowderOfButterfly(logger),
     };
 
 
     public LogicGefField05(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11(logger);
+        attack = new AttackGef05(logger);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField05(), logger);
         lootAround = new LootAround(logger);
 
         killMonsterList = Stream
-                .of(new Goat(logger))
-                .collect(Collectors.toList());
+                .of(
+                        new ThiefBug(logger),
+                        new Creamy(logger),
+                        new Smokie(logger)
+                ).collect(Collectors.toList());
     }
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicYunField11(1);
+        Thread thread = new LogicGefField05(1);
         thread.start();
         start();
     }
