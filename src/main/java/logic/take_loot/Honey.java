@@ -1,15 +1,16 @@
 package logic.take_loot;
 
+import logic.RgbParameter;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 
 public class Honey extends Loot {
     public Honey(Logger logger) throws AWTException {
-        super.logger = logger;
-        super.mainRgb = -9745846;
-        super.subImageSize = new int[] {50,50};
-        super.ancillaryRgb = new int[] {-2177380,-2576481, -2181723};
-        super.lootAround = new LootAround(logger);
+        lootAround = new LootAround(logger);
+        this.logger = logger;
+        rgbParameterList.add(new RgbParameter(-9745846,
+                new int[] {50,50},
+                new int[] {-2177380,-2576481, -2181723}));
     }
 }

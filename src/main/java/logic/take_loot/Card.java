@@ -1,15 +1,20 @@
 package logic.take_loot;
 
+import logic.RgbParameter;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 
 public class Card extends Loot {
     public Card(Logger logger) throws AWTException {
-        super.logger = logger;
-        super.mainRgb = -4864314;
-        super.subImageSize = new int[] {50,50};
-        super.ancillaryRgb = new int[] {-4864314};
-        super.lootAround = new LootAround(logger);
+        this.logger = logger;
+        lootAround = new LootAround(logger);
+        rgbParameterList.add(new RgbParameter(-6707798,
+                new int[] {50,50},
+                new int[] {-8418418, -4999009}));
+
+        rgbParameterList.add(new RgbParameter(-4864314,
+                new int[] {50,50},
+                new int[] {-4864314}));
     }
 }

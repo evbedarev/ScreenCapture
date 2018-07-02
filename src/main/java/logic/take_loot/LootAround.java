@@ -4,6 +4,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import logic.RgbParameter;
 import main.Prop;
 import org.apache.log4j.Logger;
 
@@ -105,22 +106,3 @@ public class LootAround implements TakeLoot {
         return false;
     }
 }
-
-
-//2018-06-28 17:13:54 INFO  CompareFragmentImage:34 - Equals rgb for fragments 0, 1 ,2 is:
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -16448508 x=29 y=22
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -16316922 x=24 y=29
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -197637 x=15 y=16
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -3421213 x=26 y=27
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -3289884 x=9 y=26
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -921349 x=14 y=17
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -2171408 x=22 y=20
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -16251129 x=7 y=7
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -2171151 x=24 y=18
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -1315846 x=15 y=19
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -1052678 x=16 y=17
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -1184517 x=13 y=23
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:37 - equals RGB = -1250310 x=16 y=19
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:43 - Equals rgb for fragments 0, 3 ,4 is:
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:46 - equals RGB = -460549 x=16 y=16
-//        2018-06-28 17:13:54 INFO  CompareFragmentImage:46 - equals RGB = -1250309 x=16 y=20

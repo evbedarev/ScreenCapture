@@ -1,4 +1,4 @@
-package logic.take_loot;
+package logic;
 
 public class RgbParameter {
     private int mainRgb;
