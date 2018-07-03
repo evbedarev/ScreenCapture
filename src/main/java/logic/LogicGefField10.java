@@ -2,8 +2,9 @@ package logic;
 
 import actions.Actions;
 import checks.CheckHP;
-import checks.location.GefField11;
 import checks.LocationCheck;
+import checks.location.GefField05;
+import checks.location.GefField10;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 
@@ -11,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicGefField11 extends LogicLocation {
+public class LogicGefField10 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
@@ -30,27 +31,28 @@ public class LogicGefField11 extends LogicLocation {
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
-//            new Scell(logger),
+//            new PowderOfButterfly(logger),
     };
 
 
-    public LogicGefField11(int threadId) throws Exception {
+    public LogicGefField10(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackGef11(logger);
+        attack = new AttackGef05(logger);
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new GefField11(), logger);
+        locationCheck = new LocationCheck(new GefField10(), logger);
         lootAround = new LootAround(logger);
 
         killMonsterList = Stream
                 .of(
-                        new Goblin(logger)
+                        new Orc(logger),
+                        new OrcLady(logger)
                 ).collect(Collectors.toList());
     }
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicGefField11(1);
+        Thread thread = new LogicGefField10(1);
         thread.start();
         start();
     }
@@ -112,11 +114,10 @@ public class LogicGefField11 extends LogicLocation {
 //            sleep(1500);
             actions.pickUpCard(usefulLoot);
             actions.pickUpLoot(loot);
-
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
-
+            locationCheck.locationCheck();
             actions.teleport();
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }

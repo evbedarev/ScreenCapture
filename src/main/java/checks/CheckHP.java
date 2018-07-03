@@ -31,7 +31,7 @@ public class CheckHP {
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             actions.teleport();
-            Thread.sleep(30000);
+//            Thread.sleep(30000);
         }
 
         if (Prop.X_HP_HEAL != 0) {
