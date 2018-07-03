@@ -62,7 +62,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
 
-                mouse.mouseClick(x, y);
+                mouse.mouseClick(x, y + 20);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
                 return true;

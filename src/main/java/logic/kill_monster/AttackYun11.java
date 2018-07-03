@@ -16,5 +16,8 @@ public class AttackYun11 extends Monster {
         rgbParameterList.add(new RgbParameter(-395017,
                 new int[] {40,40},
                 new int[] {-395017}));
+        rgbParameterList.add(new RgbParameter(-395016,
+                new int[] {40,40},
+                new int[] {-3421470}));
     }
 }

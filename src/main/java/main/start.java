@@ -10,7 +10,7 @@ public class start {
             logic;
 
     public static void main(String[] args) throws Exception {
-        logic = new LogicGefField11(0);
+        logic = new LogicYunField11(0);
         logic.createThread();
     }
 }
