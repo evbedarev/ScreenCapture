@@ -13,8 +13,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static int countOfAttacks = 100;
     static List<KillMonster> killMonsterList;
     int count = 0;
-    static AttackInterface attack;
-    static AttackInterface attack2;
+    static Monster attack;
     Logger logger = Logger.getLogger(this.getClass());
     Actions actions;
     LocationCheck locationCheck;
@@ -34,7 +33,7 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     void duringTheFight() throws Exception {
         int atk = 1;
-        while (attack.killOrNot() || attack2.killOrNot()) {
+        while (attack.kill()) {
             count = 0;
             logger.debug("Set count to " + count);
             atk++;

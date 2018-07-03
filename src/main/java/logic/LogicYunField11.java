@@ -38,8 +38,7 @@ public class LogicYunField11 extends LogicLocation {
 
     public LogicYunField11(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun111(logger);
-        attack2 = new AttackYun112(logger);
+        attack = new AttackYun11(logger);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField11(), logger);

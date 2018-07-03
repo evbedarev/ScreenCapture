@@ -6,8 +6,5 @@ import java.awt.*;
 
 public class Poring extends Monster {
     public Poring() throws AWTException {
-        super();
-        super.wildcard = "fragm*";
-        super.rootDir = Prop.ROOT_DIR + "KillMonsters\\Poring\\";
     }
 }
