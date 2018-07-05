@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class PrtField07 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1583,109, -6280000, -1200000};
-    public static final int[] PORTAL_RGB_1 = new int[] {1464,77, -6280000, -1200000};
+    public static final int[] PORTAL_RGB = new int[] {1582,92, -6280000, -1200000};
+    public static final int[] PORTAL_RGB_1 = new int[] {1464,76, -6280000, -1200000};
     Capture capture;
 
     public PrtField07() throws AWTException {

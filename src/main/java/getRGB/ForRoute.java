@@ -6,17 +6,16 @@ import storage_image.StorageImageFile;
 
 import java.awt.image.BufferedImage;
 
-public class RGB {
+public class ForRoute {
     public static void main(String[] args) throws Exception {
-        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-        compareFragmentImage.getRgb();
 
-//        findPixelRgb(-16776192);
+        findPixelRgb(-1063003, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        findPixelRgb(-2752512, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment1.png");
 
-        //        showRGB(new int[] {0,0}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Loot\\Shield\\fragment.png");
+//        showRGB(new int[] {7,2}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
     }
-// Coursor rgb -16250872
+// Coursor rgb -16250872, -1063003
 //-3552801
 //-395017
 
@@ -25,9 +24,9 @@ public class RGB {
      * @param intRGB - integer RGB
      * @throws Exception
      */
-    public static void findPixelRgb(int intRGB) throws Exception {
+    public static void findPixelRgb(int intRGB, String path) throws Exception {
         StorageImage storageImage = new StorageImageFile();
-        BufferedImage image = storageImage.load("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        BufferedImage image = storageImage.load(path);
 //        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/for_test/fragment_picture.png");
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x=0; x < image.getWidth(); x++) {
@@ -37,6 +36,7 @@ public class RGB {
             }
         }
     }
+
 
     public static void showRGB(int[] xy, String pathImage) throws Exception {
         StorageImage storageImage = new StorageImageFile();
