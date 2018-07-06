@@ -9,10 +9,10 @@ import java.awt.image.BufferedImage;
 public class ForRoute {
     public static void main(String[] args) throws Exception {
 
-        findPixelRgb(-1063003, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        findPixelRgb(-1606855, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
         findPixelRgb(-2752512, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment1.png");
 
-//        showRGB(new int[] {7,2}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {274,86}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 // Coursor rgb -16250872, -1063003

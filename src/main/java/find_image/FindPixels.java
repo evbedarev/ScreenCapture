@@ -8,8 +8,18 @@ import java.util.*;
 public class FindPixels implements FindPixelsInImage {
     final Logger logger = Logger.getLogger(this.getClass());
 
+    /**
+     * Ищет изображение по пикселям на картинке
+     * @param screenShot - скриншот
+     * @param mainRgb - основной цвет пикселя, ищет его в первую очередь.
+     * @param subImgCoord - область, в которой производится поиск после нахождения основн-
+     *                    ого пикселя.
+     * @param ancillaryRgb - массив дополнительных цветов, которые ищутся в области subImgCoord.
+     *                     Если все пикслеи присутствуют возвращает координаты основного пикселя.
+     * @return
+     */
     @Override
-    public Optional<int[]> findPixelsInImage(
+    public Optional<int[]> findPixelsInImage (
             BufferedImage screenShot,
             int mainRgb,
             int[] subImgCoord,
@@ -22,6 +32,57 @@ public class FindPixels implements FindPixelsInImage {
                         && x < Prop.EXCLUDE_X_RIGHT
                         && y > Prop.EXCLUDE_Y_UP
                         && y < Prop.EXCLUDE_Y_DOWN ) {
+                    continue;
+                }
+
+                if (screenShot.getRGB(x, y) == mainRgb) {
+                    logger.debug( " coordinates is " + x + ',' + y );
+
+                    if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
+                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+                        listCoords.add(new int[] {x, y});
+                    }
+                }
+            }
+        }
+        if (listCoords.size() > 0) {
+            logger.debug("Size of listCoords is: " + listCoords.size());
+            return Optional.of(findNearestFragment(listCoords));
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Ищет изображение по пикселям на картинке в определенной области.
+     * @param screenShot - скриншот
+     * @param mainRgb - основной цвет пикселя, ищет его в первую очередь.
+     * @param subImgCoord - область, в которой производится поиск после нахождения основн-
+     *                          ого пикселя.
+     * @param ancillaryRgb - массив дополнительных цветов, которые ищутся в области subImgCoord.
+     *      *                     Если все пикслеи присутствуют возвращает координаты основного пикселя.
+     * @param coordsArea - массив из 4х элементов,
+     *                   coordsArea[0] - левая точка по Х
+     *                   coordsArea[1] - правая точка по Х
+     *                   coordsArea[2] - верхняя точка по Y
+     *                   coordsArea[3] - нижняя точка по Y
+     * @return
+     */
+
+    @Override
+    public Optional<int[]> findPixelsInImageInArea (
+            BufferedImage screenShot,
+            int mainRgb,
+            int[] subImgCoord,
+            int[] ancillaryRgb,
+            int[] coordsArea) {
+        List<int[]> listCoords = new ArrayList<>();
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
+
+                if (x < coordsArea[0]
+                        || x > coordsArea[1]
+                        || y < coordsArea[2]
+                        || y > coordsArea[3] ) {
                     continue;
                 }
 

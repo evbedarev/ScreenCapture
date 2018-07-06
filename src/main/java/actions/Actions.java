@@ -1,10 +1,12 @@
 package actions;
 
+import checks.CheckMsg;
 import checks.LocationCheck;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.take_loot.TakeLoot;
 import main.Prop;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,10 +15,13 @@ public class Actions {
     static private Actions instance;
     Keys keys;
     Mouse mouse;
+    CheckMsg checkMsg;
+    Logger logger = Logger.getLogger(this.getClass());
 
     public Actions() throws AWTException {
         keys = new Keys();
         mouse = new Mouse();
+        checkMsg = new CheckMsg(logger);
     }
 
     static public Actions instance() throws AWTException {
@@ -27,6 +32,7 @@ public class Actions {
     }
 
     public void teleport() throws InterruptedException {
+        checkMsg.check();
         keys.keyPress(Prop.TELEPORT_KEY);
         Thread.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);

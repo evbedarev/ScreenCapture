@@ -23,21 +23,22 @@ public class RouteToYun11 {
         findImageHard = new FindPixels();
         mouse = new Mouse();
         capture = Capture.instance();
-        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));
+//        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));
 //        //Aldebaran
-//        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1513,96}));
-//        routes.add(new Route(new int[] {430,43}, 5000, new int[] {1509,91}));
-//        routes.add(new Route(new int[] {321,37}, 5000, new int[] {1504,86}));
-//        routes.add(new Route(new int[] {681,37}, 5000, new int[] {1502,81}));
-//        routes.add(new Route(new int[] {840,39}, 5000, new int[] {1503,76}));
-//        routes.add(new Route(new int[] {1086,38}, 5000, new int[] {1506,71}));
-//        routes.add(new Route(new int[] {1162,41}, 5000, new int[] {1510,66}));
-//        routes.add(new Route(new int[] {1082,49}, 5000, new int[] {1513,61}));
-//        routes.add(new Route(new int[] {803,30}, 5000, new int[] {1513,55}));
-//        routes.add(new Route(new int[] {803,30}, 5000, new int[] {1513,51}));
-//        routes.add(new Route(new int[] {803,30}, 5000, new int[] {1513,47}));
-//        routes.add(new Route(new int[] {1107,65}, 5000, new int[] {1517,39}));
-//        routes.add(new Route(new int[] {1052,60}, 5000, new int[] {1520,35}));
+        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1516,121}));
+        routes.add(new Route(new int[] {430,43}, 5000, new int[] {1512,116}));
+        routes.add(new Route(new int[] {274,86}, 5000, new int[] {1506,111}));
+        routes.add(new Route(new int[] {761,69}, 5000, new int[] {1506,106}));
+        routes.add(new Route(new int[] {761,69}, 5000, new int[] {1505,101}));
+        routes.add(new Route(new int[] {1156,62}, 5000, new int[] {1509,96}));
+        routes.add(new Route(new int[] {1198,66}, 5000, new int[] {1514,91}));
+        routes.add(new Route(new int[] {964,60}, 5000, new int[] {1516,85}));
+        routes.add(new Route(new int[] {804,62}, 5000, new int[] {1516,80}));
+        routes.add(new Route(new int[] {806,74}, 5000, new int[] {1516,76}));
+        routes.add(new Route(new int[] {801,70}, 5000, new int[] {1516,71}));
+        routes.add(new Route(new int[] {1331,95}, 5000, new int[] {1522,65}));
+        routes.add(new Route(new int[] {799,81}, 5000, new int[] {1522,61}));
+        routes.add(new Route(new int[] {837,102}, 5000, new int[] {1525,162}));
 //        routes.add(new Route(new int[] {768,139}, 5000, new int[] {1522,137}));
 
     }
@@ -48,17 +49,18 @@ public class RouteToYun11 {
         int[] checkCoords = route.getCheckCoords();
         logger.debug("checking location " + this.toString());
         //It's bad, later change. Need to load in constructor.
-        Optional<int[]> xy = findImageHard.findPixelsInImage(
+        Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,
                 new int[] {2,2},
-                new int[] {-2752512});
+                new int[] {-2752512},
+                new int[] {1460, 1586, 42, 168});
 
         if (xy.isPresent()) {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            logger.info("Location true" + this.toString() + ", coordinates: x=" + x + " y=" + y);
+            logger.info("Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
             return (x == checkCoords[0] && y == checkCoords[1]);
         }
@@ -74,7 +76,7 @@ public class RouteToYun11 {
             while (!checkLocation(screenshot, route)) {
                 screenshot = capture.takeScreenShot();
                 if (count > 40) break;
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 System.out.println(count);
                 count++;
             }

@@ -9,4 +9,10 @@ public interface FindPixelsInImage {
             int mainRgb,
             int[] subImgCoord,
             int[] ancillaryRgb);
+    Optional<int[]> findPixelsInImageInArea (
+            BufferedImage screenShot,
+            int mainRgb,
+            int[] subImgCoord,
+            int[] ancillaryRgb,
+            int[] coordsArea);
 }
