@@ -1,5 +1,8 @@
 package checks;
 
+import email.MsgFromPlayer;
+import email.MsgLocationChanged;
+import email.SendMessage;
 import find_image.FindPixels;
 import logic.Capture;
 import org.apache.log4j.Logger;
@@ -12,6 +15,7 @@ public class CheckMsg {
     Logger logger;
     FindPixels findImageHard;
     Capture capture;
+    SendMessage sendMessage = new SendMessage();
 
     public CheckMsg(Logger logger) throws AWTException {
         this.logger = logger;
@@ -45,6 +49,7 @@ public class CheckMsg {
     public void check() throws InterruptedException {
         BufferedImage screenshot = capture.takeScreenShot();
         if (checkPixelInArea(screenshot, new int[] {269,279,171,181})) {
+            sendMessage.send(new MsgFromPlayer());
             while (true) {
                 Thread.sleep(5000);
             }
