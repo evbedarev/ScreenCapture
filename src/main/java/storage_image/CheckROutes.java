@@ -1,8 +1,6 @@
 package storage_image;
 
 import org.apache.log4j.Logger;
-import routes.RouteToYun11;
-import routes.RouteYunField01;
 import routes.RouteYunField11;
 
 

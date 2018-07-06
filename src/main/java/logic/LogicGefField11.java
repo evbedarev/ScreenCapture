@@ -117,7 +117,7 @@ public class LogicGefField11 extends LogicLocation {
             count = 0;
             logger.info("Set count to " + count);
 
-            actions.teleport();
+            actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }
     }

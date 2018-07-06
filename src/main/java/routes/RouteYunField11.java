@@ -9,6 +9,7 @@ import logic.Capture;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;

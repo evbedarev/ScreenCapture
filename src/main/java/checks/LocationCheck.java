@@ -4,12 +4,15 @@ import actions.Actions;
 import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
+import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.kill_monster.KillMonster;
 import logic.kill_monster.Warp;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class LocationCheck {
     private VerifyMap verifyMap;

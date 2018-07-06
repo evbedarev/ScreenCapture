@@ -31,13 +31,22 @@ public class Actions {
         return instance;
     }
 
-    public void teleport() throws InterruptedException {
+    public void teleport(LocationCheck locationCheck) throws Exception {
         checkMsg.check();
+        locationCheck.locationCheck();
         keys.keyPress(Prop.TELEPORT_KEY);
         Thread.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);
         Thread.sleep(1000);
     }
+
+    public void teleport() throws Exception {
+        keys.keyPress(Prop.TELEPORT_KEY);
+        Thread.sleep(700);
+        keys.keyPress(KeyEvent.VK_ENTER);
+        Thread.sleep(1000);
+    }
+
 
     public void sitDown () throws  InterruptedException {
         keys.keyPress(KeyEvent.VK_INSERT);

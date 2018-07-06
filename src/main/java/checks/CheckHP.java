@@ -16,7 +16,8 @@ public class CheckHP {
     Mouse mouse;
     Actions actions;
 
-    public CheckHP(boolean checkHP) throws AWTException {
+    public CheckHP(boolean checkHP)
+            throws AWTException {
         capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();

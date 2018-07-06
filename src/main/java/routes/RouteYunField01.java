@@ -5,11 +5,14 @@ import checks.LocationCheck;
 import checks.location.VerifyMap;
 import checks.location.YunField12;
 import find_image.FindPixels;
+import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,7 @@ public class RouteYunField01 {
     boolean onRoute;
     Actions actions;
     VerifyMap verifyMap;
+    Keys keys;
 
     public RouteYunField01(Logger logger) throws AWTException {
         onRoute = true;
@@ -33,6 +37,7 @@ public class RouteYunField01 {
         mouse = new Mouse();
         capture = Capture.instance();
         actions = Actions.instance();
+        keys = new Keys();
 //        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));
 //        //Aldebaran
         routes.add(new Route(new int[] {812,76}, 3000, new int[] {1525,159}));
@@ -191,6 +196,7 @@ public class RouteYunField01 {
         BufferedImage screenshot = capture.takeScreenShot();
         while (!checkLocationTP(screenshot, new int[] {1473,1486,78,89})) {
             actions.teleport();
+
             Thread.sleep(5000);
             screenshot = capture.takeScreenShot();
         }
