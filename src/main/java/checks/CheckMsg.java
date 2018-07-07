@@ -39,7 +39,7 @@ public class CheckMsg {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            logger.info("Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+            logger.info("Recived message from player ");
             Thread.sleep(200);
             return true;
         }

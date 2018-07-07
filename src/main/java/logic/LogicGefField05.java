@@ -43,9 +43,9 @@ public class LogicGefField05 extends LogicLocation {
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
                 .of(
-                        new ThiefBug(logger),
-                        new Creamy(logger),
-                        new Smokie(logger)
+//                        new ThiefBug(logger),
+                        new Creamy(logger)
+//                        new Smokie(logger)
                 ).collect(Collectors.toList());
     }
 

@@ -34,8 +34,8 @@ public class GoogleMail {
             message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(USERNAME));
-            message.setSubject("message  from Bot: Location changed");
-            message.setText("Location changed");
+            message.setSubject(subject);
+            message.setText(text);
 
             Transport.send(message);
 

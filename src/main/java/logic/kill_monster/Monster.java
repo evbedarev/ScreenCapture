@@ -68,6 +68,8 @@ public class Monster implements KillMonster {
                 return true;
             }
         }
+
+
         return false;
     }
 }
