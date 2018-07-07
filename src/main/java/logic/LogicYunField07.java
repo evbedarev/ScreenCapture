@@ -3,16 +3,19 @@ package logic;
 import actions.Actions;
 import checks.CheckHP;
 import checks.LocationCheck;
-import checks.location.GefField05;
-import checks.location.GefField10;
-import logic.kill_monster.*;
+import checks.location.YunField07;
+import checks.location.YunField11;
+import logic.kill_monster.AttackYun07;
+import logic.kill_monster.AttackYun11;
+import logic.kill_monster.Goat;
+import logic.kill_monster.Harpy;
 import logic.take_loot.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicGefField10 extends LogicLocation {
+public class LogicYunField07 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
@@ -25,34 +28,35 @@ public class LogicGefField10 extends LogicLocation {
             new Card(logger),
 //            new Clothes(logger),
             new Shield(logger),
-            new Mask(logger),
+//            new Mask(logger),
             new Coupon(logger)
     };
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
-//            new PowderOfButterfly(logger),
+            new AntelopeSkin(logger),
+            new BlueHerb(logger),
+            new Bottle(logger)
     };
 
 
-    public LogicGefField10(int threadId) throws Exception {
+    public LogicYunField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackGef05(logger);
+        attack = new AttackYun07(logger);
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new GefField10(), logger);
+        locationCheck = new LocationCheck(new YunField07(), logger);
         lootAround = new LootAround(logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
-                .of(
-                        new Orc(logger),
-                        new OrcLady(logger)
-                ).collect(Collectors.toList());
+                .of(new Harpy(logger),
+                        new Goat(logger))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicGefField10(1);
+        Thread thread = new LogicYunField07(1);
         thread.start();
         start();
     }
@@ -117,7 +121,6 @@ public class LogicGefField10 extends LogicLocation {
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);
-            locationCheck.locationCheck();
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }
@@ -129,4 +132,5 @@ public class LogicGefField10 extends LogicLocation {
 //            actions.teleport();
 //        }
     }
+
 }

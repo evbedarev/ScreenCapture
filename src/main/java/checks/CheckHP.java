@@ -15,14 +15,16 @@ public class CheckHP {
     Keys keys;
     Mouse mouse;
     Actions actions;
+    LocationCheck locationCheck;
 
-    public CheckHP(boolean checkHP)
+    public CheckHP(boolean checkHP, LocationCheck locationCheck)
             throws AWTException {
         capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();
         actions = Actions.instance();
         CHECK_HP = checkHP;
+        this.locationCheck = locationCheck;
     }
 
     public void checkHp() throws Exception {
@@ -31,8 +33,13 @@ public class CheckHP {
 
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
-            actions.teleport();
-            Thread.sleep(30000);
+            locationCheck.locationCheck();
+            actions.useWing();
+            while (needPotion(image)) {
+                actions.teleport();
+                Thread.sleep(5000);
+                image = capture.takeScreenShot();
+            }
         }
 
         if (Prop.X_HP_HEAL != 0) {

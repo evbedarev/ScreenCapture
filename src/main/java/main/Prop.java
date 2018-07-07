@@ -34,6 +34,7 @@ public class Prop {
 
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
+    public static final int WING_KEY = KeyEvent.VK_F3;
     public static final int HEAL_KEY = 0;
     public static final int
             DEFENDER = KeyEvent.VK_F7;

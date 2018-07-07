@@ -47,6 +47,13 @@ public class Actions {
         Thread.sleep(1000);
     }
 
+    public void useWing() throws Exception {
+        keys.keyPress(Prop.WING_KEY);
+        Thread.sleep(5000);
+        keys.keyPress(Prop.WING_KEY);
+        Thread.sleep(5000);
+    }
+
 
     public void sitDown () throws  InterruptedException {
         keys.keyPress(KeyEvent.VK_INSERT);

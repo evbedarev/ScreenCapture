@@ -15,7 +15,7 @@ public class LogicYunField11 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
-    private final CheckHP checkHP = new CheckHP(true);
+    private final CheckHP checkHP;
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
@@ -43,7 +43,7 @@ public class LogicYunField11 extends LogicLocation {
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField11(), logger);
         lootAround = new LootAround(logger);
-
+        checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
                 .of(new Goat(logger))
                 .collect(Collectors.toList());
