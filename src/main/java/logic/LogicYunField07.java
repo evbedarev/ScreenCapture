@@ -26,31 +26,33 @@ public class LogicYunField07 extends LogicLocation {
 
     private final TakeLoot[] usefulLoot = new TakeLoot[] {
             new Card(logger),
-//            new Clothes(logger),
+////            new Clothes(logger),
             new Shield(logger),
-//            new Mask(logger),
-            new Coupon(logger)
+            new BlueHerb(logger)
+////            new Mask(logger),
+//            new Coupon(logger)
     };
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
             new AntelopeSkin(logger),
             new BlueHerb(logger),
-            new Bottle(logger)
+            new Bottle(logger),
+//            new HarpyFeather(logger),
+//            new HarpyTalon(logger)
     };
 
 
     public LogicYunField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun07(logger);
+        attack = new AttackYun11(logger);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField07(), logger);
         lootAround = new LootAround(logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
-                .of(new Harpy(logger),
-                        new Goat(logger))
+                .of(new Harpy(logger), new Goat(logger))
                 .collect(Collectors.toList());
     }
 
@@ -81,6 +83,7 @@ public class LogicYunField07 extends LogicLocation {
             ATOMIC_GUARD.incrementAndGet();
             ATOMIC_AWAKENING.incrementAndGet();
             ATOMIC_DEFENDER.incrementAndGet();
+            ATTACK_TIMER.incrementAndGet();
             sleep(1000);
         }
     }
@@ -126,7 +129,9 @@ public class LogicYunField07 extends LogicLocation {
         }
     }
 
-    void runFromMonster() throws Exception {
+    void runFromMonster() throws
+
+            Exception {
 //        if (awareMonster.kill()) {
 //            logger.info("GOBLIN LEADER");
 //            actions.teleport();

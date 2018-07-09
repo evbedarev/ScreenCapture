@@ -7,13 +7,15 @@ import logic.take_loot.LootAround;
 import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public abstract class LogicLocation extends Thread implements Logic {
     static int countOfAttacks = 100;
     static List<KillMonster> killMonsterList;
     int count = 0;
-    static Monster attack;
+    static Attack attack;
+    final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
     Logger logger = Logger.getLogger(this.getClass());
     Actions actions;
     LocationCheck locationCheck;
@@ -32,18 +34,13 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     void duringTheFight() throws Exception {
-        int atk = 1;
+        ATTACK_TIMER.set(0);
         while (attack.kill()) {
             count = 0;
             logger.debug("Set count to " + count);
-            atk++;
             checkMyHp();
-            Thread.sleep(1000);
-            if (atk > countOfAttacks) {
-                actions.stepAside(locationCheck, new int[] {75, 150});
-                killMonsterList.forEach(this::findAndKill);
-                atk=1;
-            }
+            Thread.sleep(500);
+            if (ATTACK_TIMER.incrementAndGet() > 10) break;
         }
     }
 
@@ -55,7 +52,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                     runFromMonster();
                     logger.debug("Set count to " + count);
                     checkMyHp();
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                     duringTheFight();
                     cnt = 0;
                 }

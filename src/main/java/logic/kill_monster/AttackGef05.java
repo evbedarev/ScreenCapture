@@ -7,7 +7,7 @@ import java.awt.*;
 
 //-329224
 //-3553057
-public class AttackGef05 extends Monster {
+public class AttackGef05 extends Attack {
     public AttackGef05(Logger logger) throws AWTException {
         this.logger = logger;
         rgbParameterList.add(new RgbParameter(-526090,

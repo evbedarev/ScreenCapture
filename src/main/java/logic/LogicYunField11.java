@@ -76,6 +76,7 @@ public class LogicYunField11 extends LogicLocation {
             ATOMIC_GUARD.incrementAndGet();
             ATOMIC_AWAKENING.incrementAndGet();
             ATOMIC_DEFENDER.incrementAndGet();
+            ATTACK_TIMER.incrementAndGet();
             sleep(1000);
         }
     }

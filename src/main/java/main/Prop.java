@@ -30,7 +30,7 @@ public class Prop {
     public static final int EXCLUDE_Y_DOWN = 130;
 
     public static final String EMAIL = "madjo1985@gmail.com";
-    public static final String EMAIL_PASS = "";
+    public static final String EMAIL_PASS = "Ghbdtn85";
 
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
