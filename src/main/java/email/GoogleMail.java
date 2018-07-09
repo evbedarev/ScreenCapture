@@ -8,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+
 public class GoogleMail {
     private static final String USERNAME = Prop.EMAIL;
     private static final String PASSWORD = Prop.EMAIL_PASS;

@@ -30,7 +30,7 @@ public class CheckHP {
     public void checkHp() throws Exception {
         if (!CHECK_HP)
             return;
-
+        checkSilence();
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
@@ -67,4 +67,12 @@ public class CheckHP {
             mouse.mouseClick(800, 400);
         }
     }
+
+    private void checkSilence() throws InterruptedException {
+        BufferedImage image = capture.takeScreenShot();
+        if (image.getRGB(790,380) == -1) {
+            keys.keyPress(KeyEvent.VK_F4);
+        }
+    }
+
 }
