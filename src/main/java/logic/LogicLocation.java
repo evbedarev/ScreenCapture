@@ -16,6 +16,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     int count = 0;
     static Attack attack;
     final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
+    final static AtomicInteger ATTACK_MOBS_BEHIND_WALLS = new AtomicInteger(0);
     Logger logger = Logger.getLogger(this.getClass());
     Actions actions;
     LocationCheck locationCheck;
@@ -55,6 +56,9 @@ public abstract class LogicLocation extends Thread implements Logic {
                     Thread.sleep(1000);
                     duringTheFight();
                     cnt = 0;
+                    if (ATTACK_MOBS_BEHIND_WALLS.get() > 60) {
+                        teleport();
+                    }
                 }
 
         } catch (Exception exception) {
