@@ -11,7 +11,11 @@ public class HarpyFeather extends Loot {
         lootAround = new LootAround(logger);
         rgbParameterList.add(new RgbParameter(-7041883,
                 new int[] {35,35},
-                new int[] {-8688756, -6505068}));
+                new int[] {-8688756, -6505068, -7437153,-8215675}));
+
+        rgbParameterList.add(new RgbParameter(-7041883,
+                new int[] {35,35},
+                new int[] {-8688756, -6505068, -8491121, -1716829}));
 
     }
 }

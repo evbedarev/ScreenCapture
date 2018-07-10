@@ -11,6 +11,6 @@ public class Coupon extends Loot {
         lootAround = new LootAround(logger);
         rgbParameterList.add(new RgbParameter(-555942,
                 new int[] {50,60},
-                new int[] {-2190204,-14667}));
+                new int[] {-2190204,-14667, -50, -1076}));
     }
 }

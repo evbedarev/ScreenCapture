@@ -65,7 +65,7 @@ public class Loot implements TakeLoot {
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             lootAround.takeLootAround();
         }
     }

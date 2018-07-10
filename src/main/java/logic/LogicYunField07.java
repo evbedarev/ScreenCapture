@@ -28,16 +28,18 @@ public class LogicYunField07 extends LogicLocation {
             new Card(logger),
 ////            new Clothes(logger),
             new Shield(logger),
-            new BlueHerb(logger)
+            new BlueHerb(logger),
 ////            new Mask(logger),
-//            new Coupon(logger)
+            new Coupon(logger)
     };
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
             new AntelopeSkin(logger),
-            new BlueHerb(logger),
+            new HarpyFeather(logger),
             new Bottle(logger),
+//            new BlueHerb(logger),
+//            new Bottle(logger),
 //            new HarpyFeather(logger),
 //            new HarpyTalon(logger)
     };
