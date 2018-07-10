@@ -5,10 +5,7 @@ import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.YunField07;
 import checks.location.YunField11;
-import logic.kill_monster.AttackYun07;
-import logic.kill_monster.AttackYun11;
-import logic.kill_monster.Goat;
-import logic.kill_monster.Harpy;
+import logic.kill_monster.*;
 import logic.take_loot.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -54,7 +51,7 @@ public class LogicYunField07 extends LogicLocation {
         lootAround = new LootAround(logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
-                .of(new Harpy(logger), new Goat(logger))
+                .of(new MonstersYun07(logger))
                 .collect(Collectors.toList());
     }
 
