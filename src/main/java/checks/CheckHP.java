@@ -38,6 +38,7 @@ public class CheckHP {
             locationCheck.locationCheck();
             actions.useWing();
             while (needPotion(image)) {
+                locationCheck.locationCheck();
                 checkSilence();
                 actions.teleport();
                 Thread.sleep(5000);

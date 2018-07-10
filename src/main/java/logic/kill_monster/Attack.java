@@ -34,7 +34,6 @@ public class Attack implements AttackInterface {
         for (int i=0; i < 5; i++) {
             BufferedImage screenShot = capture.takeScreenShot();
             if (findAndKill(screenShot)) return true;
-            System.out.println("Check attacking in " + i + " times...");
         }
         return false;
     }
