@@ -6,6 +6,7 @@ import checks.LocationCheck;
 import checks.location.Sphinx03;
 import logic.attacks.AttackSphinx03;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandSph03;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 
@@ -29,23 +30,23 @@ public class LogicSphinx03 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new Sphinx03(), logger);
-        lootAround = new LootAround(logger);
+        lootAround = new LootAround(new HandSph03(), logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
                 .of(new Marduk(logger), new Pasana(logger))
                 .collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[]{
-                new Card(logger),
+                new Card(logger, lootAround),
 ////            new Clothes(logger),
-                new Shield(logger),
-                new BlueHerb(logger)
+                new Shield(logger, lootAround),
+                new BlueHerb(logger, lootAround)
 ////            new Mask(logger),
 //            new Coupon(logger)
         };
 
         loot = new TakeLoot[]{
-                new FlameHeart(logger)
+                new FlameHeart(logger, lootAround)
 //            new HarpyFeather(logger),
 //            new HarpyTalon(logger)
         };

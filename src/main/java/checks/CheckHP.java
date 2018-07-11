@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 
 public class CheckHP {
     private final boolean CHECK_HP;
-    Capture
-            capture;
+    Capture capture;
     Keys keys;
     Mouse mouse;
     Actions actions;
@@ -34,24 +33,26 @@ public class CheckHP {
         checkSilence();
 
         BufferedImage image = capture.takeScreenShot();
-//        if (checkHptoRun(image)) {
-//            locationCheck.locationCheck();
-//            actions.useWing();
-//            while (needPotion(image)) {
-//                locationCheck.locationCheck();
-//                checkSilence();
-//                actions.teleport();
-//                Thread.sleep(5000);
-//                image = capture.takeScreenShot();
-//            }
-//        }
+        if (checkHptoRun(image)) {
+            locationCheck.locationCheck();
+            actions.useWing();
+            while (needPotion(image)) {
+                locationCheck.locationCheck();
+                checkSilence();
+                actions.teleport();
+                Thread.sleep(4000);
+                if (Prop.NEED_HEAL) needHeal();
+                Thread.sleep(1000);
+                image = capture.takeScreenShot();
+            }
+        }
 
-        if (Prop.X_HP_HEAL != 0) {
+        if (Prop.NEED_HEAL) {
             needHeal();
         }
 
-        if (needPotion(image)) {
-//            keys.keyPress(KeyEvent.VK_F1);
+        if (!Prop.NEED_HEAL && needPotion(image)) {
+            keys.keyPress(KeyEvent.VK_F1);
         }
     }
 

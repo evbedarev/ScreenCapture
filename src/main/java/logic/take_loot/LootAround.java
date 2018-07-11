@@ -5,12 +5,12 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
 import logic.RgbParameter;
+import logic.hands_rgb.Hands;
 import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,29 +20,17 @@ public class LootAround implements TakeLoot {
     final Keys keys;
     final FindPixels findImageHard;
     Logger logger;
-    List<RgbParameter> rgbParameterList = new ArrayList<>();
+    List<RgbParameter> hands;
     double smallAngle = Math.PI/4;
     double largeAnge = Math.PI/5;
 
-    public LootAround(Logger logger) throws AWTException {
+    public LootAround(Hands hands, Logger logger) throws AWTException {
         this.logger = logger;
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindPixels();
-
-        rgbParameterList.add(new RgbParameter(-1184260,
-                new int[] {100,100},
-                new int[] {-1184260}));
-
-        rgbParameterList.add(new RgbParameter(-1250309,
-                new int[] {100,100},
-                new int[] {-460549}));
-
-        rgbParameterList.add(new RgbParameter(-1250310,
-                new int[] {100,100},
-                new int[] {-1052678}));
-
+        this.hands = hands.getRgbParameterList();
     }
 
     public void takeLootAround() throws Exception {
@@ -86,7 +74,7 @@ public class LootAround implements TakeLoot {
 
         logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
-        for (RgbParameter parameter: rgbParameterList) {
+        for (RgbParameter parameter: hands) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
                     screenShot,
                     parameter.getMainRgb(),

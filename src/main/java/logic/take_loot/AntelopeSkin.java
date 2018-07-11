@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 
 public class AntelopeSkin extends Loot {
-    public AntelopeSkin(Logger logger) throws AWTException {
+    public AntelopeSkin(Logger logger, LootAround lootAround) throws AWTException {
         this.logger = logger;
-        lootAround = new LootAround(logger);
+        this.lootAround = lootAround;
         rgbParameterList.add(new RgbParameter(-5208194,
                 new int[] {40,40},
                 new int[] {-3761012}));

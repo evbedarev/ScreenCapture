@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 
 public class Card extends Loot {
-    public Card(Logger logger) throws AWTException {
+    public Card(Logger logger, LootAround lootAround) throws AWTException {
         this.logger = logger;
-        lootAround = new LootAround(logger);
+        this.lootAround = lootAround;
         rgbParameterList.add(new RgbParameter(-6707798,
                 new int[] {50,50},
                 new int[] {-8418418, -4999009}));

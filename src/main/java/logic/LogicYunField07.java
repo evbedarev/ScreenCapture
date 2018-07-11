@@ -5,6 +5,7 @@ import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.YunField07;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 
@@ -21,28 +22,6 @@ public class LogicYunField07 extends LogicLocation {
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
-    private final TakeLoot[] usefulLoot = new TakeLoot[] {
-            new Card(logger),
-////            new Clothes(logger),
-            new Shield(logger),
-            new BlueHerb(logger),
-////            new Mask(logger),
-            new Coupon(logger),
-
-    };
-
-
-    private final TakeLoot[] loot = new TakeLoot[] {
-            new AntelopeSkin(logger),
-            new HarpyFeather(logger),
-            new Bottle(logger),
-            new HarpyFeather(logger)
-//            new BlueHerb(logger),
-//            new Bottle(logger),
-//            new HarpyFeather(logger),
-//            new HarpyTalon(logger)
-    };
-
 
     public LogicYunField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
@@ -50,11 +29,31 @@ public class LogicYunField07 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField07(), logger);
-        lootAround = new LootAround(logger);
+        lootAround = new LootAround(new HandYun11(), logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
                 .of(new MonstersYun07(logger))
                 .collect(Collectors.toList());
+
+        loot = new TakeLoot[] {
+                new AntelopeSkin(logger, lootAround),
+                new HarpyFeather(logger, lootAround),
+                new Bottle(logger, lootAround),
+                new HarpyFeather(logger, lootAround)
+//            new BlueHerb(logger),
+//            new Bottle(logger),
+//            new HarpyFeather(logger),
+//            new HarpyTalon(logger)
+        };
+
+        usefulLoot = new TakeLoot[] {
+                new Card(logger, lootAround),
+////            new Clothes(logger),
+                new Shield(logger, lootAround),
+                new BlueHerb(logger, lootAround),
+////            new Mask(logger),
+                new Coupon(logger, lootAround),
+        };
     }
 
     @Override
@@ -67,6 +66,7 @@ public class LogicYunField07 extends LogicLocation {
     public void mainHandle() throws Exception {
         if (threadId == 0) {
             locationCheck.locationCheck();
+            checkCast();
 //            if (count == 0)
 //                actions.stepAside(locationCheck, new int[]{100, 130});
             killMonsterList.forEach(this::findAndKill);
@@ -77,7 +77,6 @@ public class LogicYunField07 extends LogicLocation {
             teleport();
             count++;
             logger.debug("Increase count by 1, count=" + count);
-            checkCast();
         }
 
         if (threadId == 1) {

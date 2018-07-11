@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 
 public class PowderOfButterfly extends Loot {
-    public PowderOfButterfly(Logger logger) throws AWTException {
+    public PowderOfButterfly(Logger logger, LootAround lootAround) throws AWTException {
         this.logger = logger;
-        lootAround = new LootAround(logger);
+        this.lootAround = lootAround;
         rgbParameterList.add(new RgbParameter(-931161,
                 new int[] {50,50},
                 new int[] {-534867,-8105390}));
