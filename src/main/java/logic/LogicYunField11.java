@@ -4,6 +4,7 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.YunField11;
+import logic.attacks.AttackYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 

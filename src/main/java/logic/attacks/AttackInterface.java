@@ -1,4 +1,4 @@
-package logic.kill_monster;
+package logic.attacks;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

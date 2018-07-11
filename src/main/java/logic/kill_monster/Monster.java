@@ -68,8 +68,40 @@ public class Monster implements KillMonster {
                 return true;
             }
         }
-
-
         return false;
+    }
+
+    @Override
+    public boolean findAndKillAround(BufferedImage screenShot) throws
+            AWTException,
+            InterruptedException{
+
+        logger.debug("Finding monster " + this.toString());
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+                    screenShot,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {675, 940, 335, 575});
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+
+                mouse.mouseClick(x, y + 20);
+                logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                Thread.sleep(100);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean killAround() throws AWTException, InterruptedException {
+        BufferedImage screenShot = capture.takeScreenShot();
+        return findAndKillAround(screenShot);
     }
 }

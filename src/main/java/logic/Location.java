@@ -6,7 +6,7 @@
 //import email.SendMessage;
 //import key_and_mouse.Keys;
 //import key_and_mouse.Mouse;
-//import logic.kill_monster.Attack;
+//import logic.attacks.Attack;
 //import logic.kill_monster.KillMonster;
 //import logic.kill_monster.Warp;
 //import logic.take_loot.*;

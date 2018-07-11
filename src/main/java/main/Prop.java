@@ -5,11 +5,22 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Properies
  */
 public class Prop {
+
+    //SPEED SETTINGS
+    //Через сколько секунд улетать если залип курсор атаки на мобе за стеной
+    public final static int ATTACK_MOBS_BEHIND_WALLS = 60;
+    //Количество проверок экрана на наличие монстров()
+    public final static int COUNT_OF_CHECKS_MONSTER = 5;
+    //Через сколько секунд повторить атаку
+    public final static int ATTACK_TIMER = 10;
+
+
     public final Logger logger = Logger.getLogger(this.getClass());
 
     public static final int SCREEN_WIDTH = 1600;
@@ -21,7 +32,7 @@ public class Prop {
     public static final int RGB_HP = -6507025;
     public static final int X_HP = 130;
     public static final int Y_HP = 82;
-    public static final int X_HP_HEAL = 0; //Only for acolyte
+    public static final int X_HP_HEAL = 137; //Only for acolyte
     public static final int X_HP_TO_RUN = 110;
 
     public static final int EXCLUDE_X_LEFT = 715;
@@ -35,7 +46,7 @@ public class Prop {
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
     public static final int WING_KEY = KeyEvent.VK_F3;
-    public static final int HEAL_KEY = 0;
+    public static final int HEAL_KEY = KeyEvent.VK_F1;
     public static final int
             DEFENDER = KeyEvent.VK_F7;
     public static final int GUARD =  KeyEvent.VK_F5;

@@ -1,4 +1,4 @@
-package logic.kill_monster;
+package logic.attacks;
 
 import logic.RgbParameter;
 import org.apache.log4j.Logger;

@@ -12,4 +12,10 @@ public interface KillMonster {
             InterruptedException;
 
     boolean kill() throws Exception;
+
+    boolean findAndKillAround(BufferedImage screenShot) throws
+            AWTException,
+            InterruptedException;
+
+    boolean killAround() throws AWTException, InterruptedException;
 }

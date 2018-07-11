@@ -4,7 +4,8 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.Sphinx03;
-import checks.location.YunField07;
+import logic.attacks.AttackSphinx03;
+import logic.attacks.AttackYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 
@@ -21,26 +22,10 @@ public class LogicSphinx03 extends LogicLocation {
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
-    private final TakeLoot[] usefulLoot = new TakeLoot[] {
-            new Card(logger),
-////            new Clothes(logger),
-            new Shield(logger),
-            new BlueHerb(logger)
-////            new Mask(logger),
-//            new Coupon(logger)
-    };
-
-
-    private final TakeLoot[] loot = new TakeLoot[] {
-            new FlameHeart(logger)
-//            new HarpyFeather(logger),
-//            new HarpyTalon(logger)
-    };
-
 
     public LogicSphinx03(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11(logger);
+        attack = new AttackSphinx03(logger);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new Sphinx03(), logger);
@@ -49,6 +34,21 @@ public class LogicSphinx03 extends LogicLocation {
         killMonsterList = Stream
                 .of(new Marduk(logger), new Pasana(logger))
                 .collect(Collectors.toList());
+
+        usefulLoot = new TakeLoot[]{
+                new Card(logger),
+////            new Clothes(logger),
+                new Shield(logger),
+                new BlueHerb(logger)
+////            new Mask(logger),
+//            new Coupon(logger)
+        };
+
+        loot = new TakeLoot[]{
+                new FlameHeart(logger)
+//            new HarpyFeather(logger),
+//            new HarpyTalon(logger)
+        };
     }
 
     @Override
@@ -72,7 +72,6 @@ public class LogicSphinx03 extends LogicLocation {
             count++;
             logger.debug("Increase count by 1, count=" + count);
             checkCast();
-            ATTACK_MOBS_BEHIND_WALLS.set(0);
         }
 
         if (threadId == 1) {

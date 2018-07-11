@@ -1,4 +1,4 @@
-package logic.kill_monster;
+package logic.attacks;
 
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Attack implements AttackInterface {
     List<RgbParameter> rgbParameterList = new ArrayList<>();

@@ -4,6 +4,7 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.GefField05;
+import logic.attacks.AttackGef05;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import java.util.concurrent.atomic.AtomicInteger;

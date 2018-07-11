@@ -4,6 +4,7 @@ import actions.Actions;
 import checks.CheckHP;
 import checks.location.GefField11;
 import checks.LocationCheck;
+import logic.attacks.AttackGef11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 

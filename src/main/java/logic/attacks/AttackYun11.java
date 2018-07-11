@@ -1,10 +1,8 @@
-package logic.kill_monster;
+package logic.attacks;
 
 import logic.RgbParameter;
 import org.apache.log4j.Logger;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //-329224

@@ -2,8 +2,11 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
+import logic.attacks.Attack;
 import logic.kill_monster.*;
 import logic.take_loot.LootAround;
+import logic.take_loot.TakeLoot;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -13,6 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class LogicLocation extends Thread implements Logic {
     static int countOfAttacks = 100;
     static List<KillMonster> killMonsterList;
+    static TakeLoot[] loot;
+    static TakeLoot[] usefulLoot;
     int count = 0;
     static Attack attack;
     final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
@@ -41,29 +46,55 @@ public abstract class LogicLocation extends Thread implements Logic {
             logger.debug("Set count to " + count);
             checkMyHp();
             Thread.sleep(500);
-            if (ATTACK_TIMER.incrementAndGet() > 10) break;
+            if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
     }
 
     void findAndKill(KillMonster monster) {
         try {
-            for (int  cnt=0; cnt < 5; cnt++)
+            for (int  cnt=0; cnt < Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
+                ATTACK_MOBS_BEHIND_WALLS.set(0);
                 while (monster.kill()) {
                     count = 0;
-                    runFromMonster();
                     logger.debug("Set count to " + count);
                     checkMyHp();
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     duringTheFight();
+                    killMonstersAround(monster);
                     cnt = 0;
-                    if (ATTACK_MOBS_BEHIND_WALLS.get() > 60) {
-                        teleport();
+                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+                        actions.teleport();
+                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
                     }
                 }
-
+            }
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    boolean killMonstersAround(KillMonster monster) throws Exception {
+        boolean monstersAround = false;
+
+        while(checkMonstersAround(monster)) {
+            logger.info("LogicLocation.killMonstersAround: Find monster arround, killing ");
+            duringTheFight();
+            monstersAround = true;
+        }
+
+        if (monstersAround) {
+            logger.info("LogicLocation.killMonstersAround: Pick up loot arround");
+            lootAround.takeLootAround();
+            return false;
+        }
+        return true;
+    }
+
+    boolean checkMonstersAround(KillMonster monster) throws Exception {
+        for (int cnt = 0; cnt <  Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
+            if (monster.killAround()) return true;
+        }
+        return false;
     }
 
 
