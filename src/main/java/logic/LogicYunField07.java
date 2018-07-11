@@ -27,7 +27,8 @@ public class LogicYunField07 extends LogicLocation {
             new Shield(logger),
             new BlueHerb(logger),
 ////            new Mask(logger),
-            new Coupon(logger)
+            new Coupon(logger),
+
     };
 
 
@@ -35,6 +36,7 @@ public class LogicYunField07 extends LogicLocation {
             new AntelopeSkin(logger),
             new HarpyFeather(logger),
             new Bottle(logger),
+            new HarpyFeather(logger)
 //            new BlueHerb(logger),
 //            new Bottle(logger),
 //            new HarpyFeather(logger),
