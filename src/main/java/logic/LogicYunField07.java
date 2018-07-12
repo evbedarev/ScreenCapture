@@ -36,11 +36,10 @@ public class LogicYunField07 extends LogicLocation {
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
+                new BlueHerb(logger, lootAround),
+                new Bottle(logger, lootAround),
                 new AntelopeSkin(logger, lootAround),
                 new HarpyFeather(logger, lootAround),
-                new Bottle(logger, lootAround),
-                new HarpyFeather(logger, lootAround)
-//            new BlueHerb(logger),
 //            new Bottle(logger),
 //            new HarpyFeather(logger),
 //            new HarpyTalon(logger)
@@ -50,7 +49,7 @@ public class LogicYunField07 extends LogicLocation {
                 new Card(logger, lootAround),
 ////            new Clothes(logger),
                 new Shield(logger, lootAround),
-                new BlueHerb(logger, lootAround),
+//                new BlueHerb(logger, lootAround),
 ////            new Mask(logger),
                 new Coupon(logger, lootAround),
         };

@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 
 public class CheckHP {
     private final boolean CHECK_HP;
-    Capture
-            capture;
+    Capture capture;
     Keys keys;
     Mouse mouse;
     Actions actions;
