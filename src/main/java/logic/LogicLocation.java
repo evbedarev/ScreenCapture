@@ -62,10 +62,10 @@ public abstract class LogicLocation extends Thread implements Logic {
                     duringTheFight();
                     killMonstersAround(monster);
                     cnt = 0;
-                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-                        actions.teleport();
-                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
-                    }
+//                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+//                        actions.teleport();
+//                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
+//                    }
                 }
             }
         } catch (Exception exception) {
@@ -79,6 +79,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         while(checkMonstersAround(monster)) {
             logger.info("LogicLocation.killMonstersAround: Find monster arround, killing ");
             duringTheFight();
+            checkMyHp();
             monstersAround = true;
         }
 

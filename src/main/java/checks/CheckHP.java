@@ -34,25 +34,26 @@ public class CheckHP {
         checkSilence();
 
         BufferedImage image = capture.takeScreenShot();
-//        if (checkHptoRun(image)) {
-//            locationCheck.locationCheck();
-//            actions.useWing();
-//            while (needPotion(image)) {
-//                locationCheck.locationCheck();
-//                checkSilence();
-//                actions.teleport();
-//                Thread.sleep(5000);
-//                image = capture.takeScreenShot();
-//            }
-//        }
+        if (checkHptoRun(image)) {
+            locationCheck.locationCheck();
+            actions.useWing();
+            while (needPotion(image)) {
+                locationCheck.locationCheck();
+                checkSilence();
+                actions.teleport();
+                Thread.sleep(5000);
+                image = capture.takeScreenShot();
+            }
+        }
 
         if (Prop.X_HP_HEAL != 0) {
-            needHeal();
+//            needHeal();
         }
 
         if (needPotion(image)) {
-//            keys.keyPress(KeyEvent.VK_F1);
+            keys.keyPress(KeyEvent.VK_F1);
         }
+        
     }
 
     private boolean needPotion(BufferedImage image) {

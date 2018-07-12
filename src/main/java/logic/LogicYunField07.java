@@ -25,7 +25,6 @@ public class LogicYunField07 extends LogicLocation {
             new Card(logger),
 ////            new Clothes(logger),
             new Shield(logger),
-            new BlueHerb(logger),
 ////            new Mask(logger),
             new Coupon(logger),
 
@@ -33,10 +32,10 @@ public class LogicYunField07 extends LogicLocation {
 
 
     private final TakeLoot[] loot = new TakeLoot[] {
-            new AntelopeSkin(logger),
-            new HarpyFeather(logger),
+            new BlueHerb(logger),
             new Bottle(logger),
-            new HarpyFeather(logger)
+            new HarpyFeather(logger),
+            new AntelopeSkin(logger)
 //            new BlueHerb(logger),
 //            new Bottle(logger),
 //            new HarpyFeather(logger),
@@ -115,7 +114,7 @@ public class LogicYunField07 extends LogicLocation {
 
     void teleport() throws Exception {
         runFromMonster();
-        if (count > 10) {
+        if (count > 3) {
             lootAround.takeLootAround();
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});
