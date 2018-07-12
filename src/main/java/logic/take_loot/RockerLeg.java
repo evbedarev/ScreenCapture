@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 
 public class RockerLeg extends  Loot{
-    public RockerLeg(Logger logger) throws AWTException {
+    public RockerLeg(Logger logger, LootAround lootAround) throws AWTException {
         this.logger = logger;
-        lootAround = new LootAround(logger);
+        this.lootAround = lootAround;
         rgbParameterList.add(new RgbParameter(-931161,
                 new int[] {50,50},
                 new int[] {-534867,-8105390}));

@@ -5,6 +5,7 @@ import checks.CheckHP;
 import checks.location.GefField11;
 import checks.LocationCheck;
 import logic.attacks.AttackGef11;
+import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 
@@ -21,19 +22,6 @@ public class LogicGefField11 extends LogicLocation {
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
-    private final TakeLoot[] usefulLoot = new TakeLoot[] {
-            new Card(logger),
-//            new Clothes(logger),
-            new Shield(logger),
-            new Mask(logger),
-            new Coupon(logger)
-    };
-
-
-    private final TakeLoot[] loot = new TakeLoot[] {
-//            new Scell(logger),
-    };
-
 
     public LogicGefField11(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
@@ -41,12 +29,24 @@ public class LogicGefField11 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField11(), logger);
-        lootAround = new LootAround(logger);
+        lootAround = new LootAround(new HandYun11(), logger);
         checkHP = new CheckHP(true, locationCheck);
         killMonsterList = Stream
                 .of(
                         new Goblin(logger)
                 ).collect(Collectors.toList());
+
+        usefulLoot = new TakeLoot[] {
+                new Card(logger, lootAround),
+//            new Clothes(logger),
+                new Shield(logger, lootAround),
+                new Mask(logger, lootAround),
+                new Coupon(logger, lootAround)
+        };
+
+        loot = new TakeLoot[] {
+//            new Scell(logger),
+        };
     }
 
     @Override
