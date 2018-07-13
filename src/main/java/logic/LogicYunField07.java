@@ -8,6 +8,7 @@ import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
+import main.Prop;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -112,7 +113,7 @@ public class LogicYunField07 extends LogicLocation {
 
     void teleport() throws Exception {
         runFromMonster();
-        if (count > 10) {
+        if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});

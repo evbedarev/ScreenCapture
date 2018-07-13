@@ -5,6 +5,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
 import logic.RgbParameter;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
@@ -31,8 +32,12 @@ public class Loot implements TakeLoot {
 
     @Override
     public boolean take() throws AWTException, InterruptedException {
-        BufferedImage screenShot = capture.takeScreenShot();
-        return takeLoot(screenShot);
+        for (int i = 0; i < Prop.COUNT_TO_FIND_LOOT; i++) {
+            BufferedImage screenShot = capture.takeScreenShot();
+            if (takeLoot(screenShot))
+                return true;
+        }
+        return false;
     }
 
     @Override

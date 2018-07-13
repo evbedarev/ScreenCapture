@@ -8,6 +8,7 @@ import logic.attacks.AttackSphinx03;
 import logic.hands_rgb.HandSph03;
 import logic.kill_monster.*;
 import logic.take_loot.*;
+import main.Prop;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -109,7 +110,7 @@ public class LogicSphinx03 extends LogicLocation {
 
     void teleport() throws Exception {
         runFromMonster();
-        if (count > 10) {
+        if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});

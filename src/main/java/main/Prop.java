@@ -19,6 +19,11 @@ public class Prop {
     public final static int COUNT_OF_CHECKS_MONSTER = 5;
     //Через сколько секунд повторить атаку
     public final static int ATTACK_TIMER = 10;
+    //Через сколько циклов телепортироваться
+    public final static int COUNT_TO_TELEPORT = 3;
+    //Сколько надо циклов для поиска лута
+    public final static int COUNT_TO_FIND_LOOT = 5;
+    ///////////////////////////////////
 
 
     public final Logger logger = Logger.getLogger(this.getClass());
