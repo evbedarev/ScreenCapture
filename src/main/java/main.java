@@ -1,3 +1,4 @@
+import checks.CheckHP;
 import find_fragments.FindFragmentFiles;
 import find_fragments.FindFragments;
 import find_image.FindImageHard;

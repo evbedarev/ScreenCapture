@@ -1,6 +1,7 @@
 package logic;
 
 import actions.Actions;
+import checks.CheckHP;
 import checks.LocationCheck;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -18,14 +19,15 @@ public abstract class LogicLocation extends Thread implements Logic {
     static List<KillMonster> killMonsterList;
     static TakeLoot[] loot;
     static TakeLoot[] usefulLoot;
+    final CheckHP checkHP = CheckHP.instance();
     int count = 0;
     static Attack attack;
     final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
     final static AtomicInteger ATTACK_MOBS_BEHIND_WALLS = new AtomicInteger(0);
     Logger logger = Logger.getLogger(this.getClass());
-    Actions actions;
-    LocationCheck locationCheck;
-    LootAround lootAround;
+    static Actions actions;
+    static LocationCheck locationCheck;
+    static LootAround lootAround;
 
     public abstract void createThread() throws Exception;
 
@@ -62,10 +64,10 @@ public abstract class LogicLocation extends Thread implements Logic {
                     duringTheFight();
                     killMonstersAround(monster);
                     cnt = 0;
-//                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-//                        actions.teleport();
-//                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
-//                    }
+                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+                        actions.teleport();
+                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
+                    }
                 }
             }
         } catch (Exception exception) {

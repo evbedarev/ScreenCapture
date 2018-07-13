@@ -12,13 +12,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Actions {
-    static private Actions instance;
+    private static volatile Actions instance;
     Keys keys;
     Mouse mouse;
     CheckMsg checkMsg;
     Logger logger = Logger.getLogger(this.getClass());
 
-    public Actions() throws AWTException {
+    private Actions() throws AWTException {
         keys = new Keys();
         mouse = new Mouse();
         checkMsg = new CheckMsg(logger);
@@ -26,7 +26,11 @@ public class Actions {
 
     static public Actions instance() throws AWTException {
         if (instance == null) {
-            instance = new Actions();
+            synchronized (Actions.class) {
+                if (instance == null) {
+                    instance = new Actions();
+                }
+            }
         }
         return instance;
     }

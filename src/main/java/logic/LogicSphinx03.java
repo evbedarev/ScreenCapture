@@ -5,7 +5,6 @@ import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.Sphinx03;
 import logic.attacks.AttackSphinx03;
-import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandSph03;
 import logic.kill_monster.*;
 import logic.take_loot.*;
@@ -18,7 +17,6 @@ public class LogicSphinx03 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
-    private final CheckHP checkHP;
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
@@ -31,7 +29,7 @@ public class LogicSphinx03 extends LogicLocation {
         actions = Actions.instance();
         locationCheck = new LocationCheck(new Sphinx03(), logger);
         lootAround = new LootAround(new HandSph03(), logger);
-        checkHP = new CheckHP(true, locationCheck);
+        checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(new Marduk(logger), new Pasana(logger))
                 .collect(Collectors.toList());

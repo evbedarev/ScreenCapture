@@ -10,29 +10,44 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHP {
-    private final boolean CHECK_HP;
-    Capture capture;
-    Keys keys;
-    Mouse mouse;
-    Actions actions;
-    LocationCheck locationCheck;
+    private static volatile CheckHP instance;
+    private boolean checkHp;
+    private Capture capture;
+    private Keys keys;
+    private Mouse mouse;
+    private Actions actions;
+    private LocationCheck locationCheck;
 
-    public CheckHP(boolean checkHP, LocationCheck locationCheck)
-            throws AWTException {
+    private CheckHP() {
+    }
+
+    static public CheckHP instance() {
+        if (instance == null) {
+            synchronized (CheckHP.class) {
+                if (instance == null) {
+                    instance = new CheckHP();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void initialize(boolean checkHp, LocationCheck locationCheck) throws
+    AWTException {
         capture = Capture.instance();
         keys = new Keys();
         mouse = new Mouse();
         actions = Actions.instance();
-        CHECK_HP = checkHP;
+        this.checkHp = checkHp;
         this.locationCheck = locationCheck;
     }
 
     public void checkHp() throws Exception {
-        if (!CHECK_HP)
+        if (!checkHp)
             return;
         checkSilence();
-
         BufferedImage image = capture.takeScreenShot();
+
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
             actions.useWing();
@@ -44,15 +59,13 @@ public class CheckHP {
                 image = capture.takeScreenShot();
             }
         }
-
-        if (Prop.X_HP_HEAL != 0) {
-//            needHeal();
+        if (Prop.NEED_HEAL) {
+            needHeal();
         }
 
-        if (needPotion(image)) {
-            keys.keyPress(KeyEvent.VK_F1);
-        }
-        
+//        if (needPotion(image)) {
+//            keys.keyPress(KeyEvent.VK_F1);
+//        }
     }
 
     private boolean needPotion(BufferedImage image) {
