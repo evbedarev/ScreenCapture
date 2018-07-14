@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RouteToYun11 {
+public class RouteFromAldebaran {
     List<Route> routes = new ArrayList<>();
     Logger logger;
     FindPixels findImageHard;
     Mouse mouse;
     Capture capture;
 
-    public RouteToYun11(Logger logger) throws AWTException {
+    public RouteFromAldebaran(Logger logger) throws AWTException {
         this.logger = logger;
         findImageHard = new FindPixels();
         mouse = new Mouse();

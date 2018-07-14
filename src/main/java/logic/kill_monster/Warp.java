@@ -8,8 +8,8 @@ import java.awt.*;
 public class Warp extends Monster {
     public Warp(Logger logger) throws AWTException {
         this.logger = logger;
-        rgbParameterList.add(new RgbParameter(-5331258,
+        rgbParameterList.add(new RgbParameter(-16448251,
                 new int[] {100,100},
-                new int[] {-16514044, -16119285, -4870195}));
+                new int[] {-16448251}));
     }
 }
