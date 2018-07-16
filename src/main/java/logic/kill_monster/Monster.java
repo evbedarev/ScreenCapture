@@ -37,16 +37,12 @@ public class Monster implements KillMonster {
     @Override
     public boolean kill() throws Exception {
         BufferedImage screenShot = capture.takeScreenShot();
-//        useSpell(screenShot);
-//        screenShot = capture.takeScreenShot();
         return findAndKill(screenShot);
     }
 
     @Override
     public boolean killAround() throws AWTException, InterruptedException {
         BufferedImage screenShot = capture.takeScreenShot();
-//        useSpell(screenShot);
-//        screenShot = capture.takeScreenShot();
         return findAndKillAround(screenShot);
     }
 
@@ -112,34 +108,6 @@ public class Monster implements KillMonster {
         }
         return false;
     }
-
-    public boolean useSpell(BufferedImage screenShot) throws
-            AWTException,
-            InterruptedException {
-
-        logger.debug("Finding monster " + this.toString());
-        //It's bad, later change. Need to load in constructor.
-        for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-                    screenShot,
-                    parameter.getMainRgb(),
-                    parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb(),
-                    new int[] {675, 940, 335, 575});
-
-            if (xy.isPresent()) {
-                int x = xy.get()[0];
-                int y = xy.get()[1];
-                spellAttack();
-                logger.info("Killing monster by Spell" + this.toString() + ", coordinates: x=" + x + " y=" + y);
-                Thread.sleep(100);
-
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     private void spellAttack() throws
             InterruptedException {
