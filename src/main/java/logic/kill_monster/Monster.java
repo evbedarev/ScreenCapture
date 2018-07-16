@@ -7,6 +7,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
 import logic.RgbParameter;
+import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
@@ -23,7 +24,6 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    private Actions actions = Actions.instance();
     Logger logger;
 
 
@@ -74,7 +74,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack(x, y , screenShot);
+                spellAttack();
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
@@ -103,7 +103,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack(x, y , screenShot);
+                spellAttack();
                 mouse.mouseClick(x, y + 5);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(1000);
@@ -130,7 +130,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack(x, y , screenShot);
+                spellAttack();
                 logger.info("Killing monster by Spell" + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
 
@@ -141,12 +141,11 @@ public class Monster implements KillMonster {
     }
 
 
-    private void spellAttack(int x, int y, BufferedImage image) throws
-            AWTException,
+    private void spellAttack() throws
             InterruptedException {
-        if (CheckSP.enoughSP) {
-            keys.keyPress(KeyEvent.VK_F8);
-//            mouse.mouseClick(x, y);
+
+        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
+            keys.keyPress(Prop.SPELL_ATTACK_KEY);
             Thread.sleep(300);
         }
     }

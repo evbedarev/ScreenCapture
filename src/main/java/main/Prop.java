@@ -53,6 +53,11 @@ public class Prop {
     public static final int SP_RGB = -6507025;
     //////////////////////////////////////////////
 
+    ///////////SPELL ATTACK//////////////////////
+    public static final boolean NEED_SPELL_ATTACK = true;
+    public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
+    ////////////////////////////////////////////
+
     public static final int EXCLUDE_X_LEFT = 715;
     public static final int EXCLUDE_X_RIGHT = 740;
 
