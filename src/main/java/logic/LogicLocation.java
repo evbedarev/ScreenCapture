@@ -66,21 +66,30 @@ public abstract class LogicLocation extends Thread implements Logic {
             for (int  cnt=0; cnt < Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
                 ATTACK_MOBS_BEHIND_WALLS.set(0);
                 while (monster.kill()) {
-//                    count = 0;
-//                    logger.debug("Set count to " + count);
-//                    checkMyHp();
-//                    Thread.sleep(500);
-//                    duringTheFight();
                     killMonstersAround(monster);
-//                    cnt = 0;
-//                    if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-//                        actions.teleport();
-//                        logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
-//                    }
+                    cnt = 0;
                 }
             }
         } catch (Exception exception) {
             exception.printStackTrace();
+        }
+    }
+
+    private void attackBySwodOrSpell(Monster monster) throws Exception{
+        if (CheckSP.enoughSP) {
+            checkMyHp();
+            killMonstersAround(monster);
+        } else {
+            count = 0;
+            logger.debug("Set count to " + count);
+            checkMyHp();
+            Thread.sleep(500);
+            duringTheFight();
+            killMonstersAround(monster);
+            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+                actions.teleport();
+                logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
+            }
         }
     }
 

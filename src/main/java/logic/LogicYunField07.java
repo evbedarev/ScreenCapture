@@ -67,11 +67,9 @@ public class LogicYunField07 extends LogicLocation {
                     Thread.sleep(5000);
                 }
             }
+            checkSP.enoghtSP();
             locationCheck.locationCheck();
-//            if (count == 0)
-//                actions.stepAside(locationCheck, new int[]{100, 130});
             killMonsterList.forEach(this::findAndKill);
-//            findAndKill();
             checkMyHp();
             actions.pickUpCard();
             actions.pickUpLoot();

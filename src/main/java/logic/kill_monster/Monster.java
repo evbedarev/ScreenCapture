@@ -25,7 +25,6 @@ public class Monster implements KillMonster {
     final FindPixels findImageHard;
     private Actions actions = Actions.instance();
     Logger logger;
-    private CheckSP checkSP = CheckSP.instance();
 
 
     public Monster() throws AWTException {
@@ -90,7 +89,7 @@ public class Monster implements KillMonster {
     public boolean findAndKillAround(BufferedImage screenShot) throws
             AWTException,
             InterruptedException {
-
+//
         logger.debug("Finding monster " + this.toString());
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
@@ -145,13 +144,10 @@ public class Monster implements KillMonster {
     private void spellAttack(int x, int y, BufferedImage image) throws
             AWTException,
             InterruptedException {
-//        int rndm = (int)(0.8 + Math.random());
-        if (checkSP.enoghtSP(image)) {
+        if (CheckSP.enoughSP) {
             keys.keyPress(KeyEvent.VK_F8);
 //            mouse.mouseClick(x, y);
             Thread.sleep(300);
         }
     }
-
-
 }

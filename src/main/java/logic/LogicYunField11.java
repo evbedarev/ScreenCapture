@@ -59,13 +59,11 @@ public class LogicYunField11 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         if (threadId == 0) {
+            checkSP.enoghtSP();
             checkDie.check();
             locationCheck.locationCheck();
             checkCast();
-//            if (count == 0)
-//                actions.stepAside(locationCheck, new int[]{100, 130});
             killMonsterList.forEach(this::findAndKill);
-//            findAndKill();
             checkMyHp();
             actions.pickUpCard();
             actions.pickUpLoot();

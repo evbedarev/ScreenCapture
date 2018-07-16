@@ -59,10 +59,8 @@ public class LogicGefField10 extends LogicLocation {
     public void mainHandle() throws Exception {
         if (threadId == 0) {
             locationCheck.locationCheck();
-//            if (count == 0)
-//                actions.stepAside(locationCheck, new int[]{100, 130});
+            checkSP.enoghtSP();
             killMonsterList.forEach(this::findAndKill);
-//            findAndKill();
             checkMyHp();
             actions.pickUpCard();
             actions.pickUpLoot();
