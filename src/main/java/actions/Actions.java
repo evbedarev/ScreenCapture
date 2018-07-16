@@ -17,6 +17,8 @@ public class Actions {
     Mouse mouse;
     CheckMsg checkMsg;
     Logger logger = Logger.getLogger(this.getClass());
+    private TakeLoot[] loot;
+    private TakeLoot[] usefulLoot;
 
     private Actions() throws AWTException {
         keys = new Keys();
@@ -33,6 +35,12 @@ public class Actions {
             }
         }
         return instance;
+    }
+
+    public void initialize(TakeLoot[] loot,
+                           TakeLoot[] usefulLoot) {
+        this.loot = loot;
+        this.usefulLoot = usefulLoot;
     }
 
     public void teleport(LocationCheck locationCheck) throws Exception {
@@ -98,13 +106,13 @@ public class Actions {
         locationCheck.locationCheck();
     }
 
-    public void pickUpLoot(TakeLoot[] loot) throws Exception {
+    public void pickUpLoot() throws Exception {
         for (TakeLoot takeLoot: loot) {
             takeLoot.pickUp();
         }
     }
 
-    public void pickUpCard(TakeLoot[] usefulLoot) throws Exception {
+    public void pickUpCard() throws Exception {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp();
         }

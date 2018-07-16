@@ -1,5 +1,7 @@
 package logic.kill_monster;
 
+import actions.Actions;
+import checks.CheckSP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -8,6 +10,7 @@ import logic.RgbParameter;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +23,9 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
+    private Actions actions = Actions.instance();
     Logger logger;
+    private CheckSP checkSP = CheckSP.instance();
 
 
     public Monster() throws AWTException {
@@ -31,9 +36,19 @@ public class Monster implements KillMonster {
     }
 
     @Override
-    public boolean kill() throws AWTException, InterruptedException {
+    public boolean kill() throws Exception {
         BufferedImage screenShot = capture.takeScreenShot();
+//        useSpell(screenShot);
+//        screenShot = capture.takeScreenShot();
         return findAndKill(screenShot);
+    }
+
+    @Override
+    public boolean killAround() throws AWTException, InterruptedException {
+        BufferedImage screenShot = capture.takeScreenShot();
+//        useSpell(screenShot);
+//        screenShot = capture.takeScreenShot();
+        return findAndKillAround(screenShot);
     }
 
     /**
@@ -46,8 +61,7 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean findAndKill(BufferedImage screenShot) throws
-            AWTException,
-            InterruptedException{
+            Exception {
 
         logger.debug("Finding monster " + this.toString());
         //It's bad, later change. Need to load in constructor.
@@ -61,8 +75,10 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-
-                mouse.mouseClick(x, y + 20);
+                spellAttack(x, y , screenShot);
+//                Thread.sleep(1000);
+//                actions.pickUpLoot();
+//                mouse.mouseClick(x, y + 20);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
                 return true;
@@ -74,7 +90,7 @@ public class Monster implements KillMonster {
     @Override
     public boolean findAndKillAround(BufferedImage screenShot) throws
             AWTException,
-            InterruptedException{
+            InterruptedException {
 
         logger.debug("Finding monster " + this.toString());
         //It's bad, later change. Need to load in constructor.
@@ -89,7 +105,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-
+                spellAttack(x, y , screenShot);
                 mouse.mouseClick(x, y + 20);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
@@ -99,9 +115,43 @@ public class Monster implements KillMonster {
         return false;
     }
 
-    @Override
-    public boolean killAround() throws AWTException, InterruptedException {
-        BufferedImage screenShot = capture.takeScreenShot();
-        return findAndKillAround(screenShot);
+    public boolean useSpell(BufferedImage screenShot) throws
+            AWTException,
+            InterruptedException {
+
+        logger.debug("Finding monster " + this.toString());
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+                    screenShot,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {675, 940, 335, 575});
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+                spellAttack(x, y , screenShot);
+                logger.info("Killing monster by Spell" + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                Thread.sleep(100);
+                return true;
+            }
+        }
+        return false;
     }
+
+
+    private void spellAttack(int x, int y, BufferedImage image) throws
+            AWTException,
+            InterruptedException {
+//        int rndm = (int)(0.8 + Math.random());
+        if (checkSP.enoghtSP(image)) {
+            keys.keyPress(KeyEvent.VK_F8);
+            mouse.mouseClick(x, y);
+            Thread.sleep(500);
+        }
+    }
+
+
 }

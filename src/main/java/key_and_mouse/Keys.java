@@ -9,7 +9,7 @@ public class Keys {
         robot = new Robot();
     }
 
-    public void keyPress(int keyMask) throws InterruptedException {
+    public synchronized void keyPress(int keyMask) throws InterruptedException {
         robot.keyPress(keyMask);
         Thread.sleep(200);
         robot.keyRelease(keyMask);

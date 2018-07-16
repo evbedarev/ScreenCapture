@@ -10,7 +10,7 @@ public class Mouse {
         robot = new Robot();
     }
 
-    public void mouseClick(int x, int y)
+    public synchronized void mouseClick(int x, int y)
             throws AWTException, InterruptedException {
         mouseClick(x, y, InputEvent.BUTTON1_MASK, 100);
     }

@@ -27,10 +27,8 @@ public class LogicYunField07 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11(logger);
         this.threadId = threadId;
-        actions = Actions.instance();
         locationCheck = new LocationCheck(new YunField07(), logger);
         lootAround = new LootAround(new HandYun11(), logger);
-        checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(new MonstersYun07(logger))
                 .collect(Collectors.toList());
@@ -64,15 +62,19 @@ public class LogicYunField07 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         if (threadId == 0) {
+            if (checkDie.check()) {
+                while (true) {
+                    Thread.sleep(5000);
+                }
+            }
             locationCheck.locationCheck();
-            checkCast();
 //            if (count == 0)
 //                actions.stepAside(locationCheck, new int[]{100, 130});
             killMonsterList.forEach(this::findAndKill);
 //            findAndKill();
             checkMyHp();
-            actions.pickUpCard(usefulLoot);
-            actions.pickUpLoot(loot);
+            actions.pickUpCard();
+            actions.pickUpLoot();
             teleport();
             count++;
             logger.debug("Increase count by 1, count=" + count);
@@ -84,11 +86,12 @@ public class LogicYunField07 extends LogicLocation {
             ATOMIC_DEFENDER.incrementAndGet();
             ATTACK_TIMER.incrementAndGet();
             sleep(1000);
+            checkCast();
         }
     }
 
     void checkMyHp() throws Exception {
-        actions.pickUpCard(usefulLoot);
+        actions.pickUpCard();
         checkHP.checkHp();
     }
 
@@ -118,8 +121,8 @@ public class LogicYunField07 extends LogicLocation {
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});
 //            sleep(1500);
-            actions.pickUpCard(usefulLoot);
-            actions.pickUpLoot(loot);
+            actions.pickUpCard();
+            actions.pickUpLoot();
             logger.info("TELEPORTING count=" + count);
             count = 0;
             logger.info("Set count to " + count);

@@ -1,7 +1,9 @@
 package logic;
 
 import actions.Actions;
+import checks.CheckDie;
 import checks.CheckHP;
+import checks.CheckSP;
 import checks.LocationCheck;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -19,7 +21,9 @@ public abstract class LogicLocation extends Thread implements Logic {
     static List<KillMonster> killMonsterList;
     static TakeLoot[] loot;
     static TakeLoot[] usefulLoot;
+    static CheckDie checkDie = CheckDie.instance();
     final CheckHP checkHP = CheckHP.instance();
+    final CheckSP checkSP = CheckSP.instance();
     int count = 0;
     static Attack attack;
     final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
@@ -33,6 +37,11 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void run() {
         try {
+            checkHP.initialize(true, locationCheck);
+            checkDie.initialize();
+            actions = Actions.instance();
+            actions.initialize(loot, usefulLoot);
+            checkSP.initialize();
             while (true) {
                 mainHandle();
             }

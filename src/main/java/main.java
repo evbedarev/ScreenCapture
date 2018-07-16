@@ -1,4 +1,3 @@
-import checks.CheckHP;
 import find_fragments.FindFragmentFiles;
 import find_fragments.FindFragments;
 import find_image.FindImageHard;
@@ -11,7 +10,6 @@ import storage_image.StorageImageFile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Optional;
 
 public class main {

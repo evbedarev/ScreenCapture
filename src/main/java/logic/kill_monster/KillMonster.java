@@ -7,9 +7,7 @@ import java.io.IOException;
 public interface KillMonster {
 
     boolean findAndKill(BufferedImage screenShot) throws
-            IOException,
-            AWTException,
-            InterruptedException;
+            Exception;
 
     boolean kill() throws Exception;
 

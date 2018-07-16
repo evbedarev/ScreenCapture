@@ -64,8 +64,8 @@ public class LogicGefField11 extends LogicLocation {
             killMonsterList.forEach(this::findAndKill);
 //            findAndKill();
             checkMyHp();
-            actions.pickUpCard(usefulLoot);
-            actions.pickUpLoot(loot);
+            actions.pickUpCard();
+            actions.pickUpLoot();
             teleport();
             count++;
             logger.debug("Increase count by 1, count=" + count);
@@ -81,7 +81,7 @@ public class LogicGefField11 extends LogicLocation {
     }
 
     void checkMyHp() throws Exception {
-        actions.pickUpCard(usefulLoot);
+        actions.pickUpCard();
         checkHP.checkHp();
     }
 
@@ -111,8 +111,8 @@ public class LogicGefField11 extends LogicLocation {
             sleep(500);
 //            actions.stepAside(locationCheck, new int[] {250, 350});
 //            sleep(1500);
-            actions.pickUpCard(usefulLoot);
-            actions.pickUpLoot(loot);
+            actions.pickUpCard();
+            actions.pickUpLoot();
 
             logger.info("TELEPORTING count=" + count);
             count = 0;

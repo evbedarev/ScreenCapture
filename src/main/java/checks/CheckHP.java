@@ -17,6 +17,7 @@ public class CheckHP {
     private Mouse mouse;
     private Actions actions;
     private LocationCheck locationCheck;
+    private CheckDie checkDie;
 
     private CheckHP() {
     }
@@ -35,6 +36,7 @@ public class CheckHP {
     public void initialize(boolean checkHp, LocationCheck locationCheck) throws
     AWTException {
         capture = Capture.instance();
+        checkDie = CheckDie.instance();
         keys = new Keys();
         mouse = new Mouse();
         actions = Actions.instance();
@@ -45,13 +47,13 @@ public class CheckHP {
     public void checkHp() throws Exception {
         if (!checkHp)
             return;
-        checkSilence();
+//        checkSilence();
         BufferedImage image = capture.takeScreenShot();
 
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
             actions.useWing();
-            while (needPotion(image)) {
+            while (checkHpToEndRun(image) && !checkDie.check()) {
                 locationCheck.locationCheck();
                 checkSilence();
                 actions.teleport();
@@ -63,9 +65,9 @@ public class CheckHP {
             needHeal();
         }
 
-//        if (needPotion(image)) {
-//            keys.keyPress(KeyEvent.VK_F1);
-//        }
+        if (needPotion(image)) {
+            keys.keyPress(KeyEvent.VK_F1);
+        }
     }
 
     private boolean needPotion(BufferedImage image) {
@@ -74,6 +76,10 @@ public class CheckHP {
 
     private boolean checkHptoRun(BufferedImage image) {
         return image.getRGB(Prop.X_HP_TO_RUN,Prop.Y_HP) != Prop.RGB_HP;
+    }
+
+    private boolean checkHpToEndRun(BufferedImage image) {
+        return image.getRGB(Prop.X_HP_TO_END_RUN,Prop.Y_HP) != Prop.RGB_HP;
     }
 
     private void needHeal() throws Exception{
