@@ -47,7 +47,8 @@ public class LogicYunField07 extends LogicLocation {
                 new Card(logger, lootAround),
 ////            new Clothes(logger),
                 new Shield(logger, lootAround),
-//                new BlueHerb(logger, lootAround),
+                new Bottle(logger, lootAround),
+                new BlueHerb(logger, lootAround),
 ////            new Mask(logger),
                 new Coupon(logger, lootAround),
         };

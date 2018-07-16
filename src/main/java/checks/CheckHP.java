@@ -61,7 +61,7 @@ public class CheckHP {
                     actions.teleport();
                     Thread.sleep(2000);
                 }
-                Thread.sleep(5000);
+                Thread.sleep(3000);
                 image = capture.takeScreenShot();
             }
         }
