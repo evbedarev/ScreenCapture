@@ -31,12 +31,12 @@ public class CheckSP {
 
     public boolean enoghtSP() {
         BufferedImage image = capture.takeScreenShot();
-        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) != Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
     public boolean enoghtSP(BufferedImage image) {
-        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) != Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 }
