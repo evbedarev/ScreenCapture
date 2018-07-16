@@ -66,7 +66,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             for (int  cnt=0; cnt < Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
                 ATTACK_MOBS_BEHIND_WALLS.set(0);
                 while (monster.kill()) {
-                    killMonstersAround(monster);
+                    attackBySwodOrSpell(monster);
                     cnt = 0;
                 }
             }
@@ -75,7 +75,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    private void attackBySwodOrSpell(Monster monster) throws Exception{
+    private void attackBySwodOrSpell(KillMonster monster) throws Exception{
         if (CheckSP.enoughSP) {
             checkMyHp();
             killMonstersAround(monster);

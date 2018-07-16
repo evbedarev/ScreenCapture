@@ -89,7 +89,7 @@ public class Monster implements KillMonster {
     public boolean findAndKillAround(BufferedImage screenShot) throws
             AWTException,
             InterruptedException {
-//
+
         logger.debug("Finding monster " + this.toString());
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
