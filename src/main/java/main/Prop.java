@@ -16,13 +16,13 @@ public class Prop {
     //Через сколько секунд улетать если залип курсор атаки на мобе за стеной
     public final static int ATTACK_MOBS_BEHIND_WALLS = 60;
     //Количество проверок экрана на наличие монстров()
-    public final static int COUNT_OF_CHECKS_MONSTER = 2;
+    public final static int COUNT_OF_CHECKS_MONSTER = 4;
     //Через сколько секунд повторить атаку
-    public final static int ATTACK_TIMER = 10;
+    public final static int ATTACK_TIMER = 5;
     //Через сколько циклов телепортироваться
     public final static int COUNT_TO_TELEPORT = 1;
     //Сколько надо циклов для поиска лута
-    public final static int COUNT_TO_FIND_LOOT = 5;
+    public final static int COUNT_TO_FIND_LOOT = 2;
     ///////////////////////////////////
 
 

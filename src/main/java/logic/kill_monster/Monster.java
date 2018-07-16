@@ -76,11 +76,10 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 spellAttack(x, y , screenShot);
-//                Thread.sleep(1000);
 //                actions.pickUpLoot();
-//                mouse.mouseClick(x, y + 20);
+                mouse.mouseClick(x, y + 5);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 return true;
             }
         }
@@ -106,9 +105,9 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 spellAttack(x, y , screenShot);
-                mouse.mouseClick(x, y + 20);
+                mouse.mouseClick(x, y + 5);
                 logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 return true;
             }
         }
@@ -135,6 +134,7 @@ public class Monster implements KillMonster {
                 spellAttack(x, y , screenShot);
                 logger.info("Killing monster by Spell" + this.toString() + ", coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
+
                 return true;
             }
         }
@@ -148,8 +148,8 @@ public class Monster implements KillMonster {
 //        int rndm = (int)(0.8 + Math.random());
         if (checkSP.enoghtSP(image)) {
             keys.keyPress(KeyEvent.VK_F8);
-            mouse.mouseClick(x, y);
-            Thread.sleep(500);
+//            mouse.mouseClick(x, y);
+            Thread.sleep(300);
         }
     }
 
