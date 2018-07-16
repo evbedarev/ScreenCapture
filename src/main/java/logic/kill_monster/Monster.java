@@ -1,6 +1,5 @@
 package logic.kill_monster;
 
-import actions.Actions;
 import checks.CheckSP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -11,7 +10,6 @@ import main.Prop;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;

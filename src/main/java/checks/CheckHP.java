@@ -18,6 +18,7 @@ public class CheckHP {
     private Actions actions;
     private LocationCheck locationCheck;
     private CheckDie checkDie;
+    private CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
 
     private CheckHP() {
     }
@@ -56,7 +57,10 @@ public class CheckHP {
             while (checkHpToEndRun(image) && !checkDie.check()) {
                 locationCheck.locationCheck();
                 checkSilence();
-                actions.teleport();
+                if (checkAgressorIsNear.check()) {
+                    actions.teleport();
+                    Thread.sleep(2000);
+                }
                 Thread.sleep(5000);
                 image = capture.takeScreenShot();
             }

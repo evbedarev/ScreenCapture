@@ -1,10 +1,7 @@
 package logic;
 
 import actions.Actions;
-import checks.CheckDie;
-import checks.CheckHP;
-import checks.CheckSP;
-import checks.LocationCheck;
+import checks.*;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
 import logic.take_loot.LootAround;
@@ -15,19 +12,19 @@ import org.apache.log4j.Logger;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 public abstract class LogicLocation extends Thread implements Logic {
     static int countOfAttacks = 100;
     static List<KillMonster> killMonsterList;
     static TakeLoot[] loot;
     static TakeLoot[] usefulLoot;
     static CheckDie checkDie = CheckDie.instance();
-    final CheckHP checkHP = CheckHP.instance();
-    final CheckSP checkSP = CheckSP.instance();
+    static final CheckHP checkHP = CheckHP.instance();
+    static final CheckSP checkSP = CheckSP.instance();
+    static final CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
     int count = 0;
     static Attack attack;
-    final static AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
-    final static AtomicInteger ATTACK_MOBS_BEHIND_WALLS = new AtomicInteger(0);
+    static final AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
+    static final AtomicInteger ATTACK_MOBS_BEHIND_WALLS = new AtomicInteger(0);
     Logger logger = Logger.getLogger(this.getClass());
     static Actions actions;
     static LocationCheck locationCheck;

@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Properies
  */
 public class Prop {
-
     //SPEED SETTINGS
     //Через сколько секунд улетать если залип курсор атаки на мобе за стеной
     public final static int ATTACK_MOBS_BEHIND_WALLS = 60;

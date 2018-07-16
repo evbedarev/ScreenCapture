@@ -51,6 +51,10 @@ public class LogicYunField07 extends LogicLocation {
 ////            new Mask(logger),
                 new Coupon(logger, lootAround),
         };
+
+        checkAgressorIsNear.initialize(Stream
+                .of(new Harpy(logger))
+                .collect(Collectors.toList()));
     }
 
     @Override
