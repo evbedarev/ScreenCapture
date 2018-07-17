@@ -1,7 +1,6 @@
 package logic;
 
 import actions.Actions;
-import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.Sphinx03;
 import logic.attacks.AttackSphinx03;
@@ -29,23 +28,23 @@ public class LogicSphinx03 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new Sphinx03(), logger);
-        lootAround = new LootAround(new HandSph03(), logger);
+        lootAround.initialize(new HandSph03());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(new Marduk(logger), new Pasana(logger))
                 .collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[]{
-                new Card(logger, lootAround),
+                new Card(),
 ////            new Clothes(logger),
-                new Shield(logger, lootAround),
-                new BlueHerb(logger, lootAround)
+                new Shield(),
+                new BlueHerb()
 ////            new Mask(logger),
 //            new Coupon(logger)
         };
 
         loot = new TakeLoot[]{
-                new FlameHeart(logger, lootAround)
+                new FlameHeart()
 //            new HarpyFeather(logger),
 //            new HarpyTalon(logger)
         };
@@ -68,7 +67,6 @@ public class LogicSphinx03 extends LogicLocation {
             actions.pickUpLoot();
             teleport();
             count++;
-            logger.debug("Increase count by 1, count=" + count);
             checkCast();
         }
 
@@ -111,13 +109,9 @@ public class LogicSphinx03 extends LogicLocation {
         if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
-//            actions.stepAside(locationCheck, new int[] {250, 350});
-//            sleep(1500);
             actions.pickUpCard();
             actions.pickUpLoot();
-            logger.info("TELEPORTING count=" + count);
             count = 0;
-            logger.info("Set count to " + count);
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }
@@ -126,10 +120,6 @@ public class LogicSphinx03 extends LogicLocation {
     void runFromMonster() throws
 
             Exception {
-//        if (awareMonster.kill()) {
-//            logger.info("GOBLIN LEADER");
-//            actions.teleport();
-//        }
     }
 
 }

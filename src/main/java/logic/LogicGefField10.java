@@ -28,7 +28,7 @@ public class LogicGefField10 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField10(), logger);
-        lootAround = new LootAround(new HandYun11(), logger);
+        lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(
@@ -37,11 +37,11 @@ public class LogicGefField10 extends LogicLocation {
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[]{
-                new Card(logger, lootAround),
+                new Card(),
 //            new Clothes(logger),
-                new Shield(logger, lootAround),
-                new Mask(logger, lootAround),
-                new Coupon(logger, lootAround)
+                new Shield(),
+                new Mask(),
+                new Coupon()
         };
 
         loot = new TakeLoot[] {
@@ -66,7 +66,6 @@ public class LogicGefField10 extends LogicLocation {
             actions.pickUpLoot();
             teleport();
             count++;
-            logger.debug("Increase count by 1, count=" + count);
             checkCast();
         }
 
@@ -107,13 +106,9 @@ public class LogicGefField10 extends LogicLocation {
         if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
-//            actions.stepAside(locationCheck, new int[] {250, 350});
-//            sleep(1500);
             actions.pickUpCard();
             actions.pickUpLoot();
-            logger.info("TELEPORTING count=" + count);
             count = 0;
-            logger.info("Set count to " + count);
             locationCheck.locationCheck();
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
@@ -121,9 +116,5 @@ public class LogicGefField10 extends LogicLocation {
     }
 
     void runFromMonster() throws Exception {
-//        if (awareMonster.kill()) {
-//            logger.info("GOBLIN LEADER");
-//            actions.teleport();
-//        }
     }
 }

@@ -10,6 +10,17 @@ import java.util.Optional;
  */
 
 public class FindImageHard implements FindImage {
+    private static FindImageHard instance;
+
+    private FindImageHard() {
+    }
+
+    static public FindImageHard getInstance() {
+        if (instance == null) {
+            instance = new FindImageHard();
+        }
+        return instance;
+    }
 
     /**
      * Find fragment of image in screenshot slowly.

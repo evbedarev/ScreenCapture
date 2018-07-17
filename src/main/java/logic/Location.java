@@ -10,7 +10,7 @@
 //import logic.kill_monster.KillMonster;
 //import logic.kill_monster.Warp;
 //import logic.take_loot.*;
-//import org.apache.log4j.Logger;
+//import org.apache.log4j.LoggerSingle;
 //
 //import java.awt.event.KeyEvent;
 //import java.util.concurrent.atomic.AtomicInteger;
@@ -22,7 +22,7 @@
 //    final Mouse mouse = new Mouse();
 //    final CheckHP checkHP = new CheckHP();
 //    final static AtomicInteger atomicInt = new AtomicInteger(0);
-//    private final Logger logger = Logger.getLogger(this.getClass());
+//    private final LoggerSingle logger = LoggerSingle.getLogger(this.getClass());
 //
 //    VerifyMap verifyMap;
 //    SendMessage sendMessage = new SendMessage();

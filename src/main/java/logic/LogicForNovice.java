@@ -10,7 +10,7 @@
 //import logic.kill_monster.*;
 //
 //import logic.take_loot.*;
-//import org.apache.log4j.Logger;
+//import org.apache.log4j.LoggerSingle;
 //
 //import java.awt.event.KeyEvent;
 //import java.util.concurrent.atomic.AtomicInteger;

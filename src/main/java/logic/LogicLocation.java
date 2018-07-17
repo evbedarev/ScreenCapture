@@ -2,6 +2,7 @@ package logic;
 
 import actions.Actions;
 import checks.*;
+import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
 import logic.take_loot.LootAround;
@@ -28,7 +29,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     Logger logger = Logger.getLogger(this.getClass());
     static Actions actions;
     static LocationCheck locationCheck;
-    static LootAround lootAround;
+    static LootAround lootAround = LootAround.getInstance();
 
     public abstract void createThread() throws Exception;
 
@@ -51,7 +52,6 @@ public abstract class LogicLocation extends Thread implements Logic {
         ATTACK_TIMER.set(0);
         while (attack.kill()) {
             count = 0;
-            logger.debug("Set count to " + count);
             checkMyHp();
             Thread.sleep(500);
             if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
@@ -78,14 +78,14 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             killMonstersAround(monster);
         } else {
-            logger.debug("Set count to " + count);
             checkMyHp();
             Thread.sleep(500);
             duringTheFight();
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
                 actions.teleport();
-                logger.info("LogicLocation.findAndKill: teleporting. Mobs behind the walls");
+                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
+                        "teleporting. Mobs behind the walls");
             }
         }
     }
@@ -94,14 +94,16 @@ public abstract class LogicLocation extends Thread implements Logic {
         boolean monstersAround = false;
 
         while(checkMonstersAround(monster)) {
-            logger.info("LogicLocation.killMonstersAround: Find monster arround, killing ");
+            LoggerSingle.logInfo("LogicLocation.killMonstersAround",
+                    "Find monster around, killing");
             duringTheFight();
             checkMyHp();
             monstersAround = true;
         }
 
         if (monstersAround) {
-            logger.info("LogicLocation.killMonstersAround: Pick up loot arround");
+            LoggerSingle.logInfo("LogicLocation.killMonstersAround",
+                    "Pick up loot around");
             lootAround.takeLootAround();
             return false;
         }

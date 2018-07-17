@@ -3,10 +3,10 @@ package logic.take_loot;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
 import main.Prop;
-import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,8 +20,7 @@ public class Loot implements TakeLoot {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    Logger logger;
-    LootAround lootAround;
+    LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
         capture = Capture.instance();
@@ -45,7 +44,7 @@ public class Loot implements TakeLoot {
             AWTException,
             InterruptedException {
 
-        logger.debug("Finding loot " + this.toString());
+        LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -59,7 +58,7 @@ public class Loot implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
                 Thread.sleep(100);
                 return true;
             }

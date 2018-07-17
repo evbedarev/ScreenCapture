@@ -4,6 +4,7 @@ import actions.Actions;
 import checks.LocationCheck;
 import checks.location.PrtField07;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandSph03;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Rocker;
 import logic.take_loot.*;
@@ -28,18 +29,18 @@ public class LogicPrtField07 extends LogicLocation {
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new PrtField07(), logger);
-        lootAround = new LootAround(new HandYun11(), logger);
+        lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(new Rocker(logger))
                 .collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
-                new Card(logger, lootAround),
+                new Card(),
 //            new Clothes(logger),
-                new Shield(logger, lootAround),
+                new Shield(),
 //            new Mask(logger),
-                new Coupon(logger, lootAround)
+                new Coupon()
         };
 
         loot = new TakeLoot[] {
@@ -66,7 +67,6 @@ public class LogicPrtField07 extends LogicLocation {
             actions.pickUpLoot();
             teleport();
             count++;
-            logger.debug("Increase count by 1, count=" + count);
             checkCast();
         }
 
@@ -107,25 +107,16 @@ public class LogicPrtField07 extends LogicLocation {
         if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
-//            actions.stepAside(locationCheck, new int[] {250, 350});
-//            sleep(1500);
             actions.pickUpCard();
             actions.pickUpLoot();
             locationCheck.locationCheck();
-
-            logger.info("TELEPORTING count=" + count);
             count = 0;
-            logger.info("Set count to " + count);
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }
     }
 
     void runFromMonster() throws Exception {
-//        if (awareMonster.kill()) {
-//            logger.info("GOBLIN LEADER");
-//            actions.teleport();
-//        }
     }
 
 }

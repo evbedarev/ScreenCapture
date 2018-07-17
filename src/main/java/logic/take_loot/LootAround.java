@@ -3,6 +3,7 @@ package logic.take_loot;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
 import logic.hands_rgb.Hands;
@@ -15,23 +16,32 @@ import java.util.List;
 import java.util.Optional;
 
 public class LootAround implements TakeLoot {
+    private static LootAround instance;
     Capture capture;
-    final Mouse mouse;
-    final Keys keys;
-    final FindPixels findImageHard;
-    Logger logger;
+    Mouse mouse;
+    Keys keys;
+    FindPixels findImageHard;
     List<RgbParameter> hands;
     double smallAngle = Math.PI/4;
     double largeAnge = Math.PI/5;
+    private LootAround() {
+    }
 
-    public LootAround(Hands hands, Logger logger) throws AWTException {
-        this.logger = logger;
+    public static LootAround getInstance() {
+        if (instance == null) {
+            instance = new LootAround();
+        }
+        return instance;
+    }
+
+    public void initialize(Hands hands) throws AWTException {
         capture = Capture.instance();
         mouse = new Mouse();
         keys = new Keys();
         findImageHard = new FindPixels();
         this.hands = hands.getRgbParameterList();
     }
+
 
     public void takeLootAround() throws Exception {
         if (Prop.NEED_AROUND_LOOT_SEARCH) {
@@ -72,7 +82,6 @@ public class LootAround implements TakeLoot {
             AWTException,
             InterruptedException {
 
-        logger.debug("Finding loot " + this.toString());
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: hands) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -86,7 +95,7 @@ public class LootAround implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                logger.info("Taking loot " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(), "Taking loot, coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
                 return true;
             }

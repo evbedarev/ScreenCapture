@@ -3,6 +3,7 @@ package checks;
 import actions.Actions;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
 import main.Prop;
 import java.awt.*;
@@ -54,6 +55,7 @@ public class CheckHP {
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
             actions.useWing();
+            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image) && !checkDie.check()) {
                 locationCheck.locationCheck();
                 checkSilence();

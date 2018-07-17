@@ -29,24 +29,24 @@ public class LogicYunField11 extends LogicLocation {
         actions = Actions.instance();
         
         locationCheck = new LocationCheck(new YunField11(), logger);
-        lootAround = new LootAround(new HandYun11(), logger);
+        lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(new Goat(logger))
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-                new AntelopeSkin(logger, lootAround),
-                new BlueHerb(logger, lootAround),
-                new Bottle(logger, lootAround)
+                new AntelopeSkin(),
+                new BlueHerb(),
+                new Bottle()
         };
 
         usefulLoot = new TakeLoot[] {
-                new Card(logger, lootAround),
+                new Card(),
 //            new Clothes(logger),
-                new Shield(logger, lootAround),
+                new Shield(),
 //            new Mask(logger),
-                new Coupon(logger, lootAround)
+                new Coupon()
         };
     }
 
@@ -69,7 +69,6 @@ public class LogicYunField11 extends LogicLocation {
             actions.pickUpLoot();
             teleport();
             count++;
-            logger.debug("Increase count by 1, count=" + count);
         }
 
         if (threadId == 1) {
@@ -110,23 +109,15 @@ public class LogicYunField11 extends LogicLocation {
         if (count > Prop.COUNT_TO_TELEPORT) {
             lootAround.takeLootAround();
             sleep(500);
-//            actions.stepAside(locationCheck, new int[] {250, 350});
-//            sleep(1500);
             actions.pickUpCard();
             actions.pickUpLoot();
-            logger.info("TELEPORTING count=" + count);
             count = 0;
-            logger.info("Set count to " + count);
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }
     }
 
     void runFromMonster() throws Exception {
-//        if (awareMonster.kill()) {
-//            logger.info("GOBLIN LEADER");
-//            actions.teleport();
-//        }
     }
 
 }

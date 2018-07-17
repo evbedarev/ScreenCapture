@@ -6,6 +6,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class StorageImageFile implements StorageImage {
+    private static StorageImageFile instance;
+
+    private StorageImageFile() {
+    }
+
+    public static StorageImageFile instance() {
+        if (instance == null) {
+            instance = new StorageImageFile();
+        }
+        return instance;
+    }
+
     @Override
     public boolean save(BufferedImage image, String fullFilePath) {
         try {
