@@ -4,6 +4,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
 import main.Prop;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ public class CheckDie {
     private Keys keys;
     private Mouse mouse;
     private static volatile CheckDie instance;
+
 
     private CheckDie() {
     }
