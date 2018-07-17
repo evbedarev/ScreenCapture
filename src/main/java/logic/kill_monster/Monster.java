@@ -112,7 +112,7 @@ public class Monster implements KillMonster {
 
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
             keys.keyPress(Prop.SPELL_ATTACK_KEY);
-            Thread.sleep(300);
+            Thread.sleep(500);
         }
     }
 }

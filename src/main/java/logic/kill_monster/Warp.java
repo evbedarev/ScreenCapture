@@ -11,9 +11,9 @@ import java.util.Optional;
 public class Warp extends Monster {
     public Warp(Logger logger) throws AWTException {
         this.logger = logger;
-        rgbParameterList.add(new RgbParameter(-16448251,
+        rgbParameterList.add(new RgbParameter(-723721,
                 new int[] {100,100},
-                new int[] {-16448251}));
+                new int[] {-3684641, -3421213}));
     }
 
     @Override

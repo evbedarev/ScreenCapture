@@ -1,5 +1,6 @@
 package logic.take_loot;
 
+import checks.CheckHP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -20,6 +21,7 @@ public class Loot implements TakeLoot {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
+    CheckHP checkHP = CheckHP.instance();
     LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
@@ -70,6 +72,7 @@ public class Loot implements TakeLoot {
     public void pickUp() throws Exception {
         while (take()) {
             Thread.sleep(1000);
+            checkHP.checkHp();
             lootAround.takeLootAround();
         }
     }
