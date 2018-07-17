@@ -19,14 +19,13 @@ public class Monster implements KillMonster {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
-    final Keys keys;
+    final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
 
 
     public Monster() throws AWTException {
         capture = Capture.instance();
-        mouse = new Mouse();
-        keys = new Keys();
+        mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
     }
 

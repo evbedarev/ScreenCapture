@@ -19,15 +19,14 @@ public class Loot implements TakeLoot {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
-    final Keys keys;
+    final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
     LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
         capture = Capture.instance();
-        mouse = new Mouse();
-        keys = new Keys();
+        mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
     }
 

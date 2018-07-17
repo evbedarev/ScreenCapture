@@ -1,15 +1,12 @@
 package logic.take_loot;
 
 import find_image.FindPixels;
-import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
 import logic.hands_rgb.Hands;
 import main.Prop;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -19,7 +16,6 @@ public class LootAround implements TakeLoot {
     private static LootAround instance;
     Capture capture;
     Mouse mouse;
-    Keys keys;
     FindPixels findImageHard;
     List<RgbParameter> hands;
     double smallAngle = Math.PI/4;
@@ -36,8 +32,7 @@ public class LootAround implements TakeLoot {
 
     public void initialize(Hands hands) throws AWTException {
         capture = Capture.instance();
-        mouse = new Mouse();
-        keys = new Keys();
+        mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
         this.hands = hands.getRgbParameterList();
     }

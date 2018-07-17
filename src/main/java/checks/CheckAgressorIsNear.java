@@ -1,6 +1,4 @@
 package checks;
-
-import logic.Capture;
 import logic.kill_monster.KillMonster;
 import java.util.List;
 

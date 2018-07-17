@@ -28,16 +28,15 @@ public class RouteYunField01 {
     boolean onRoute;
     Actions actions;
     VerifyMap verifyMap;
-    Keys keys;
+    Keys keys = Keys.getInstance();
 
     public RouteYunField01(Logger logger) throws AWTException {
         onRoute = true;
         this.logger = logger;
         findImageHard = new FindPixels();
-        mouse = new Mouse();
+        mouse = Mouse.getInstance();
         capture = Capture.instance();
         actions = Actions.instance();
-        keys = new Keys();
 //        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));
 //        //Aldebaran
         routes.add(new Route(new int[] {812,76}, 3000, new int[] {1525,159}));

@@ -29,7 +29,7 @@ public class RouteYunField11 {
         onRoute = true;
         this.logger = logger;
         findImageHard = new FindPixels();
-        mouse = new Mouse();
+        mouse = Mouse.getInstance();
         capture = Capture.instance();
         actions = Actions.instance();
 //        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));

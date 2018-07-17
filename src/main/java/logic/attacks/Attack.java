@@ -1,7 +1,6 @@
 package logic.attacks;
 
 import find_image.FindPixels;
-import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
@@ -16,13 +15,11 @@ public class Attack implements AttackInterface {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
-    final Keys keys;
     final FindPixels findImageHard;
 
     public Attack() throws AWTException {
         capture = Capture.instance();
-        mouse = new Mouse();
-        keys = new Keys();
+        mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
     }
 

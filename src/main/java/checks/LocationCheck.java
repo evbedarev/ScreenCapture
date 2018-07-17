@@ -19,7 +19,7 @@ public class LocationCheck {
 
     public LocationCheck(VerifyMap verifyMap) throws AWTException {
         this.verifyMap = verifyMap;
-        mouse = new Mouse();
+        mouse = Mouse.getInstance();
         actions = Actions.instance();
     }
 

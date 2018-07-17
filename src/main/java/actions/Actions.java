@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 
 public class Actions {
     private static volatile Actions instance;
-    Keys keys;
+    Keys keys = Keys.getInstance();
     Mouse mouse;
     CheckMsg checkMsg;
     Logger logger = Logger.getLogger(this.getClass());
@@ -21,8 +21,7 @@ public class Actions {
     private TakeLoot[] usefulLoot;
 
     private Actions() throws AWTException {
-        keys = new Keys();
-        mouse = new Mouse();
+        mouse = Mouse.getInstance();
         checkMsg = new CheckMsg(logger);
     }
 

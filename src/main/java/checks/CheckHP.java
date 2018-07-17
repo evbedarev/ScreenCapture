@@ -14,7 +14,7 @@ public class CheckHP {
     private static volatile CheckHP instance;
     private boolean checkHp;
     private Capture capture;
-    private Keys keys;
+    private Keys keys = Keys.getInstance();
     private Mouse mouse;
     private Actions actions;
     private LocationCheck locationCheck;
@@ -39,8 +39,7 @@ public class CheckHP {
     AWTException {
         capture = Capture.instance();
         checkDie = CheckDie.instance();
-        keys = new Keys();
-        mouse = new Mouse();
+        mouse = Mouse.getInstance();
         actions = Actions.instance();
         this.checkHp = checkHp;
         this.locationCheck = locationCheck;

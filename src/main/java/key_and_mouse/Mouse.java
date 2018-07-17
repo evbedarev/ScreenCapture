@@ -4,10 +4,21 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 
 public class Mouse {
+    private static volatile Mouse instance;
     Robot robot;
 
-    public Mouse() throws AWTException {
+    private Mouse() throws AWTException{
         robot = new Robot();
+    }
+
+    public static Mouse getInstance() throws AWTException{
+        if (instance == null) {
+            synchronized (Mouse.class) {
+                if (instance == null)
+                    instance = new Mouse();
+            }
+        }
+        return instance;
     }
 
     public synchronized void mouseClick(int x, int y)
