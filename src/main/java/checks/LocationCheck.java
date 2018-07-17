@@ -4,33 +4,27 @@ import actions.Actions;
 import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
-import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.kill_monster.KillMonster;
 import logic.kill_monster.Warp;
-import main.Prop;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class LocationCheck {
     private VerifyMap verifyMap;
-    private Logger logger;
     private final Mouse mouse;
     private Actions actions;
     private int countForSendMsg = 0;
     SendMessage sendMessage = new SendMessage();
 
-    public LocationCheck(VerifyMap verifyMap, Logger logger) throws AWTException {
+    public LocationCheck(VerifyMap verifyMap) throws AWTException {
         this.verifyMap = verifyMap;
-        this.logger = logger;
         mouse = new Mouse();
         actions = Actions.instance();
     }
 
     void findWaprPortal() throws Exception {
-        KillMonster goToWarp = new Warp(logger);
+        KillMonster goToWarp = new Warp();
         double t = Math.PI/6;
         double radius = 125;
         int i = 0;
@@ -53,7 +47,7 @@ public class LocationCheck {
     public void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
             Thread.sleep(5000);
-            logger.info("Нахожусь не на карте!!");
+            LoggerSingle.logInfo(this.toString(), "Нахожусь не на карте!!");
             findWaprPortal();
             Thread.sleep(2000);
             if (verifyMap.onDesiredLocation()) {

@@ -25,15 +25,15 @@ public class LogicGefField11 extends LogicLocation {
 
     public LogicGefField11(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackGef11(logger);
+        attack = new AttackGef11();
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new GefField11(), logger);
+        locationCheck = new LocationCheck(new GefField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(
-                        new Goblin(logger)
+                        new Goblin()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {

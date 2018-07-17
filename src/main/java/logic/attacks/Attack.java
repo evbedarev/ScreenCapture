@@ -3,10 +3,9 @@ package logic.attacks;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class Attack implements AttackInterface {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    Logger logger;
 
     public Attack() throws AWTException {
         capture = Capture.instance();
@@ -42,7 +40,7 @@ public class Attack implements AttackInterface {
             AWTException,
             InterruptedException{
 
-        logger.debug("Finding monster " + this.toString());
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -55,7 +53,7 @@ public class Attack implements AttackInterface {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
 //                mouse.mouseClick(x, y+10);
-                logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(), "Attacking monster, coordinates: x=" + x + " y=" + y);
                 Thread.sleep(100);
                 return true;
             }

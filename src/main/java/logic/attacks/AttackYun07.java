@@ -1,8 +1,6 @@
 package logic.attacks;
 
 import logic.RgbParameter;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,8 +8,7 @@ import java.awt.image.BufferedImage;
 //-3553057
 public class
 AttackYun07 extends Attack {
-    public AttackYun07(Logger logger) throws AWTException {
-        this.logger = logger;
+    public AttackYun07() throws AWTException {
         rgbParameterList.add(new RgbParameter(-395017,
                 new int[] {40,40},
                 new int[] {-460810}));

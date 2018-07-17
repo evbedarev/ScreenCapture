@@ -1,7 +1,6 @@
 package logic.attacks;
 
 import logic.RgbParameter;
-import org.apache.log4j.Logger;
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,8 +10,7 @@ public class AttackYun11 extends Attack {
 
     public AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
 
-    public AttackYun11(Logger logger) throws AWTException {
-        this.logger = logger;
+    public AttackYun11() throws AWTException {
 //        rgbParameterList.add(new RgbParameter(-3487264,
 ////                new int[] {40,40},
 ////                new int[] {-329481}));

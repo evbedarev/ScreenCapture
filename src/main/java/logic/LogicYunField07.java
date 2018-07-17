@@ -23,12 +23,12 @@ public class LogicYunField07 extends LogicLocation {
 
     public LogicYunField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11(logger);
+        attack = new AttackYun11();
         this.threadId = threadId;
-        locationCheck = new LocationCheck(new YunField07(), logger);
+        locationCheck = new LocationCheck(new YunField07());
         lootAround.initialize(new HandYun11());
         killMonsterList = Stream
-                .of(new MonstersYun07(logger))
+                .of(new MonstersYun07())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
@@ -47,7 +47,7 @@ public class LogicYunField07 extends LogicLocation {
         };
 
         checkAgressorIsNear.initialize(Stream
-                .of(new Harpy(logger))
+                .of(new Harpy())
                 .collect(Collectors.toList()));
     }
 

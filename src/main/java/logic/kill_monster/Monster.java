@@ -4,11 +4,10 @@ import checks.CheckSP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
 import main.Prop;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys;
     final FindPixels findImageHard;
-    Logger logger;
 
 
     public Monster() throws AWTException {
@@ -56,7 +54,7 @@ public class Monster implements KillMonster {
     public boolean findAndKill(BufferedImage screenShot) throws
             Exception {
 
-        logger.debug("Finding monster " + this.toString());
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -71,7 +69,7 @@ public class Monster implements KillMonster {
                 spellAttack();
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
-                logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 Thread.sleep(1000);
                 return true;
             }
@@ -84,7 +82,7 @@ public class Monster implements KillMonster {
             AWTException,
             InterruptedException {
 
-        logger.debug("Finding monster " + this.toString());
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
@@ -99,7 +97,7 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
                 spellAttack();
                 mouse.mouseClick(x, y + 5);
-                logger.info("Killing monster " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 Thread.sleep(1000);
                 return true;
             }

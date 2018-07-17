@@ -12,8 +12,7 @@ public class AttackSphinx03 extends Attack {
 
     public AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
 
-    public AttackSphinx03(Logger logger) throws AWTException {
-        this.logger = logger;
+    public AttackSphinx03() throws AWTException {
         rgbParameterList.add(new RgbParameter(-395016,
                 new int[] {40,40},
                 new int[] {-395016}));

@@ -1,7 +1,6 @@
 package logic;
 
 import actions.Actions;
-import checks.CheckHP;
 import checks.LocationCheck;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
@@ -24,15 +23,15 @@ public class LogicYunField11 extends LogicLocation {
 
     public LogicYunField11(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11(logger);
+        attack = new AttackYun11();
         this.threadId = threadId;
         actions = Actions.instance();
         
-        locationCheck = new LocationCheck(new YunField11(), logger);
+        locationCheck = new LocationCheck(new YunField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
-                .of(new Goat(logger))
+                .of(new Goat())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {

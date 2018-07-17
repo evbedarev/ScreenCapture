@@ -8,7 +8,6 @@ import logic.kill_monster.*;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,7 +25,6 @@ public abstract class LogicLocation extends Thread implements Logic {
     static Attack attack;
     static final AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
     static final AtomicInteger ATTACK_MOBS_BEHIND_WALLS = new AtomicInteger(0);
-    Logger logger = Logger.getLogger(this.getClass());
     static Actions actions;
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();

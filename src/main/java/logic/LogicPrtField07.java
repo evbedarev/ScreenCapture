@@ -4,7 +4,6 @@ import actions.Actions;
 import checks.LocationCheck;
 import checks.location.PrtField07;
 import logic.attacks.AttackYun11;
-import logic.hands_rgb.HandSph03;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Rocker;
 import logic.take_loot.*;
@@ -25,14 +24,14 @@ public class LogicPrtField07 extends LogicLocation {
 
     public LogicPrtField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11(logger);
+        attack = new AttackYun11();
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new PrtField07(), logger);
+        locationCheck = new LocationCheck(new PrtField07());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
-                .of(new Rocker(logger))
+                .of(new Rocker())
                 .collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {

@@ -1,8 +1,7 @@
 package checks;
+
 import logic.Capture;
 import logic.kill_monster.KillMonster;
-
-import java.awt.*;
 import java.util.List;
 
 public class CheckAgressorIsNear {

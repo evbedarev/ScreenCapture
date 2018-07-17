@@ -24,14 +24,14 @@ public class LogicSphinx03 extends LogicLocation {
 
     public LogicSphinx03(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackSphinx03(logger);
+        attack = new AttackSphinx03();
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new Sphinx03(), logger);
+        locationCheck = new LocationCheck(new Sphinx03());
         lootAround.initialize(new HandSph03());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
-                .of(new Marduk(logger), new Pasana(logger))
+                .of(new Marduk(), new Pasana())
                 .collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[]{

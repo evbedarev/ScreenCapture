@@ -1,7 +1,7 @@
 package logic.kill_monster;
 
+import logger.LoggerSingle;
 import logic.RgbParameter;
-import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,8 +9,7 @@ import java.util.Optional;
 
 //-2305,-1793
 public class Warp extends Monster {
-    public Warp(Logger logger) throws AWTException {
-        this.logger = logger;
+    public Warp() throws AWTException {
         rgbParameterList.add(new RgbParameter(-723721,
                 new int[] {100,100},
                 new int[] {-3684641, -3421213}));
@@ -20,7 +19,7 @@ public class Warp extends Monster {
     public boolean findAndKill(BufferedImage screenShot) throws
             Exception {
 
-        logger.debug("Finding monster " + this.toString());
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -33,7 +32,7 @@ public class Warp extends Monster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 mouse.mouseClick(x, y + 5);
-                logger.info("Warp: Going to warp " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(), "Warp: Going to warp, coordinates: x=" + x + " y=" + y);
                 Thread.sleep(1000);
                 return true;
             }

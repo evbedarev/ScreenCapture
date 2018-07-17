@@ -1,15 +1,12 @@
 package logic.attacks;
 
 import logic.RgbParameter;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 
 //-329224
 //-3553057
 public class AttackGef05 extends Attack {
-    public AttackGef05(Logger logger) throws AWTException {
-        this.logger = logger;
+    public AttackGef05() throws AWTException {
         rgbParameterList.add(new RgbParameter(-526090,
                 new int[] {40,40},
                 new int[] {-3552800}));
