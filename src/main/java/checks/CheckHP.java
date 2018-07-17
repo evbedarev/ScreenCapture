@@ -14,7 +14,7 @@ public class CheckHP {
     private static volatile CheckHP instance;
     private boolean checkHp;
     private Capture capture;
-    private Keys keys = Keys.getInstance();
+    private Keys keys;
     private Mouse mouse;
     private Actions actions;
     private LocationCheck locationCheck;
@@ -40,6 +40,7 @@ public class CheckHP {
         capture = Capture.instance();
         checkDie = CheckDie.instance();
         mouse = Mouse.getInstance();
+        keys  = Keys.getInstance();
         actions = Actions.instance();
         this.checkHp = checkHp;
         this.locationCheck = locationCheck;

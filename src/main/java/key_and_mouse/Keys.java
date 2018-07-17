@@ -6,10 +6,11 @@ public class Keys {
     private static volatile Keys instance;
     Robot robot;
 
-    private Keys() {
+    private Keys() throws AWTException {
+        robot = new Robot();
     }
 
-    public static Keys getInstance() {
+    public static Keys getInstance() throws AWTException{
         if (instance == null) {
             synchronized (Keys.class) {
                 if (instance == null) {
@@ -18,10 +19,6 @@ public class Keys {
             }
         }
         return instance;
-    }
-
-    public void initialize() throws AWTException {
-        robot = new Robot();
     }
 
     public synchronized void keyPress(int keyMask) throws InterruptedException {

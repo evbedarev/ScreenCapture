@@ -2,7 +2,6 @@ package logic;
 
 import actions.Actions;
 import checks.*;
-import key_and_mouse.Keys;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -29,13 +28,10 @@ public abstract class LogicLocation extends Thread implements Logic {
     static Actions actions;
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
-    static Keys keys = Keys.getInstance();
-
     public abstract void createThread() throws Exception;
 
     public void run() {
         try {
-            keys.initialize();
             checkHP.initialize(true, locationCheck);
             checkDie.initialize();
             actions = Actions.instance();
