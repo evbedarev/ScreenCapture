@@ -17,7 +17,7 @@ public class Capture {
     private final int SCREEN_WIDTH;
     private final int SCREEN_HEIGHT;
     private final String ROOT_DIR;
-    private StorageImage storageImage = new StorageImageFile();
+    private StorageImage storageImage = StorageImageFile.instance();
     private Robot robot;
 
     public Capture() throws AWTException {

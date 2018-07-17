@@ -25,7 +25,7 @@ public class ForRoute {
      * @throws Exception
      */
     public static void findPixelRgb(int intRGB, String path) throws Exception {
-        StorageImage storageImage = new StorageImageFile();
+        StorageImage storageImage = StorageImageFile.instance();
         BufferedImage image = storageImage.load(path);
 //        BufferedImage image = storageImage.load("/home/mj/Projects/ScreenCapture/src/main/resources/for_test/fragment_picture.png");
         for (int y = 0; y < image.getHeight(); y++) {
@@ -39,7 +39,7 @@ public class ForRoute {
 
 
     public static void showRGB(int[] xy, String pathImage) throws Exception {
-        StorageImage storageImage = new StorageImageFile();
+        StorageImage storageImage = StorageImageFile.instance();
         BufferedImage image = storageImage.load(pathImage);
         System.out.println(image.getRGB(xy[0], xy[1]));
 

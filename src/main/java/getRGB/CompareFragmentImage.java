@@ -97,7 +97,7 @@ public class CompareFragmentImage {
      */
     public static HashMap<Integer, List<RgbClass>> findRGB(String path1, String path2) throws Exception {
         HashMap<Integer, List<RgbClass>> mapRgb = new HashMap<>();
-        StorageImage storageImage = new StorageImageFile();
+        StorageImage storageImage = StorageImageFile.instance();
         List<RgbClass> rgbClassList;
         List<Integer> rgbList = new ArrayList<>();
 
