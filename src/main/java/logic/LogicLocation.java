@@ -116,7 +116,7 @@ public abstract class LogicLocation extends Thread implements Logic {
 
 
     public abstract void mainHandle() throws Exception;
-    abstract void checkCast() throws InterruptedException;
+    abstract void checkCast() throws Exception;
     abstract void runFromMonster() throws Exception;
     abstract void checkMyHp() throws Exception;
     abstract void teleport() throws Exception;

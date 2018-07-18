@@ -1,28 +1,45 @@
 package find_image;
 
+import find_fragments.FindFragmentFiles;
 import logic.Capture;
-import storage_image.StorageImageFile;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class FindFragmentInImage {
+    private static FindFragmentInImage instance;
     private FindImageHard findImageHard = FindImageHard.getInstance();
-    private StorageImageFile storageImageFile = StorageImageFile.instance();
+    private FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
     private Capture capture;
+    private int[] screen = new int[] {0,1600,0,900};
+    private List<BufferedImage> imageList;
 
-    public FindFragmentInImage() throws AWTException  {
-        capture = Capture.instance();
+    public void setScreen(int[] screen) {
+        this.screen = screen;
     }
 
-    public void findImage(String frag) throws IOException {
-        BufferedImage screenshot = capture.takeScreenShot();
-        BufferedImage fragment = storageImageFile.load(frag);
+    private FindFragmentInImage() {
+    }
 
-        Optional<int[]> xy = findImageHard.findImageInArea(screenshot, fragment ,
-                new int[] {0, 800, 0, 900});
+    public static FindFragmentInImage getInstance() {
+        if (instance == null) {
+            instance = new FindFragmentInImage();
+        }
+        return instance;
+    }
 
+    public Optional<int[]> findImage(String dir) throws Exception{
+        capture = Capture.instance();
+        imageList = findFragmentFiles.fragments("frag*", dir);
+        Optional<int[]> xy;
+        for (BufferedImage image: imageList) {
+            BufferedImage screenshot = capture.takeScreenShot();
+            xy = findImageHard.findImageInArea(screenshot, image,
+                    screen);
+            if (xy.isPresent())
+                return xy;
+        }
+        return Optional.empty();
     }
 }

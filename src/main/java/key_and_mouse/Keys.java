@@ -25,6 +25,15 @@ public class Keys {
         robot.keyPress(keyMask);
         Thread.sleep(200);
         robot.keyRelease(keyMask);
-
     }
+
+    public void combinationPress(int keyMask1, int keyMask2) throws InterruptedException {
+        robot.keyPress(keyMask1);
+        Thread.sleep(100);
+        robot.keyPress(keyMask2);
+        Thread.sleep(100);
+        robot.keyRelease(keyMask2);
+        Thread.sleep(100);
+        robot.keyRelease(keyMask1);
+}
 }

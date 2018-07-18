@@ -12,12 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindFragmentFiles implements FindFragments{
-    private final String wildCard;
-    private final String rootDir;
+    private static FindFragmentFiles instance;
+    private String wildCard;
+    private String rootDir;
 
-    public FindFragmentFiles(String wildCard, String rootDir) {
-        this.wildCard = wildCard;
-        this.rootDir = rootDir;
+    private FindFragmentFiles() {
+    }
+
+    public static FindFragmentFiles getInstance() {
+        if (instance == null) {
+            instance = new FindFragmentFiles();
+        }
+        return instance;
     }
 
     /**
@@ -25,7 +31,11 @@ public class FindFragmentFiles implements FindFragments{
      * @return List<BufferedImage> - list of images
      * @throws IOException
      */
-    public List<BufferedImage> fragments() throws IOException {
+    public List<BufferedImage> fragments(String wildCard, String rootDir)
+            throws IOException {
+        this.wildCard = wildCard;
+        this.rootDir = rootDir;
+
         List<BufferedImage> images = new ArrayList<>();
         List<File> filesList = findFiles();
         for (File file: filesList) {

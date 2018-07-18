@@ -2,6 +2,7 @@ package actions;
 
 import checks.CheckMsg;
 import checks.LocationCheck;
+import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.take_loot.TakeLoot;
@@ -10,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Optional;
 
 public class Actions {
     private static volatile Actions instance;
@@ -19,6 +21,7 @@ public class Actions {
     Logger logger = Logger.getLogger(this.getClass());
     private TakeLoot[] loot;
     private TakeLoot[] usefulLoot;
+    FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
 
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
@@ -117,4 +120,30 @@ public class Actions {
         }
     }
 
+    public void dropItem(String dirInventory, String dirLoot) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
+        Thread.sleep(500);
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
+        Thread.sleep(500);
+
+        xy = findFragmentInImage.findImage(dirInventory);
+        if (xy.isPresent()) {
+            mouse.mouseClick(xy.get()[0], xy.get()[1]);
+        }
+        Thread.sleep(1000);
+
+        xy = findFragmentInImage.findImage(dirLoot);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.pressLeft();
+            mouse.mouseMove(1000, 450);
+            mouse.releaseLeft();
+            Thread.sleep(500);
+            keys.keyPress(KeyEvent.VK_ENTER);
+            Thread.sleep(700);
+        }
+
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
+    }
 }

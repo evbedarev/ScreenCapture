@@ -5,5 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface FindFragments {
-    public List<BufferedImage> fragments() throws IOException;
+    List<BufferedImage> fragments(String wildCard, String rootDir)
+            throws IOException;
 }

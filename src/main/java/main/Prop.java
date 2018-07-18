@@ -11,27 +11,25 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Properies
  */
 public class Prop {
+//    public final Logger logger = Logger.getLogger(this.getClass());
+    public static final int SCREEN_WIDTH = 1600;
+    public static final int SCREEN_HEIGHT = 900;
+    public static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
+    public static final String PATH_INVENTORY_MARKER = ROOT_DIR + "Interface\\MarkerInventory\\";
+    public static final boolean NEED_AROUND_LOOT_SEARCH = true;
+
     //SPEED SETTINGS
     //Через сколько секунд улетать если залип курсор атаки на мобе за стеной
     public final static int ATTACK_MOBS_BEHIND_WALLS = 60;
     //Количество проверок экрана на наличие монстров()
     public final static int COUNT_OF_CHECKS_MONSTER = 4;
     //Через сколько секунд повторить атаку
-    public final static int ATTACK_TIMER = 5;
+    public final static int ATTACK_TIMER = 10;
     //Через сколько циклов телепортироваться
     public final static int COUNT_TO_TELEPORT = 1;
     //Сколько надо циклов для поиска лута
     public final static int COUNT_TO_FIND_LOOT = 2;
     ///////////////////////////////////
-
-
-    public final Logger logger = Logger.getLogger(this.getClass());
-
-    public static final int SCREEN_WIDTH = 1600;
-    public static final int SCREEN_HEIGHT = 900;
-    public static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
-
-    public static final boolean NEED_AROUND_LOOT_SEARCH = true;
 
     public static final int RGB_HP = -6507025;
     public static final int X_HP = 130;
@@ -56,6 +54,8 @@ public class Prop {
     public static final boolean NEED_SPELL_ATTACK = true;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
+
+    public static final int TIMER_CHECK_OVERWEIGHT = 1800;
 
     public static final int EXCLUDE_X_LEFT = 715;
     public static final int EXCLUDE_X_RIGHT = 740;
