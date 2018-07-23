@@ -5,12 +5,13 @@ import logic.Capture;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GefField11 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1493,56, -6280000, -1200000};
-    public static final int[] PORTAL_RGB_1 = new int[] {1581,75, -6280000, -1200000};
+//Change to propery file!!
+public class Aldebaran implements VerifyMap {
+    public static final int[] PORTAL_RGB = new int[] {1482,58, -7050398, -7050396};
+    public static final int[] PORTAL_RGB_1 = new int[] {1492,76, -10265990, -10265988};
     Capture capture;
 
-    public GefField11() throws AWTException {
+    public Aldebaran() throws AWTException {
         capture = Capture.instance();
     }
 

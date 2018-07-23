@@ -13,6 +13,10 @@ public class Warp extends Monster {
         rgbParameterList.add(new RgbParameter(-723721,
                 new int[] {100,100},
                 new int[] {-3684641, -3421213}));
+
+        rgbParameterList.add(new RgbParameter( -3158041,
+                new int[] {100,100},
+                new int[] {-2894872}));
     }
 
     @Override

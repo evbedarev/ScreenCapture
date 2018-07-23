@@ -2,10 +2,12 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
-import checks.location.GefField05;
-import logic.attacks.AttackGef05;
+import checks.location.CmdField07;
+import checks.location.GefField11;
+import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.*;
+import logic.kill_monster.Goblin;
+import logic.kill_monster.Raggler;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -13,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicGefField05 extends LogicLocation {
+public class LogicCmdField07 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     private final int threadId;
@@ -22,43 +24,47 @@ public class LogicGefField05 extends LogicLocation {
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
 
-    public LogicGefField05(int threadId) throws Exception {
+    public LogicCmdField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackGef05();
+        attack = new AttackGef11();
         this.threadId = threadId;
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new GefField05());
+        locationCheck = new LocationCheck(new CmdField07());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, locationCheck);
         killMonsterList = Stream
                 .of(
-                        new ThiefBug(),
-                        new Creamy(),
-                        new Smokie()
+                        new Raggler()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-            new Clothes(),
+//            new Clothes(logger),
                 new Shield(),
-//            new Mask(logger),
+//                new Mask(),
                 new Coupon()
         };
 
         loot = new TakeLoot[] {
-//            new PowderOfButterfly(logger),
+                new Cyfar(),
+                new WindOfVerdure()
         };
+
+        checkAgressorIsNear.initialize(Stream
+                .of(new Goblin())
+                .collect(Collectors.toList()));
     }
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicGefField05(1);
+        Thread thread = new LogicCmdField07(1);
         thread.start();
         start();
     }
 
     public void mainHandle() throws Exception {
         if (threadId == 0) {
+
             locationCheck.locationCheck();
             checkSP.enoghtSP();
             killMonsterList.forEach(this::findAndKill);
@@ -72,7 +78,7 @@ public class LogicGefField05 extends LogicLocation {
 
         if (threadId == 1) {
 //            ATOMIC_GUARD.incrementAndGet();
-//            ATOMIC_AWAKENING.incrementAndGet();
+            ATOMIC_AWAKENING.incrementAndGet();
 //            ATOMIC_DEFENDER.incrementAndGet();
             sleep(1000);
         }
@@ -90,10 +96,10 @@ public class LogicGefField05 extends LogicLocation {
 //            ATOMIC_GUARD.set(0);
 //        }
 //
-//        if (ATOMIC_AWAKENING.get() > 1800) {
-//            actions.drinkAwaikeningPotion();
-//            ATOMIC_AWAKENING.set(0);
-//        }
+        if (ATOMIC_AWAKENING.get() > 1800) {
+            actions.drinkAwaikeningPotion();
+            ATOMIC_AWAKENING.set(0);
+        }
 //
 //        if (ATOMIC_DEFENDER.get() > 180) {
 ////            keys.keyPress(DEFENDER);
