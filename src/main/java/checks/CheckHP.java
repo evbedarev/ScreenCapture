@@ -56,7 +56,11 @@ public class CheckHP {
             locationCheck.locationCheck();
             actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
-            while (checkHpToEndRun(image) && !checkDie.check()) {
+            while (checkHpToEndRun(image)) {
+                if (checkDie.check()) {
+                    break;
+                }
+
                 locationCheck.locationCheck();
                 checkSilence();
                 if (checkAgressorIsNear.check()) {
@@ -67,6 +71,7 @@ public class CheckHP {
                 image = capture.takeScreenShot();
             }
         }
+
         if (Prop.NEED_HEAL) {
             needHeal();
         }

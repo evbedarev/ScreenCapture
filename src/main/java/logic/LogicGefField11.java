@@ -47,6 +47,10 @@ public class LogicGefField11 extends LogicLocation {
         loot = new TakeLoot[] {
 //            new Scell(logger),
         };
+
+        checkAgressorIsNear.initialize(Stream
+                .of(new Goblin())
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -70,9 +74,9 @@ public class LogicGefField11 extends LogicLocation {
         }
 
         if (threadId == 1) {
-            ATOMIC_GUARD.incrementAndGet();
-            ATOMIC_AWAKENING.incrementAndGet();
-            ATOMIC_DEFENDER.incrementAndGet();
+//            ATOMIC_GUARD.incrementAndGet();
+//            ATOMIC_AWAKENING.incrementAndGet();
+//            ATOMIC_DEFENDER.incrementAndGet();
             sleep(1000);
         }
     }
@@ -83,22 +87,22 @@ public class LogicGefField11 extends LogicLocation {
     }
 
     void checkCast() throws InterruptedException {
-        if (ATOMIC_GUARD.get() > 300) {
-            actions.castGuard();
-            actions.castReflectShield();
-            ATOMIC_GUARD.set(0);
-        }
-
-        if (ATOMIC_AWAKENING.get() > 1800) {
-            actions.drinkAwaikeningPotion();
-            ATOMIC_AWAKENING.set(0);
-        }
-
-        if (ATOMIC_DEFENDER.get() > 180) {
-//            keys.keyPress(DEFENDER);
-            sleep(1000);
-            ATOMIC_DEFENDER.set(0);
-        }
+//        if (ATOMIC_GUARD.get() > 300) {
+//            actions.castGuard();
+//            actions.castReflectShield();
+//            ATOMIC_GUARD.set(0);
+//        }
+//
+//        if (ATOMIC_AWAKENING.get() > 1800) {
+//            actions.drinkAwaikeningPotion();
+//            ATOMIC_AWAKENING.set(0);
+//        }
+//
+//        if (ATOMIC_DEFENDER.get() > 180) {
+////            keys.keyPress(DEFENDER);
+//            sleep(1000);
+//            ATOMIC_DEFENDER.set(0);
+//        }
     }
 
     void teleport() throws Exception {

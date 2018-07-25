@@ -26,22 +26,40 @@ public class LocationCheck {
     void findWaprPortal() throws Exception {
         KillMonster goToWarp = new Warp();
         double t = Math.PI/6;
+        double t2 = Math.PI/8;
         double radius = 125;
+        double radius2 = 385;
         int i = 0;
-        int x;
-        int y;
-        while (!goToWarp.kill()) {
+        int x, x2;
+        int y, y2;
+
+        while (i < 260) {
             i++;
             Thread.sleep(200);
-            if (i%20 == 0) {
-                t += Math.PI/6;
+            if (i % 20 == 0) {
+                t += Math.PI / 6;
                 x = (int) Math.round(radius * Math.cos(t));
                 y = (int) Math.round(radius * Math.sin(t));
                 mouse.mouseMove(800 + x, 450 + y);
             }
-            if (verifyMap.onDesiredLocation())
+            if (goToWarp.kill())
                 break;
         }
+
+        i = 0;
+        while (i < 400) {
+            i++;
+            Thread.sleep(200);
+            if (i % 20 == 0) {
+                t2 += Math.PI / 8;
+                x2 = (int) Math.round(radius2 * Math.cos(t2));
+                y2 = (int) Math.round(radius2 * Math.sin(t2));
+                mouse.mouseMove(800 + x2, 450 + y2);
+            }
+            if (goToWarp.kill())
+                break;
+        }
+
     }
 
     public void locationCheck() throws Exception {
