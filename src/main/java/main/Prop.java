@@ -2,6 +2,8 @@ package main;
 
 import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathYun11;
+import logic.Logic;
+import logic.LogicYunField11;
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
 
@@ -9,11 +11,15 @@ import java.awt.event.KeyEvent;
  * Properies
  */
 public class Prop {
-//    public final Logger logger = Logger.getLogger(this.getClass());
-    ///////GLOBAL
+
+    /////////////////GLOBAL////////////////////
+    public static void initialize() throws Exception {
+        logic = new LogicYunField11(0);
+    }
+    public static Logic logic;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun11();
-    ////////////////
+    ///////////////////////////////////////////
 
 
     public static final int SCREEN_WIDTH = 1600;
@@ -67,8 +73,8 @@ public class Prop {
     public static final int EXCLUDE_Y_UP = 105;
     public static final int EXCLUDE_Y_DOWN = 130;
 
-    public static final String EMAIL = "madjo1985@gmail.com";
-    public static final String EMAIL_PASS = "Ghbdtn85";
+    public static final String EMAIL = "bot270485@gmail.com";
+    public static final String EMAIL_PASS = "Qq123456!";
 
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
