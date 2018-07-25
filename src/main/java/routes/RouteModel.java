@@ -1,16 +1,20 @@
 package routes;
 
 import actions.Actions;
+import checks.afterDeath.AfterDeath;
 import checks.location.VerifyMap;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
+import main.Prop;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public abstract class RouteModel implements RouteToLocation {
+    AfterDeath checkDie = Prop.checkDie;
     FindPixels findImageHard;
     Mouse mouse;
     Capture capture;
@@ -124,6 +128,13 @@ public abstract class RouteModel implements RouteToLocation {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             Thread.sleep(500);
             screenshot = capture.takeScreenShot();
+            if (checkCount()) {
+                break;
+            }
+        }
+        if (checkCount()) {
+            count = 0;
+            this.tpUntil();
         }
     }
 
@@ -133,53 +144,56 @@ public abstract class RouteModel implements RouteToLocation {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             Thread.sleep(500);
             screenshot = capture.takeScreenShot();
+            if (checkCount()) {
+                break;
+            }
         }
-    }
-    private void checkCount() throws Exception {
-        count++;
-        if (count > 1000) {
+        if (checkCount()) {
+            count = 0;
             this.tpUntil();
         }
     }
+    private boolean checkCount() throws Exception {
+        count++;
+        System.out.println(count);
+        if (count > 150) {
+//            count = 0;
+            return true;
+        }
+        return false;
+    }
 
     public void moveLeft(Route route) throws Exception {
-        moveByX(route, new int[] {700, 461});
-        checkCount();
+        moveByX(route, new int[] {300, 461});
     }
 
     public void moveRight(Route route) throws Exception {
         moveByX(route, new int[] {880, 461});
-        checkCount();
     }
 
     public void moveUp(Route route) throws Exception {
         moveByY(route, new int[] {805, 200});
-        checkCount();
     }
 
     public void moveDown(Route route) throws Exception {
-        moveByY(route, new int[] {805, 550});
+        moveByY(route, new int[] {805, 700});
         checkCount();
     }
 
     public void moveLeftSlowly(Route route) throws Exception {
         moveByX(route, new int[] {700, 461});
-        checkCount();
     }
 
     public void moveRightSlowly(Route route) throws Exception {
         moveByX(route, new int[] {880, 461});
-        checkCount();
     }
 
     public void moveUpSlowly(Route route) throws Exception {
         moveByY(route, new int[] {805, 420});
-        checkCount();
     }
 
     public void moveDownSlowly(Route route) throws Exception {
         moveByY(route, new int[] {805, 550});
-        checkCount();
     }
 
 }

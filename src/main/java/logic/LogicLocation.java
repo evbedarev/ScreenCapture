@@ -2,6 +2,7 @@ package logic;
 
 import actions.Actions;
 import checks.*;
+import checks.afterDeath.AfterDeath;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -17,7 +18,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static List<KillMonster> killMonsterList;
     static TakeLoot[] loot;
     static TakeLoot[] usefulLoot;
-    static CheckDie checkDie = CheckDie.instance();
+    static AfterDeath checkDie = Prop.checkDie;
     static final CheckHP checkHP = CheckHP.instance();
     static final CheckSP checkSP = CheckSP.instance();
     static final CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
@@ -33,7 +34,6 @@ public abstract class LogicLocation extends Thread implements Logic {
     public void run() {
         try {
             checkHP.initialize(true, locationCheck);
-            checkDie.initialize();
             actions = Actions.instance();
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();

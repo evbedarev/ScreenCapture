@@ -1,17 +1,21 @@
 package main;
 
+import checks.afterDeath.AfterDeath;
+import checks.afterDeath.AfterDeathYun11;
 import logic.take_loot.*;
-import org.apache.log4j.Logger;
-
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Properies
  */
 public class Prop {
 //    public final Logger logger = Logger.getLogger(this.getClass());
+    ///////GLOBAL
+    public static final boolean CHECK_DIE = true;
+    public static final AfterDeath checkDie = new AfterDeathYun11();
+    ////////////////
+
+
     public static final int SCREEN_WIDTH = 1600;
     public static final int SCREEN_HEIGHT = 900;
     public static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
@@ -24,7 +28,7 @@ public class Prop {
     //Количество проверок экрана на наличие монстров()
     public final static int COUNT_OF_CHECKS_MONSTER = 4;
     //Через сколько секунд повторить атаку
-    public final static int ATTACK_TIMER = 10;
+    public final static int ATTACK_TIMER = 20;
     //Через сколько циклов телепортироваться
     public final static int COUNT_TO_TELEPORT = 1;
     //Сколько надо циклов для поиска лута
@@ -39,8 +43,8 @@ public class Prop {
     public static final boolean NEED_HEAL = false;
     public static final int HEAL_KEY = KeyEvent.VK_F1;
     public static final int X_HP_HEAL = 137; //Only for acolyte
-    public static final int X_HP_TO_RUN = 110;
-    public static final int X_HP_TO_END_RUN = 150;
+    public static final int X_HP_TO_RUN = 55;
+    public static final int X_HP_TO_END_RUN = 60;
     public static final int X_HP_TO_DIE = 39;
     ///////////////////////////////////////////////
 
@@ -51,7 +55,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = true;
+    public static final boolean NEED_SPELL_ATTACK = false;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 

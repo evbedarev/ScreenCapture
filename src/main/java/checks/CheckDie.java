@@ -2,88 +2,65 @@ package checks;
 
 import actions.Actions;
 import actions.InterfaceActions;
+import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
-import key_and_mouse.Mouse;
-import logic.Capture;
 import main.Prop;
+
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public class CheckDie {
-    private Capture capture;
-    private static volatile CheckDie instance;
+public abstract class CheckDie implements AfterDeath {
+//    private static volatile CheckDie instance;
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    public List<KafraLoot> kafraLootList = new ArrayList<>();
+    public Actions actions;
 
-
-    private CheckDie() {
+    public CheckDie() {
     }
 
-    static public CheckDie instance() {
-        if (instance == null) {
-            synchronized (CheckDie.class) {
-                if (instance == null) {
-                    instance = new CheckDie();
-                }
-            }
+    public class KafraLoot {
+        String markerInventoryPath;
+        String lootPath;
+
+        public KafraLoot(String markerInventoryPath, String lootPath) {
+            this.markerInventoryPath = markerInventoryPath;
+            this.lootPath = lootPath;
         }
-        return instance;
-    }
-
-    public void initialize() throws AWTException {
-        capture = Capture.instance();
     }
 
     public boolean check() throws Exception {
+        if (!Prop.CHECK_DIE) return false;
         Optional<int[]> xy;
-
-
         findFragmentInImage.setScreen(new int[]{600, 1000, 500, 700});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CheckDie\\");
         if (xy.isPresent()) {
-            cmdField();
+            startActions();
             return true;
         }
-
         return false;
     }
 
-    public void cmdField() throws Exception {
-        Actions actions = Actions.instance();
+    public void putItems(List<KafraLoot> kafraLootList) throws Exception {
+        actions = Actions.instance();
         InterfaceActions interfaceActions = InterfaceActions.getInstance();
         interfaceActions.pressReturnToLastSavepoint();
         interfaceActions.pressOk();
-        goToKafraMorroc();
+        goToKafra();
         actions.sitDown();
         interfaceActions.pressOnKafra();
         interfaceActions.pressNext();
         interfaceActions.openWarehouse();
         interfaceActions.pressOk();
         interfaceActions.pressClose();
-        interfaceActions.putItemToKafra(
-                Prop.ROOT_DIR + "Interface\\MarkerInventory\\3\\",
-                Prop.ROOT_DIR + "Loot\\Cyfar\\");
-        interfaceActions.putItemToKafra(
-                Prop.ROOT_DIR + "Interface\\MarkerInventory\\3\\",
-                Prop.ROOT_DIR + "Loot\\WindOfVerdure\\");
-        interfaceActions.putItemToKafra(
-                Prop.ROOT_DIR + "Interface\\MarkerInventory\\3\\",
-                Prop.ROOT_DIR + "Loot\\FeathreOfBirds\\");
-
+        for (KafraLoot kafraLoot: kafraLootList) {
+            interfaceActions.putItemToKafra(kafraLoot.markerInventoryPath,
+                    kafraLoot.lootPath);
+        }
         interfaceActions.pressClose();
-        Thread.sleep(15*1000*60);
-        interfaceActions.pressOnKafra();
-        interfaceActions.pressNext();
-        interfaceActions.pressKafraTeleport();
-        interfaceActions.pressOk();
-        interfaceActions.pressNext();
-        interfaceActions.pressDownArrow();
-        interfaceActions.pressCmdField07();
-        interfaceActions.pressOk();
     }
 
-    private void goToKafraMorroc() throws AWTException, InterruptedException {
-        Mouse mouse = Mouse.getInstance();
-        mouse.mouseClick(1410,70);
-        Thread.sleep(5000);
-    }
+    public abstract void startActions() throws Exception;
+    public abstract void goToKafra() throws AWTException, InterruptedException;
 }

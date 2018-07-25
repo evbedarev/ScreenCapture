@@ -42,26 +42,29 @@ public class LogicYunField11 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//            new Clothes(logger),
-                new Shield(),
-//            new Mask(logger),
-                new Coupon()
+                new Bottle(),
+                new BlueHerb(),
+                new Coupon(),
         };
     }
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicYunField11(1);
-        thread.start();
+//        Thread thread = new LogicYunField11(1);
+//        thread.start();
         start();
     }
 
     public void mainHandle() throws Exception {
         if (threadId == 0) {
-            checkSP.enoghtSP();
-            checkDie.check();
-            locationCheck.locationCheck();
             checkCast();
+            if (checkDie.check()) {
+                while (true) {
+                    Thread.sleep(5000);
+                }
+            }
+            locationCheck.locationCheck();
+            checkSP.enoghtSP();
             killMonsterList.forEach(this::findAndKill);
             checkMyHp();
             actions.pickUpCard();
@@ -75,7 +78,7 @@ public class LogicYunField11 extends LogicLocation {
             ATOMIC_AWAKENING.incrementAndGet();
             ATOMIC_DEFENDER.incrementAndGet();
             ATTACK_TIMER.incrementAndGet();
-            sleep(1000);
+            sleep(10000);
         }
     }
 

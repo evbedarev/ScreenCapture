@@ -1,5 +1,8 @@
 package routes;
+import checks.LocationCheck;
 import checks.location.YunField11;
+import checks.location.YunField12;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -11,27 +14,65 @@ public class RouteYunField12 extends RouteModel {
     }
 
     public void tpUntil() throws Exception {
+        LocationCheck locationCheck = new LocationCheck(new YunField12());
         BufferedImage screenshot = capture.takeScreenShot();
-        boolean Location1 = checkLocationTP(screenshot, new int[] {1466,1474,61,76});
-
-        while (!Location1) {
+        while (!checkLocationTP(screenshot, new int[] {1495,1502,69,82})) {
+            locationCheck.locationCheck();
             actions.teleport();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             screenshot = capture.takeScreenShot();
-            Location1 = checkLocationTP(screenshot, new int[] {1466,1475,61,76});
+            if (checkDie.check()) break;
         }
 
         System.out.println("on location");
-        moveUp(new Route(new int[] {800,582},  new int[] {0,62}));
+        moveDown(new Route(new int[] {}, new int[] {0,82}));
 
         System.out.println("on location");
-        moveLeft(new Route(new int[] {800,582},  new int[] {1466,0}));
+        moveLeft(new Route(new int[] {}, new int[] {1476,0}));
+
+        System.out.println("on location");
+        moveDown(new Route(new int[] {}, new int[] {0,95}));
+
+        System.out.println("on location");
+        moveLeft(new Route(new int[] {}, new int[] {1465,0}));
 
 
         verifyMap = new YunField11();
         while (!verifyMap.onDesiredLocation()) {
-            mouse.mouseClick(805, 400);
+            mouse.mouseClick(800, 600);
             Thread.sleep(500);
+            if (verifyMap.onDesiredLocation()) break;
+            if (checkDie.check()) break;
         }
     }
+
+//    LocationCheck locationCheck = new LocationCheck(new YunField01());
+//    BufferedImage screenshot = capture.takeScreenShot();
+//        while (!checkLocationTP(screenshot, new int[] {1495,1502,69,82})) {
+//        locationCheck.locationCheck();
+//        actions.teleport();
+//        Thread.sleep(1000);
+//        screenshot = capture.takeScreenShot();
+//        if (checkDie.check()) break;
+//    }
+//
+//        System.out.println("on location");
+//    moveDown(new Route(new int[] {}, new int[] {0,82}));
+//
+//        System.out.println("on location");
+//    moveLeft(new Route(new int[] {}, new int[] {1476,0}));
+//
+//        System.out.println("on location");
+//    moveDown(new Route(new int[] {}, new int[] {0,95}));
+//
+//        System.out.println("on location");
+//    moveLeft(new Route(new int[] {}, new int[] {1466,0}));
+//
+//    verifyMap = new YunField12();
+//        while (!verifyMap.onDesiredLocation()) {
+//        mouse.mouseClick(800, 600);
+//        Thread.sleep(500);
+//        if (verifyMap.onDesiredLocation()) break;
+//        if (checkDie.check()) break;
+//    }
 }

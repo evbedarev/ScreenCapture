@@ -117,6 +117,13 @@ public class InterfaceActions {
                 "TeleportCmdField07");
     }
 
+    public void pressGefField10() throws Exception{
+        pressOnImage(new int[]{0, 1600, 0, 900},
+                2000,
+                Prop.ROOT_DIR + "Interface\\TeleportGefField10\\",
+                "TeleportGefField10");
+    }
+
     public void openInventory() throws InterruptedException {
         Thread.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
@@ -132,13 +139,13 @@ public class InterfaceActions {
 
         xy = findFragmentInImage.findImage(dirInventory);
         if (xy.isPresent()) {
-            mouse.mouseClick(xy.get()[0], xy.get()[1]);
+            mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
         }
         Thread.sleep(1000);
 
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
-            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
             mouse.pressLeft();
             moveCoursorToWarehouse();
             mouse.releaseLeft();

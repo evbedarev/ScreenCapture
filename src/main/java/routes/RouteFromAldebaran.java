@@ -3,8 +3,6 @@ package routes;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logic.Capture;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -84,6 +82,7 @@ public class RouteFromAldebaran {
     }
 
     public void moveToLocation() throws Exception {
+        System.out.println("move from aldebaran");
         for (Route route: routes) {
             int count = 0;
             mouse.mouseClick(route.coordsToMove[0], route.coordsToMove[1]);

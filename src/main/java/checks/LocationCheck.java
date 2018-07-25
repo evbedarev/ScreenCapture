@@ -1,6 +1,7 @@
 package checks;
 
 import actions.Actions;
+import checks.afterDeath.AfterDeath;
 import checks.location.VerifyMap;
 import email.MsgLocationChanged;
 import email.SendMessage;
@@ -8,6 +9,8 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.kill_monster.KillMonster;
 import logic.kill_monster.Warp;
+import main.Prop;
+
 import java.awt.*;
 
 public class LocationCheck {
@@ -15,12 +18,14 @@ public class LocationCheck {
     private final Mouse mouse;
     private Actions actions;
     private int countForSendMsg = 0;
+    private AfterDeath checkDie;
     SendMessage sendMessage = new SendMessage();
 
     public LocationCheck(VerifyMap verifyMap) throws AWTException {
         this.verifyMap = verifyMap;
         mouse = Mouse.getInstance();
         actions = Actions.instance();
+        checkDie = Prop.checkDie;
     }
 
     void findWaprPortal() throws Exception {
@@ -42,7 +47,7 @@ public class LocationCheck {
                 y = (int) Math.round(radius * Math.sin(t));
                 mouse.mouseMove(800 + x, 450 + y);
             }
-            if (goToWarp.kill())
+            if (goToWarp.kill() || verifyMap.onDesiredLocation() || checkDie.check())
                 break;
         }
 
@@ -56,7 +61,7 @@ public class LocationCheck {
                 y2 = (int) Math.round(radius2 * Math.sin(t2));
                 mouse.mouseMove(800 + x2, 450 + y2);
             }
-            if (goToWarp.kill())
+            if (goToWarp.kill() || verifyMap.onDesiredLocation() || checkDie.check())
                 break;
         }
 

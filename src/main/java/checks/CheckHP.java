@@ -1,6 +1,7 @@
 package checks;
 
 import actions.Actions;
+import checks.afterDeath.AfterDeath;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
@@ -18,7 +19,7 @@ public class CheckHP {
     private Mouse mouse;
     private Actions actions;
     private LocationCheck locationCheck;
-    private CheckDie checkDie;
+    private AfterDeath checkDie;
     private CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
 
     private CheckHP() {
@@ -38,7 +39,7 @@ public class CheckHP {
     public void initialize(boolean checkHp, LocationCheck locationCheck) throws
     AWTException {
         capture = Capture.instance();
-        checkDie = CheckDie.instance();
+        checkDie = Prop.checkDie;
         mouse = Mouse.getInstance();
         keys  = Keys.getInstance();
         actions = Actions.instance();
