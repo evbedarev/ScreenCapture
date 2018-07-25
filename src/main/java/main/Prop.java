@@ -59,7 +59,7 @@ public class Prop {
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 
-    public static final int TIMER_CHECK_OVERWEIGHT = 1800;
+    public static final int TIMER_CHECK_OVERWEIGHT = 300; //!
 
     public static final int EXCLUDE_X_LEFT = 715;
     public static final int EXCLUDE_X_RIGHT = 740;
