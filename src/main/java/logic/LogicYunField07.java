@@ -36,7 +36,7 @@ public class LogicYunField07 extends LogicLocation {
         loot = new TakeLoot[] {
                 new BlueHerb(),
                 new Bottle(),
-                new AntelopeSkin(),
+//                new AntelopeSkin(),
                 new HarpyFeather(),
         };
 
@@ -114,6 +114,7 @@ public class LogicYunField07 extends LogicLocation {
                 actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
                         Prop.ROOT_DIR + "Loot\\YellowHerb\\");
             }
+            actions.teleport(locationCheck);
             TIMER_CHECK_OVERWEIGHT.set(0);
         }
     }
