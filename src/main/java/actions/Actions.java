@@ -80,6 +80,11 @@ public class Actions {
         Thread.sleep(1000);
     }
 
+    public void shieldSpell() throws InterruptedException {
+        keys.keyPress(Prop.SHIELD_SPELL);
+        Thread.sleep(1000);
+    }
+
     public void castReflectShield() throws InterruptedException {
         keys.keyPress(Prop.REFLECT);
         Thread.sleep(1000);

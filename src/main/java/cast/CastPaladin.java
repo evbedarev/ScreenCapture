@@ -48,7 +48,7 @@ public class CastPaladin extends Cast {
             }
 
             if (ATOMIC_DEFENDER.get() > 180) {
-//            keys.keyPress(DEFENDER);
+                actions.shieldSpell();
                 sleep(1000);
                 ATOMIC_DEFENDER.set(0);
             }

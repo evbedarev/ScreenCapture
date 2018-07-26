@@ -69,7 +69,7 @@ public class Monster implements KillMonster {
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 return true;
             }
         }
