@@ -1,7 +1,11 @@
 package main;
 
+import cast.Cast;
+import cast.CastStalker;
+import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathYun11;
+import checks.location.YunField11;
 import logic.Logic;
 import logic.LogicYunField11;
 import logic.take_loot.*;
@@ -13,12 +17,19 @@ import java.awt.event.KeyEvent;
 public class Prop {
 
     /////////////////GLOBAL////////////////////
-    public static void initialize() throws Exception {
-        logic = new LogicYunField11(0);
-    }
+
+    public static LocationCheck locationCheck;
     public static Logic logic;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun11();
+    public static Cast cast;
+
+    public static void initialize() throws Exception {
+        logic = new LogicYunField11(0);
+        cast = new CastStalker(0);
+        locationCheck = new LocationCheck(new YunField11());
+        cast.begin();
+    }
     ///////////////////////////////////////////
 
 

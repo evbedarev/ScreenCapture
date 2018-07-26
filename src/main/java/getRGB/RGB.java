@@ -8,16 +8,16 @@ import java.awt.image.BufferedImage;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
-        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-        compareFragmentImage.getRgb();
+//        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
+//        compareFragmentImage.getRgb();
 
 //        findPixelRgb(-16776192);
 
-//        showRGB(new int[] {104,97}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        showRGB(new int[] {1481,47}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 // Coursor rgb -16250872
-//-3552801
+//-3552801/-65794
 //-395017
 
     /**

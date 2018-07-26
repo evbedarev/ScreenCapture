@@ -29,6 +29,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static Actions actions;
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
+
     public abstract void createThread() throws Exception;
 
     public void run() {
@@ -116,7 +117,6 @@ public abstract class LogicLocation extends Thread implements Logic {
 
 
     public abstract void mainHandle() throws Exception;
-    abstract void checkCast() throws Exception;
     abstract void runFromMonster() throws Exception;
     abstract void checkMyHp() throws Exception;
     abstract void teleport() throws Exception;

@@ -89,6 +89,11 @@ public class Actions {
         keys.keyPress(Prop.AWAKENING_POTION);
     }
 
+    public void stealZeny() throws InterruptedException {
+        keys.keyPress(KeyEvent.VK_F4);
+    }
+
+
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
         locationCheck.locationCheck();
         double t = 2 * Math.PI * Math.random();
