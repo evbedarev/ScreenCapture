@@ -1,12 +1,15 @@
 package main;
 
 import cast.Cast;
+import cast.CastPaladin;
 import cast.CastStalker;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathYun11;
+import checks.location.YunField07;
 import checks.location.YunField11;
 import logic.Logic;
+import logic.LogicYunField07;
 import logic.LogicYunField11;
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
@@ -20,14 +23,14 @@ public class Prop {
 
     public static LocationCheck locationCheck;
     public static Logic logic;
-    public static final boolean CHECK_DIE = true;
+    public static final boolean CHECK_DIE = false;
     public static final AfterDeath checkDie = new AfterDeathYun11();
     public static Cast cast;
 
     public static void initialize() throws Exception {
-        logic = new LogicYunField11(0);
-        cast = new CastStalker(0);
-        locationCheck = new LocationCheck(new YunField11());
+        logic = new LogicYunField07(0);
+        cast = new CastPaladin(0);
+        locationCheck = new LocationCheck(new YunField07());
         cast.begin();
     }
     ///////////////////////////////////////////
@@ -72,7 +75,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = false;
+    public static final boolean NEED_SPELL_ATTACK = true;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 
@@ -90,7 +93,7 @@ public class Prop {
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
     public static final int WING_KEY = KeyEvent.VK_F3;
-    public static final int DEFENDER = KeyEvent.VK_F7;
+    public static final int SHIELD_SPELL = KeyEvent.VK_F7;
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
