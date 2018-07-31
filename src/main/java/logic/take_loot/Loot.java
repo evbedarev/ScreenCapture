@@ -32,24 +32,18 @@ public class Loot implements TakeLoot {
 
     @Override
     public boolean take() throws AWTException, InterruptedException {
-        for (int i = 0; i < Prop.COUNT_TO_FIND_LOOT; i++) {
-            BufferedImage screenShot = capture.takeScreenShot();
-            if (takeLoot(screenShot))
-                return true;
-        }
-        return false;
+        return takeLoot();
     }
 
     @Override
-    public boolean takeLoot(BufferedImage screenShot) throws
+    public boolean takeLoot() throws
             AWTException,
             InterruptedException {
 
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());

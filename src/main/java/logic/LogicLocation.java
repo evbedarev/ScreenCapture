@@ -50,7 +50,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         ATTACK_TIMER.set(0);
         while (attack.kill()) {
             count = 0;
-            checkMyHp();
+//            checkMyHp();
             Thread.sleep(500);
             if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
@@ -95,7 +95,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
             duringTheFight();
-            checkMyHp();
+//            checkMyHp();
             monstersAround = true;
         }
 

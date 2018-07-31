@@ -5,6 +5,7 @@ import logger.LoggerSingle;
 import main.Prop;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class CastStalker extends Cast {
     private final int threadId;
@@ -40,24 +41,32 @@ public class CastStalker extends Cast {
                 actions.drinkAwaikeningPotion();
                 ATOMIC_AWAKENING.set(0);
             }
-            if (STEAL_ZENY.get() > 15) {
+            if (STEAL_ZENY.get() > 60) {
                 actions.stealZeny();
                 STEAL_ZENY.set(0);
             }
-        }
 
-        if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
-            LoggerSingle.logInfo(this.toString(), "Cheking overweight");
-            if (CheckOverweight.check()) {
-                LoggerSingle.logInfo(this.toString(), "Dropping greenHerb");
-                actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
-                        Prop.ROOT_DIR + "Loot\\GreenHerb\\");
-                LoggerSingle.logInfo(this.toString(), "Dropping YellowHerb");
-                actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
-                        Prop.ROOT_DIR + "Loot\\YellowHerb\\");
+            if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
+                LoggerSingle.logInfo(this.toString(), "Cheking overweight");
+                if (CheckOverweight.check()) {
+                    countPutToKafra++;
+                    LoggerSingle.logInfo(this.toString(), "Dropping greenHerb");
+                    actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
+                            Prop.ROOT_DIR + "Loot\\GreenHerb\\");
+                    LoggerSingle.logInfo(this.toString(), "Dropping YellowHerb");
+                    actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
+                            Prop.ROOT_DIR + "Loot\\YellowHerb\\");
+                }
+                actions.teleport(Prop.locationCheck);
+                TIMER_CHECK_OVERWEIGHT.set(0);
             }
-            actions.teleport(Prop.locationCheck);
-            TIMER_CHECK_OVERWEIGHT.set(0);
+
+            if(countPutToKafra > 2) {
+                keys.keyPress(KeyEvent.VK_F7);
+                Thread.sleep(5000);
+                afterDeathYun11.startActions();
+                countPutToKafra = 0;
+            }
         }
     }
 

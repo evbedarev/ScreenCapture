@@ -20,14 +20,13 @@ public class Warp extends Monster {
     }
 
     @Override
-    public boolean findAndKill(BufferedImage screenShot) throws
+    public boolean findAndKill() throws
             Exception {
 
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());

@@ -1,12 +1,17 @@
 package find_image;
+import logic.Capture;
 import main.Prop;
 import org.apache.log4j.Logger;
 import static java.lang.Math.abs;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.List;
 
 public class FindPixels implements FindPixelsInImage {
     final Logger logger = Logger.getLogger(this.getClass());
+    static Capture capture;
 
     /**
      * Ищет изображение по пикселям на картинке
@@ -50,6 +55,23 @@ public class FindPixels implements FindPixelsInImage {
             return Optional.of(findNearestFragment(listCoords));
         }
         return Optional.empty();
+    }
+
+    public Optional<int[]> findPixels3Times(  int mainRgb,
+                                              int[] subImgCoord,
+                                              int[] ancillaryRgb) throws AWTException {
+        Optional<int[]> xy = Optional.empty();
+        BufferedImage screenShot;
+        capture = Capture.instance();
+        for (int i=0; i < 4; i++) {
+            screenShot = capture.takeScreenShot();
+            xy = findPixelsInImage(screenShot,
+                    mainRgb,
+                    subImgCoord,
+                    ancillaryRgb);
+            if (xy.isPresent()) return xy;
+        }
+        return xy;
     }
 
     /**
@@ -101,6 +123,26 @@ public class FindPixels implements FindPixelsInImage {
             return Optional.of(findNearestFragment(listCoords));
         }
         return Optional.empty();
+    }
+
+
+    public Optional<int[]> findPixelsArround3Times(int mainRgb,
+                                                 int[] subImgCoord,
+                                                 int[] ancillaryRgb,
+                                                 int[] coordsArea) throws AWTException {
+        Optional<int[]> xy = Optional.empty();
+        BufferedImage screenShot;
+        capture = Capture.instance();
+        for (int i=0; i < 4; i++) {
+            screenShot = capture.takeScreenShot();
+            xy = findPixelsInImageInArea(screenShot,
+                                        mainRgb,
+                                        subImgCoord,
+                                        ancillaryRgb,
+                                        coordsArea);
+            if (xy.isPresent()) return xy;
+        }
+        return xy;
     }
 
     /**

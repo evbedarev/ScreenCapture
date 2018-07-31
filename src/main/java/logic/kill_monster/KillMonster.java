@@ -6,12 +6,12 @@ import java.io.IOException;
 
 public interface KillMonster {
 
-    boolean findAndKill(BufferedImage screenShot) throws
+    boolean findAndKill() throws
             Exception;
 
     boolean kill() throws Exception;
 
-    boolean findAndKillAround(BufferedImage screenShot) throws
+    boolean findAndKillAround() throws
             AWTException,
             InterruptedException;
 

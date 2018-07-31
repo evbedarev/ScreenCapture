@@ -29,15 +29,14 @@ public class CheckROutes {
 //        RouteToLocation routeGef = new RouteGefField10();
 //        routeGef.tpUntil();
 //        RouteFromAldebaran routeFromAldebaran = new RouteFromAldebaran();
-//        routeFromAldebaran.moveToLocation();
+        routeFromAldebaran.moveToLocation();
+        RouteToLocation route = new RouteYunField01();
+route.tpUntil();
+route = new RouteYunField12();
+route.tpUntil();
 
-//        RouteToLocation route = new RouteYunField01();
-//        route.tpUntil();
-//        route = new RouteYunField12();
-//        route.tpUntil();
-
-        AfterDeath afterDeath = new AfterDeathYun11();
-        ((AfterDeathYun11) afterDeath).putItemTest();
+  //  AfterDeath afterDeath = new AfterDeathYun11();
+  //      ((AfterDeathYun11) afterDeath).putItemTest();
 
     }
 }

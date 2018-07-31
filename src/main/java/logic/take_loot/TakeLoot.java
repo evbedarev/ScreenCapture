@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public interface TakeLoot {
-    boolean takeLoot(BufferedImage screenShot) throws
+    boolean takeLoot() throws
             IOException,
             AWTException,
             InterruptedException;

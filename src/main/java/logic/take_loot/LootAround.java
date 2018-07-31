@@ -54,7 +54,7 @@ public class LootAround implements TakeLoot {
             mouse.mouseMove(800 + (int) Math.round(x),
                     450 + (int) Math.round(y));
             angle += increment;
-            Thread.sleep(200);
+            Thread.sleep(50);
             pickUp();
         }
     }
@@ -62,25 +62,23 @@ public class LootAround implements TakeLoot {
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(200);
+            Thread.sleep(50);
         }
     }
 
     @Override
     public boolean take() throws AWTException, InterruptedException {
-        BufferedImage screenShot = capture.takeScreenShot();
-        return takeLoot(screenShot);
+        return takeLoot();
     }
 
     @Override
-    public boolean takeLoot(BufferedImage screenShot) throws
+    public boolean takeLoot() throws
             AWTException,
             InterruptedException {
 
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: hands) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());

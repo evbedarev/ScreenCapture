@@ -31,14 +31,12 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean kill() throws Exception {
-        BufferedImage screenShot = capture.takeScreenShot();
-        return findAndKill(screenShot);
+        return findAndKill();
     }
 
     @Override
     public boolean killAround() throws AWTException, InterruptedException {
-        BufferedImage screenShot = capture.takeScreenShot();
-        return findAndKillAround(screenShot);
+        return findAndKillAround();
     }
 
     /**
@@ -50,14 +48,13 @@ public class Monster implements KillMonster {
      */
 
     @Override
-    public boolean findAndKill(BufferedImage screenShot) throws
+    public boolean findAndKill() throws
             Exception {
 
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());
@@ -77,15 +74,14 @@ public class Monster implements KillMonster {
     }
 
     @Override
-    public boolean findAndKillAround(BufferedImage screenShot) throws
+    public boolean findAndKillAround() throws
             AWTException,
             InterruptedException {
 
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
