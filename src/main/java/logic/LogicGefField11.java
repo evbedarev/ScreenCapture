@@ -62,15 +62,17 @@ public class LogicGefField11 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         if (threadId == 0) {
-            locationCheck.locationCheck();
-            checkSP.enoghtSP();
-            killMonsterList.forEach(this::findAndKill);
-            checkMyHp();
-            actions.pickUpCard();
-            actions.pickUpLoot();
-            teleport();
-            count++;
-            checkCast();
+//            locationCheck.locationCheck();
+            Thread.sleep(15000);
+            actions.useWing();
+//            checkSP.enoghtSP();
+//            killMonsterList.forEach(this::findAndKill);
+//            checkMyHp();
+//            actions.pickUpCard();
+//            actions.pickUpLoot();
+//            teleport();
+//            count++;
+//            checkCast();
         }
 
         if (threadId == 1) {

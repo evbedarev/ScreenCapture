@@ -59,6 +59,15 @@ public abstract class CheckDie implements AfterDeath {
                     kafraLoot.lootPath);
         }
         interfaceActions.pressClose();
+        interfaceActions.pressOnKafra();
+        interfaceActions.pressNext();
+        interfaceActions.pressKafraTeleport();
+        interfaceActions.pressOk();
+        interfaceActions.pressNext();
+        interfaceActions.pressDownArrow();
+        interfaceActions.pressCmdField07();
+        interfaceActions.pressOk();
+        Thread.sleep(5000);
     }
 
     public abstract void startActions() throws Exception;

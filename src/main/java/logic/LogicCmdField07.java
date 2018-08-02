@@ -3,7 +3,6 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.CmdField07;
-import checks.location.GefField11;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Goblin;
@@ -18,16 +17,10 @@ import java.util.stream.Stream;
 public class LogicCmdField07 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
-    private final int threadId;
-    private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
-    private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
-    private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
-
 
     public LogicCmdField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
-        this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new CmdField07());
         lootAround.initialize(new HandYun11());
@@ -57,31 +50,24 @@ public class LogicCmdField07 extends LogicLocation {
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicCmdField07(1);
-        thread.start();
         start();
     }
 
     public void mainHandle() throws Exception {
-        if (threadId == 0) {
-
-            locationCheck.locationCheck();
-            checkSP.enoghtSP();
-            killMonsterList.forEach(this::findAndKill);
-            checkMyHp();
-            actions.pickUpCard();
-            actions.pickUpLoot();
-            teleport();
-            count++;
-            checkCast();
+        Prop.cast.cast();
+        if (checkDie.check()) {
+            while (true) {
+                Thread.sleep(5000);
+            }
         }
-
-        if (threadId == 1) {
-//            ATOMIC_GUARD.incrementAndGet();
-            ATOMIC_AWAKENING.incrementAndGet();
-//            ATOMIC_DEFENDER.incrementAndGet();
-            sleep(1000);
-        }
+        locationCheck.locationCheck();
+        checkSP.enoghtSP();
+        killMonsterList.forEach(this::findAndKill);
+        checkMyHp();
+        actions.pickUpCard();
+        actions.pickUpLoot();
+        teleport();
+        count++;
     }
 
     void checkMyHp() throws Exception {
@@ -89,24 +75,6 @@ public class LogicCmdField07 extends LogicLocation {
         checkHP.checkHp();
     }
 
-    void checkCast() throws InterruptedException {
-//        if (ATOMIC_GUARD.get() > 300) {
-//            actions.castGuard();
-//            actions.castReflectShield();
-//            ATOMIC_GUARD.set(0);
-//        }
-//
-        if (ATOMIC_AWAKENING.get() > 1800) {
-            actions.drinkAwaikeningPotion();
-            ATOMIC_AWAKENING.set(0);
-        }
-//
-//        if (ATOMIC_DEFENDER.get() > 180) {
-////            keys.keyPress(DEFENDER);
-//            sleep(1000);
-//            ATOMIC_DEFENDER.set(0);
-//        }
-    }
 
     void teleport() throws Exception {
         runFromMonster();
