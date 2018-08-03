@@ -34,7 +34,7 @@ public class LogicGefField11 extends LogicLocation {
                 new Card(),
 //            new Clothes(logger),
                 new Shield(),
-                new Mask(),
+//                new Mask(),
                 new Coupon()
         };
 
