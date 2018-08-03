@@ -33,7 +33,7 @@ public abstract class CheckDie implements AfterDeath {
     public boolean check() throws Exception {
         if (!Prop.CHECK_DIE) return false;
         Optional<int[]> xy;
-        findFragmentInImage.setScreen(new int[]{600, 1000, 500, 700});
+        findFragmentInImage.setScreen(new int[]{600, 1000, 500, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CheckDie\\");
         if (xy.isPresent()) {
             startActions();
@@ -59,14 +59,6 @@ public abstract class CheckDie implements AfterDeath {
                     kafraLoot.lootPath);
         }
         interfaceActions.pressClose();
-        interfaceActions.pressOnKafra();
-        interfaceActions.pressNext();
-        interfaceActions.pressKafraTeleport();
-        interfaceActions.pressOk();
-        interfaceActions.pressNext();
-        interfaceActions.pressDownArrow();
-        interfaceActions.pressCmdField07();
-        interfaceActions.pressOk();
         Thread.sleep(5000);
     }
 

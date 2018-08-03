@@ -6,6 +6,7 @@ import cast.CastStalker;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathCmd07;
+import checks.afterDeath.AfterDeathGef11;
 import checks.afterDeath.AfterDeathYun11;
 import checks.location.CmdField07;
 import checks.location.GefField11;
@@ -24,14 +25,14 @@ public class Prop {
 
     public static LocationCheck locationCheck;
     public static Logic logic;
-    public static final boolean CHECK_DIE = false;
-    public static final AfterDeath checkDie = new AfterDeathCmd07();
+    public static final boolean CHECK_DIE = true;
+    public static final AfterDeath checkDie = new AfterDeathGef11();
     public static Cast cast;
 
     public static void initialize() throws Exception {
-        logic = new LogicCmdField07(0);
+        logic = new LogicGefField11(0);
         cast = new CastPaladin(0);
-        locationCheck = new LocationCheck(new CmdField07());
+        locationCheck = new LocationCheck(new GefField11());
         cast.begin();
     }
     ///////////////////////////////////////////

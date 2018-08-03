@@ -10,7 +10,6 @@ import logic.kill_monster.Raggler;
 import logic.take_loot.*;
 import main.Prop;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
