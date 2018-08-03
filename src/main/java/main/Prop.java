@@ -6,9 +6,11 @@ import cast.CastStalker;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathYun11;
+import checks.location.BeachDun02;
 import checks.location.YunField07;
 import checks.location.YunField11;
 import logic.Logic;
+import logic.LogicBeachDun02;
 import logic.LogicYunField07;
 import logic.LogicYunField11;
 import logic.take_loot.*;
@@ -23,14 +25,14 @@ public class Prop {
 
     public static LocationCheck locationCheck;
     public static Logic logic;
-    public static final boolean CHECK_DIE = false;
+    public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun11();
     public static Cast cast;
 
     public static void initialize() throws Exception {
-        logic = new LogicYunField07(0);
-        cast = new CastPaladin(0);
-        locationCheck = new LocationCheck(new YunField07());
+        logic = new LogicYunField11(0);
+        cast = new CastStalker(0);
+        locationCheck = new LocationCheck(new YunField11());
         cast.begin();
     }
     ///////////////////////////////////////////
@@ -48,7 +50,7 @@ public class Prop {
     //Количество проверок экрана на наличие монстров()
     public final static int COUNT_OF_CHECKS_MONSTER = 4;
     //Через сколько секунд повторить атаку
-    public final static int ATTACK_TIMER = 20;
+    public final static int ATTACK_TIMER = 40;
     //Через сколько циклов телепортироваться
     public final static int COUNT_TO_TELEPORT = 1;
     //Сколько надо циклов для поиска лута
@@ -75,7 +77,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = true;
+    public static final boolean NEED_SPELL_ATTACK = false;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 
