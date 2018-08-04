@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class Raggler extends Monster {
     public Raggler() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-2043704,
+        rgbParameterList.add(new RgbParameter(-199958,
                 new int[] {90,90},
-                new int[] {-1122859,-14084022}));
+                new int[] {-2175290,-4348516, -67858}));
     }
 }

@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GefField11 implements VerifyMap {
-    public static final int[] PORTAL_RGB = new int[] {1493,56, -6280000, -1200000};
+    public static final int[] PORTAL_RGB = new int[] {1492,46, -6280000, -1200000};
     public static final int[] PORTAL_RGB_1 = new int[] {1581,75, -6280000, -1200000};
     Capture capture;
 

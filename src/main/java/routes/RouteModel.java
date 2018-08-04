@@ -66,7 +66,7 @@ public abstract class RouteModel implements RouteToLocation {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            LoggerSingle.logInfo(this.toString(), "Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+            LoggerSingle.logInfo(this.toString(), "Checheck location Y " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
             return (y == checkCoords[1]);
         }
@@ -90,8 +90,7 @@ public abstract class RouteModel implements RouteToLocation {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            LoggerSingle.logInfo(this.toString(), "Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
+            LoggerSingle.logInfo(this.toString(), "Checheck location X " + this.toString() + ", coordinates: x=" + x + " y=" + y);            Thread.sleep(200);
             return (x == checkCoords[0]);
         }
         return false;
@@ -113,7 +112,7 @@ public abstract class RouteModel implements RouteToLocation {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            LoggerSingle.logInfo(this.toString(), "Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+            LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             Thread.sleep(200);
             return true;
         }
@@ -136,6 +135,7 @@ public abstract class RouteModel implements RouteToLocation {
             count = 0;
             this.tpUntil();
         }
+        count = 0;
     }
 
     private void moveByY(Route route, int[] clickXy) throws Exception{
@@ -152,12 +152,13 @@ public abstract class RouteModel implements RouteToLocation {
             count = 0;
             this.tpUntil();
         }
+        count = 0;
     }
-    private boolean checkCount() throws Exception {
+
+    private boolean checkCount() {
         count++;
         System.out.println(count);
-        if (count > 150) {
-//            count = 0;
+        if (count > 100) {
             return true;
         }
         return false;
