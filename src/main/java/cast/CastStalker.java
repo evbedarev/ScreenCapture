@@ -41,7 +41,7 @@ public class CastStalker extends Cast {
                 actions.drinkAwaikeningPotion();
                 ATOMIC_AWAKENING.set(0);
             }
-            if (STEAL_ZENY.get() > 60) {
+            if (STEAL_ZENY.get() > 30) {
                 actions.stealZeny();
                 STEAL_ZENY.set(0);
             }
