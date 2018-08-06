@@ -54,11 +54,12 @@ public class LogicGefField11 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         Prop.cast.cast();
-        if (checkDie.check()) {
-            while (true) {
-                Thread.sleep(5000);
-            }
-        }
+        checkDie.check();
+//        if (checkDie.check()) {
+//            while (true) {
+//                Thread.sleep(5000);
+//            }
+//        }
         locationCheck.locationCheck();
         checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);

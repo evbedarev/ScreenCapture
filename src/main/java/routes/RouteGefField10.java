@@ -2,6 +2,7 @@ package routes;
 import checks.LocationCheck;
 import checks.location.GefField10;
 import checks.location.GefField11;
+import logger.LoggerSingle;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -36,9 +37,11 @@ public class RouteGefField10 extends RouteModel{
         while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(600, 470);
             Thread.sleep(500);
+            LoggerSingle.logInfo(this.toString(), "Check location GefField11");
             if (verifyMap.onDesiredLocation()) break;
             if (checkDie.check()) break;
         }
+        LoggerSingle.logInfo(this.toString(), "Location GefField11");
     }
 
 }

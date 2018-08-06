@@ -22,6 +22,7 @@ public abstract class Cast extends Thread {
     final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
     final static AtomicInteger STEAL_ZENY = new AtomicInteger(0);
+    final static AtomicInteger BASH = new AtomicInteger(0);
     public static final AtomicInteger TIMER_CHECK_OVERWEIGHT = new AtomicInteger(0);
 
     public Cast() throws AWTException {

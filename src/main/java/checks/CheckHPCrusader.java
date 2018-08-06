@@ -7,12 +7,13 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import main.Prop;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-public class CheckHP {
-    private static volatile CheckHP instance;
+public class CheckHPCrusader {
+    private static volatile CheckHPCrusader instance;
     private boolean checkHp;
     private Capture capture;
     private Keys keys;
@@ -20,16 +21,15 @@ public class CheckHP {
     private Actions actions;
     private LocationCheck locationCheck;
     private AfterDeath checkDie;
-    private CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
 
-    private CheckHP() {
+    private CheckHPCrusader() {
     }
 
-    static public CheckHP instance() {
+    static public CheckHPCrusader instance() {
         if (instance == null) {
-            synchronized (CheckHP.class) {
+            synchronized (CheckHPCrusader.class) {
                 if (instance == null) {
-                    instance = new CheckHP();
+                    instance = new CheckHPCrusader();
                 }
             }
         }
@@ -61,14 +61,6 @@ public class CheckHP {
                 if (checkDie.check()) {
                     break;
                 }
-//                locationCheck.locationCheck();
-//                checkSilence();
-//                if (checkAgressorIsNear.check()) {
-//                    actions.teleport();
-//                    Thread.sleep(2000);
-//                }
-//                Thread.sleep(3000);
-//                image = capture.takeScreenShot();
                 locationCheck.locationCheck();
                 actions.teleport();
                 Thread.sleep(2000);
@@ -77,9 +69,11 @@ public class CheckHP {
                 image = capture.takeScreenShot();
             }
         }
+
         if (Prop.NEED_HEAL) {
             needHeal();
         }
+
         if (needPotion(image)) {
             keys.keyPress(KeyEvent.VK_F1);
         }

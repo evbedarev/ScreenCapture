@@ -98,6 +98,10 @@ public class Actions {
         keys.keyPress(KeyEvent.VK_F4);
     }
 
+    public void useBash() throws InterruptedException {
+        keys.keyPress(KeyEvent.VK_F8);
+    }
+
 
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
         locationCheck.locationCheck();
@@ -155,6 +159,12 @@ public class Actions {
         }
 
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
+    }
+
+    public void heal() throws Exception {
+        keys.keyPress(Prop.HEAL_KEY);
+        Thread.sleep(500);
+        mouse.mouseClick(800, 400);
     }
 
 

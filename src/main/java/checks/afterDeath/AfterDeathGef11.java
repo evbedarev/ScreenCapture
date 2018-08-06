@@ -27,7 +27,7 @@ public class AfterDeathGef11 extends CheckDie {
 
         putItems(kafraLootList);
 
-        Thread.sleep(5*1000*60);
+        Thread.sleep(3*1000*60);
         interfaceActions.pressOnKafra();
         interfaceActions.pressNext();
         interfaceActions.pressKafraTeleport();

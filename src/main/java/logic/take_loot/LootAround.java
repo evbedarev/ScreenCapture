@@ -78,10 +78,11 @@ public class LootAround implements TakeLoot {
 
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: hands) {
-            Optional<int[]> xy = findImageHard.findPixels3Times(
+            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb());
+                    parameter.getAncillaryRgb(),
+                    new int[] {675,900, 390, 550});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];

@@ -45,7 +45,6 @@ public class CastStalker extends Cast {
                 actions.stealZeny();
                 STEAL_ZENY.set(0);
             }
-
             if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
                 LoggerSingle.logInfo(this.toString(), "Cheking overweight");
                 if (CheckOverweight.check()) {

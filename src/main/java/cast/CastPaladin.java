@@ -47,10 +47,15 @@ public class CastPaladin extends Cast {
                 ATOMIC_AWAKENING.set(0);
             }
 
-            if (ATOMIC_DEFENDER.get() > 180) {
-                actions.shieldSpell();
-                sleep(1000);
-                ATOMIC_DEFENDER.set(0);
+//            if (ATOMIC_DEFENDER.get() > 180) {
+//                actions.shieldSpell();
+//                sleep(1000);
+//                ATOMIC_DEFENDER.set(0);
+//            }
+
+            if (BASH.get() > 10) {
+                actions.useBash();
+                BASH.set(0);
             }
 
             if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
@@ -74,6 +79,7 @@ public class CastPaladin extends Cast {
         incrementConst();
         ATOMIC_DEFENDER.incrementAndGet();
         ATOMIC_GUARD.incrementAndGet();
+        BASH.incrementAndGet();
         sleep(1000);
     }
 }

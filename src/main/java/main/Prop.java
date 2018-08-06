@@ -20,24 +20,20 @@ import java.awt.event.KeyEvent;
  * Properies
  */
 public class Prop {
-
     /////////////////GLOBAL////////////////////
-
     public static LocationCheck locationCheck;
     public static Logic logic;
     public static final boolean CHECK_DIE = true;
-    public static final AfterDeath checkDie = new AfterDeathGef11();
+    public static final AfterDeath checkDie = new AfterDeathYun11();
     public static Cast cast;
 
     public static void initialize() throws Exception {
-        logic = new LogicGefField11(0);
+        logic = new LogicYunField11(0);
         cast = new CastPaladin(0);
-        locationCheck = new LocationCheck(new GefField11());
+        locationCheck = new LocationCheck(new YunField11());
         cast.begin();
     }
     ///////////////////////////////////////////
-
-
     public static final int SCREEN_WIDTH = 1600;
     public static final int SCREEN_HEIGHT = 900;
     public static final String ROOT_DIR = "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\";
@@ -62,11 +58,11 @@ public class Prop {
     public static final int Y_HP = 82;
 
     ///////////////HEAL SKILL///////////////////////
-    public static final boolean NEED_HEAL = false;
-    public static final int HEAL_KEY = KeyEvent.VK_F1;
+    public static final boolean NEED_HEAL = true;
+    public static final int HEAL_KEY = KeyEvent.VK_F3;
     public static final int X_HP_HEAL = 137; //Only for acolyte
-    public static final int X_HP_TO_RUN = 55;
-    public static final int X_HP_TO_END_RUN = 60;
+    public static final int X_HP_TO_RUN = 98;
+    public static final int X_HP_TO_END_RUN = 137;
     public static final int X_HP_TO_DIE = 39;
     ///////////////////////////////////////////////
 

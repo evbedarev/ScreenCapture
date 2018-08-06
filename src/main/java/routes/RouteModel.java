@@ -151,6 +151,7 @@ public abstract class RouteModel implements RouteToLocation {
         if (checkCount()) {
             count = 0;
             this.tpUntil();
+            return;
         }
         count = 0;
     }
