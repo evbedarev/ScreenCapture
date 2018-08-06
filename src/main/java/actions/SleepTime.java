@@ -5,6 +5,6 @@ public final class SleepTime {
     }
 
     public static void sleep(double sleepTime) throws InterruptedException {
-        SleepTime.sleep((long)(sleepTime + (sleepTime/10) * Math.random()));
+        Thread.sleep((long)(sleepTime + (sleepTime/10) * Math.random()));
     }
 }

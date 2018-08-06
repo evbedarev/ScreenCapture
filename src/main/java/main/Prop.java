@@ -73,9 +73,10 @@ public class Prop {
 
     //////////////////SP///////////////////////////
     public static final boolean NEED_CHECK_SP = true;
-    public static final int X_SP = 103;
+    public static final int X_SP = 72;
     public static final int Y_SP = 97;
     public static final int SP_RGB = -6507025;
+    public static final int X_SP_ENOUGHT = 158;
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////

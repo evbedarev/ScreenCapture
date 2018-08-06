@@ -2,6 +2,7 @@ package checks.check_hp;
 
 import actions.Actions;
 import checks.CheckAgressorIsNear;
+import checks.CheckSP;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import key_and_mouse.Keys;
@@ -21,6 +22,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     LocationCheck locationCheck;
     AfterDeath checkDie;
     CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
+    CheckSP checkSP;
 
     public CheckHpByClass(LocationCheck locationCheck) throws AWTException {
         this.locationCheck = locationCheck;
@@ -29,6 +31,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
         mouse = Mouse.getInstance();
         keys  = Keys.getInstance();
         actions = Actions.instance();
+        checkSP = CheckSP.instance();
     }
 
     boolean needPotion(BufferedImage image) {

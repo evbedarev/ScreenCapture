@@ -32,6 +32,7 @@ public class CheckHpPaladin extends CheckHpByClass {
                 SleepTime.sleep(2000);
                 actions.heal();
                 SleepTime.sleep(1000);
+                checkSP.regenSP();
                 image = capture.takeScreenShot();
             }
         }

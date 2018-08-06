@@ -38,9 +38,9 @@ public class CheckSP {
         return enoughSP;
     }
 
-    public boolean regenerateSP() {
+    private boolean regenerateSP() {
         BufferedImage image = capture.takeScreenShot();
-        enoughSP = image.getRGB(Prop.X_SP_ENOUGH,Prop.Y_SP) == Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP_ENOUGHT,Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
@@ -50,6 +50,7 @@ public class CheckSP {
     }
 
     public void regenSP() throws InterruptedException {
+        if (!Prop.NEED_CHECK_SP) return;
         if (!enoghtSP()) {
             actions.sitDown();
             Thread.sleep(1000);

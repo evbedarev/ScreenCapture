@@ -33,6 +33,7 @@ public class CheckHpStalker extends CheckHpByClass {
                     SleepTime.sleep(2000);
                 }
                 SleepTime.sleep(3000);
+                checkSP.regenSP();
                 image = capture.takeScreenShot();
             }
         }
