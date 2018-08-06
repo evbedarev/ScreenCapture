@@ -1,6 +1,7 @@
 package checks;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -63,9 +64,9 @@ public class CheckHPCrusader {
                 }
                 locationCheck.locationCheck();
                 actions.teleport();
-                Thread.sleep(2000);
+                SleepTime.sleep(2000);
                 actions.heal();
-                Thread.sleep(1000);
+                SleepTime.sleep(1000);
                 image = capture.takeScreenShot();
             }
         }

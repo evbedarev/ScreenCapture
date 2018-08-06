@@ -1,5 +1,6 @@
 package logic.attacks;
 
+import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
@@ -51,7 +52,7 @@ public class Attack implements AttackInterface {
                 int y = xy.get()[1];
 //                mouse.mouseClick(x, y+10);
                 LoggerSingle.logInfo(this.toString(), "Attacking monster, coordinates: x=" + x + " y=" + y);
-                Thread.sleep(100);
+                SleepTime.sleep(100);
                 return true;
             }
         }

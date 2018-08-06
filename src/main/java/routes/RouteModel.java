@@ -1,6 +1,7 @@
 package routes;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import checks.location.VerifyMap;
 import find_image.FindPixels;
@@ -67,7 +68,7 @@ public abstract class RouteModel implements RouteToLocation {
             int y = xy.get()[1];
 
             LoggerSingle.logInfo(this.toString(), "Checheck location Y " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             return (y == checkCoords[1]);
         }
         return false;
@@ -90,7 +91,7 @@ public abstract class RouteModel implements RouteToLocation {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            LoggerSingle.logInfo(this.toString(), "Checheck location X " + this.toString() + ", coordinates: x=" + x + " y=" + y);            Thread.sleep(200);
+            LoggerSingle.logInfo(this.toString(), "Checheck location X " + this.toString() + ", coordinates: x=" + x + " y=" + y);            SleepTime.sleep(200);
             return (x == checkCoords[0]);
         }
         return false;
@@ -113,7 +114,7 @@ public abstract class RouteModel implements RouteToLocation {
             int y = xy.get()[1];
 
             LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             return true;
         }
         return false;
@@ -125,7 +126,7 @@ public abstract class RouteModel implements RouteToLocation {
         BufferedImage screenshot = capture.takeScreenShot();
         while (!checkLocationX(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             screenshot = capture.takeScreenShot();
             if (checkCount()) {
                 break;
@@ -142,7 +143,7 @@ public abstract class RouteModel implements RouteToLocation {
         BufferedImage screenshot = capture.takeScreenShot();
         while (!checkLocationY(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             screenshot = capture.takeScreenShot();
             if (checkCount()) {
                 break;

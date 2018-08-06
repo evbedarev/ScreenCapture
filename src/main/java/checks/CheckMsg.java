@@ -1,5 +1,6 @@
 package checks;
 
+import actions.SleepTime;
 import email.MsgFromPlayer;
 import email.MsgLocationChanged;
 import email.SendMessage;
@@ -40,7 +41,7 @@ public class CheckMsg {
             int y = xy.get()[1];
 
             logger.info("Recived message from player ");
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             return true;
         }
         return false;
@@ -51,7 +52,7 @@ public class CheckMsg {
         if (checkPixelInArea(screenshot, new int[] {269,279,171,181})) {
             sendMessage.send(new MsgFromPlayer());
             while (true) {
-                Thread.sleep(5000);
+                SleepTime.sleep(5000);
             }
         }
     }

@@ -49,21 +49,21 @@ public class Actions {
         checkMsg.check();
         locationCheck.locationCheck();
         keys.keyPress(Prop.TELEPORT_KEY);
-        Thread.sleep(700);
+        SleepTime.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void teleport() throws Exception {
         keys.keyPress(Prop.TELEPORT_KEY);
-        Thread.sleep(700);
+        SleepTime.sleep(700);
         keys.keyPress(KeyEvent.VK_ENTER);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void useWing() throws Exception {
         keys.keyPress(Prop.WING_KEY);
-        Thread.sleep(5000);
+        SleepTime.sleep(5000);
     }
 
 
@@ -77,17 +77,17 @@ public class Actions {
 
     public void castGuard() throws InterruptedException {
         keys.keyPress(Prop.GUARD);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void shieldSpell() throws InterruptedException {
         keys.keyPress(Prop.SHIELD_SPELL);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void castReflectShield() throws InterruptedException {
         keys.keyPress(Prop.REFLECT);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void drinkAwaikeningPotion() throws InterruptedException {
@@ -118,7 +118,7 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
         locationCheck.locationCheck();
     }
 
@@ -137,15 +137,15 @@ public class Actions {
     public void dropItem(String dirInventory, String dirLoot) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
-        Thread.sleep(500);
+        SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
-        Thread.sleep(500);
+        SleepTime.sleep(500);
 
         xy = findFragmentInImage.findImage(dirInventory);
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
         }
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
 
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
@@ -153,9 +153,9 @@ public class Actions {
             mouse.pressLeft();
             mouse.mouseMove(1000, 450);
             mouse.releaseLeft();
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(700);
+            SleepTime.sleep(700);
         }
 
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
@@ -163,7 +163,7 @@ public class Actions {
 
     public void heal() throws Exception {
         keys.keyPress(Prop.HEAL_KEY);
-        Thread.sleep(500);
+        SleepTime.sleep(500);
         mouse.mouseClick(800, 400);
     }
 

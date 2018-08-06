@@ -1,6 +1,7 @@
 package logic;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.*;
 import checks.afterDeath.AfterDeath;
 import logger.LoggerSingle;
@@ -51,7 +52,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         while (attack.kill()) {
             count = 0;
             checkMyHp();
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
     }
@@ -77,7 +78,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             killMonstersAround(monster);
         } else {
             checkMyHp();
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             duringTheFight();
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {

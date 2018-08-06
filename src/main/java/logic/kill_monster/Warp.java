@@ -1,5 +1,6 @@
 package logic.kill_monster;
 
+import actions.SleepTime;
 import logger.LoggerSingle;
 import logic.RgbParameter;
 
@@ -36,7 +37,7 @@ public class Warp extends Monster {
                 int y = xy.get()[1];
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString(), "Warp: Going to warp, coordinates: x=" + x + " y=" + y);
-                Thread.sleep(1000);
+                SleepTime.sleep(1000);
                 return true;
             }
         }

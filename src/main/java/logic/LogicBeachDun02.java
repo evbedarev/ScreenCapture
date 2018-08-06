@@ -1,16 +1,13 @@
 package logic;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.BeachDun02;
-import checks.location.YunField11;
 import logic.attacks.AttackBeachDun02;
-import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Goat;
 import logic.kill_monster.Megalith;
 import logic.kill_monster.StalacticGolem;
-import logic.kill_monster.TriJoint;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -56,7 +53,7 @@ public class LogicBeachDun02 extends LogicLocation {
         Prop.cast.cast();
         if (checkDie.check()) {
             while (true) {
-                Thread.sleep(5000);
+                SleepTime.sleep(5000);
             }
         }
         locationCheck.locationCheck();

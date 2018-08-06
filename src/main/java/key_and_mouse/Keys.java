@@ -1,5 +1,7 @@
 package key_and_mouse;
 
+import actions.SleepTime;
+
 import java.awt.*;
 
 public class Keys {
@@ -23,17 +25,17 @@ public class Keys {
 
     public synchronized void keyPress(int keyMask) throws InterruptedException {
         robot.keyPress(keyMask);
-        Thread.sleep(200);
+        SleepTime.sleep(200);
         robot.keyRelease(keyMask);
     }
 
     public void combinationPress(int keyMask1, int keyMask2) throws InterruptedException {
         robot.keyPress(keyMask1);
-        Thread.sleep(100);
+        SleepTime.sleep(100);
         robot.keyPress(keyMask2);
-        Thread.sleep(100);
+        SleepTime.sleep(100);
         robot.keyRelease(keyMask2);
-        Thread.sleep(100);
+        SleepTime.sleep(100);
         robot.keyRelease(keyMask1);
 }
 }

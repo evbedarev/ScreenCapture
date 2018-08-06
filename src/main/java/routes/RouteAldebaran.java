@@ -1,5 +1,6 @@
 package routes;
 
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.Aldebaran;
 import checks.location.YunField01;
@@ -23,7 +24,7 @@ public class RouteAldebaran extends RouteModel {
         while (!Location1) {
             locationCheck.locationCheck();
             actions.teleport();
-            Thread.sleep(2000);
+            SleepTime.sleep(2000);
             screenshot = capture.takeScreenShot();
             Location1 = checkLocationTP(screenshot, new int[] {1490,1500,93,121});
         }
@@ -36,7 +37,7 @@ public class RouteAldebaran extends RouteModel {
 
         while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(1000, 461);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
         }
     }
 }

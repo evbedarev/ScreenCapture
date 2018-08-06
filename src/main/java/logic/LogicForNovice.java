@@ -80,7 +80,7 @@
 //                    teleport();
 //                }
 //
-//                Thread.sleep(1000);
+//                SleepTime.sleep(1000);
 //                duringTheFight();
 //            }
 //
@@ -92,7 +92,7 @@
 //            if (count > 2) {
 //                teleport();
 //            }
-//            Thread.sleep(2000);
+//            SleepTime.sleep(2000);
 //            if (atomicInt.get() > 60) {
 //                System.out.println("60");
 //                atomicInt.set(0);
@@ -108,7 +108,7 @@
 //    private void checkMyHp() throws Exception {
 //        checkHP.checkHp();
 //        pickUpCard();
-//        Thread.sleep(1000);
+//        SleepTime.sleep(1000);
 //    }
 //
 //    private void duringTheFight() throws Exception {
@@ -117,7 +117,7 @@
 //        while (attack.killOrNot()) {
 //            atk++;
 //            checkMyHp();
-//            Thread.sleep(500);
+//            SleepTime.sleep(500);
 //            if (atk > 20) {
 //                break;
 //            }
@@ -164,7 +164,7 @@
 //
 //    private void teleport() throws InterruptedException {
 //        keys.keyPress(KeyEvent.VK_F2);
-//        Thread.sleep(1000);
+//        SleepTime.sleep(1000);
 //        keys.keyPress(KeyEvent.VK_ENTER);
 //        count = 1;
 //    }

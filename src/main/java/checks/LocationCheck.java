@@ -1,6 +1,7 @@
 package checks;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import checks.location.VerifyMap;
 import email.MsgLocationChanged;
@@ -40,7 +41,7 @@ public class LocationCheck {
 
         while (i < 260) {
             i++;
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             if (i % 20 == 0) {
                 t += Math.PI / 6;
                 x = (int) Math.round(radius * Math.cos(t));
@@ -54,7 +55,7 @@ public class LocationCheck {
         i = 0;
         while (i < 400) {
             i++;
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             if (i % 20 == 0) {
                 t2 += Math.PI / 8;
                 x2 = (int) Math.round(radius2 * Math.cos(t2));
@@ -69,13 +70,13 @@ public class LocationCheck {
 
     public void locationCheck() throws Exception {
         while (!verifyMap.onDesiredLocation()) {
-            Thread.sleep(5000);
+            SleepTime.sleep(5000);
             LoggerSingle.logInfo(this.toString(), "Нахожусь не на карте!!");
             findWaprPortal();
-            Thread.sleep(2000);
+            SleepTime.sleep(2000);
             if (verifyMap.onDesiredLocation()) {
                 actions.teleport();
-                Thread.sleep(2000);
+                SleepTime.sleep(2000);
             }
             countForSendMsg++;
             if (countForSendMsg == 100) {

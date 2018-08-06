@@ -1,9 +1,8 @@
 package logic;
 
+import actions.SleepTime;
 import checks.LocationCheck;
-import checks.location.CheckOverweight;
 import checks.location.YunField07;
-import logger.LoggerSingle;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
@@ -60,7 +59,7 @@ public class LogicYunField07 extends LogicLocation {
         Prop.cast.cast();
         if (checkDie.check()) {
             while (true) {
-                Thread.sleep(5000);
+                SleepTime.sleep(5000);
             }
         }
         locationCheck.locationCheck();

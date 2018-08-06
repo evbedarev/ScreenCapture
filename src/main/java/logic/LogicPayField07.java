@@ -102,7 +102,7 @@
 //            count = 0;
 //            logger.info("Set count to " + count);
 //            checkHP.checkHp();
-//            Thread.sleep(500);
+//            SleepTime.sleep(500);
 //            duringTheFight();
 //        }
 //        if (count == 0)
@@ -116,7 +116,7 @@
 //            logger.info("Set count to " + count);
 //            atk++;
 //            checkMyHp();
-//            Thread.sleep(500);
+//            SleepTime.sleep(500);
 //            if (atk > 20) {
 //                stepAside();
 //                findAndKill();
@@ -162,9 +162,9 @@
 //            count = 0;
 //            logger.info("Set count to " + count);
 //            keys.keyPress(KeyEvent.VK_F2);
-//            Thread.sleep(1000);
+//            SleepTime.sleep(1000);
 //            keys.keyPress(KeyEvent.VK_ENTER);
-//            Thread.sleep(1000);
+//            SleepTime.sleep(1000);
 //            stepAside();
 //        }
 //    }

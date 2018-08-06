@@ -1,5 +1,6 @@
 package routes;
 
+import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logic.Capture;
@@ -75,7 +76,7 @@ public class RouteFromAldebaran {
             int y = xy.get()[1];
 
 //            logger.info("Location true " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            Thread.sleep(200);
+            SleepTime.sleep(200);
             return (x == checkCoords[0] && y == checkCoords[1]);
         }
         return false;
@@ -86,16 +87,16 @@ public class RouteFromAldebaran {
         for (Route route: routes) {
             int count = 0;
             mouse.mouseClick(route.coordsToMove[0], route.coordsToMove[1]);
-//            Thread.sleep(route.getSleepTime());
+//            SleepTime.sleep(route.getSleepTime());
 //            BufferedImage screenshot = capture.takeScreenShot();
 //            while (!checkLocation(screenshot, route)) {
 //                screenshot = capture.takeScreenShot();
 //                if (count > 40) break;
-//                Thread.sleep(500);
+//                SleepTime.sleep(500);
 //                System.out.println(count);
 //                count++;
 //            }
-            Thread.sleep(4000);
+            SleepTime.sleep(4000);
 //            if (count > 40) {
 //                System.out.println("not in route!!!");
 //                break;
@@ -111,16 +112,16 @@ public class RouteFromAldebaran {
     public void moveByMap() throws Exception {
         for (Route route: routes) {
             int count = 0;
-//            Thread.sleep(route.getSleepTime());
+//            SleepTime.sleep(route.getSleepTime());
             BufferedImage screenshot = capture.takeScreenShot();
             while (!checkLocation(screenshot, route)) {
                 mouse.mouseClick(790, 520);
-//                Thread.sleep(200);
+//                SleepTime.sleep(200);
                 screenshot = capture.takeScreenShot();
 //                System.out.println(count);
                 count++;
             }
-            Thread.sleep(500);
+            SleepTime.sleep(500);
 //            if (!checkLocation(screenshot, route)) {
 //                System.out.println("not in route!!!");
 //                break;

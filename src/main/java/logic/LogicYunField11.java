@@ -51,7 +51,7 @@ public class LogicYunField11 extends LogicLocation {
         checkDie.check();
 //        if (checkDie.check()) {
 //            while (true) {
-//                Thread.sleep(5000);
+//                SleepTime.sleep(5000);
 //            }
 //        }
         locationCheck.locationCheck();

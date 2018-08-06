@@ -1,5 +1,7 @@
 package key_and_mouse;
 
+import actions.SleepTime;
+
 import java.awt.*;
 import java.awt.event.InputEvent;
 
@@ -30,23 +32,23 @@ public class Mouse {
             throws AWTException, InterruptedException {
         robot.mouseMove(x,y);
         robot.mousePress(button_mask);
-        Thread.sleep(sleepTime);
+        SleepTime.sleep(sleepTime);
         robot.mouseRelease(button_mask);
     }
     public void leftClick() throws InterruptedException {
         robot.mousePress(InputEvent.BUTTON1_MASK);
-        Thread.sleep(50);
+        SleepTime.sleep(50);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
     public void pressLeft() throws InterruptedException {
         robot.mousePress(InputEvent.BUTTON1_MASK);
-        Thread.sleep(100);
+        SleepTime.sleep(100);
     }
 
     public void releaseLeft() throws InterruptedException {
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        Thread.sleep(100);
+        SleepTime.sleep(100);
     }
 
     public void mouseMove(int x, int y) {
