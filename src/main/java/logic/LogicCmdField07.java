@@ -1,6 +1,7 @@
 package logic;
 
 import actions.Actions;
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.CmdField07;
 import logic.attacks.AttackGef11;
@@ -56,7 +57,7 @@ public class LogicCmdField07 extends LogicLocation {
         Prop.cast.cast();
         if (checkDie.check()) {
             while (true) {
-                Thread.sleep(5000);
+                SleepTime.sleep(5000);
             }
         }
         locationCheck.locationCheck();

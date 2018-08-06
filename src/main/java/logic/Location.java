@@ -81,7 +81,7 @@
 //        while (attack.killOrNot()) {
 //            atk++;
 //            checkMyHp();
-//            Thread.sleep(500);
+//            SleepTime.sleep(500);
 //            if (atk > 20) {
 //                stepAside();
 //                atk = 1;
@@ -124,9 +124,9 @@
 //    void teleport() throws Exception {
 //        if (count > 3) {
 //            keys.keyPress(KeyEvent.VK_F2);
-//            Thread.sleep(1000);
+//            SleepTime.sleep(1000);
 //            keys.keyPress(KeyEvent.VK_ENTER);
-//            Thread.sleep(1000);
+//            SleepTime.sleep(1000);
 //            stepAside();
 //            logger.info("TELEPORTING count=" + count);
 //            count = 0;
@@ -138,7 +138,7 @@
 //        while (creamy.findAndKill()) {
 //            count = 0;
 ////            awareMonster();
-//            Thread.sleep(3000);
+//            SleepTime.sleep(3000);
 //            duringTheFight();
 //        }
 //    }

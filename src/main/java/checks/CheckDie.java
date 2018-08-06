@@ -2,6 +2,7 @@ package checks;
 
 import actions.Actions;
 import actions.InterfaceActions;
+import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
 import main.Prop;
@@ -59,7 +60,7 @@ public abstract class CheckDie implements AfterDeath {
                     kafraLoot.lootPath);
         }
         interfaceActions.pressClose();
-        Thread.sleep(5000);
+        SleepTime.sleep(5000);
     }
 
     public abstract void startActions() throws Exception;

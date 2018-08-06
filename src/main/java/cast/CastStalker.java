@@ -1,5 +1,6 @@
 package cast;
 
+import actions.SleepTime;
 import checks.location.CheckOverweight;
 import logger.LoggerSingle;
 import main.Prop;
@@ -59,10 +60,9 @@ public class CastStalker extends Cast {
                 actions.teleport(Prop.locationCheck);
                 TIMER_CHECK_OVERWEIGHT.set(0);
             }
-
             if(countPutToKafra > 2) {
                 keys.keyPress(KeyEvent.VK_F7);
-                Thread.sleep(5000);
+                SleepTime.sleep(5000);
                 afterDeathYun11.startActions();
                 countPutToKafra = 0;
             }

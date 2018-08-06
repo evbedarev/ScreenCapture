@@ -44,7 +44,7 @@ import java.util.Optional;
 //    public void pickUp() throws Exception {
 //        TakeLoot takeLoot = this;
 //        while (takeLoot.takeLoot()) {
-//            Thread.sleep(1000);
+//            SleepTime.sleep(1000);
 //        }
 //    }
 //}

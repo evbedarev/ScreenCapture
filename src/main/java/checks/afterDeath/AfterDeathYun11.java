@@ -2,6 +2,7 @@ package checks.afterDeath;
 
 import actions.Actions;
 import actions.InterfaceActions;
+import actions.SleepTime;
 import checks.CheckDie;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -48,11 +49,11 @@ public class AfterDeathYun11 extends CheckDie {
 
         putItems(kafraLootList);
 
-        Thread.sleep(5*1000*60);
+        SleepTime.sleep(5*1000*60);
         actions.standUp();
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
         keys.keyPress(KeyEvent.VK_F7);
-        Thread.sleep(10000);
+        SleepTime.sleep(10000);
 
         RouteFromAldebaran routeFromAldebaran = new RouteFromAldebaran();
         routeFromAldebaran.moveToLocation();
@@ -67,7 +68,7 @@ public class AfterDeathYun11 extends CheckDie {
     public void goToKafra() throws AWTException, InterruptedException {
         Mouse mouse = Mouse.getInstance();
         mouse.mouseClick(955,105);
-        Thread.sleep(5000);
+        SleepTime.sleep(5000);
     }
 
     public void putItemTest() throws Exception {
@@ -99,11 +100,11 @@ public class AfterDeathYun11 extends CheckDie {
 
         putItems(kafraLootList);
 
-        Thread.sleep(5*1000*60);
+        SleepTime.sleep(5*1000*60);
         actions.standUp();
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
         keys.keyPress(KeyEvent.VK_F7);
-        Thread.sleep(10000);
+        SleepTime.sleep(10000);
 
         RouteFromAldebaran routeFromAldebaran = new RouteFromAldebaran();
         routeFromAldebaran.moveToLocation();

@@ -1,5 +1,6 @@
 package logic.take_loot;
 
+import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
@@ -54,7 +55,7 @@ public class LootAround implements TakeLoot {
             mouse.mouseMove(800 + (int) Math.round(x),
                     450 + (int) Math.round(y));
             angle += increment;
-            Thread.sleep(50);
+            SleepTime.sleep(50);
             pickUp();
         }
     }
@@ -62,7 +63,7 @@ public class LootAround implements TakeLoot {
     @Override
     public void pickUp() throws Exception {
         while (take()) {
-            Thread.sleep(50);
+            SleepTime.sleep(50);
         }
     }
 
@@ -90,7 +91,7 @@ public class LootAround implements TakeLoot {
 
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(), "Taking loot, coordinates: x=" + x + " y=" + y);
-                Thread.sleep(100);
+                SleepTime.sleep(100);
                 return true;
             }
         }

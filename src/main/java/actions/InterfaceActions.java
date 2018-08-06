@@ -43,7 +43,7 @@ public class InterfaceActions {
         xy = findFragmentInImage.findImage(pathFragment);
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
-            Thread.sleep(sleepTime);
+            SleepTime.sleep(sleepTime);
             logger.info(methodName + ": find and click." );
         }
     }
@@ -68,9 +68,9 @@ public class InterfaceActions {
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\Kafra\\");
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 20, xy.get()[1] + 80);
-            Thread.sleep(1000);
+            SleepTime.sleep(1000);
             mouse.mouseClick(xy.get()[0] + 20, xy.get()[1] + 80);
-            Thread.sleep(5000);
+            SleepTime.sleep(5000);
             logger.info("pressOnKafra" + ": find and click." );
         }
     }
@@ -125,23 +125,23 @@ public class InterfaceActions {
     }
 
     public void openInventory() throws InterruptedException {
-        Thread.sleep(500);
+        SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
     }
 
     public void putItemToKafra (String dirInventory, String dirLoot) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
-        Thread.sleep(500);
+        SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
 
         xy = findFragmentInImage.findImage(dirInventory);
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
         }
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
 
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
@@ -149,9 +149,9 @@ public class InterfaceActions {
             mouse.pressLeft();
             moveCoursorToWarehouse();
             mouse.releaseLeft();
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             keys.keyPress(KeyEvent.VK_ENTER);
-            Thread.sleep(700);
+            SleepTime.sleep(700);
         }
 
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);

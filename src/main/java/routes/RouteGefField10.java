@@ -1,4 +1,5 @@
 package routes;
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.GefField10;
 import checks.location.GefField11;
@@ -21,7 +22,7 @@ public class RouteGefField10 extends RouteModel{
         while (!checkLocationTP(screenshot, new int[] {1478,1492,134,146})) {
             locationCheck.locationCheck();
             actions.teleport();
-            Thread.sleep(1000);
+            SleepTime.sleep(1000);
             screenshot = capture.takeScreenShot();
             if (checkDie.check()) break;
         }
@@ -36,7 +37,7 @@ public class RouteGefField10 extends RouteModel{
         verifyMap = new GefField11();
         while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(600, 470);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             LoggerSingle.logInfo(this.toString(), "Check location GefField11");
             if (verifyMap.onDesiredLocation()) break;
             if (checkDie.check()) break;

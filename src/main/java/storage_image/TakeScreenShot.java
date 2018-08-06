@@ -1,12 +1,13 @@
 package storage_image;
 
+import actions.SleepTime;
 import logic.Capture;
 
 import java.awt.*;
 
 public class TakeScreenShot {
     public static void main(String[] args) throws InterruptedException, AWTException {
-        Thread.sleep(1000);
+        SleepTime.sleep(1000);
         takeScreenShot();
     }
 

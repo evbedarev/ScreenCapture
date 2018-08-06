@@ -1,5 +1,6 @@
 package getRGB;
 
+import actions.SleepTime;
 import logic.Capture;
 import main.Prop;
 import storage_image.StorageImageFile;
@@ -14,11 +15,11 @@ public class FiveScreenShots {
 
     public static void main(String[] args) throws AWTException, InterruptedException {
         Capture capture = Capture.instance();
-        Thread.sleep(5000);
+        SleepTime.sleep(5000);
         for (int i = 0; i < COUNT_SCREENSHOTS; i++) {
             BufferedImage image = capture.takeScreenShot();
            storageImageFile.save(image, PATH_TO_SAVE + "fragment" + i + ".png");
-           Thread.sleep(1000);
+           SleepTime.sleep(1000);
         }
     }
 }

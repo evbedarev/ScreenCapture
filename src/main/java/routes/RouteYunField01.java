@@ -1,4 +1,5 @@
 package routes;
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField01;
 import checks.location.YunField12;
@@ -19,7 +20,7 @@ public class RouteYunField01 extends RouteModel{
             while (!checkLocationTP(screenshot, new int[] {1473,1486,78,89})) {
             locationCheck.locationCheck();
             actions.teleport();
-            Thread.sleep(1000);
+            SleepTime.sleep(1000);
             screenshot = capture.takeScreenShot();
             if (checkDie.check()) break;
         }
@@ -32,7 +33,7 @@ public class RouteYunField01 extends RouteModel{
         verifyMap = new YunField12();
             while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(480, 470);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
             if (verifyMap.onDesiredLocation()) break;
             if (checkDie.check()) break;
         }

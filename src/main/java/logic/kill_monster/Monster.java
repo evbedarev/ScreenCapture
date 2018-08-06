@@ -1,5 +1,6 @@
 package logic.kill_monster;
 
+import actions.SleepTime;
 import checks.CheckSP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -9,7 +10,6 @@ import logic.Capture;
 import logic.RgbParameter;
 import main.Prop;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class Monster implements KillMonster {
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                Thread.sleep(2000);
+                SleepTime.sleep(2000);
                 return true;
             }
         }
@@ -93,7 +93,7 @@ public class Monster implements KillMonster {
                 spellAttack();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
-                Thread.sleep(1000);
+                SleepTime.sleep(1000);
                 return true;
             }
         }
@@ -105,7 +105,7 @@ public class Monster implements KillMonster {
 
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
             keys.keyPress(Prop.SPELL_ATTACK_KEY);
-            Thread.sleep(500);
+            SleepTime.sleep(500);
         }
     }
 }
