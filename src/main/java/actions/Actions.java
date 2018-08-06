@@ -49,14 +49,14 @@ public class Actions {
         checkMsg.check();
         locationCheck.locationCheck();
         keys.keyPress(Prop.TELEPORT_KEY);
-        SleepTime.sleep(700);
+        SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
     }
 
     public void teleport() throws Exception {
         keys.keyPress(Prop.TELEPORT_KEY);
-        SleepTime.sleep(700);
+        SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
     }

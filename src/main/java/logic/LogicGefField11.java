@@ -1,7 +1,6 @@
 package logic;
 
 import actions.Actions;
-import checks.CheckHP;
 import checks.location.GefField11;
 import checks.LocationCheck;
 import logic.attacks.AttackGef11;
@@ -10,7 +9,6 @@ import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,7 +22,7 @@ public class LogicGefField11 extends LogicLocation {
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField11());
         lootAround.initialize(new HandYun11());
-        checkHP.initialize(true, locationCheck);
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
                         new Goblin()

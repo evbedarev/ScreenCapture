@@ -27,7 +27,7 @@ public class LogicGefField05 extends LogicLocation {
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
-        checkHP.initialize(true, locationCheck);
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
                         new ThiefBug(),

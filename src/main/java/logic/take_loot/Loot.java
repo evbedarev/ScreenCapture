@@ -1,17 +1,15 @@
 package logic.take_loot;
 
 import actions.SleepTime;
-import checks.CheckHP;
+import checks.check_hp.CheckHP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
-import main.Prop;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 //package logic;
 //
-//import checks.CheckHP;
+//import checks.check_hp.CheckHP;
 //import checks.location.IzludDun03;
 //import checks.location.VerifyMap;
 //import email.MsgLocationChanged;

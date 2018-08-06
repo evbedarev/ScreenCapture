@@ -22,7 +22,7 @@ public class LogicYunField11 extends LogicLocation {
         
         locationCheck = new LocationCheck(new YunField11());
         lootAround.initialize(new HandYun11());
-        checkHP.initialize(true, locationCheck);
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(new Goat())
                 .collect(Collectors.toList());

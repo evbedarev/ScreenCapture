@@ -25,7 +25,7 @@ public class LogicBeachDun02 extends LogicLocation {
         
         locationCheck = new LocationCheck(new BeachDun02());
         lootAround.initialize(new HandYun11());
-        checkHP.initialize(true, locationCheck);
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
                         new Megalith(),

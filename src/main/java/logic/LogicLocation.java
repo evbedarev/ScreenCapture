@@ -4,6 +4,7 @@ import actions.Actions;
 import actions.SleepTime;
 import checks.*;
 import checks.afterDeath.AfterDeath;
+import checks.check_hp.CheckHP;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -35,7 +36,7 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void run() {
         try {
-            checkHP.initialize(true, locationCheck);
+            checkHP.initialize(true, Prop.checkHitPoints);
             actions = Actions.instance();
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();

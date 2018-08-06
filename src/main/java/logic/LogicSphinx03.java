@@ -29,7 +29,7 @@ public class LogicSphinx03 extends LogicLocation {
         actions = Actions.instance();
         locationCheck = new LocationCheck(new Sphinx03());
         lootAround.initialize(new HandSph03());
-        checkHP.initialize(true, locationCheck);
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(new Marduk(), new Pasana())
                 .collect(Collectors.toList());

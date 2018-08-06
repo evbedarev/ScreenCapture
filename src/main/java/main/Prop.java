@@ -8,6 +8,8 @@ import checks.afterDeath.AfterDeath;
 import checks.afterDeath.AfterDeathCmd07;
 import checks.afterDeath.AfterDeathGef11;
 import checks.afterDeath.AfterDeathYun11;
+import checks.check_hp.CheckHitPoints;
+import checks.check_hp.CheckHpStalker;
 import checks.location.CmdField07;
 import checks.location.GefField11;
 import checks.location.YunField07;
@@ -26,11 +28,14 @@ public class Prop {
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun11();
     public static Cast cast;
+    public static CheckHitPoints checkHitPoints;
+
 
     public static void initialize() throws Exception {
         logic = new LogicYunField11(0);
         cast = new CastPaladin(0);
         locationCheck = new LocationCheck(new YunField11());
+        checkHitPoints = new CheckHpStalker(locationCheck);
         cast.begin();
     }
     ///////////////////////////////////////////
@@ -67,6 +72,7 @@ public class Prop {
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////
+    public static final boolean NEED_CHECK_SP = true;
     public static final int X_SP = 103;
     public static final int Y_SP = 97;
     public static final int SP_RGB = -6507025;
