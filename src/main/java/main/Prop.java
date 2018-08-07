@@ -100,6 +100,6 @@ public class Prop {
     public TakeLoot[] usefulLoot;
     public TakeLoot[] loot;
 
-    public static final double FIND_LOOT_SMALL_RADIUS = 55;
+    public static final double FIND_LOOT_SMALL_RADIUS = 65;
     public static final double FIND_LOOT_LARGE_RADIUS = 95;
 }

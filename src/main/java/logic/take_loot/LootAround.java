@@ -53,7 +53,7 @@ public class LootAround implements TakeLoot {
             double y = radius * Math.sin(angle);
 
             mouse.mouseMove(800 + (int) Math.round(x),
-                    450 + (int) Math.round(y));
+                    460 + (int) Math.round(y));
             angle += increment;
             SleepTime.sleep(50);
             pickUp();
