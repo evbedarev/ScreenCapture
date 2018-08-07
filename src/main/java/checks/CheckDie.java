@@ -59,6 +59,8 @@ public abstract class CheckDie implements AfterDeath {
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
+                image = capture.takeScreenShot();
+                if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP) return false;
             }
             return true;
         }
