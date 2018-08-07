@@ -96,6 +96,8 @@ public class Prop {
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
+    public static final int REJECT_SWORD = KeyEvent.VK_F6;
+
 
     public TakeLoot[] usefulLoot;
     public TakeLoot[] loot;

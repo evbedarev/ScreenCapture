@@ -105,6 +105,10 @@ public class Actions {
         keys.keyPress(KeyEvent.VK_F8);
     }
 
+    public void useRejectSword() throws InterruptedException {
+        keys.keyPress(Prop.REJECT_SWORD);
+    }
+
 
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
         locationCheck.locationCheck();
