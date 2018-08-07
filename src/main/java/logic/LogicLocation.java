@@ -60,13 +60,10 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     void findAndKill(KillMonster monster) {
         try {
-            for (int  cnt=0; cnt < Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
-                ATTACK_MOBS_BEHIND_WALLS.set(0);
-                while (monster.kill()) {
-                    attackBySwordOrSpell(monster);
-                    cnt = 0;
-                    count = 0;
-                }
+            ATTACK_MOBS_BEHIND_WALLS.set(0);
+            while (monster.kill()) {
+                attackBySwordOrSpell(monster);
+                count = 0;
             }
         } catch (Exception exception) {
             exception.printStackTrace();
