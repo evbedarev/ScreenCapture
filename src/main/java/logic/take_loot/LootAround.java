@@ -19,7 +19,7 @@ public class LootAround implements TakeLoot {
     Mouse mouse;
     FindPixels findImageHard;
     List<RgbParameter> hands;
-    double smallAngle = Math.PI/2;
+    double smallAngle = Math.PI/3;
     double largeAnge = Math.PI/5;
     private LootAround() {
     }
