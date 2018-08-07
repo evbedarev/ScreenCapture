@@ -21,7 +21,7 @@ public class CheckHpPaladin extends CheckHpByClass {
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
-            actions.useWing();
+            actions.teleport(locationCheck);
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {

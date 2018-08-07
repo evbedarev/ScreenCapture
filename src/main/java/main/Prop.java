@@ -60,8 +60,8 @@ public class Prop {
     ///////////////HEAL SKILL///////////////////////
     public static final boolean NEED_HEAL = false;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
-    public static final int X_HP_HEAL = 137; //Only for acolyte
-    public static final int X_HP_TO_RUN = 98;
+    public static final int X_HP_HEAL = 144; //Only for acolyte
+    public static final int X_HP_TO_RUN = 100;
     public static final int X_HP_TO_END_RUN = 144;
     ///////////////////////////////////////////////
 

@@ -5,6 +5,7 @@ import checks.LocationCheck;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 import org.apache.log4j.Logger;
@@ -52,6 +53,7 @@ public class Actions {
         SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
+        LoggerSingle.logInfo(this.toString(), "Teleporting with locationCheck");
     }
 
     public void teleport() throws Exception {
@@ -59,6 +61,7 @@ public class Actions {
         SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
+        LoggerSingle.logInfo(this.toString(), "Teleporting without locationCheck");
     }
 
     public void useWing() throws Exception {
