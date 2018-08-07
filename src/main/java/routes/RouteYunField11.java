@@ -36,7 +36,7 @@ public class RouteYunField11 extends RouteModel {
         verifyMap = new YunField07();
         while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(600, 461);
-            SleepTime.sleep(500);
+            SleepTime.sleep(3000);
         }
     }
 }

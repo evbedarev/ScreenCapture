@@ -18,9 +18,9 @@ public class CheckHpStalker extends CheckHpByClass {
     @Override
     public void checkHp() throws Exception {
         BufferedImage image = capture.takeScreenShot();
+        checkSilence();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
-            actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {
@@ -33,6 +33,7 @@ public class CheckHpStalker extends CheckHpByClass {
                     SleepTime.sleep(2000);
                 }
                 SleepTime.sleep(3000);
+                actions.heal();
                 checkSP.regenSP();
                 image = capture.takeScreenShot();
             }

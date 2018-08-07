@@ -32,9 +32,11 @@ public class CheckROutes {
 //        RouteFromAldebaran routeFromAldebaran = new RouteFromAldebaran();
         routeFromAldebaran.moveToLocation();
         RouteToLocation route = new RouteYunField01();
-route.tpUntil();
-route = new RouteYunField12();
-route.tpUntil();
+        route.tpUntil();
+        route = new RouteYunField12();
+        route.tpUntil();
+        route = new RouteYunField11();
+        route.tpUntil();
 
   //  AfterDeath afterDeath = new AfterDeathYun11();
   //      ((AfterDeathYun11) afterDeath).putItemTest();

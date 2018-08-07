@@ -4,16 +4,10 @@ import cast.Cast;
 import cast.CastPaladin;
 import cast.CastStalker;
 import checks.LocationCheck;
-import checks.afterDeath.AfterDeath;
-import checks.afterDeath.AfterDeathCmd07;
-import checks.afterDeath.AfterDeathGef11;
-import checks.afterDeath.AfterDeathYun11;
+import checks.afterDeath.*;
 import checks.check_hp.CheckHitPoints;
 import checks.check_hp.CheckHpStalker;
-import checks.location.CmdField07;
-import checks.location.GefField11;
-import checks.location.YunField07;
-import checks.location.YunField11;
+import checks.location.*;
 import logic.*;
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
@@ -26,15 +20,15 @@ public class Prop {
     public static LocationCheck locationCheck;
     public static Logic logic;
     public static final boolean CHECK_DIE = true;
-    public static final AfterDeath checkDie = new AfterDeathYun11();
+    public static final AfterDeath checkDie = new AfterDeathYun04();
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
 
 
     public static void initialize() throws Exception {
-        logic = new LogicYunField11(0);
-        cast = new CastPaladin(0);
-        locationCheck = new LocationCheck(new YunField11());
+        logic = new LogicYunField07(0);
+        cast = new CastStalker(0);
+        locationCheck = new LocationCheck(new YunField07());
         checkHitPoints = new CheckHpStalker(locationCheck);
         cast.begin();
     }
@@ -61,14 +55,14 @@ public class Prop {
     public static final int RGB_HP = -6507025;
     public static final int X_HP = 130;
     public static final int Y_HP = 82;
+    public static final int X_HP_AFTER_DEATH = 42;
 
     ///////////////HEAL SKILL///////////////////////
-    public static final boolean NEED_HEAL = true;
+    public static final boolean NEED_HEAL = false;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
     public static final int X_HP_HEAL = 137; //Only for acolyte
     public static final int X_HP_TO_RUN = 98;
-    public static final int X_HP_TO_END_RUN = 137;
-    public static final int X_HP_TO_DIE = 39;
+    public static final int X_HP_TO_END_RUN = 144;
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////

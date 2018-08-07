@@ -42,10 +42,10 @@ public class CastStalker extends Cast {
                 actions.drinkAwaikeningPotion();
                 ATOMIC_AWAKENING.set(0);
             }
-            if (STEAL_ZENY.get() > 30) {
-                actions.stealZeny();
-                STEAL_ZENY.set(0);
-            }
+//            if (STEAL_ZENY.get() > 30) {
+//                actions.stealZeny();
+//                STEAL_ZENY.set(0);
+//            }
             if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
                 LoggerSingle.logInfo(this.toString(), "Cheking overweight");
                 if (CheckOverweight.check()) {

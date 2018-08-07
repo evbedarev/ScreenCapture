@@ -130,13 +130,13 @@ public class InterfaceActions {
         SleepTime.sleep(1000);
     }
 
+    public void closeInventory() throws InterruptedException {
+        openInventory();
+    }
+
     public void putItemToKafra (String dirInventory, String dirLoot) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
-        SleepTime.sleep(500);
-        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
-        SleepTime.sleep(1000);
-
         xy = findFragmentInImage.findImage(dirInventory);
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
@@ -153,8 +153,6 @@ public class InterfaceActions {
             keys.keyPress(KeyEvent.VK_ENTER);
             SleepTime.sleep(700);
         }
-
-        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
     }
 
     public void moveCoursorToWarehouse() throws Exception {

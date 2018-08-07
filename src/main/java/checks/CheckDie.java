@@ -5,9 +5,13 @@ import actions.InterfaceActions;
 import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
+import key_and_mouse.Keys;
+import logic.Capture;
 import main.Prop;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +21,9 @@ public abstract class CheckDie implements AfterDeath {
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
     public List<KafraLoot> kafraLootList = new ArrayList<>();
     public Actions actions;
+    private BufferedImage image;
+    private Capture capture;
+    private Keys keys;
 
     public CheckDie() {
     }
@@ -31,13 +38,28 @@ public abstract class CheckDie implements AfterDeath {
         }
     }
 
-    public boolean check() throws Exception {
-        if (!Prop.CHECK_DIE) return false;
+    private boolean checkDeathLabel() throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{600, 1000, 500, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CheckDie\\");
         if (xy.isPresent()) {
             startActions();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean check() throws Exception {
+        capture = Capture.instance();
+        keys = Keys.getInstance();
+        if (!Prop.CHECK_DIE) return false;
+        if (checkDeathLabel()) return true;
+        image = capture.takeScreenShot();
+        if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP) {
+            while (!checkDeathLabel()) {
+                keys.keyPress(KeyEvent.VK_ESCAPE);
+                SleepTime.sleep(2000);
+            }
             return true;
         }
         return false;
@@ -55,10 +77,12 @@ public abstract class CheckDie implements AfterDeath {
         interfaceActions.openWarehouse();
         interfaceActions.pressOk();
         interfaceActions.pressClose();
+        interfaceActions.openInventory();
         for (KafraLoot kafraLoot: kafraLootList) {
             interfaceActions.putItemToKafra(kafraLoot.markerInventoryPath,
                     kafraLoot.lootPath);
         }
+        interfaceActions.closeInventory();
         interfaceActions.pressClose();
         SleepTime.sleep(5000);
     }
