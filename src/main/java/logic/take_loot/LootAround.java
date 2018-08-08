@@ -83,7 +83,7 @@ public class LootAround implements TakeLoot {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {675,900, 310, 550});
+                    new int[] {675,950, 310, 600});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
