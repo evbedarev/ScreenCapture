@@ -26,9 +26,9 @@ public class Prop {
 
 
     public static void initialize() throws Exception {
-        logic = new LogicYunField07(0);
+        logic = new LogicYunField04(0);
         cast = new CastStalker(0);
-        locationCheck = new LocationCheck(new YunField07());
+        locationCheck = new LocationCheck(new YunField04());
         checkHitPoints = new CheckHpStalker(locationCheck);
         cast.begin();
     }
@@ -53,6 +53,7 @@ public class Prop {
     ///////////////////////////////////
 
     public static final int RGB_HP = -6507025;
+    public static final int RGB_HP_DEATH = -2695458;
     public static final int X_HP = 130;
     public static final int Y_HP = 82;
     public static final int X_HP_AFTER_DEATH = 42;

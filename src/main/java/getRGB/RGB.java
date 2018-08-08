@@ -13,7 +13,7 @@ public class RGB {
 
 //        findPixelRgb(-16776192);
 
-//        showRGB(new int[] {1481,47}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {70,82}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 // Coursor rgb -16250872

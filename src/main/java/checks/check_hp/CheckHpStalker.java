@@ -21,6 +21,7 @@ public class CheckHpStalker extends CheckHpByClass {
         checkSilence();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
+            actions.teleport();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {
@@ -28,10 +29,14 @@ public class CheckHpStalker extends CheckHpByClass {
                 }
                 locationCheck.locationCheck();
                 checkSilence();
-                if (checkAgressorIsNear.check()) {
-                    actions.teleport();
-                    SleepTime.sleep(2000);
+
+                while (checkAgressorIsNear.check()) {
+                    SleepTime.sleep(3000);
                 }
+//                if (checkAgressorIsNear.check()) {
+//                    actions.teleport();
+//                    SleepTime.sleep(2000);
+//                }
                 SleepTime.sleep(3000);
                 actions.heal();
                 checkSP.regenSP();

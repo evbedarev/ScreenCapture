@@ -55,12 +55,12 @@ public abstract class CheckDie implements AfterDeath {
         if (!Prop.CHECK_DIE) return false;
         if (checkDeathLabel()) return true;
         image = capture.takeScreenShot();
-        if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP) {
+        if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP_DEATH) {
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
                 image = capture.takeScreenShot();
-                if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP) return false;
+                if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP_DEATH) return false;
             }
             return true;
         }

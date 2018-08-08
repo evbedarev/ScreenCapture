@@ -77,7 +77,7 @@ public class Monster implements KillMonster {
     public boolean findAndKillAround() throws
             AWTException,
             InterruptedException {
-
+        SleepTime.sleep(500);
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {

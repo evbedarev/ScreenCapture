@@ -55,7 +55,7 @@ public class LootAround implements TakeLoot {
             mouse.mouseMove(800 + (int) Math.round(x),
                     460 + (int) Math.round(y));
             angle += increment;
-            SleepTime.sleep(50);
+            SleepTime.sleep(200);
             pickUp();
         }
     }
@@ -83,7 +83,7 @@ public class LootAround implements TakeLoot {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {675,900, 390, 550});
+                    new int[] {675,900, 310, 550});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
@@ -91,7 +91,7 @@ public class LootAround implements TakeLoot {
 
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(), "Taking loot, coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(100);
+                SleepTime.sleep(200);
                 return true;
             }
         }

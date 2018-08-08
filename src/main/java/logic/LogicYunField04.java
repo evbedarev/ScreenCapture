@@ -4,6 +4,7 @@ import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField04;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandYun04;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Harpy;
 import logic.take_loot.*;
@@ -20,7 +21,7 @@ public class LogicYunField04 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new YunField04());
-        lootAround.initialize(new HandYun11());
+        lootAround.initialize(new HandYun04());
         killMonsterList = Stream
                 .of(new Harpy())
                 .collect(Collectors.toList());
