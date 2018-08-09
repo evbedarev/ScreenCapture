@@ -21,7 +21,7 @@ public class CheckHpStalker extends CheckHpByClass {
         checkSilence();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
-            actions.teleport();
+            actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {
@@ -46,8 +46,8 @@ public class CheckHpStalker extends CheckHpByClass {
         if (Prop.NEED_HEAL) {
             needHeal();
         }
-        if (needPotion(image)) {
-            keys.keyPress(KeyEvent.VK_F1);
-        }
+//        if (needPotion(image)) {
+//            keys.keyPress(KeyEvent.VK_F1);
+//        }
     }
 }

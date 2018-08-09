@@ -36,6 +36,7 @@ public class LogicYunField04 extends LogicLocation {
         usefulLoot = new TakeLoot[] {
                 new Card(),
                 new Shield(),
+                new HarpyFeather(),
 //                new Bottle(),
 //                new BlueHerb(),
                 new Coupon(),
@@ -76,13 +77,13 @@ public class LogicYunField04 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-            lootAround.takeLootAround();
+//            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();
             count = 0;
             actions.teleport(locationCheck);
-            actions.stepAside(locationCheck, new int[] {75, 150} );
+//            actions.stepAside(locationCheck, new int[] {75, 150} );
         }
     }
 

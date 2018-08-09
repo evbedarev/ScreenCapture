@@ -66,7 +66,7 @@ public class Monster implements KillMonster {
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(2000);
+                SleepTime.sleep(1000);
                 return true;
             }
         }
@@ -102,10 +102,14 @@ public class Monster implements KillMonster {
 
     private void spellAttack() throws
             InterruptedException {
-
+        int rndInt;
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
-            keys.keyPress(Prop.SPELL_ATTACK_KEY);
-            SleepTime.sleep(500);
+            rndInt = (int)(Math.random() * 5);
+            System.out.println(rndInt);
+            if (rndInt == 2) {
+                keys.keyPress(Prop.SPELL_ATTACK_KEY);
+                SleepTime.sleep(500);
+            }
         }
     }
 }

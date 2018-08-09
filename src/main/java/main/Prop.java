@@ -59,7 +59,7 @@ public class Prop {
     public static final int X_HP_AFTER_DEATH = 42;
 
     ///////////////HEAL SKILL///////////////////////
-    public static final boolean NEED_HEAL = false;
+    public static final boolean NEED_HEAL = true;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
     public static final int X_HP_HEAL = 144; //Only for acolyte
     public static final int X_HP_TO_RUN = 100;
@@ -92,12 +92,12 @@ public class Prop {
 
 
     public static final int TELEPORT_KEY = KeyEvent.VK_F2;
-    public static final int WING_KEY = KeyEvent.VK_F2;
+    public static final int WING_KEY = KeyEvent.VK_F1;
     public static final int SHIELD_SPELL = KeyEvent.VK_F7;
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
-    public static final int REJECT_SWORD = KeyEvent.VK_F6;
+    public static final int PRESERVE = KeyEvent.VK_F6;
 
 
     public TakeLoot[] usefulLoot;

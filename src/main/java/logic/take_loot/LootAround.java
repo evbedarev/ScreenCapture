@@ -58,6 +58,9 @@ public class LootAround implements TakeLoot {
             SleepTime.sleep(200);
             pickUp();
         }
+        mouse.mouseMove(807, 466);
+        SleepTime.sleep(200);
+        pickUp();
     }
 
     @Override

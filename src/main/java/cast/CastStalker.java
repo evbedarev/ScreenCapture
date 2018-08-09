@@ -42,10 +42,10 @@ public class CastStalker extends Cast {
                 actions.drinkAwaikeningPotion();
                 ATOMIC_AWAKENING.set(0);
             }
-//            if (REJECT_SWORD.get() > 30) {
-//                actions.useRejectSword();
-//                REJECT_SWORD.set(0);
-//            }
+            if (PRESERVE.get() > 8 * 60) {
+                actions.usePreserve();
+                PRESERVE.set(0);
+            }
             if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
                 LoggerSingle.logInfo(this.toString(), "Cheking overweight");
                 if (CheckOverweight.check()) {
@@ -73,7 +73,7 @@ public class CastStalker extends Cast {
     public void incrementValues() throws InterruptedException {
         incrementConst();
 //        STEAL_ZENY.incrementAndGet();
-//        REJECT_SWORD.incrementAndGet();
+        PRESERVE.incrementAndGet();
         sleep(1000);
     }
 }
