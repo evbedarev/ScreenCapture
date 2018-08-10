@@ -16,4 +16,6 @@ public interface KillMonster {
             InterruptedException;
 
     boolean killAround() throws AWTException, InterruptedException;
+
+    boolean findMonster() throws Exception;
 }

@@ -23,7 +23,7 @@ public class CheckAgressorIsNear {
     public boolean check() throws Exception {
         if (killMonsterList != null && killMonsterList.size() > 0)
             for (KillMonster killMonster: killMonsterList) {
-                if (killMonster.kill()) {
+                if (killMonster.findMonster()) {
                     return true;
                 }
             }

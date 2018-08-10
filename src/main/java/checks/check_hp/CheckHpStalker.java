@@ -6,7 +6,6 @@ import logger.LoggerSingle;
 import main.Prop;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHpStalker extends CheckHpByClass {
@@ -30,16 +29,17 @@ public class CheckHpStalker extends CheckHpByClass {
                 locationCheck.locationCheck();
                 checkSilence();
 
-                while (checkAgressorIsNear.check()) {
-                    SleepTime.sleep(3000);
-                }
-//                if (checkAgressorIsNear.check()) {
-//                    actions.teleport();
-//                    SleepTime.sleep(2000);
+//                while (checkAgressorIsNear.check()) {
+//                    SleepTime.sleep(3000);
+//                    if (checkDie.check()) break;
 //                }
-                SleepTime.sleep(3000);
+                if (checkAgressorIsNear.check()) {
+                    actions.teleport();
+                    SleepTime.sleep(1000);
+                }
+                SleepTime.sleep(1000);
                 actions.heal();
-                checkSP.regenSP();
+//                checkSP.regenSP();
                 image = capture.takeScreenShot();
             }
         }

@@ -29,7 +29,7 @@ public class FindPixels implements FindPixelsInImage {
             int mainRgb,
             int[] subImgCoord,
             int[] ancillaryRgb) {
-        List<int[]> listCoords = new ArrayList<>();
+
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
 
@@ -45,14 +45,10 @@ public class FindPixels implements FindPixelsInImage {
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
                         logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
-                        listCoords.add(new int[] {x, y});
+                        return Optional.of(new int[] {x, y});
                     }
                 }
             }
-        }
-        if (listCoords.size() > 0) {
-            logger.debug("Size of listCoords is: " + listCoords.size());
-            return Optional.of(findNearestFragment(listCoords));
         }
         return Optional.empty();
     }
@@ -63,14 +59,37 @@ public class FindPixels implements FindPixelsInImage {
         Optional<int[]> xy = Optional.empty();
         BufferedImage screenShot;
         capture = Capture.instance();
-        for (int i=0; i < 4; i++) {
+        for (int i=0; i < 2; i++) {
             screenShot = capture.takeScreenShot();
-            xy = findPixelsInImage(screenShot,
+            xy = findPixelsInImageInArea(
+                    screenShot,
                     mainRgb,
                     subImgCoord,
-                    ancillaryRgb);
+                    ancillaryRgb,
+                    new int[] {550, 1000, 200, 700}
+                    );
+            if (xy.isPresent()) return xy;
+
+            xy = findPixelsInImageExcludeArea(
+                    screenShot,
+                    mainRgb,
+                    subImgCoord,
+                    ancillaryRgb,
+                    new int[] {550, 1000, 200, 700}
+                    );
             if (xy.isPresent()) return xy;
         }
+
+//        for (int i=0; i < 2; i++) {
+//            screenShot = capture.takeScreenShot();
+//            xy = findPixelsInImageExcludeArea(
+//                    screenShot,
+//                    mainRgb,
+//                    subImgCoord,
+//                    ancillaryRgb,
+//                    new int[] {550, 1000, 200, 700});
+//            if (xy.isPresent()) return xy;
+//        }
         return xy;
     }
 
@@ -97,7 +116,6 @@ public class FindPixels implements FindPixelsInImage {
             int[] subImgCoord,
             int[] ancillaryRgb,
             int[] coordsArea) {
-        List<int[]> listCoords = new ArrayList<>();
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
 
@@ -113,14 +131,10 @@ public class FindPixels implements FindPixelsInImage {
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
                         logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
-                        listCoords.add(new int[] {x, y});
+                        return Optional.of(new int[] {x, y});
                     }
                 }
             }
-        }
-        if (listCoords.size() > 0) {
-            logger.debug("Size of listCoords is: " + listCoords.size());
-            return Optional.of(findNearestFragment(listCoords));
         }
         return Optional.empty();
     }
@@ -208,6 +222,98 @@ public class FindPixels implements FindPixelsInImage {
                 if (screenShot.getRGB(x, y) == ancillaryRgb) {
                     logger.debug("Find ancillary rgb " + ancillaryRgb + " coordinates is " + x + ',' + y);
                     return Optional.of(new int[] {x, y}) ;
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+
+    /**
+     * Ищет изображение по пикселям на картинке в определенной области.
+     * @param screenShot - скриншот
+     * @param mainRgb - основной цвет пикселя, ищет его в первую очередь.
+     * @param subImgCoord - область, в которой производится поиск после нахождения основн-
+     *                          ого пикселя.
+     * @param ancillaryRgb - массив дополнительных цветов, которые ищутся в области subImgCoord.
+     *      *                     Если все пикслеи присутствуют возвращает координаты основного пикселя.
+     * @param coordsArea - массив из 4х элементов,
+     *                   coordsArea[0] - левая точка по Х
+     *                   coordsArea[1] - правая точка по Х
+     *                   coordsArea[2] - верхняя точка по Y
+     *                   coordsArea[3] - нижняя точка по Y
+     * @return
+     */
+
+    public Optional<Integer> findCountsFragmentsInImageInArea (
+            BufferedImage screenShot,
+            int mainRgb,
+            int[] subImgCoord,
+            int[] ancillaryRgb,
+            int[] coordsArea) {
+        List<int[]> listCoords = new ArrayList<>();
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
+
+                if (x < coordsArea[0]
+                        || x > coordsArea[1]
+                        || y < coordsArea[2]
+                        || y > coordsArea[3] ) {
+                    continue;
+                }
+
+                if (screenShot.getRGB(x, y) == mainRgb) {
+                    logger.debug( " coordinates is " + x + ',' + y );
+
+                    if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
+                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+                        listCoords.add(new int[] {x, y});
+                    }
+                }
+            }
+        }
+        if (listCoords.size() > 0) {
+            logger.debug("Size of listCoords is: " + listCoords.size());
+            return Optional.of(listCoords.size());
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Ищет изображение по пикселям на картинке исключая площадь
+     * @param screenShot - скриншот
+     * @param mainRgb - основной цвет пикселя, ищет его в первую очередь.
+     * @param subImgCoord - область, в которой производится поиск после нахождения основн-
+     *                    ого пикселя.
+     * @param ancillaryRgb - массив дополнительных цветов, которые ищутся в области subImgCoord.
+     *                     Если все пикслеи присутствуют возвращает координаты основного пикселя.
+     * @return
+     */
+    public Optional<int[]> findPixelsInImageExcludeArea (
+            BufferedImage screenShot,
+            int mainRgb,
+            int[] subImgCoord,
+            int[] ancillaryRgb,
+            int[] excludeArea) {
+
+        List<int[]> listCoords = new ArrayList<>();
+        for (int y = 0; y < screenShot.getHeight(); y++) {
+            for (int x = 0; x < screenShot.getWidth(); x++) {
+
+                if (x > excludeArea[0]
+                        && x < excludeArea[1]
+                        && y > excludeArea[2]
+                        && y < excludeArea[3] ) {
+                    continue;
+                }
+
+                if (screenShot.getRGB(x, y) == mainRgb) {
+                    logger.debug( " coordinates is " + x + ',' + y );
+
+                    if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
+                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+                        return Optional.of(new int[] {x, y});
+                    }
                 }
             }
         }

@@ -21,6 +21,7 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
+    private static boolean attackBySpell = false;
 
 
     public Monster() throws AWTException {
@@ -37,6 +38,27 @@ public class Monster implements KillMonster {
     @Override
     public boolean killAround() throws AWTException, InterruptedException {
         return findAndKillAround();
+    }
+
+    @Override
+    public boolean findMonster() throws Exception {
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixels3Times(
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb());
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                SleepTime.sleep(1000);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -62,11 +84,11 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack();
+//                spellAttack();
 //                actions.pickUpLoot();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(1000);
+                sleepAfterAttack();
                 return true;
             }
         }
@@ -93,7 +115,7 @@ public class Monster implements KillMonster {
                 spellAttack();
                 mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(1000);
+                sleepAfterAttack();
                 return true;
             }
         }
@@ -109,7 +131,16 @@ public class Monster implements KillMonster {
             if (rndInt == 2) {
                 keys.keyPress(Prop.SPELL_ATTACK_KEY);
                 SleepTime.sleep(500);
+                attackBySpell = true;
             }
         }
+    }
+
+    private void sleepAfterAttack() throws InterruptedException {
+        if (attackBySpell)
+            SleepTime.sleep(100);
+        else
+            SleepTime.sleep(2000);
+        attackBySpell = false;
     }
 }
