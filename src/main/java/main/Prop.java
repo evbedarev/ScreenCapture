@@ -6,6 +6,7 @@ import cast.CastStalker;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.CheckHitPoints;
+import checks.check_hp.CheckHpPaladin;
 import checks.check_hp.CheckHpStalker;
 import checks.location.*;
 import logic.*;
@@ -26,10 +27,10 @@ public class Prop {
 
 
     public static void initialize() throws Exception {
-        logic = new LogicYunField04(0);
-        cast = new CastStalker(0);
-        locationCheck = new LocationCheck(new YunField04());
-        checkHitPoints = new CheckHpStalker(locationCheck);
+        logic = new LogicYunField11(0);
+        cast = new CastPaladin(0);
+        locationCheck = new LocationCheck(new YunField11());
+        checkHitPoints = new CheckHpPaladin(locationCheck);
         cast.begin();
     }
     ///////////////////////////////////////////
@@ -59,7 +60,7 @@ public class Prop {
     public static final int X_HP_AFTER_DEATH = 42;
 
     ///////////////HEAL SKILL///////////////////////
-    public static final boolean NEED_HEAL = true;
+    public static final boolean NEED_HEAL = false;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
     public static final int X_HP_HEAL = 144; //Only for acolyte
     public static final int X_HP_TO_RUN = 100;
@@ -75,7 +76,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = false;
+    public static final boolean NEED_SPELL_ATTACK = true;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 

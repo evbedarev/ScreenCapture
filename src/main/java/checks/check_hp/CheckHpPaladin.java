@@ -21,26 +21,41 @@ public class CheckHpPaladin extends CheckHpByClass {
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
-            actions.teleport(locationCheck);
+            actions.teleport();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {
                     break;
                 }
                 locationCheck.locationCheck();
-                actions.teleport();
-                SleepTime.sleep(2000);
-                actions.heal();
+//                checkSilence();
+                if (checkAgressorIsNear.check()) {
+                    actions.teleport();
+                    SleepTime.sleep(1000);
+                }
                 SleepTime.sleep(1000);
-                checkSP.regenSP();
+                actions.heal();
                 image = capture.takeScreenShot();
             }
+
+            //            while (checkHpToEndRun(image)) {
+//                if (checkDie.check()) {
+//                    break;
+//                }
+//                locationCheck.locationCheck();
+//                actions.teleport();
+//                SleepTime.sleep(2000);
+//                actions.heal();
+//                SleepTime.sleep(1000);
+//                checkSP.regenSP();
+//                image = capture.takeScreenShot();
+//            }
         }
         if (Prop.NEED_HEAL) {
             needHeal();
         }
-        if (needPotion(image)) {
-            keys.keyPress(KeyEvent.VK_F1);
-        }
+//        if (needPotion(image)) {
+//            keys.keyPress(KeyEvent.VK_F1);
+//        }
     }
 }

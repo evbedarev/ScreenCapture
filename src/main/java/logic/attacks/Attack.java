@@ -50,7 +50,7 @@ public class Attack implements AttackInterface {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                mouse.mouseClick(x, y+10);
+                mouse.mouseClick(x, y+40);
                 LoggerSingle.logInfo(this.toString(), "Attacking monster, coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(100);
                 return true;
