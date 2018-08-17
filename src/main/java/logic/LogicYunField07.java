@@ -3,6 +3,7 @@ package logic;
 import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField07;
+import logic.attacks.AttackYun07;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
@@ -19,7 +20,7 @@ public class LogicYunField07 extends LogicLocation {
 
     public LogicYunField07(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackYun11();
+        attack = new AttackYun07();
         locationCheck = new LocationCheck(new YunField07());
         lootAround.initialize(new HandYun11());
         killMonsterList = Stream
@@ -27,8 +28,8 @@ public class LogicYunField07 extends LogicLocation {
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-                new BlueHerb(),
-                new Bottle(),
+//                new BlueHerb(),
+//                new Bottle(),
 //                new AntelopeSkin(),
                 new HarpyFeather(),
         };
@@ -53,11 +54,12 @@ public class LogicYunField07 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         Prop.cast.cast();
-        if (checkDie.check()) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
-        }
+        checkDie.check();
+//        if (checkDie.check()) {
+//            while (true) {
+//                SleepTime.sleep(5000);
+//            }
+//        }
         locationCheck.locationCheck();
         checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);

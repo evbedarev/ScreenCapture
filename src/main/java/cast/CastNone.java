@@ -13,19 +13,19 @@ import java.awt.event.KeyEvent;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CastStalker extends Cast {
+public class CastNone extends Cast {
     private final int threadId;
     final static AtomicInteger SHADOW_SPELL = new AtomicInteger(0);
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
 
-    public CastStalker(int threadId) throws AWTException {
+    public CastNone(int threadId) throws AWTException {
         this.threadId = threadId;
     }
 
     @Override
     public void begin() throws AWTException {
-        Thread thread = new CastStalker(1);
-        thread.start();
+//        Thread thread = new CastNone(1);
+//        thread.start();
     }
 
     @Override
@@ -39,7 +39,6 @@ public class CastStalker extends Cast {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-
     }
 
     @Override
