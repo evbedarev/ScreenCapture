@@ -19,7 +19,8 @@ public class TestCountsImage {
                 new int[] {-2706028,-12644,-547469,-6530461},
                 new int[] {0,1600,0,900}
         );
-        if (someInt.isPresent())
+        if (
+                someInt.isPresent())
         System.out.println(
                 someInt.get()
         );

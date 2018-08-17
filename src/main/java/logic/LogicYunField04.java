@@ -7,6 +7,7 @@ import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Harpy;
+import logic.kill_monster.MonstersYun07;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -23,7 +24,7 @@ public class LogicYunField04 extends LogicLocation {
         locationCheck = new LocationCheck(new YunField04());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new Harpy())
+                .of(new MonstersYun07())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
@@ -38,7 +39,7 @@ public class LogicYunField04 extends LogicLocation {
                 new Shield(),
                 new HarpyFeather(),
 //                new Bottle(),
-//                new BlueHerb(),
+                new BlueHerb(),
                 new Coupon(),
         };
 
@@ -53,7 +54,6 @@ public class LogicYunField04 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        Prop.cast.cast();
         if (checkDie.check()) {
             while (true) {
                 SleepTime.sleep(5000);
@@ -82,6 +82,7 @@ public class LogicYunField04 extends LogicLocation {
             actions.pickUpCard();
             actions.pickUpLoot();
             count = 0;
+            Prop.cast.cast();
             actions.teleport(locationCheck);
 //            actions.stepAside(locationCheck, new int[] {75, 150} );
         }
