@@ -67,20 +67,20 @@ public class CastStalker extends Cast {
                 }
                 TIMER_CHECK_OVERWEIGHT.set(0);
             }
-            if(countPutToKafra > 2) {
+            if(countPutToKafra > 5) {
                 keys.keyPress(KeyEvent.VK_F7);
                 SleepTime.sleep(5000);
                 afterDeathYun11.startActions();
                 countPutToKafra = 0;
             }
 
-            if (SHADOW_SPELL.get() > 70) {
-                InterfaceActions interfaceActions = InterfaceActions.getInstance();
-                keys.keyPress(KeyEvent.VK_F5);
-                SleepTime.sleep(5000);
-                useSpellShadow();
-                SleepTime.sleep(1000);
-                interfaceActions.pressOk();
+            if (SHADOW_SPELL.get() > 300) {
+//                InterfaceActions interfaceActions = InterfaceActions.getInstance();
+//                keys.keyPress(KeyEvent.VK_F5);
+//                SleepTime.sleep(5000);
+//                useSpellShadow();
+//                SleepTime.sleep(1000);
+//                interfaceActions.pressOk();
                 SHADOW_SPELL.set(0);
 
             }

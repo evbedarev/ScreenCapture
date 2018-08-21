@@ -1,11 +1,13 @@
 package main;
 
 import cast.Cast;
+import cast.CastNone;
 import cast.CastPaladin;
 import cast.CastStalker;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.CheckHitPoints;
+import checks.check_hp.CheckHpAco;
 import checks.check_hp.CheckHpStalker;
 import checks.location.*;
 import logic.*;
@@ -97,7 +99,8 @@ public class Prop {
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
-    public static final int PRESERVE = KeyEvent.VK_F6;
+    public static final int PRESERVE
+            = KeyEvent.VK_F6;
 
 
     public TakeLoot[] usefulLoot;

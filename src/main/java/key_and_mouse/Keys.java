@@ -25,7 +25,7 @@ public class Keys {
 
     public synchronized void keyPress(int keyMask) throws InterruptedException {
         robot.keyPress(keyMask);
-        SleepTime.sleep(200);
+        SleepTime.sleep(100);
         robot.keyRelease(keyMask);
     }
 

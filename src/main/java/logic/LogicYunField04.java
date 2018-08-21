@@ -24,7 +24,7 @@ public class LogicYunField04 extends LogicLocation {
         locationCheck = new LocationCheck(new YunField04());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new MonstersYun07())
+                .of(new Harpy())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {

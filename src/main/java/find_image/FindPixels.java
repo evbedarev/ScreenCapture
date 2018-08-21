@@ -307,6 +307,15 @@ public class FindPixels implements FindPixelsInImage {
                     continue;
                 }
 
+                /**
+                 * Исключаем зону статусов под миникартой
+                 */
+                if (x > 1555 && x < 1587
+                        && y > 193 && y < 370 ) {
+                    continue;
+                }
+
+
                 if (screenShot.getRGB(x, y) == mainRgb) {
                     logger.debug( " coordinates is " + x + ',' + y );
 
