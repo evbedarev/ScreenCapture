@@ -1,6 +1,7 @@
 package logic.take_loot;
 
 import actions.SleepTime;
+import checks.check_hp.CheckHP;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 public class LootAround implements TakeLoot {
     private static LootAround instance;
+    CheckHP checkHP = CheckHP.instance();
     Capture capture;
     Mouse mouse;
     FindPixels findImageHard;
@@ -60,6 +62,7 @@ public class LootAround implements TakeLoot {
         }
         mouse.mouseMove(807, 466);
         SleepTime.sleep(200);
+        checkHP.checkHp();
         pickUp();
     }
 
