@@ -79,19 +79,30 @@ public class FindPixels implements FindPixelsInImage {
                     );
             if (xy.isPresent()) return xy;
         }
-
-//        for (int i=0; i < 2; i++) {
-//            screenShot = capture.takeScreenShot();
-//            xy = findPixelsInImageExcludeArea(
-//                    screenShot,
-//                    mainRgb,
-//                    subImgCoord,
-//                    ancillaryRgb,
-//                    new int[] {550, 1000, 200, 700});
-//            if (xy.isPresent()) return xy;
-//        }
         return xy;
     }
+
+    public Optional<int[]> findPixelsNear3Times(  int mainRgb,
+                                              int[] subImgCoord,
+                                              int[] ancillaryRgb) throws AWTException {
+        Optional<int[]> xy = Optional.empty();
+        BufferedImage screenShot;
+        capture = Capture.instance();
+        for (int i=0; i < 2; i++) {
+            screenShot = capture.takeScreenShot();
+            xy = findPixelsInImageInArea(
+                    screenShot,
+                    mainRgb,
+                    subImgCoord,
+                    ancillaryRgb,
+                    new int[] {600, 1000, 300, 600}
+            );
+            if (xy.isPresent()) return xy;
+        }
+        return xy;
+    }
+
+
 
     /**
      * Ищет изображение по пикселям на картинке в определенной области.
@@ -306,6 +317,15 @@ public class FindPixels implements FindPixelsInImage {
                         && y < excludeArea[3] ) {
                     continue;
                 }
+
+                /**
+                 * Исключаем зону статусов под миникартой
+                 */
+                if (x > 1555 && x < 1587
+                        && y > 193 && y < 370 ) {
+                    continue;
+                }
+
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
                     logger.debug( " coordinates is " + x + ',' + y );

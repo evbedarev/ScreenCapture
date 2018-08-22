@@ -2,44 +2,36 @@ package logic;
 
 import actions.SleepTime;
 import checks.LocationCheck;
+import checks.location.EinDun01;
 import checks.location.YunField04;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
-import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Harpy;
-import logic.kill_monster.MonstersYun07;
+import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicYunField04 extends LogicLocation {
+public class LogicEinDun01 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicYunField04(int threadId) throws Exception {
+    public LogicEinDun01(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
-        locationCheck = new LocationCheck(new YunField04());
+        locationCheck = new LocationCheck(new EinDun01());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new Harpy())
+                .of(new Pitman(), new Porcellio(), new Noxous() )
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-//                new BlueHerb(),
-//                new Bottle(),
-////                new AntelopeSkin(),
-                new HarpyFeather(),
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
                 new Shield(),
-                new HarpyFeather(),
-//                new Bottle(),
-                new BlueHerb(),
                 new Coupon(),
         };
 
@@ -69,15 +61,15 @@ public class LogicYunField04 extends LogicLocation {
         count++;
     }
 
-    //RENAME
     void checkMyHp() throws Exception {
         actions.pickUpCard();
+        checkHP.checkHp();
     }
 
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-//            lootAround.takeLootAround();
+            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();

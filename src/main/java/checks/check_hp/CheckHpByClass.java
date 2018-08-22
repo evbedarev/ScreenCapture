@@ -5,6 +5,7 @@ import checks.CheckAgressorIsNear;
 import checks.CheckSP;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
+import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
@@ -13,6 +14,7 @@ import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.Optional;
 
 public abstract class CheckHpByClass implements CheckHitPoints {
     Capture capture;
@@ -23,6 +25,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     AfterDeath checkDie;
     CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
     CheckSP checkSP;
+    FindPixels findImageHard;
 
     public CheckHpByClass(LocationCheck locationCheck) throws AWTException {
         this.locationCheck = locationCheck;
@@ -32,6 +35,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
         keys  = Keys.getInstance();
         actions = Actions.instance();
         checkSP = CheckSP.instance();
+        findImageHard = new FindPixels();
     }
 
     boolean needPotion(BufferedImage image) {
@@ -55,7 +59,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
 
     void checkSilence() throws InterruptedException {
         BufferedImage image = capture.takeScreenShot();
-        if (image.getRGB(790,380) == -1) {
+        if (image.getRGB(790,395) == -1) {
             keys.keyPress(KeyEvent.VK_F4);
         }
     }

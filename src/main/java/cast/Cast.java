@@ -3,6 +3,7 @@ package cast;
 import actions.Actions;
 import checks.CheckDie;
 import checks.LocationCheck;
+import checks.afterDeath.AfterDeathYun04;
 import checks.afterDeath.AfterDeathYun11;
 import checks.location.CheckOverweight;
 import key_and_mouse.Keys;
@@ -15,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class Cast extends Thread {
     public static int countPutToKafra = 0;
     static Actions actions;
-    AfterDeathYun11 afterDeathYun11 = new AfterDeathYun11();
+    AfterDeathYun04 afterDeathYun11 = new AfterDeathYun04();
     Keys keys = Keys.getInstance();
     static LocationCheck locationCheck;
     final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);

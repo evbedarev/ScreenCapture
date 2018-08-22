@@ -1,51 +1,49 @@
 package logic;
 
-import actions.SleepTime;
+import actions.Actions;
 import checks.LocationCheck;
-import checks.location.YunField04;
+import checks.location.GefField03;
+import checks.location.YunField11;
 import logic.attacks.AttackYun11;
-import logic.hands_rgb.HandYun04;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Harpy;
-import logic.kill_monster.MonstersYun07;
+import logic.kill_monster.Goat;
+import logic.kill_monster.Orc;
+import logic.kill_monster.OrcLady;
 import logic.take_loot.*;
 import main.Prop;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicYunField04 extends LogicLocation {
+public class LogicGefField03 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicYunField04(int threadId) throws Exception {
+    public LogicGefField03(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
-        locationCheck = new LocationCheck(new YunField04());
-        lootAround.initialize(new HandYun04());
+        actions = Actions.instance();
+        
+        locationCheck = new LocationCheck(new GefField03());
+        lootAround.initialize(new HandYun11());
+        checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
-                .of(new Harpy())
+                .of( new Orc(),
+                        new OrcLady())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-//                new BlueHerb(),
-//                new Bottle(),
-////                new AntelopeSkin(),
-                new HarpyFeather(),
+                new AntelopeSkin(),
+                new BlueHerb(),
+                new Bottle()
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Shield(),
-                new HarpyFeather(),
-//                new Bottle(),
+                new Bottle(),
                 new BlueHerb(),
                 new Coupon(),
         };
-
-        checkAgressorIsNear.initialize(Stream
-                .of(new Harpy())
-                .collect(Collectors.toList()));
     }
 
     @Override
@@ -54,37 +52,36 @@ public class LogicYunField04 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        if (checkDie.check()) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
-        }
+        Prop.cast.cast();
+        checkDie.check();
+//        if (checkDie.check()) {
+//            while (true) {
+//                SleepTime.sleep(5000);
+//            }
+//        }
         locationCheck.locationCheck();
         checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);
-        checkMyHp();
+//        checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
         teleport();
         count++;
     }
 
-    //RENAME
     void checkMyHp() throws Exception {
         actions.pickUpCard();
+        checkHP.checkHp();
     }
 
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-//            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
             count = 0;
-            Prop.cast.cast();
             actions.teleport(locationCheck);
-//            actions.stepAside(locationCheck, new int[] {75, 150} );
+            actions.stepAside(locationCheck, new int[] {75, 150} );
+            checkSP.regenSP();
         }
     }
 
