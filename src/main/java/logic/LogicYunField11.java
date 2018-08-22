@@ -4,7 +4,6 @@ import actions.Actions;
 import checks.LocationCheck;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
-import logic.hands_rgb.HandYun04;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
@@ -22,7 +21,7 @@ public class LogicYunField11 extends LogicLocation {
         actions = Actions.instance();
         
         locationCheck = new LocationCheck(new YunField11());
-        lootAround.initialize(new HandYun04());
+        lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(new Goat())
@@ -30,20 +29,16 @@ public class LogicYunField11 extends LogicLocation {
 
         loot = new TakeLoot[] {
                 new AntelopeSkin(),
-//                new BlueHerb(),
+                new BlueHerb(),
                 new Bottle()
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//                new Bottle(),
+                new Bottle(),
                 new BlueHerb(),
                 new Coupon(),
         };
-
-        checkAgressorIsNear.initialize(Stream
-                .of(new Harpy())
-                .collect(Collectors.toList()));
     }
 
     @Override
@@ -54,6 +49,11 @@ public class LogicYunField11 extends LogicLocation {
     public void mainHandle() throws Exception {
         Prop.cast.cast();
         checkDie.check();
+//        if (checkDie.check()) {
+//            while (true) {
+//                SleepTime.sleep(5000);
+//            }
+//        }
         locationCheck.locationCheck();
         checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);
@@ -64,21 +64,16 @@ public class LogicYunField11 extends LogicLocation {
         count++;
     }
 
-    void checkMyHp() throws Exception {
-        checkHP.checkHp();
-        actions.pickUpCard();
-    }
-
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-//            lootAround.takeLootAround();
-//            sleep(500);
+            lootAround.takeLootAround();
+            sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();
             count = 0;
             actions.teleport(locationCheck);
-//            actions.stepAside(locationCheck, new int[] {75, 150} );
+            actions.stepAside(locationCheck, new int[] {75, 150} );
             checkSP.regenSP();
         }
     }
