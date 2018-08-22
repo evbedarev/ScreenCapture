@@ -96,7 +96,7 @@ public class LootAround implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                LoggerSingle.logInfo(this.toString(), "Taking loot, coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(), "Taking loot arround, coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(200);
                 return true;
             }
