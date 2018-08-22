@@ -53,7 +53,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         while (attack.kill()) {
             count = 0;
             checkMyHp();
-            SleepTime.sleep(500);
+            SleepTime.sleep(1000);
             if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
     }
@@ -63,6 +63,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
             while (monster.kill()) {
                 attackBySwordOrSpell(monster);
+                SleepTime.sleep(2000);
                 count = 0;
             }
         } catch (Exception exception) {
@@ -76,7 +77,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             killMonstersAround(monster);
         } else {
             checkMyHp();
-            SleepTime.sleep(500);
+            SleepTime.sleep(1000);
             duringTheFight();
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
@@ -85,39 +86,25 @@ public abstract class LogicLocation extends Thread implements Logic {
                         "teleporting. Mobs behind the walls");
             }
         }
+        lootAround.takeLootAround();
     }
 
-    boolean killMonstersAround(KillMonster monster) throws Exception {
-        boolean monstersAround = false;
-
-        while(checkMonstersAround(monster)) {
+    void killMonstersAround(KillMonster monster) throws Exception {
+        while(monster.findAndKillAround()) {
+            duringTheFight();
+            SleepTime.sleep(1000);
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
-            duringTheFight();
-//            checkMyHp();
-            monstersAround = true;
         }
-
-        if (monstersAround) {
-            LoggerSingle.logInfo("LogicLocation.killMonstersAround",
-                    "Pick up loot around");
-            lootAround.takeLootAround();
-            return false;
-        }
-        return true;
     }
 
-    boolean checkMonstersAround(KillMonster monster) throws Exception {
-        for (int cnt = 0; cnt <  Prop.COUNT_OF_CHECKS_MONSTER; cnt++) {
-            if (monster.killAround()) return true;
-        }
-        return false;
+    void checkMyHp() throws Exception {
+        actions.pickUpCard();
+        checkHP.checkHp();
     }
-
 
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;
-    abstract void checkMyHp() throws Exception;
     abstract void teleport() throws Exception;
 
 
