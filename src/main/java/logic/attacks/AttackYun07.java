@@ -44,10 +44,6 @@ AttackYun07 extends Attack {
 
     @Override
     public boolean kill() throws AWTException, InterruptedException {
-        for (int i=0; i < 10; i++) {
-            BufferedImage screenShot = capture.takeScreenShot();
-            if (findAndKill(screenShot)) return true;
-        }
-        return false;
+       return findAndKill();
     }
 }

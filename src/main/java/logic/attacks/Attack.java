@@ -26,23 +26,18 @@ public class Attack implements AttackInterface {
 
     @Override
     public boolean kill() throws AWTException, InterruptedException {
-        for (int i=0; i < 5; i++) {
-            BufferedImage screenShot = capture.takeScreenShot();
-            if (findAndKill(screenShot)) return true;
-        }
-        return false;
+        return findAndKill();
     }
 
     @Override
-    public boolean findAndKill(BufferedImage screenShot) throws
+    public boolean findAndKill() throws
             AWTException,
             InterruptedException{
 
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
-                    screenShot,
+            Optional<int[]> xy = findImageHard.findPixelsNear3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());
@@ -52,7 +47,7 @@ public class Attack implements AttackInterface {
                 int y = xy.get()[1];
                 mouse.mouseClick(x, y+40);
                 LoggerSingle.logInfo(this.toString(), "Attacking monster, coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(100);
+                SleepTime.sleep(1000);
                 return true;
             }
         }

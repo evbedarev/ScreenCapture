@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public interface AttackInterface {
-    boolean findAndKill(BufferedImage screenShot) throws
+    boolean findAndKill() throws
             IOException,
             AWTException,
             InterruptedException;
