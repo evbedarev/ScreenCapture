@@ -52,12 +52,12 @@ public class CheckSP {
     public void regenSP() throws InterruptedException {
         if (!Prop.NEED_CHECK_SP) return;
         if (!enoghtSP()) {
-            actions.sitDown();
+//            actions.sitDown();
             Thread.sleep(1000);
             while (!regenerateSP()) {
                 Thread.sleep(2000);
             }
-            actions.standUp();
+//            actions.standUp();
             Thread.sleep(1000);
         }
     }
