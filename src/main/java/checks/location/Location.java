@@ -2,8 +2,6 @@ package checks.location;
 
 import logger.LoggerSingle;
 import logic.Capture;
-import storage_image.StorageImage;
-import storage_image.StorageImageFile;
 
 import java.awt.image.BufferedImage;
 
@@ -25,6 +23,7 @@ public abstract class Location implements VerifyMap {
         int rgb1 = image.getRGB(PORTAL_RGB_1[0], PORTAL_RGB_1[1]);
         findRGB1 = rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3];
         findRGB2 = rgb1 > PORTAL_RGB_1[2] && rgb1 < PORTAL_RGB_1[3];
+
         if (findRGB1 || findRGB2) {
             return true;
         } else {
