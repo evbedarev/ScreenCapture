@@ -64,11 +64,6 @@ public class LogicYunField11 extends LogicLocation {
         count++;
     }
 
-    void checkMyHp() throws Exception {
-        actions.pickUpCard();
-        checkHP.checkHp();
-    }
-
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {

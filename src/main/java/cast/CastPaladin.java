@@ -38,7 +38,7 @@ public class CastPaladin extends Cast {
         if (threadId == 0) {
             if (ATOMIC_GUARD.get() > 300) {
                 actions.castGuard();
-                actions.castReflectShield();
+//                actions.castReflectShield();
                 ATOMIC_GUARD.set(0);
             }
 

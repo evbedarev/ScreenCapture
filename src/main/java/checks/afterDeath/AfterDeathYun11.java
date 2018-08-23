@@ -100,7 +100,7 @@ public class AfterDeathYun11 extends CheckDie {
 
         putItems(kafraLootList);
 
-        SleepTime.sleep(5*1000*60);
+        SleepTime.sleep(10*1000*60);
         actions.standUp();
         SleepTime.sleep(1000);
         keys.keyPress(KeyEvent.VK_F7);
@@ -113,5 +113,6 @@ public class AfterDeathYun11 extends CheckDie {
         route.tpUntil();
         route = new RouteYunField12();
         route.tpUntil();
+        System.out.println("On location");
     }
 }
