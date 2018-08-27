@@ -1,11 +1,9 @@
 package logic;
 
 import actions.SleepTime;
-import checks.CheckSP;
 import checks.LocationCheck;
 import checks.location.EinDun01;
-import checks.location.YunField04;
-import logger.LoggerSingle;
+import checks.location.GlChurch;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
@@ -15,25 +13,24 @@ import main.Prop;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicEinDun01 extends LogicLocation {
+public class LogicGlChurch extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicEinDun01(int threadId) throws Exception {
+    public LogicGlChurch(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
-        locationCheck = new LocationCheck(new EinDun01());
+        locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new Pitman(), new Porcellio(), new Noxous() )
+                .of(new EvilDruid(), new Wraith())
                 .collect(Collectors.toList());
 
-        loot = new TakeLoot[] {
+        loot = new TakeLoot[] { new Fabric()
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Shield(),
                 new Coupon(),
         };
 
@@ -83,26 +80,6 @@ public class LogicEinDun01 extends LogicLocation {
     }
 
     void runFromMonster() throws Exception {
-    }
-
-    @Override
-    void attackBySwordOrSpell(KillMonster monster) throws Exception{
-        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
-            checkMyHp();
-            killMonstersAround(monster);
-        } else {
-            checkMyHp();
-            SleepTime.sleep(1000);
-            duringTheFight();
-            killMonstersAround(monster);
-            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-                actions.teleport();
-                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
-                        "teleporting. Mobs behind the walls");
-            }
-        }
-        Prop.cast.cast();
-        lootAround.takeLootAround();
     }
 
 }
