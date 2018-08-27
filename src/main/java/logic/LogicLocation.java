@@ -71,7 +71,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    private void attackBySwordOrSpell(KillMonster monster) throws Exception{
+    void attackBySwordOrSpell(KillMonster monster) throws Exception{
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
             checkMyHp();
             killMonstersAround(monster);

@@ -1,9 +1,11 @@
 package logic;
 
 import actions.SleepTime;
+import checks.CheckSP;
 import checks.LocationCheck;
 import checks.location.EinDun01;
 import checks.location.YunField04;
+import logger.LoggerSingle;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
@@ -81,6 +83,26 @@ public class LogicEinDun01 extends LogicLocation {
     }
 
     void runFromMonster() throws Exception {
+    }
+
+    @Override
+    void attackBySwordOrSpell(KillMonster monster) throws Exception{
+        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
+            checkMyHp();
+            killMonstersAround(monster);
+        } else {
+            checkMyHp();
+            SleepTime.sleep(1000);
+            duringTheFight();
+            killMonstersAround(monster);
+            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+                actions.teleport();
+                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
+                        "teleporting. Mobs behind the walls");
+            }
+        }
+        Prop.cast.cast();
+        lootAround.takeLootAround();
     }
 
 }
