@@ -29,6 +29,8 @@ public class LogicEinDun01 extends LogicLocation {
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
+                new GunPowder(),
+                new Steel()
         };
 
         usefulLoot = new TakeLoot[] {
