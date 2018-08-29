@@ -86,6 +86,7 @@ public class CheckSP {
                 if (!checkSitDown.check()) {
                     actions.teleport();
                 }
+                sitDown();
             }
             standUp();
         }
