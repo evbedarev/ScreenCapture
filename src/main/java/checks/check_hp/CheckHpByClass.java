@@ -14,7 +14,6 @@ import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.Optional;
 
 public abstract class CheckHpByClass implements CheckHitPoints {
     Capture capture;
