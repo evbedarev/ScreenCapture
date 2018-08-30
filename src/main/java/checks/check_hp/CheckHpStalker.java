@@ -23,7 +23,7 @@ public class CheckHpStalker extends CheckHpByClass {
         if (checkHptoRun(image)) {
             /* TEST */
             date = new Date();
-            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date));
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
 
             locationCheck.locationCheck();
             actions.useWing();
