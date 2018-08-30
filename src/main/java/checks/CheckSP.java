@@ -1,4 +1,5 @@
 package checks;
+
 import actions.Actions;
 import logic.Capture;
 import main.Prop;
@@ -11,6 +12,8 @@ public class CheckSP {
     private Capture capture;
     private Actions actions;
     public static boolean enoughSP;
+    private CheckSitDown checkSitDown;
+    private CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
 
     private CheckSP() {
     }
@@ -27,38 +30,65 @@ public class CheckSP {
     }
 
     public void initialize() throws
-    AWTException {
+            AWTException {
         capture = Capture.instance();
         actions = Actions.instance();
+        checkSitDown = CheckSitDown.getInstance();
     }
 
     public boolean enoghtSP() {
         BufferedImage image = capture.takeScreenShot();
-        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) == Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
     private boolean regenerateSP() {
         BufferedImage image = capture.takeScreenShot();
-        enoughSP = image.getRGB(Prop.X_SP_ENOUGHT,Prop.Y_SP) == Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP_ENOUGHT, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
     public boolean enoghtSP(BufferedImage image) {
-        enoughSP = image.getRGB(Prop.X_SP,Prop.Y_SP) == Prop.SP_RGB;
+        enoughSP = image.getRGB(Prop.X_SP, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
-    public void regenSP() throws InterruptedException {
+    private void standUp() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            if (!checkSitDown.check())
+                break;
+            actions.standUp();
+            Thread.sleep(1000);
+        }
+    }
+
+    private void sitDown() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            if (checkSitDown.check())
+                break;
+            actions.sitDown();
+            Thread.sleep(1000);
+        }
+    }
+
+    /**
+     * Проверят влкючена ли проверка сп.
+     * Если сп мало, садится и ждёт пока регенится, если в это время его ударят, улетает.
+     * Как только сп достаточно, встаёт.
+     * @throws Exception
+     */
+    public void regenSP() throws Exception {
         if (!Prop.NEED_CHECK_SP) return;
         if (!enoghtSP()) {
-//            actions.sitDown();
-            Thread.sleep(1000);
+            sitDown();
             while (!regenerateSP()) {
                 Thread.sleep(2000);
+                if (!checkSitDown.check()) {
+                    actions.teleport();
+                }
+                sitDown();
             }
-//            actions.standUp();
-            Thread.sleep(1000);
+            standUp();
         }
     }
 }

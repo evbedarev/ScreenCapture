@@ -36,11 +36,6 @@ public class Monster implements KillMonster {
     }
 
     @Override
-    public boolean killAround() throws AWTException, InterruptedException {
-        return findAndKillAround();
-    }
-
-    @Override
     public boolean findMonster() throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
@@ -84,35 +79,8 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                spellAttack();
-//                actions.pickUpLoot();
+//                spellAttack();.
                 mouse.mouseClick(x + 5, y + 20);
-                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                sleepAfterAttack();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean findNearAndKill() throws
-            Exception {
-
-        LoggerSingle.logDebug(this.toString(), "Finding monster ");
-        //It's bad, later change. Need to load in constructor.
-        for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsNear3Times(
-                    parameter.getMainRgb(),
-                    parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb());
-
-            if (xy.isPresent()) {
-                int x = xy.get()[0];
-                int y = xy.get()[1];
-                spellAttack();
-//                actions.pickUpLoot();
-                mouse.mouseClick(x, y + 5);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;
