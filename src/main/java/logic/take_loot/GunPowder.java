@@ -6,9 +6,14 @@ import java.awt.*;
 
 public class GunPowder extends Loot {
     public GunPowder() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-11781268,
+        rgbParameterList.add(new RgbParameter(-14081735,
                 new int[] {35,35},
-                new int[] {-10729608}));
+                new int[] {-11387023}));
+
+        rgbParameterList.add(new RgbParameter(-14081735,
+                new int[] {35,35},
+
+                new int[] {-10331789}));
 
     }
 }

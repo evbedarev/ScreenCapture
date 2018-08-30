@@ -7,7 +7,6 @@ import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
 import java.util.Date;
 
 public class CheckHpStalker extends CheckHpByClass {
