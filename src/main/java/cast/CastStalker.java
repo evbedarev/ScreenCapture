@@ -81,6 +81,8 @@ public class CastStalker extends Cast {
                 useSpellShadow();
                 SleepTime.sleep(1000);
                 interfaceActions.pressOk();
+                SleepTime.sleep(2000);
+                interfaceActions.pressOk();
                 SHADOW_SPELL.set(0);
 
             }
