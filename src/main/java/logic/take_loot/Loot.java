@@ -42,10 +42,11 @@ public class Loot implements TakeLoot {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixels3Times(
+            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb());
+                    parameter.getAncillaryRgb(),
+                    new int[] {0,1600,130,900});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
