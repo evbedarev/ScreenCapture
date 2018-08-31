@@ -17,7 +17,7 @@ public class CheckHpStalker extends CheckHpByClass {
     @Override
     public void checkHp() throws Exception {
         BufferedImage image = capture.takeScreenShot();
-        checkSilence();
+        checkSilenceStatus();
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
             actions.useWing();
@@ -27,7 +27,7 @@ public class CheckHpStalker extends CheckHpByClass {
                     break;
                 }
                 locationCheck.locationCheck();
-                checkSilence();
+                checkSilenceStatus();
 
 //                while (checkAgressorIsNear.check()) {
 //                    SleepTime.sleep(3000);

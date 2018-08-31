@@ -60,16 +60,16 @@ public class LootAround implements TakeLoot {
             SleepTime.sleep(200);
             pickUp();
         }
-        mouse.mouseMove(807, 466);
+        mouse.mouseMove(807, 446);
         SleepTime.sleep(200);
-        checkHP.checkHp();
         pickUp();
+        checkHP.checkHp();
     }
 
     @Override
     public void pickUp() throws Exception {
-        while (take()) {
-            SleepTime.sleep(50);
+        while (takeLoot()) {
+            SleepTime.sleep(400);
         }
     }
 
@@ -95,7 +95,7 @@ public class LootAround implements TakeLoot {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
 
-                mouse.mouseClick(x, y);
+                mouse.leftClick();
                 LoggerSingle.logInfo(this.toString(), "Taking loot arround, coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(300);
                 return true;

@@ -51,12 +51,13 @@ public class CheckHPCrusader {
     public void checkHp() throws Exception {
         if (!checkHp)
             return;
-//        checkSilence();
+        checkSilence();
         BufferedImage image = capture.takeScreenShot();
 
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
             actions.useWing();
+            checkSilence();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {
@@ -101,7 +102,7 @@ public class CheckHPCrusader {
 
     private void checkSilence() throws InterruptedException {
         BufferedImage image = capture.takeScreenShot();
-        if (image.getRGB(790,380) == -1) {
+        if (image.getRGB(790,332) == -1) {
             keys.keyPress(KeyEvent.VK_F4);
         }
     }

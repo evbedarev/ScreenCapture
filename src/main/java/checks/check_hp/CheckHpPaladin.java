@@ -6,7 +6,6 @@ import logger.LoggerSingle;
 import main.Prop;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHpPaladin extends CheckHpByClass {
@@ -17,10 +16,12 @@ public class CheckHpPaladin extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
-        //        checkSilence();
+        checkSilenceStatus();
         BufferedImage image = capture.takeScreenShot();
+
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
+            checkSilenceStatus();
             actions.teleport();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
@@ -28,7 +29,7 @@ public class CheckHpPaladin extends CheckHpByClass {
                     break;
                 }
                 locationCheck.locationCheck();
-//                checkSilence();
+//                checkSilenceStatus();
                 if (checkAgressorIsNear.check()) {
                     actions.teleport();
                     SleepTime.sleep(1000);
@@ -37,8 +38,8 @@ public class CheckHpPaladin extends CheckHpByClass {
                 actions.heal();
                 image = capture.takeScreenShot();
             }
-
-            //            while (checkHpToEndRun(image)) {
+//
+//                        while (checkHpToEnd   Run(image)) {
 //                if (checkDie.check()) {
 //                    break;
 //                }

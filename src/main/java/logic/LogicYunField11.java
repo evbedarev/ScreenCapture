@@ -4,6 +4,7 @@ import actions.Actions;
 import checks.LocationCheck;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandYun07;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
@@ -67,13 +68,13 @@ public class LogicYunField11 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-            lootAround.takeLootAround();
+//            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();
             count = 0;
             actions.teleport(locationCheck);
-            actions.stepAside(locationCheck, new int[] {75, 150} );
+//            actions.stepAside(locationCheck, new int[] {75, 150} );
             checkSP.regenSP();
         }
     }
