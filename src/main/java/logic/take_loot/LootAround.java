@@ -59,6 +59,7 @@ public class LootAround implements TakeLoot {
             angle += increment;
             SleepTime.sleep(200);
             pickUp();
+            checkHP.checkHp();
         }
         mouse.mouseMove(807, 446);
         SleepTime.sleep(200);

@@ -12,12 +12,17 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
 import main.Prop;
+import storage_image.StorageImageFile;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public abstract class CheckHpByClass implements CheckHitPoints {
+    Date date;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_mm_dd'_'hh_mm");
     Capture capture;
     Keys keys;
     Mouse mouse;
@@ -27,6 +32,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
     CheckSP checkSP;
     FindPixels findImageHard;
+    StorageImageFile storageImageFile = StorageImageFile.instance();
     CheckSilence checkSilence;
 
     public CheckHpByClass(LocationCheck locationCheck) throws AWTException {

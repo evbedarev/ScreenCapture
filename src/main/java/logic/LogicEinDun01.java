@@ -21,6 +21,7 @@ public class LogicEinDun01 extends LogicLocation {
 
     public LogicEinDun01(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
+
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new EinDun01());
         lootAround.initialize(new HandYun04());

@@ -7,6 +7,7 @@ import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Date;
 
 public class CheckHpStalker extends CheckHpByClass {
 
@@ -19,6 +20,10 @@ public class CheckHpStalker extends CheckHpByClass {
         BufferedImage image = capture.takeScreenShot();
         checkSilenceStatus();
         if (checkHptoRun(image)) {
+            /* TEST */
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+
             locationCheck.locationCheck();
             actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
