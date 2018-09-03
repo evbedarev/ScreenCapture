@@ -17,7 +17,7 @@ public class CheckHpAco extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
-        //        checkSilence();
+        //        checkSilenceStatus();
         BufferedImage image = capture.takeScreenShot();
 //        if (checkHptoRun(image)) {
 //            locationCheck.locationCheck();

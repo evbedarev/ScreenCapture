@@ -5,6 +5,7 @@ import checks.LocationCheck;
 import checks.location.YunField07;
 import logic.attacks.AttackYun07;
 import logic.attacks.AttackYun11;
+import logic.hands_rgb.HandYun07;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
@@ -22,22 +23,22 @@ public class LogicYunField07 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun07();
         locationCheck = new LocationCheck(new YunField07());
-        lootAround.initialize(new HandYun11());
+        lootAround.initialize(new HandYun07());
         killMonsterList = Stream
                 .of(new MonstersYun07())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
 //                new BlueHerb(),
-//                new Bottle(),
-//                new AntelopeSkin(),
+                new Bottle(),
+                new AntelopeSkin(),
                 new HarpyFeather(),
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Shield(),
-                new Bottle(),
+//                new Shield(),
+//                new Bottle(),
                 new BlueHerb(),
                 new Coupon(),
         };
@@ -78,11 +79,13 @@ public class LogicYunField07 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-            lootAround.takeLootAround();
+            checkSP.regenSP();
+//            actions.stepAside(locationCheck, new int[] {75, 150} );
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();
             count = 0;
+            checkSP.regenSP();
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );
         }

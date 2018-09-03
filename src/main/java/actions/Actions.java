@@ -23,9 +23,11 @@ public class Actions {
     private TakeLoot[] loot;
     private TakeLoot[] usefulLoot;
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    private InterfaceActions interfaceActions;
 
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
+        interfaceActions = InterfaceActions.getInstance();
         checkMsg = new CheckMsg(logger);
     }
 
@@ -53,6 +55,8 @@ public class Actions {
         SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
+        interfaceActions.pressOk();
+        SleepTime.sleep(500);
         LoggerSingle.logInfo(this.toString(), "Teleporting with locationCheck");
     }
 
@@ -61,6 +65,8 @@ public class Actions {
         SleepTime.sleep(300);
         keys.keyPress(KeyEvent.VK_ENTER);
         SleepTime.sleep(1000);
+        interfaceActions.pressOk();
+        SleepTime.sleep(500);
         LoggerSingle.logInfo(this.toString(), "Teleporting without locationCheck");
     }
 

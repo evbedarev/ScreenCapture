@@ -101,15 +101,15 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {675, 940, 335, 575});
+                    new int[] {400, 1100, 75, 700});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 spellAttack();
-                mouse.mouseClick(x + 5, y + 10);
-                if (attackBySpell)
-                    mouse.mouseClick(x + 5, y + 10);
+                mouse.mouseClick(x + 5, y + 25);
+//                if (attackBySpell)
+//                    mouse.mouseClick(x + 5, y + 10);
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
@@ -125,9 +125,9 @@ public class Monster implements KillMonster {
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
             rndInt = (int)(Math.random() * 2000);
             System.out.println(rndInt);
-            if (rndInt < 1000) {
+            if (rndInt < 2000) {
                 keys.keyPress(Prop.SPELL_ATTACK_KEY);
-                SleepTime.sleep(600);
+                SleepTime.sleep(200);
                 attackBySpell = true;
             }
         }

@@ -5,9 +5,11 @@ import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.BeachDun02;
 import logic.attacks.AttackBeachDun02;
+import logic.hands_rgb.HandBeachDun02;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Megalith;
 import logic.kill_monster.StalacticGolem;
+import logic.kill_monster.TriJoint;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -24,12 +26,13 @@ public class LogicBeachDun02 extends LogicLocation {
         actions = Actions.instance();
         
         locationCheck = new LocationCheck(new BeachDun02());
-        lootAround.initialize(new HandYun11());
+        lootAround.initialize(new HandBeachDun02());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
                         new Megalith(),
-                        new StalacticGolem())
+                        new StalacticGolem(),
+                        new TriJoint())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
@@ -39,8 +42,8 @@ public class LogicBeachDun02 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Elunium(),
                 new Coupon(),
+                new Elunium()
         };
     }
 

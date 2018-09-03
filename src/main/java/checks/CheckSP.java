@@ -1,6 +1,7 @@
 package checks;
 
 import actions.Actions;
+import logger.LoggerSingle;
 import logic.Capture;
 import main.Prop;
 
@@ -60,6 +61,7 @@ public class CheckSP {
             actions.standUp();
             Thread.sleep(1000);
         }
+        LoggerSingle.logInfo(this.toString(), "standing up");
     }
 
     private void sitDown() throws Exception {
@@ -69,6 +71,7 @@ public class CheckSP {
             actions.sitDown();
             Thread.sleep(1000);
         }
+        LoggerSingle.logInfo(this.toString(), "siting down");
     }
 
     /**
@@ -78,6 +81,7 @@ public class CheckSP {
      * @throws Exception
      */
     public void regenSP() throws Exception {
+        LoggerSingle.logInfo(this.toString(), "Regenerating SP...");
         if (!Prop.NEED_CHECK_SP) return;
         if (!enoghtSP()) {
             sitDown();
