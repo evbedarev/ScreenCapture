@@ -7,6 +7,7 @@ import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Date;
 
 public class CheckHpPaladin extends CheckHpByClass {
 
@@ -20,6 +21,8 @@ public class CheckHpPaladin extends CheckHpByClass {
         BufferedImage image = capture.takeScreenShot();
 
         if (checkHptoRun(image)) {
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
             locationCheck.locationCheck();
             checkSilenceStatus();
             actions.teleport();
