@@ -81,9 +81,10 @@ public class CheckSP {
      * @throws Exception
      */
     public void regenSP() throws Exception {
-        LoggerSingle.logInfo(this.toString(), "Regenerating SP...");
+//        LoggerSingle.logInfo(this.toString(), "Regenerating SP...");
         if (!Prop.NEED_CHECK_SP) return;
         if (!enoghtSP()) {
+            LoggerSingle.logInfo(this.toString(), "Regenerate SP...");
             sitDown();
             while (!regenerateSP()) {
                 Thread.sleep(2000);
