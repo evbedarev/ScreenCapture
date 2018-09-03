@@ -49,7 +49,7 @@ public class CastStalker extends Cast {
                 actions.drinkAwaikeningPotion();
                 ATOMIC_AWAKENING.set(0);
             }
-            if (PRESERVE.get() > 8 * 60) {
+            if (PRESERVE.get() > 6 * 60) {
                 actions.usePreserve();
                 PRESERVE.set(0);
             }
@@ -67,7 +67,7 @@ public class CastStalker extends Cast {
                 }
                 TIMER_CHECK_OVERWEIGHT.set(0);
             }
-            if(countPutToKafra > 5) {
+            if(countPutToKafra > 30) {
                 keys.keyPress(KeyEvent.VK_F7);
                 SleepTime.sleep(5000);
                 afterDeathYun11.startActions();

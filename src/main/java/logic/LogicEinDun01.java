@@ -1,6 +1,7 @@
 package logic;
 
 import actions.SleepTime;
+import checks.CheckAgressorIsNear;
 import checks.CheckSP;
 import checks.LocationCheck;
 import checks.location.EinDun01;
@@ -25,6 +26,7 @@ public class LogicEinDun01 extends LogicLocation {
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new EinDun01());
         lootAround.initialize(new HandYun04());
+
         killMonsterList = Stream
                 .of(new Pitman(), new Porcellio(), new Noxous() )
                 .collect(Collectors.toList());
@@ -41,7 +43,7 @@ public class LogicEinDun01 extends LogicLocation {
         };
 
         checkAgressorIsNear.initialize(Stream
-                .of(new Harpy())
+                .of(new Ungoliant())
                 .collect(Collectors.toList()));
     }
 
@@ -56,6 +58,7 @@ public class LogicEinDun01 extends LogicLocation {
                 SleepTime.sleep(5000);
             }
         }
+        checkStrongMobs();
         locationCheck.locationCheck();
         checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);
@@ -69,6 +72,12 @@ public class LogicEinDun01 extends LogicLocation {
     void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
+    }
+
+    void checkStrongMobs() throws Exception {
+        if (checkAgressorIsNear.check()) {
+            actions.teleport(locationCheck);
+        }
     }
 
     void teleport() throws Exception {
@@ -104,7 +113,7 @@ public class LogicEinDun01 extends LogicLocation {
                         "teleporting. Mobs behind the walls");
             }
         }
-        Prop.cast.cast();
+//        Prop.cast.cast();
         lootAround.takeLootAround();
     }
 

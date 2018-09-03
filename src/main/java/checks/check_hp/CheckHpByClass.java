@@ -20,7 +20,7 @@ import java.util.Date;
 
 public abstract class CheckHpByClass implements CheckHitPoints {
     Date date;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_mm_dd'_'hh_mm");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd'_'hh_mm");
     Capture capture;
     Keys keys;
     Mouse mouse;
