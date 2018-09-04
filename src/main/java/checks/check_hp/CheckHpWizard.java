@@ -19,9 +19,6 @@ public class CheckHpWizard extends CheckHpByClass {
         checkSilenceStatus();
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
-            if (!checkAgressorIsNear.check()) {
-                return;
-            }
             locationCheck.locationCheck();
             checkSilenceStatus();
             actions.teleport();

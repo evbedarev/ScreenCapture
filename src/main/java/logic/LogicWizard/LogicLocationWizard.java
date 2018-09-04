@@ -65,10 +65,11 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
         try {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
             while (monster.kill()) {
-                attackBySwordOrSpell(monster);
-                SleepTime.sleep(2000);
+//                attackBySwordOrSpell(monster);
+//                SleepTime.sleep(8000);
                 count = 0;
                 checkMyHp();
+                lootAround.takeLootAround();
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -88,8 +89,7 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
                     "Find monster around, killing");
             checkMyHp();
         }
-        actions.heal();
-//        lootAround.takeLootAround();
+        lootAround.takeLootAround();
     }
 
     void checkMyHp() throws Exception {
