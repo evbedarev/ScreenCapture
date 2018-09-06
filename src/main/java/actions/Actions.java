@@ -24,6 +24,8 @@ public class Actions {
     private TakeLoot[] usefulLoot;
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
     private InterfaceActions interfaceActions;
+    private static int REPEAT_LOOT = 0;
+    private static int REPEAT_USEFUL_LOOT = 0;
 
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
@@ -139,12 +141,16 @@ public class Actions {
         for (TakeLoot takeLoot: loot) {
             takeLoot.pickUp();
         }
+        if (REPEAT_LOOT++ % 3 == 0)
+            slide();
     }
 
     public void pickUpCard() throws Exception {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp();
         }
+        if (REPEAT_USEFUL_LOOT++ % 3 == 0)
+            slide();
     }
 
     public void dropItem(String dirInventory, String dirLoot) throws Exception {
@@ -180,5 +186,12 @@ public class Actions {
         mouse.mouseClick(800, 400);
     }
 
-
+    private void slide() throws InterruptedException {
+        int x =(int) (Math.random() * 1600);
+        mouse.pressRight();
+        SleepTime.sleep(50);
+        mouse.mouseMove(x, 540);
+        SleepTime.sleep(50);
+        mouse.releaseRight();
+    }
 }

@@ -66,6 +66,8 @@ public abstract class LogicLocation extends Thread implements Logic {
                 SleepTime.sleep(2000);
                 count = 0;
             }
+            actions.pickUpCard();
+            actions.pickUpLoot();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -97,7 +99,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
-        lootAround.takeLootAround();
+//        lootAround.takeLootAround();
     }
 
     void checkMyHp() throws Exception {

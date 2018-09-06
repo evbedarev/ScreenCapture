@@ -53,18 +53,32 @@ public class LootAround implements TakeLoot {
         while (angle < 3 * Math.PI) {
             double x = radius * Math.cos(angle);
             double y = radius * Math.sin(angle);
+            int xCoord = 800 + (int) Math.round(x);
+            int yCoord = 460 + (int) Math.round(y);
 
-            mouse.mouseMove(800 + (int) Math.round(x),
-                    460 + (int) Math.round(y));
+            mouse.mouseMove(xCoord,
+                    yCoord);
+
             angle += increment;
-            SleepTime.sleep(200);
-            pickUp();
+            SleepTime.sleep(100);
+            checkHand(xCoord, yCoord);
             checkHP.checkHp();
         }
         mouse.mouseMove(807, 446);
-        SleepTime.sleep(200);
+        SleepTime.sleep(100);
         pickUp();
         checkHP.checkHp();
+    }
+
+    private void checkHand(int x, int y) throws Exception {
+        BufferedImage bufferedImage;
+        bufferedImage = capture.takeScreenShot();
+//        LoggerSingle.logInfo();
+        if (bufferedImage.getRGB(x + 1, y + 1) > -9000000) {
+            mouse.leftClick();
+            SleepTime.sleep(200);
+            checkHand(x, y);
+        }
     }
 
     @Override

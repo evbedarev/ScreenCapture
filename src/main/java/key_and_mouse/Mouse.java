@@ -9,11 +9,11 @@ public class Mouse {
     private static volatile Mouse instance;
     Robot robot;
 
-    private Mouse() throws AWTException{
+    private Mouse() throws AWTException {
         robot = new Robot();
     }
 
-    public static Mouse getInstance() throws AWTException{
+    public static Mouse getInstance() throws AWTException {
         if (instance == null) {
             synchronized (Mouse.class) {
                 if (instance == null)
@@ -30,11 +30,12 @@ public class Mouse {
 
     public void mouseClick(int x, int y, int button_mask, int sleepTime)
             throws AWTException, InterruptedException {
-        robot.mouseMove(x,y);
+        robot.mouseMove(x, y);
         robot.mousePress(button_mask);
         SleepTime.sleep(sleepTime);
         robot.mouseRelease(button_mask);
     }
+
     public void leftClick() throws InterruptedException {
         robot.mousePress(InputEvent.BUTTON1_MASK);
         SleepTime.sleep(50);
@@ -51,7 +52,18 @@ public class Mouse {
         SleepTime.sleep(100);
     }
 
+    public void pressRight() throws InterruptedException {
+        robot.mousePress(InputEvent.BUTTON3_MASK);
+        SleepTime.sleep(100);
+    }
+
+    public void releaseRight() throws InterruptedException {
+        robot.mouseRelease(InputEvent.BUTTON3_MASK);
+        SleepTime.sleep(100);
+    }
+
+
     public void mouseMove(int x, int y) {
-        robot.mouseMove(x,y);
+        robot.mouseMove(x, y);
     }
 }
