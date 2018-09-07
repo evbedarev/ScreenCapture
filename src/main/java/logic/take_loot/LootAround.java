@@ -60,7 +60,7 @@ public class LootAround implements TakeLoot {
                     yCoord);
 
             angle += increment;
-            SleepTime.sleep(100);
+            SleepTime.sleep(200);
             checkHand(xCoord, yCoord);
             checkHP.checkHp();
         }
@@ -74,7 +74,8 @@ public class LootAround implements TakeLoot {
         BufferedImage bufferedImage;
         bufferedImage = capture.takeScreenShot();
 //        LoggerSingle.logInfo();
-        if (bufferedImage.getRGB(x + 1, y + 1) > -9000000) {
+        System.out.println(bufferedImage.getRGB(x + 1, y + 1));
+        if (bufferedImage.getRGB(x + 1, y + 1) > -2000000) {
             mouse.leftClick();
             SleepTime.sleep(200);
             checkHand(x, y);
