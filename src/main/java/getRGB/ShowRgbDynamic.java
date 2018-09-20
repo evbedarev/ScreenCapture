@@ -17,16 +17,16 @@ public class ShowRgbDynamic {
     static int[] rgbSitDown = new int[] {-1, -2, -65794, -258};
     public static void main(String[] args) throws AWTException, InterruptedException {
         Capture capture = Capture.instance();
-        int [] xy = new int[] {1568, 201};
+        int [] xy = new int[] {1569,194};
         int [] xy1 = new int[] {1569, 201};
         SleepTime.sleep(5000);
 
         while (true) {
             BufferedImage image = capture.takeScreenShot();
-//            System.out.println("First rgb is " + image.getRGB(xy[0], xy[1]));
+            System.out.println("First rgb is " + image.getRGB(xy[0], xy[1]));
 //            System.out.println("Second rgb is " + image.getRGB(xy1[0], xy1[1]));
 
-            System.out.println(checkStatus());
+//            System.out.println(checkStatus());
             SleepTime.sleep(500);
         }
     }

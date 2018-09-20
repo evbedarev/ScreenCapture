@@ -8,12 +8,12 @@ public interface TakeLoot {
     boolean takeLoot() throws
             IOException,
             AWTException,
-            InterruptedException;
+            InterruptedException, Exception;
 
     void pickUp() throws Exception;
 
     boolean take() throws
             IOException,
             AWTException,
-            InterruptedException;
+            InterruptedException, Exception;
 }

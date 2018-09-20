@@ -79,8 +79,10 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                spellAttack();.
                 mouse.mouseClick(x + 5, y + 20);
+                SleepTime.sleep(1500);
+                spellAttack();
+//                mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;

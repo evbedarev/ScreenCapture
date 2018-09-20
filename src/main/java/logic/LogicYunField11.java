@@ -33,6 +33,7 @@ public class LogicYunField11 extends LogicLocation {
                 new Bottle(),
                 new AntelopeHorn()
         };
+        
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

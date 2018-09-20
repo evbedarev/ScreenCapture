@@ -30,7 +30,7 @@ public class LogicYunField07 extends LogicLocation {
 
         loot = new TakeLoot[] {
 //                new BlueHerb(),
-                new AntelopeHorn(),
+//                new AntelopeHorn(),
                 new Bottle(),
                 new AntelopeSkin(),
                 new HarpyFeather(),
