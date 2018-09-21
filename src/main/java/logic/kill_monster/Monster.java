@@ -79,7 +79,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                spellAttack();.
+                spellAttack();
                 mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
@@ -122,7 +122,7 @@ public class Monster implements KillMonster {
     private void spellAttack() throws
             InterruptedException {
         int rndInt;
-        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
+        if (Prop.NEED_SPELL_ATTACK) {
             rndInt = (int)(Math.random() * 2000);
             System.out.println(rndInt);
             if (rndInt < 2000) {

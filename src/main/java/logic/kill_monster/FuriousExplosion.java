@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class FuriousExplosion extends Monster {
     public FuriousExplosion() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-307,
+        rgbParameterList.add(new RgbParameter(-46,
                 new int[] {80,80},
-                new int[] {-564, -1592, -11198184}));
+                new int[] {-2363, -13683, -6872808, -50904}));
     }
 }

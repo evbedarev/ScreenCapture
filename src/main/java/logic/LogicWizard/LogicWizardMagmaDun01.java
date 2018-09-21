@@ -5,6 +5,7 @@ import checks.LocationCheck;
 import checks.location.MagmaDun01;
 import checks.location.YunField04;
 import key_and_mouse.Keys;
+import logger.LoggerSingle;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
@@ -19,6 +20,7 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
 
     private static final int COUNT_OF_ATTACKS = 100;
     Keys keys;
+    KillMonster awareMonster;
     public LogicWizardMagmaDun01(int threadId) throws Exception {
         keys = Keys.getInstance();
         countOfAttacks = COUNT_OF_ATTACKS;
@@ -39,10 +41,13 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
                 new Coupon(),
         };
 
+        awareMonster = new FuriousExplosion();
+
         checkAgressorIsNear.initialize(Stream
                 .of(new LavaGolem(),
                         new Blazer(),
                         new Kaho(),
+                        new Explosion(),
                         new FuriousExplosion())
                 .collect(Collectors.toList()));
     }
@@ -53,6 +58,11 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
     }
 
     private boolean findMonstersNear() throws Exception{
+        if (awareMonster.findMonster()) {
+            actions.teleport(locationCheck);
+            LoggerSingle.logInfo(this.toString(), "Running from monster");
+        }
+
         for (KillMonster monster: killMonsterList) {
             checkHP.checkHp();
             if (monster.findMonster()) {
