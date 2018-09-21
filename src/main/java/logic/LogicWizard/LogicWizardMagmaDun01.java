@@ -2,48 +2,48 @@ package logic.LogicWizard;
 
 import actions.SleepTime;
 import checks.LocationCheck;
+import checks.location.MagmaDun01;
 import checks.location.YunField04;
+import key_and_mouse.Keys;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
-import logic.kill_monster.Harpy;
+import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.awt.event.KeyEvent;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicWizardYunField04 extends LogicLocationWizard {
+public class LogicWizardMagmaDun01 extends LogicLocationWizard {
 
     private static final int COUNT_OF_ATTACKS = 100;
-
-    public LogicWizardYunField04(int threadId) throws Exception {
+    Keys keys;
+    public LogicWizardMagmaDun01(int threadId) throws Exception {
+        keys = Keys.getInstance();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
-        locationCheck = new LocationCheck(new YunField04());
+        locationCheck = new LocationCheck(new MagmaDun01());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new Harpy())
+                .of(new LavaGolem(),
+                        new Blazer(),
+                        new Kaho())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-//                new BlueHerb(),
-//                new Bottle(),
-////                new AntelopeSkin(),
-                new HarpyFeather(),
-                new HarpyTalon()
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//                new Shield(),
-//                new HarpyFeather(),
-//                new Bottle(),
-//                new BlueHerb(),
                 new Coupon(),
         };
 
         checkAgressorIsNear.initialize(Stream
-                .of(new Harpy())
+                .of(new LavaGolem(),
+                        new Blazer(),
+                        new Kaho(),
+                        new FuriousExplosion())
                 .collect(Collectors.toList()));
     }
 
@@ -52,6 +52,21 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
         start();
     }
 
+    private boolean findMonstersNear() throws Exception{
+        for (KillMonster monster: killMonsterList) {
+            checkHP.checkHp();
+            if (monster.findMonster()) {
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(3000);
+                checkHP.checkHp();
+//                keys.keyPress(KeyEvent.VK_F5);
+//                SleepTime.sleep(4000);
+                actions.stepAside(locationCheck, new int[] {75, 150} );
+                keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_1);
+            }
+        }
+        return false;
+    }
     public void mainHandle() throws Exception {
         if (checkDie.check()) {
             while (true) {
@@ -60,7 +75,7 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
         }
         locationCheck.locationCheck();
 //        checkSP.enoghtSP();
-        killMonsterList.forEach(this::findAndKill);
+        findMonstersNear();
         checkMyHp();
         actions.pickUpCard();
         actions.pickUpLoot();
@@ -71,6 +86,7 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
     //RENAME
     void checkMyHp() throws Exception {
         actions.pickUpCard();
+        checkHP.checkHp();
     }
 
     void teleport() throws Exception {
@@ -82,7 +98,8 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
             count = 0;
             Prop.cast.cast();
             actions.teleport(locationCheck);
-            actions.stepAside(locationCheck, new int[] {75, 150} );
+            if (!findMonstersNear())
+                actions.stepAside(locationCheck, new int[] {75, 150} );
         }
     }
 

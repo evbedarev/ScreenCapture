@@ -66,7 +66,6 @@ public class Loot implements TakeLoot {
         while (take()) {
             SleepTime.sleep(1000);
             checkHP.checkHp();
-            lootAround.takeLootAround();
         }
     }
 }

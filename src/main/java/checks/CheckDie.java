@@ -24,6 +24,7 @@ public abstract class CheckDie implements AfterDeath {
     private BufferedImage image;
     private Capture capture;
     private Keys keys;
+//    private
 
     public CheckDie() {
     }
