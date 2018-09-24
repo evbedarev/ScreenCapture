@@ -124,7 +124,7 @@ public class Monster implements KillMonster {
     private void spellAttack() throws
             InterruptedException {
         int rndInt;
-        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
+        if (Prop.NEED_SPELL_ATTACK ) {
             rndInt = (int)(Math.random() * 2000);
             System.out.println(rndInt);
             if (rndInt < 2000) {

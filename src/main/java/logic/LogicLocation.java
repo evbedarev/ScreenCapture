@@ -99,8 +99,8 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
-        lootAround.takeLootAround();
     }
+
 
     void checkMyHp() throws Exception {
         actions.pickUpCard();
