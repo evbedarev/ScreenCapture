@@ -141,7 +141,7 @@ public class Actions {
         for (TakeLoot takeLoot: loot) {
             takeLoot.pickUp();
         }
-        if (REPEAT_LOOT++ % 3 == 0)
+        if (REPEAT_LOOT++ % 4 == 0)
             slide();
     }
 
@@ -149,7 +149,7 @@ public class Actions {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp();
         }
-        if (REPEAT_USEFUL_LOOT++ % 3 == 0)
+        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
             slide();
     }
 

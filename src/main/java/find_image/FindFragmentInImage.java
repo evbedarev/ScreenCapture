@@ -42,4 +42,21 @@ public class FindFragmentInImage {
         }
         return Optional.empty();
     }
+
+    public Optional<int[]> findImageExcludeArea(String dir) throws Exception{
+        capture = Capture.instance();
+        imageList = findFragmentFiles.fragments("frag*", dir);
+        Optional<int[]> xy;
+        for (BufferedImage image: imageList) {
+            BufferedImage screenshot = capture.takeScreenShot();
+            xy = findImageHard.findImageExcludeArea(screenshot, image,
+                    screen);
+            if (xy.isPresent())
+                return xy;
+        }
+        return Optional.empty();
+    }
+
+
+
 }

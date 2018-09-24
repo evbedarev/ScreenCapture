@@ -7,6 +7,7 @@ import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Date;
 
 public class CheckHpWizard extends CheckHpByClass {
 
@@ -19,8 +20,11 @@ public class CheckHpWizard extends CheckHpByClass {
         checkSilenceStatus();
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+
             locationCheck.locationCheck();
-            checkSilenceStatus();
+//            checkSilenceStatus();
             actions.teleport();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
@@ -28,20 +32,21 @@ public class CheckHpWizard extends CheckHpByClass {
                     break;
                 }
                 locationCheck.locationCheck();
-                checkSilenceStatus();
+//                checkSilenceStatus();
                 if (checkAgressorIsNear.check()) {
                     actions.teleport();
                     SleepTime.sleep(1000);
+                } else {
+                    SleepTime.sleep(1000);
+                    actions.heal();
                 }
-
-                SleepTime.sleep(1000);
-                actions.heal();
                 image = capture.takeScreenShot();
             }
         }
 
         if (Prop.NEED_HEAL) {
-            needHeal();
+            if (!checkAgressorIsNear.check())
+                needHeal();
         }
 //        if (needPotion(image)) {
 //            keys.keyPress(KeyEvent.VK_F1);

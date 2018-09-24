@@ -69,7 +69,6 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
 //                SleepTime.sleep(8000);
                 count = 0;
                 checkMyHp();
-                lootAround.takeLootAround();
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -89,7 +88,6 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
                     "Find monster around, killing");
             checkMyHp();
         }
-        lootAround.takeLootAround();
     }
 
     void checkMyHp() throws Exception {

@@ -83,7 +83,7 @@ public class LogicEinDun01 extends LogicLocation {
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-            lootAround.takeLootAround();
+//            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();
@@ -97,24 +97,24 @@ public class LogicEinDun01 extends LogicLocation {
     void runFromMonster() throws Exception {
     }
 
-    @Override
-    void attackBySwordOrSpell(KillMonster monster) throws Exception{
-        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
-            checkMyHp();
-            killMonstersAround(monster);
-        } else {
-            checkMyHp();
-            SleepTime.sleep(1000);
-            duringTheFight();
-            killMonstersAround(monster);
-            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-                actions.teleport();
-                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
-                        "teleporting. Mobs behind the walls");
-            }
-        }
-//        Prop.cast.cast();
-        lootAround.takeLootAround();
-    }
+//    @Override
+//    void attackBySwordOrSpell(KillMonster monster) throws Exception{
+//        if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
+//            checkMyHp();
+//            killMonstersAround(monster);
+//        } else {
+//            checkMyHp();
+//            SleepTime.sleep(1000);
+//            duringTheFight();
+//            killMonstersAround(monster);
+//            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
+//                actions.teleport();
+//                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
+//                        "teleporting. Mobs behind the walls");
+//            }
+//        }
+////        Prop.cast.cast();
+//        lootAround.takeLootAround();
+//    }
 
 }

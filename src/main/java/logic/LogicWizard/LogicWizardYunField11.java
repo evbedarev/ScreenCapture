@@ -69,7 +69,6 @@ public class LogicWizardYunField11 extends LogicLocationWizard {
     void teleport() throws Exception {
         runFromMonster();
         if (count > Prop.COUNT_TO_TELEPORT) {
-//            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
             actions.pickUpLoot();

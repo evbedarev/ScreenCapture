@@ -5,9 +5,14 @@ import java.awt.*;
 
 public class HarpyTalon extends Loot {
     public HarpyTalon() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-2065,
+
+        rgbParameterList.add(new RgbParameter(-5403508,
                 new int[] {35,35},
-                new int[] {-5403508, -7576725}));
+                new int[] {-2065, -7247504, -7576725}));
+
+        rgbParameterList.add(new RgbParameter(-5403508,
+                new int[] {35,35},
+                new int[] {-2065, -7576725, -5469301}));
 
     }
 }
