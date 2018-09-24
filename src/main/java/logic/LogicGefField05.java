@@ -59,7 +59,7 @@ public class LogicGefField05 extends LogicLocation {
         killMonsterList.forEach(this::findAndKill);
         checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
+        actions.pickUpLoot(locationCheck);
         teleport();
         count++;
         Prop.cast.cast();
@@ -76,7 +76,7 @@ public class LogicGefField05 extends LogicLocation {
             lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
+            actions.pickUpLoot(locationCheck);
             count = 0;
             actions.teleport(locationCheck);
             actions.stepAside(locationCheck, new int[] {75, 150} );

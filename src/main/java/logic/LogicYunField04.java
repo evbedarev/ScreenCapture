@@ -58,7 +58,7 @@ public class LogicYunField04 extends LogicLocation {
         killMonsterList.forEach(this::findAndKill);
         checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
+        actions.pickUpLoot(locationCheck);
         teleport();
         count++;
     }
@@ -74,7 +74,7 @@ public class LogicYunField04 extends LogicLocation {
 //            lootAround.takeLootAround();
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
+            actions.pickUpLoot(locationCheck);
             count = 0;
             Prop.cast.cast();
             actions.teleport(locationCheck);

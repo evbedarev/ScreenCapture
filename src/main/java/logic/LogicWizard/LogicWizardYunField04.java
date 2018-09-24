@@ -3,6 +3,7 @@ package logic.LogicWizard;
 import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField04;
+import com.sun.tracing.dtrace.StabilityLevel;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.Harpy;
@@ -63,7 +64,7 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
         killMonsterList.forEach(this::findAndKill);
         checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
+//        actions.pickUpLoot(locationCheck);
         teleport();
         count++;
     }
@@ -71,6 +72,7 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
     //RENAME
     void checkMyHp() throws Exception {
         actions.pickUpCard();
+        checkHP.checkHp();
     }
 
     void teleport() throws Exception {
@@ -78,11 +80,12 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
         if (count > Prop.COUNT_TO_TELEPORT) {
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
+//            actions.pickUpLoot(locationCheck);
             count = 0;
             Prop.cast.cast();
             actions.teleport(locationCheck);
-            actions.stepAside(locationCheck, new int[] {75, 150} );
+            actions.stepAside(locationCheck, new int[] {400, 550} );
+            SleepTime.sleep(1500);
         }
     }
 

@@ -67,7 +67,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                 count = 0;
             }
 //            actions.pickUpCard();
-//            actions.pickUpLoot();
+//            actions.pickUpLoot(locationCheck);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

@@ -1,7 +1,6 @@
 package logic.kill_monster;
 
 import actions.SleepTime;
-import checks.CheckSP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -79,10 +78,10 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                mouse.mouseClick(x + 5, y + 20);
-                SleepTime.sleep(1500);
-                spellAttack();
 //                mouse.mouseClick(x + 5, y + 20);
+//                SleepTime.sleep(1500);
+                spellAttack();
+                mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;
@@ -138,7 +137,7 @@ public class Monster implements KillMonster {
 
     private void sleepAfterAttack() throws InterruptedException {
         if (attackBySpell)
-            SleepTime.sleep(100);
+            SleepTime.sleep(2000);
         else
             SleepTime.sleep(2000);
         attackBySpell = false;

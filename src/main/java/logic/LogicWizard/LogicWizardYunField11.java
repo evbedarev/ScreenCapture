@@ -61,7 +61,7 @@ public class LogicWizardYunField11 extends LogicLocationWizard {
         killMonsterList.forEach(this::findAndKill);
         checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
+        actions.pickUpLoot(locationCheck);
         teleport();
         count++;
     }
@@ -71,7 +71,7 @@ public class LogicWizardYunField11 extends LogicLocationWizard {
         if (count > Prop.COUNT_TO_TELEPORT) {
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
+            actions.pickUpLoot(locationCheck);
             count = 0;
             actions.teleport(locationCheck);
 //            actions.stepAside(locationCheck, new int[] {75, 150} );

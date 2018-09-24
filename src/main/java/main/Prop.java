@@ -30,9 +30,9 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicWizardMagmaDun01(0);
+        logic = new LogicWizardYunField04(0);
         cast = new CastWizard(0);
-        locationCheck = new LocationCheck(new MagmaDun01());
+        locationCheck = new LocationCheck(new YunField04());
         checkHitPoints = new CheckHpWizard(locationCheck);
         initializeCharacter();
         cast.begin();

@@ -88,7 +88,7 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
         findMonstersNear();
         checkMyHp();
         actions.pickUpCard();
-        actions.pickUpLoot();
+        actions.pickUpLoot(locationCheck);
         teleport();
         count++;
     }
@@ -104,7 +104,7 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
         if (count > Prop.COUNT_TO_TELEPORT) {
             sleep(500);
             actions.pickUpCard();
-            actions.pickUpLoot();
+            actions.pickUpLoot(locationCheck);
             count = 0;
             Prop.cast.cast();
             actions.teleport(locationCheck);

@@ -69,6 +69,7 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
 //                SleepTime.sleep(8000);
                 count = 0;
                 checkMyHp();
+                actions.pickUpLoot(locationCheck);
             }
         } catch (Exception exception) {
             exception.printStackTrace();
