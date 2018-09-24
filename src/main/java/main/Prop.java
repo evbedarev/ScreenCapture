@@ -1,18 +1,20 @@
 package main;
 
-import cast.Cast;
-import cast.CastNone;
-import cast.CastPaladin;
-import cast.CastStalker;
+import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.CheckHitPoints;
 import checks.check_hp.CheckHpAco;
 import checks.check_hp.CheckHpStalker;
+import checks.check_hp.CheckHpWizard;
 import checks.location.*;
 import logic.*;
+import logic.LogicWizard.LogicWizardMagmaDun01;
+import logic.LogicWizard.LogicWizardYunField04;
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Properies
@@ -21,19 +23,23 @@ public class Prop {
     /////////////////GLOBAL////////////////////
     public static LocationCheck locationCheck;
     public static Logic logic;
+    public static final boolean SUPER_PREMIUM = true;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun04();
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
 
-
     public static void initialize() throws Exception {
-        logic = new LogicEinDun01(0);
-        cast = new CastStalker(0);
-        locationCheck = new LocationCheck(new EinDun01());
-        checkHitPoints = new CheckHpStalker(locationCheck);
+        logic = new LogicWizardMagmaDun01(0);
+        cast = new CastWizard(0);
+        locationCheck = new LocationCheck(new MagmaDun01());
+        checkHitPoints = new CheckHpWizard(locationCheck);
+        initializeCharacter();
         cast.begin();
     }
+
+
+
     ///////////////////////////////////////////
     public static final int SCREEN_WIDTH = 1600;
     public static final int SCREEN_HEIGHT = 900;
@@ -69,7 +75,7 @@ public class Prop {
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////
-    public static final boolean NEED_CHECK_SP = true;
+    public static final boolean NEED_CHECK_SP = false;
     public static final int X_SP = 72;
     public static final int Y_SP = 97;
     public static final int SP_RGB = -6507025;
@@ -77,7 +83,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = false;
+    public static final boolean NEED_SPELL_ATTACK = true;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 
@@ -99,8 +105,7 @@ public class Prop {
     public static final int GUARD =  KeyEvent.VK_F5;
     public static final int REFLECT =  KeyEvent.VK_F6;
     public static final int AWAKENING_POTION = KeyEvent.VK_F9;
-    public static final int PRESERVE
-            = KeyEvent.VK_F6;
+    public static final int PRESERVE = KeyEvent.VK_F6;
 
 
     public TakeLoot[] usefulLoot;
@@ -108,4 +113,20 @@ public class Prop {
 
     public static final double FIND_LOOT_SMALL_RADIUS = 65;
     public static final double FIND_LOOT_LARGE_RADIUS = 95;
+
+    /////CHARACTER//////
+    public static List<RgbParameter> charRgb = new ArrayList<>();
+
+    public static void initializeCharacter() {
+
+        charRgb.add(new RgbParameter(-12967374,
+                new int[] {100,110},
+                new int[] {-12901838}));
+//, -12967631, -6127231,-7840163
+//        charRgb.add(new RgbParameter(-7366507,
+//                new int[] {4,4},
+//                new int[] {-7432041}));
+    }
+
+
 }

@@ -2,6 +2,7 @@ package actions;
 
 import checks.CheckMsg;
 import checks.LocationCheck;
+import checks.location.Location;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -137,12 +138,18 @@ public class Actions {
         locationCheck.locationCheck();
     }
 
-    public void pickUpLoot() throws Exception {
-        for (TakeLoot takeLoot: loot) {
-            takeLoot.pickUp();
+    public void pickUpLoot(LocationCheck locationCheck) throws Exception {
+        if (Prop.SUPER_PREMIUM) {
+            stepAside(locationCheck, new int[] {75, 150} );
+            keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_1);
+            SleepTime.sleep(1000);
+        } else {
+            for (TakeLoot takeLoot : loot) {
+                takeLoot.pickUp();
+            }
+            if (REPEAT_LOOT++ % 4 == 0)
+                slide();
         }
-        if (REPEAT_LOOT++ % 4 == 0)
-            slide();
     }
 
     public void pickUpCard() throws Exception {
