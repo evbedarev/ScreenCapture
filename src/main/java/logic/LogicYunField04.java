@@ -66,6 +66,7 @@ public class LogicYunField04 extends LogicLocation {
     //RENAME
     void checkMyHp() throws Exception {
         actions.pickUpCard();
+        checkHP.checkHp();
     }
 
     void teleport() throws Exception {
