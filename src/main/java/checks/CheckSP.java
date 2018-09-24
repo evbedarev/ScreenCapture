@@ -51,6 +51,8 @@ public class CheckSP {
     }
 
     public boolean enoghtSP(BufferedImage image) {
+        if(!Prop.NEED_CHECK_SP)
+            return true;
         enoughSP = image.getRGB(Prop.X_SP, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
