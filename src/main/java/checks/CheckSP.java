@@ -15,6 +15,7 @@ public class CheckSP {
     public static boolean enoughSP;
     private CheckSitDown checkSitDown;
     private CheckAgressorIsNear checkAgressorIsNear = CheckAgressorIsNear.instance();
+    private CheckDie checkDie;
 
     private CheckSP() {
     }

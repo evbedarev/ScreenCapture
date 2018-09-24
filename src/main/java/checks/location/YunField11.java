@@ -3,6 +3,7 @@ package checks.location;
 import logic.Capture;
 
 import java.awt.*;
+
 import java.awt.image.BufferedImage;
 
 public class YunField11 extends Location {

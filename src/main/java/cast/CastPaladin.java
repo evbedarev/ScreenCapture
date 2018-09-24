@@ -1,10 +1,12 @@
 package cast;
 
+import actions.SleepTime;
 import checks.location.CheckOverweight;
 import logger.LoggerSingle;
 import main.Prop;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class CastPaladin extends Cast {
     private final int threadId;
@@ -70,6 +72,14 @@ public class CastPaladin extends Cast {
                 }
                 actions.teleport(Prop.locationCheck);
                 TIMER_CHECK_OVERWEIGHT.set(0);
+            }
+
+            if(countPutToKafra > 5) {
+                keys.keyPress(KeyEvent.VK_F7);
+                while (true) {
+                    SleepTime.sleep(10000);
+                }
+//                countPutToKafra = 0;
             }
         }
     }

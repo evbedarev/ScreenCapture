@@ -28,18 +28,12 @@ public class LogicYunField04 extends LogicLocation {
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-//                new BlueHerb(),
-//                new Bottle(),
-////                new AntelopeSkin(),
                 new HarpyFeather(),
+                new HarpyTalon()
         };
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Shield(),
-                new HarpyFeather(),
-//                new Bottle(),
-                new BlueHerb(),
                 new Coupon(),
         };
 

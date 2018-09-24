@@ -56,7 +56,7 @@ public class LogicYunField11 extends LogicLocation {
 //            }
 //        }
         locationCheck.locationCheck();
-        checkSP.enoghtSP();
+//        checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);
         checkMyHp();
 //        actions.pickUpCard();
@@ -75,7 +75,7 @@ public class LogicYunField11 extends LogicLocation {
             count = 0;
             actions.teleport(locationCheck);
 //            actions.stepAside(locationCheck, new int[] {75, 150} );
-            checkSP.regenSP();
+//            checkSP.regenSP();
         }
     }
 
