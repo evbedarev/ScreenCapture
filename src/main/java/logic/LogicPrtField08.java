@@ -74,8 +74,11 @@ public class LogicPrtField08 extends LogicLocation {
             System.out.println(mouseClickCoord.get()[1]);
             mouse.mouseClick(mouseClickCoord.get()[0], mouseClickCoord.get()[1]);
         } else {
+            System.out.println(xy.get()[0] + " = " + xy1.get()[0]);
+            System.out.println(xy.get()[1] + " = " + xy1.get()[1]);
             mouseClickCoord =actions.stepAside(locationCheck, new int[]{500, 800}, true);
         }
+        SleepTime.sleep(1000);
         xy1 = takeCoordsFromMap();
 
         killMonsterList.forEach(this::findAndKill);

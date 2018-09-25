@@ -78,8 +78,8 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                mouse.mouseClick(x + 5, y + 20);
-//                SleepTime.sleep(1500);
+                mouse.mouseClick(x + 5, y + 20);
+                SleepTime.sleep(1500);
                 spellAttack();
                 mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
@@ -137,7 +137,7 @@ public class Monster implements KillMonster {
 
     private void sleepAfterAttack() throws InterruptedException {
         if (attackBySpell)
-            SleepTime.sleep(2000);
+            SleepTime.sleep(100);
         else
             SleepTime.sleep(2000);
         attackBySpell = false;
