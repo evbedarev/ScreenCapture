@@ -25,7 +25,7 @@ public class CheckHpWizard extends CheckHpByClass {
 
             locationCheck.locationCheck();
 //            checkSilenceStatus();
-            actions.teleport();
+            actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
             while (checkHpToEndRun(image)) {
                 if (checkDie.check()) {

@@ -6,7 +6,9 @@ import checks.location.YunField04;
 import com.sun.tracing.dtrace.StabilityLevel;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
+import logic.kill_monster.ArchAngeling;
 import logic.kill_monster.Harpy;
+import logic.kill_monster.KillMonster;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -16,6 +18,7 @@ import java.util.stream.Stream;
 public class LogicWizardYunField04 extends LogicLocationWizard {
 
     private static final int COUNT_OF_ATTACKS = 100;
+    private KillMonster strongMonster = new ArchAngeling();
 
     public LogicWizardYunField04(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
@@ -25,24 +28,14 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
         killMonsterList = Stream
                 .of(new Harpy())
                 .collect(Collectors.toList());
-
         loot = new TakeLoot[] {
-//                new BlueHerb(),
-//                new Bottle(),
-////                new AntelopeSkin(),
                 new HarpyFeather(),
                 new HarpyTalon()
         };
-
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//                new Shield(),
-//                new HarpyFeather(),
-//                new Bottle(),
-//                new BlueHerb(),
                 new Coupon(),
         };
-
         checkAgressorIsNear.initialize(Stream
                 .of(new Harpy())
                 .collect(Collectors.toList()));
@@ -59,6 +52,8 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
                 SleepTime.sleep(5000);
             }
         }
+        if (strongMonster.findMonster())
+            actions.teleport(locationCheck);
         locationCheck.locationCheck();
 //        checkSP.enoghtSP();
         killMonsterList.forEach(this::findAndKill);
