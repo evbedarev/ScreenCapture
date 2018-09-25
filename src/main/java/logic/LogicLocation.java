@@ -67,7 +67,6 @@ public abstract class LogicLocation extends Thread implements Logic {
                 count = 0;
             }
 //            actions.pickUpCard();
-//            actions.pickUpLoot(locationCheck);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -89,6 +88,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                         "teleporting. Mobs behind the walls");
             }
         }
+        actions.pickUpLoot(locationCheck);
     }
 
     void killMonstersAround(KillMonster monster) throws Exception {

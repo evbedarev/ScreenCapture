@@ -23,16 +23,16 @@ public class Prop {
     /////////////////GLOBAL////////////////////
     public static LocationCheck locationCheck;
     public static Logic logic;
-    public static final boolean SUPER_PREMIUM = true;
+    public static final boolean SUPER_PREMIUM = false;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun04();
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicWizardYunField04(0);
+        logic = new LogicPrtField08(0);
         cast = new CastWizard(0);
-        locationCheck = new LocationCheck(new YunField04());
+        locationCheck = new LocationCheck(new PrtField08());
         checkHitPoints = new CheckHpWizard(locationCheck);
         initializeCharacter();
         cast.begin();
@@ -83,7 +83,7 @@ public class Prop {
     //////////////////////////////////////////////
 
     ///////////SPELL ATTACK//////////////////////
-    public static final boolean NEED_SPELL_ATTACK = true;
+    public static final boolean NEED_SPELL_ATTACK = false;
     public static final int SPELL_ATTACK_KEY = KeyEvent.VK_F8;
     ////////////////////////////////////////////
 

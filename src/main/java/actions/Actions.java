@@ -138,6 +138,28 @@ public class Actions {
         locationCheck.locationCheck();
     }
 
+    public Optional<int[]> stepAside(LocationCheck locationCheck, int[] radiuses, boolean needCoords) throws Exception {
+        Optional<int[]> xy;
+        locationCheck.locationCheck();
+        double t = 2 * Math.PI * Math.random();
+        double minRadius = radiuses[0];
+        double maxRadius = radiuses[1];
+
+        double x = minRadius * Math.cos(t);
+        double x1 = maxRadius * Math.cos(t);
+
+        double mediumX = x + Math.random()*(x1 - x);
+        double mediumR = mediumX/Math.cos(t);
+        double mediumY = mediumR * Math.sin(t);
+
+        xy = Optional.of(new int[] {800 + (int) Math.round(mediumX),450 + (int) Math.round(mediumY)});
+        mouse.mouseClick(xy.get()[0], xy.get()[1]);
+
+        SleepTime.sleep(1000);
+        locationCheck.locationCheck();
+        return xy;
+    }
+
     public void pickUpLoot(LocationCheck locationCheck) throws Exception {
         if (Prop.SUPER_PREMIUM) {
             stepAside(locationCheck, new int[] {75, 150} );
