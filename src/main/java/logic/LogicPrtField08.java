@@ -3,16 +3,15 @@ package logic;
 import actions.Actions;
 import actions.SleepTime;
 import checks.LocationCheck;
-import checks.location.GefField11;
 import checks.location.PrtField08;
 import find_image.FindPixels;
-import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Goblin;
 import logic.kill_monster.Poring;
+import logic.move_by_card.MoveByCard;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -24,14 +23,15 @@ import java.util.stream.Stream;
 public class LogicPrtField08 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
-    Keys keys = Keys.getInstance();
     Mouse mouse;
+    private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
     public LogicPrtField08(int threadId) throws Exception {
         xy1 = Optional.empty();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
+        moveByCard = MoveByCard.getInstance();
         actions = Actions.instance();
         locationCheck = new LocationCheck(new PrtField08());
         lootAround.initialize(new HandYun11());
@@ -61,26 +61,9 @@ public class LogicPrtField08 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        mouse = Mouse.getInstance();
-        xy = takeCoordsFromMap();
-        if (!xy1.isPresent()) {
-            mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 800}, true);
-            xy1 = takeCoordsFromMap();
-        }
-
-        SleepTime.sleep(1000);
-        if ((xy.get()[0] != xy1.get()[0]) || (xy.get()[1] != xy1.get()[1])) {
-            System.out.println(mouseClickCoord.get()[0]);
-            System.out.println(mouseClickCoord.get()[1]);
-            mouse.mouseClick(mouseClickCoord.get()[0], mouseClickCoord.get()[1]);
-        } else {
-            System.out.println(xy.get()[0] + " = " + xy1.get()[0]);
-            System.out.println(xy.get()[1] + " = " + xy1.get()[1]);
-            mouseClickCoord =actions.stepAside(locationCheck, new int[]{500, 800}, true);
-        }
-        SleepTime.sleep(1000);
-        xy1 = takeCoordsFromMap();
-
+        locationCheck.locationCheck();
+        checkDie.check();
+        moveByCard.move(locationCheck);
         killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();
