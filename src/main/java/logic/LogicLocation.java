@@ -8,6 +8,7 @@ import checks.check_hp.CheckHP;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
+import logic.move_by_card.MoveByCard;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
@@ -31,6 +32,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static Actions actions;
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
+    static MoveByCard moveByCard;
 
     public abstract void createThread() throws Exception;
 

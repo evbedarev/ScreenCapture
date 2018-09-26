@@ -24,7 +24,6 @@ public class LogicPrtField08 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     Mouse mouse;
-    private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
     public LogicPrtField08(int threadId) throws Exception {

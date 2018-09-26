@@ -1,7 +1,5 @@
 package logic;
 
-import actions.Actions;
-import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.PrtField07;
 import key_and_mouse.Keys;
@@ -9,11 +7,9 @@ import key_and_mouse.Mouse;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Rocker;
+import logic.move_by_card.MoveByCard;
 import logic.take_loot.*;
 import main.Prop;
-
-import java.awt.event.KeyEvent;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +22,7 @@ public class LogicPrtField07 extends LogicLocation {
     public LogicPrtField07(int threadId) throws Exception {
         mouse = Mouse.getInstance();
         keys = Keys.getInstance();
+        moveByCard = MoveByCard.getInstance();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new PrtField07());
@@ -56,25 +53,12 @@ public class LogicPrtField07 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-//        actions.teleport();
-        mouse.mouseClick(100, 100);
 
-        keys.keyPress(KeyEvent.VK_F1);
-
-        SleepTime.sleep(2000);
-        keys.keyPress(KeyEvent.VK_ENTER);
-////        locationCheck.locationCheck();
-//        killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
-//        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-////        if (checkSP.enoghtSP()) {
-////            actions.sitDown();
-////            SleepTime.sleep(60 * 1000);
-////            actions.standUp();
-////            SleepTime.sleep(1000);
-////        }
-////        teleport();
+        locationCheck.locationCheck();
+        checkDie.check();
+        checkHP.checkHp();
+        moveByCard.move(locationCheck, killMonsterList);
+        killMonsterList.forEach(this::findAndKill);
         count++;
     }
 
