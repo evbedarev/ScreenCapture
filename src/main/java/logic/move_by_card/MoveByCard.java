@@ -8,7 +8,6 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import logic.kill_monster.KillMonster;
-import routes.RouteModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,6 +20,7 @@ public class MoveByCard {
     private Mouse mouse;
     private Actions actions;
     private FindPixels findImageHard;
+    private LocationCheck locationCheck;
     private Capture capture;
     private BufferedImage screenShot;
     private Optional<int[]> xy, xy1, mouseClickCoord;
@@ -46,6 +46,7 @@ public class MoveByCard {
     }
 
     public void move(LocationCheck locationCheck,  List<KillMonster> killMonsters) throws Exception {
+        this.locationCheck = locationCheck;
         this.killMonsters = killMonsters;
 
         if (checkLocationYUP(coordsYUp))
@@ -176,6 +177,7 @@ public class MoveByCard {
         for (KillMonster killMonster: killMonsters) {
             killMonster.findAndKill();
         }
+        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
 
 
@@ -190,6 +192,7 @@ public class MoveByCard {
                 killMonster.findAndKill();
             }
         }
+        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
 
 
@@ -203,6 +206,9 @@ public class MoveByCard {
             mouse.mouseClick(300, 461);
             SleepTime.sleep(500);
             x1 = takeCoordsFromMap();
+
+            if (!x.isPresent() || !x1.isPresent())
+                break;
             if (x.get()[0] == x1.get()[0])
                 break;
 
@@ -210,6 +216,7 @@ public class MoveByCard {
                 killMonster.findAndKill();
             }
         }
+        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
 
     public void moveRight() throws Exception {
@@ -222,6 +229,10 @@ public class MoveByCard {
             mouse.mouseClick(1200, 461);
             SleepTime.sleep(500);
             x1 = takeCoordsFromMap();
+
+            if (!x.isPresent() || !x1.isPresent())
+                break;
+
             if (x.get()[0] == x1.get()[0])
                 break;
 
@@ -229,13 +240,14 @@ public class MoveByCard {
                 killMonster.findAndKill();
             }
         }
+        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
 
     private void centredMap() throws InterruptedException {
         mouse.pressRight();
         SleepTime.sleep(50);
         mouse.releaseRight();
-        SleepTime.sleep(50);
+        SleepTime.sleep(100);
         mouse.pressRight();
         SleepTime.sleep(50);
         mouse.releaseRight();
