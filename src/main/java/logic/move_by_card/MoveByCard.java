@@ -7,10 +7,12 @@ import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
+import logic.kill_monster.KillMonster;
 import routes.RouteModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Optional;
 
 public class MoveByCard {
@@ -22,6 +24,7 @@ public class MoveByCard {
     private Capture capture;
     private BufferedImage screenShot;
     private Optional<int[]> xy, xy1, mouseClickCoord;
+    List<KillMonster> killMonsters;
 
     private MoveByCard() throws AWTException {
         xy1 = Optional.empty();
@@ -42,7 +45,9 @@ public class MoveByCard {
         return instance;
     }
 
-    public void move(LocationCheck locationCheck) throws Exception {
+    public void move(LocationCheck locationCheck,  List<KillMonster> killMonsters) throws Exception {
+        this.killMonsters = killMonsters;
+
         if (checkLocationYUP(coordsYUp))
             moveDown();
 
@@ -61,14 +66,14 @@ public class MoveByCard {
             xy1 = takeCoordsFromMap();
         }
 
-        SleepTime.sleep(500);
+        SleepTime.sleep(200);
         if ((xy.get()[0] != xy1.get()[0]) || (xy.get()[1] != xy1.get()[1])) {
             mouse.mouseClick(mouseClickCoord.get()[0], mouseClickCoord.get()[1]);
         } else {
             mouseClickCoord =actions.stepAside(locationCheck, new int[]{500, 600}, true);
         }
 
-        SleepTime.sleep(500);
+        SleepTime.sleep(200);
         xy1 = takeCoordsFromMap();
     }
 
@@ -85,7 +90,7 @@ public class MoveByCard {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
-            LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
+//            LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             SleepTime.sleep(200);
         }
         return xy;
@@ -161,10 +166,15 @@ public class MoveByCard {
     public void moveDown() throws Exception {
         centredMap();
         SleepTime.sleep(200);
+        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Down");
         while (!checkLocationYDown(coordsYUp + ((coordsYDown - coordsYUp)/2))) {
 
             mouse.mouseClick(805, 700);
             SleepTime.sleep(500);
+        }
+
+        for (KillMonster killMonster: killMonsters) {
+            killMonster.findAndKill();
         }
     }
 
@@ -172,9 +182,13 @@ public class MoveByCard {
     public void moveUp() throws Exception {
         centredMap();
         SleepTime.sleep(200);
+        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Up");
         while (!checkLocationYUP(coordsYUp + ((coordsYDown - coordsYUp)/2))) {
             mouse.mouseClick(805, 200);
             SleepTime.sleep(500);
+            for (KillMonster killMonster: killMonsters) {
+                killMonster.findAndKill();
+            }
         }
     }
 
@@ -183,6 +197,7 @@ public class MoveByCard {
         Optional<int[]> x, x1;
         centredMap();
         SleepTime.sleep(200);
+        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Left");
         while (!checkLocationXLeft(coordXLeft + ((coordXRight - coordXLeft)/2))) {
             x = takeCoordsFromMap();
             mouse.mouseClick(300, 461);
@@ -191,6 +206,9 @@ public class MoveByCard {
             if (x.get()[0] == x1.get()[0])
                 break;
 
+            for (KillMonster killMonster: killMonsters) {
+                killMonster.findAndKill();
+            }
         }
     }
 
@@ -198,6 +216,7 @@ public class MoveByCard {
         Optional<int[]> x, x1;
         centredMap();
         SleepTime.sleep(200);
+        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Right");
         while (!checkLocationXRight(coordXLeft + ((coordXRight - coordXLeft)/2))) {
             x = takeCoordsFromMap();
             mouse.mouseClick(1200, 461);
@@ -205,6 +224,10 @@ public class MoveByCard {
             x1 = takeCoordsFromMap();
             if (x.get()[0] == x1.get()[0])
                 break;
+
+            for (KillMonster killMonster: killMonsters) {
+                killMonster.findAndKill();
+            }
         }
     }
 

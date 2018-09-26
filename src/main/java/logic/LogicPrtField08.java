@@ -63,7 +63,7 @@ public class LogicPrtField08 extends LogicLocation {
     public void mainHandle() throws Exception {
         locationCheck.locationCheck();
         checkDie.check();
-        moveByCard.move(locationCheck);
+        moveByCard.move(locationCheck, killMonsterList);
         killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();

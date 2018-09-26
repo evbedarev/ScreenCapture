@@ -89,6 +89,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             }
         }
         actions.pickUpLoot(locationCheck);
+        actions.pickUpCard();
     }
 
     void killMonstersAround(KillMonster monster) throws Exception {
