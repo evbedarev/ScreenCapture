@@ -65,10 +65,15 @@ public class LogicPrtField08 extends LogicLocation {
         checkDie.check();
         moveByCard.move(locationCheck, killMonsterList);
         killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
+        checkHP.checkHp();
 //        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-//        count++;
+        actions.pickUpLoot(locationCheck);
+//        checkDie.check();
+//        actions.useWing();
+////        for (int i = 0; i < 7; i++) {
+////            SleepTime.sleep(1000);
+////            checkHP.checkHp();
+////        }
     }
 
     void checkMyHp() throws Exception {

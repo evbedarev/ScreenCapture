@@ -37,10 +37,10 @@ public class CheckHpAco extends CheckHpByClass {
 //        }
         System.out.println("Check HP");
         if (Prop.NEED_HEAL) {
-            needHeal();
+//            needHeal();
         }
         if (needPotion(image)) {
-            keys.keyPress(KeyEvent.VK_F1);
+            keys.keyPress(KeyEvent.VK_F3);
         }
     }
 }

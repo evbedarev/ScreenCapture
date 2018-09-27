@@ -174,9 +174,6 @@ public class MoveByCard {
             SleepTime.sleep(500);
         }
 
-        for (KillMonster killMonster: killMonsters) {
-            killMonster.findAndKill();
-        }
         mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
 
@@ -188,9 +185,7 @@ public class MoveByCard {
         while (!checkLocationYUP(coordsYUp + ((coordsYDown - coordsYUp)/2))) {
             mouse.mouseClick(805, 200);
             SleepTime.sleep(500);
-            for (KillMonster killMonster: killMonsters) {
-                killMonster.findAndKill();
-            }
+
         }
         mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
@@ -212,9 +207,6 @@ public class MoveByCard {
             if (x.get()[0] == x1.get()[0])
                 break;
 
-            for (KillMonster killMonster: killMonsters) {
-                killMonster.findAndKill();
-            }
         }
         mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
@@ -236,9 +228,6 @@ public class MoveByCard {
             if (x.get()[0] == x1.get()[0])
                 break;
 
-            for (KillMonster killMonster: killMonsters) {
-                killMonster.findAndKill();
-            }
         }
         mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
     }
