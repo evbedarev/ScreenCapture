@@ -10,7 +10,7 @@ import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Goblin;
-import logic.kill_monster.Rocker;
+import logic.kill_monster.Poring;
 import logic.move_by_card.MoveByCard;
 import logic.take_loot.*;
 import main.Prop;
@@ -24,6 +24,7 @@ public class LogicPrtField08 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     Mouse mouse;
+    private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
     public LogicPrtField08(int threadId) throws Exception {
@@ -37,7 +38,7 @@ public class LogicPrtField08 extends LogicLocation {
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                        new Rocker()
+                        new Poring()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
