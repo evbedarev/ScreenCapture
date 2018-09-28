@@ -10,7 +10,7 @@ import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Goblin;
-import logic.kill_monster.Poring;
+import logic.kill_monster.Rocker;
 import logic.move_by_card.MoveByCard;
 import logic.take_loot.*;
 import main.Prop;
@@ -37,7 +37,7 @@ public class LogicPrtField08 extends LogicLocation {
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                        new Poring()
+                        new Rocker()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
@@ -60,10 +60,12 @@ public class LogicPrtField08 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        locationCheck.locationCheck();
-        checkDie.check();
-        moveByCard.move(locationCheck, killMonsterList);
-        killMonsterList.forEach(this::findAndKill);
+
+//        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
+//        locationCheck.locationCheck();
+//        checkDie.check();
+        moveByCard.move(locationCheck, killMonsterList, this);
+//        killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();
 //        actions.pickUpLoot(locationCheck);

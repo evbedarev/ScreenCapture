@@ -60,7 +60,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    void findAndKill(KillMonster monster) {
+    public void findAndKill(KillMonster monster) {
         try {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
             while (monster.kill()) {

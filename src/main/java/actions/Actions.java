@@ -216,11 +216,11 @@ public class Actions {
     }
 
     private void slide() throws InterruptedException {
-        int x =(int) (Math.random() * 1600);
-        mouse.pressRight();
-        SleepTime.sleep(50);
-        mouse.mouseMove(x, 540);
-        SleepTime.sleep(50);
-        mouse.releaseRight();
+//        int x =(int) (Math.random() * 1600);
+//        mouse.pressRight();
+//        SleepTime.sleep(50);
+//        mouse.mouseMove(x, 540);
+//        SleepTime.sleep(50);
+//        mouse.releaseRight();
     }
 }

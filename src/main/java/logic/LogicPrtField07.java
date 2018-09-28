@@ -1,5 +1,6 @@
 package logic;
 
+import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.PrtField07;
 import key_and_mouse.Keys;
@@ -34,16 +35,11 @@ public class LogicPrtField07 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//            new Clothes(logger),
                 new Shield(),
-//            new Mask(logger),
                 new Coupon()
         };
 
         loot = new TakeLoot[] {
-//            new AntelopeSkin(logger),
-//            new BlueHerb(logger),
-//            new Bottle(logger)
         };
     }
 
@@ -53,13 +49,15 @@ public class LogicPrtField07 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-
-        locationCheck.locationCheck();
-        checkDie.check();
-        checkHP.checkHp();
-        moveByCard.move(locationCheck, killMonsterList);
-        killMonsterList.forEach(this::findAndKill);
-        count++;
+//        moveByCard.initialize(new int[] {1473, 1575, 52, 155});
+//        locationCheck.locationCheck();
+//        checkDie.check();
+//        checkHP.checkHp();
+//        moveByCard.move(locationCheck, killMonsterList);
+//        killMonsterList.forEach(this::findAndKill);
+//        count++;
+        actions.useWing();
+        SleepTime.sleep(5000);
     }
 
     void checkMyHp() throws Exception {
