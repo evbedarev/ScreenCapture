@@ -94,7 +94,7 @@ public class LogicWizardMagmaDun01 extends LogicLocationWizard {
     }
 
     //RENAME
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

@@ -3,21 +3,26 @@ package logic.move_by_card;
 import actions.Actions;
 import actions.SleepTime;
 import checks.LocationCheck;
+import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
+import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import logic.LogicLocation;
 import logic.kill_monster.KillMonster;
 import logic.take_loot.TakeLoot;
+import main.Prop;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class MoveByCard {
     private static MoveByCard instance;
@@ -30,6 +35,8 @@ public class MoveByCard {
     private BufferedImage screenShot;
     private Optional<int[]> xy, xy1, mouseClickCoord;
     List<KillMonster> killMonsters;
+    private AfterDeath checkDie = Prop.checkDie;
+    private Keys keys;
 
     private MoveByCard() throws AWTException {
         xy1 = Optional.empty();
@@ -46,7 +53,7 @@ public class MoveByCard {
         return instance;
     }
 
-    public void initialize(int[] coordsArr) {
+    public void initialize(int[] coordsArr) throws AWTException {
         coordXLeft = coordsArr[0];
         coordXRight = coordsArr[1];
         coordsYUp = coordsArr[2];
@@ -58,99 +65,141 @@ public class MoveByCard {
         x1 = 800;
         y1 = 450;
         x2 = 800 + x2;
-        System.out.println("Take y2 = " + y2);
+        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
         y2 = Math.abs(450 + y2);
         x = 800;
-//
-        if (x2 == 800 && y2 > 450) {
-            return new int[] {800, 700};
-        }
 
+        if (x2 == 800 && y2 > 450) {
+            return new int[] {800, 800};
+        }
         if (x2 == 800 && y2 < 450) {
-            return new int[] {800, 200};
+            return new int[] {800, 100};
         }
 
         if (x1 > x2)
             x = x2 - 400;
-
         if (x1 < x2)
             x = x2 + 400;
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
-//        System.out.println("x1 " + x1);
-        System.out.println("x2 " + x2);
-        System.out.println("y2 " + y2);
+        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
+        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
 
         if (y >= 900 || y < 0) {
-            System.out.println("Calculate by Y");
+            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
             x1 = 800;
             y1 = 450;
             y = 450;
 
             if (y1 > y2)
-                y = y2 - 300;
+                y = y2 - 350;
 
             if (y1 < y2)
-                y = y2 + 300;
+                y = y2 + 350;
 
             x = (((y - y1)/(y2-y1))*(x2 - x1) + x1);
         } else {
-            System.out.println("Calculate by X");
+            LoggerSingle.logDebug(this.toString(),"Calculated by X ");
         }
-
-        System.out.println(Math.abs(x) + "," + Math.abs(y));
+        LoggerSingle.logDebug(this.toString(),"Result values: " + Math.abs(x) + "," + Math.abs(y));
         return new int[] {(int)x, (int)y};
     }
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist, LogicLocation logicLocation) throws Exception {
         xy = takeCoordsFromMap();
+        keys = Keys.getInstance();
 
         if (!xy.isPresent())
             return false;
 
-        System.out.println("My cooord X is :" + xy.get()[0]);
-        System.out.println("My cooord Y is :" + xy.get()[1]);
-//
-        System.out.println("Going to point cooord X is :" + point[0]);
-        System.out.println("Going to point cooord Y is :" + point[1]);
+        LoggerSingle.logDebug(this.toString(),"My cooord X is :" + xy.get()[0]);
+        LoggerSingle.logDebug(this.toString(),"My cooord Y is :" + xy.get()[1]);
+        LoggerSingle.logDebug(this.toString(),"Going to point cooord X is :" + point[0]);
+        LoggerSingle.logDebug(this.toString(),"Going to point cooord Y is :" + point[1]);
 
 
         while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
-
-
             int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-            System.out.println("Mouse cooord X is :" + coords[0]);
-            System.out.println("Mouse cooord Y is :" + coords[1]);
-            mouse.mouseClick(coords[0], coords[1]);
+            LoggerSingle.logDebug(this.toString(),"Mouse cooord X is :" + coords[0]);
+            LoggerSingle.logDebug(this.toString(),"Mouse cooord Y is :" + coords[1]);
 
-            SleepTime.sleep(500);
+            mouse.mouseMove(coords[0], coords[1]);
+            SleepTime.sleep(200);
+            screenShot = capture.takeScreenShot();
+
+//            Optional<int[]> coordsCoursor = findImageHard.findPixelsInImageInArea(
+//                    screenShot,
+//                    -131844,
+//                    new int[] {30,30},
+//                    new int[] {-131844},
+//                    new int[] {coords[0] - 40, coords[0] + 40, coords[1] - 40, coords[1] + 40});
+//
+//
+//            if (!coordsCoursor.isPresent())
+                mouse.mouseClick(coords[0], coords[1]);
+
             for (KillMonster killMonster : killMonsterlist) {
-                logicLocation.findAndKill(killMonster);
+               while (killMonster.findMonster()) {
+                   keys.keyPress(Prop.SPELL_ATTACK_KEY);
+                   killMonster.findAndKill();
+                   checkDie.check();
+                   SleepTime.sleep(2000);
+//                   logicLocation.findAndKill(killMonster);
+               }
             }
+
+            logicLocation.checkMyHp();
+            checkDie.check();
+
             xy = takeCoordsFromMap();
-            System.out.println("My cooord X is :" + xy.get()[0]);
-            System.out.println("My cooord Y is :" + xy.get()[1]);
+//            System.out.println("My cooord X is :" + xy.get()[0]);
+//            System.out.println("My cooord Y is :" + xy.get()[1]);
         }
 
-        System.out.println("Arrive to point: " + point[0] + ", " + point[1]);
+//        System.out.println("Arrive to point: " + point[0] + ", " + point[1]);
         return true;
     }
 
     public void move(LocationCheck locationCheck,  List<KillMonster> killMonsters, LogicLocation logicLocation) throws Exception {
         List<int[]> points = new ArrayList<>();
-        points.add(new int[] {1471,150});
-        points.add(new int[] {1492,150});
-        points.add(new int[] {1504,151});
-        points.add(new int[] {1516,151});
-        points.add(new int[] {1525,154});
-        points.add(new int[] {1551,146});
-        points.add(new int[] {1562,136});
-        points.add(new int[] {1554,127});
-        points.add(new int[] {1566,116});
-        points.add(new int[] {1561,96});
-        points.add(new int[] {1564,77});
-        points.add(new int[] {1551,73});
-        points.add(new int[] {1544,83});
+
+        //Rockers
+//        points.add(new int[] {1471,150});
+//        points.add(new int[] {1492,150});
+//        points.add(new int[] {1504,151});
+//        points.add(new int[] {1516,151});
+//        points.add(new int[] {1525,154});
+//        points.add(new int[] {1551,146});
+//        points.add(new int[] {1562,136});
+//        points.add(new int[] {1554,127});
+//        points.add(new int[] {1566,116});
+//        points.add(new int[] {1561,96});
+//        points.add(new int[] {1564,77});
+//        points.add(new int[] {1551,73});
+//        points.add(new int[] {1544,83});
+
+
+        //gef05
+        points.add(new int[] {1485,152});
+        points.add(new int[] {1487,142});
+        points.add(new int[] {1489,136});
+        points.add(new int[] {1490,126});
+        points.add(new int[] {1490,114});
+        points.add(new int[] {1502,112});
+        points.add(new int[] {1502,112});
+        points.add(new int[] {1507,105});
+        points.add(new int[] {1514,99});
+        points.add(new int[] {1521,94});
+        points.add(new int[] {1525,89});
+        points.add(new int[] {1535,85});
+        points.add(new int[] {1546,86});
+        points.add(new int[] {1555,81});
+        points.add(new int[] {1559,72});
+        points.add(new int[] {1546,65});
+        points.add(new int[] {1532,62});
+        points.add(new int[] {1516,62});
+        points.add(new int[] {1505,60});
+        points.add(new int[] {1497,67});
 
         for (int[] point : points) {
             moveToPoint(point, killMonsters, logicLocation);

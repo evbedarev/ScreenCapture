@@ -9,8 +9,7 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Goblin;
-import logic.kill_monster.Poring;
+import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.take_loot.*;
 import main.Prop;
@@ -38,16 +37,19 @@ public class LogicPrtField08 extends LogicLocation {
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                        new Poring()
+                        new ThiefBug(),
+                        new Creamy()
+//                        new Smokie()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Coupon()
+                new Coupon(),
+//                new Clothes()
         };
 
         loot = new TakeLoot[] {
-            new Bottle(),
+//            new Bottle(),
         };
 
         checkAgressorIsNear.initialize(Stream
@@ -73,7 +75,7 @@ public class LogicPrtField08 extends LogicLocation {
 //        count++;
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

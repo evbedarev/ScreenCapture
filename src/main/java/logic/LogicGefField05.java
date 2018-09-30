@@ -54,18 +54,20 @@ public class LogicGefField05 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        locationCheck.locationCheck();
-        checkSP.enoghtSP();
-        killMonsterList.forEach(this::findAndKill);
-        checkMyHp();
-        actions.pickUpCard();
-        actions.pickUpLoot(locationCheck);
-        teleport();
-        count++;
-        Prop.cast.cast();
+        moveByCard.move(locationCheck, killMonsterList, this);
+
+//        locationCheck.locationCheck();
+//        checkSP.enoghtSP();
+//        killMonsterList.forEach(this::findAndKill);
+//        checkMyHp();
+//        actions.pickUpCard();
+//        actions.pickUpLoot(locationCheck);
+//        teleport();
+//        count++;
+//        Prop.cast.cast();
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

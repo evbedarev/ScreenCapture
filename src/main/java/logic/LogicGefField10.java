@@ -76,7 +76,7 @@ public class LogicGefField10 extends LogicLocation {
         }
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

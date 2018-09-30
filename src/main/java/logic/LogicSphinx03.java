@@ -80,7 +80,7 @@ public class LogicSphinx03 extends LogicLocation {
         }
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

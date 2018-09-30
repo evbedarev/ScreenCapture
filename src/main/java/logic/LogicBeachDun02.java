@@ -69,7 +69,7 @@ public class LogicBeachDun02 extends LogicLocation {
         count++;
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

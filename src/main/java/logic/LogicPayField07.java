@@ -92,7 +92,7 @@
 //        }
 //    }
 //
-//    void checkMyHp() throws Exception {
+//    public void checkMyHp() throws Exception {
 //        checkHP.checkHp();
 //        pickUpCard();
 //    }

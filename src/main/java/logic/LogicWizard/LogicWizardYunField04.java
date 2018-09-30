@@ -65,7 +65,7 @@ public class LogicWizardYunField04 extends LogicLocationWizard {
     }
 
     //RENAME
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

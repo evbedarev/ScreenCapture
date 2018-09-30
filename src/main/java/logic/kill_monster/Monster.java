@@ -80,7 +80,7 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
 //                mouse.mouseClick(x + 5, y + 20);
 //                SleepTime.sleep(1500);
-//                spellAttack();
+                spellAttack();
                 mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
@@ -123,16 +123,15 @@ public class Monster implements KillMonster {
     private void spellAttack() throws
             InterruptedException {
         int rndInt;
-        if (Prop.NEED_SPELL_ATTACK ) {
-            rndInt = (int)(Math.random() * 2000);
-            System.out.println(rndInt);
-            if (rndInt < 2000) {
-                keys.keyPress(Prop.SPELL_ATTACK_KEY);
-                SleepTime.sleep(200);
-                attackBySpell = true;
-            }
-        }
-
+//        if (Prop.NEED_SPELL_ATTACK ) {
+//            rndInt = (int)(Math.random() * 2000);
+//            System.out.println(rndInt);
+//            if (rndInt < 2000) {
+//                keys.keyPress(Prop.SPELL_ATTACK_KEY);
+//                SleepTime.sleep(200);
+//                attackBySpell = true;
+//            }
+//        }
     }
 
     private void sleepAfterAttack() throws InterruptedException {

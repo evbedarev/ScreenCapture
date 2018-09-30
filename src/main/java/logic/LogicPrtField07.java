@@ -60,7 +60,7 @@ public class LogicPrtField07 extends LogicLocation {
         SleepTime.sleep(5000);
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

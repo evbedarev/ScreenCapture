@@ -91,7 +91,7 @@ public abstract class LogicLocationWizard extends Thread implements Logic {
         }
     }
 
-    void checkMyHp() throws Exception {
+    public void checkMyHp() throws Exception {
         actions.pickUpCard();
         checkHP.checkHp();
     }

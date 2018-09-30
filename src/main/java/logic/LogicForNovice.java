@@ -105,7 +105,7 @@
 //        }
 //    }
 //
-//    private void checkMyHp() throws Exception {
+//    private public void checkMyHp() throws Exception {
 //        checkHP.checkHp();
 //        pickUpCard();
 //        SleepTime.sleep(1000);
