@@ -1,9 +1,10 @@
 package logic.move_by_card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PointsGefFields05 implements Points{
-    private List<int[]> points;
+    private List<int[]> points = new ArrayList<>();
 
     public PointsGefFields05() {
         points.add(new int[] {1485,152});

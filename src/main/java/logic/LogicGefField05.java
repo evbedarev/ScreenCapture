@@ -6,6 +6,7 @@ import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
+import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -54,7 +55,7 @@ public class LogicGefField05 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(locationCheck, killMonsterList, this);
+        moveByCard.move(killMonsterList, new PointsGefFields05());
 
 //        locationCheck.locationCheck();
 //        checkSP.enoghtSP();
