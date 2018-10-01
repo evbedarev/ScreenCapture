@@ -124,7 +124,8 @@ public class MoveByCard {
             SleepTime.sleep(200);
 
             screenShot = capture.takeScreenShot();
-            mouse.mouseClick(coords[0], coords[1]);
+            if (!checkMonsterUnderCoursor(coords,killMonsterlist))
+                mouse.mouseClick(coords[0], coords[1]);
 
             for (KillMonster killMonster : killMonsterlist) {
                while (killMonster.findMonster()) {
