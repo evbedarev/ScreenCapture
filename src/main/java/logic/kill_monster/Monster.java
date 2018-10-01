@@ -141,4 +141,8 @@ public class Monster implements KillMonster {
             SleepTime.sleep(500);
         attackBySpell = false;
     }
+
+    public List<RgbParameter> getRgbParameterList() {
+        return rgbParameterList;
+    }
 }

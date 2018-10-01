@@ -1,8 +1,8 @@
 package logic.kill_monster;
 
+import logic.RgbParameter;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.util.List;
 
 public interface KillMonster {
 
@@ -16,4 +16,6 @@ public interface KillMonster {
             InterruptedException;
 
     boolean findMonster() throws Exception;
+
+    List<RgbParameter> getRgbParameterList();
 }

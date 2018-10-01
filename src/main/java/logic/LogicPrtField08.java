@@ -11,6 +11,7 @@ import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
+import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -30,7 +31,7 @@ public class LogicPrtField08 extends LogicLocation {
         xy1 = Optional.empty();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
-        moveByCard = MoveByCard.getInstance();
+        moveByCard = MoveByCard.getInstance(this);
         actions = Actions.instance();
         locationCheck = new LocationCheck(new PrtField08());
         lootAround.initialize(new HandYun11());
@@ -67,7 +68,7 @@ public class LogicPrtField08 extends LogicLocation {
 //        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
 //        locationCheck.locationCheck();
 //        checkDie.check();
-        moveByCard.move(locationCheck, killMonsterList, this);
+        moveByCard.move(killMonsterList, new PointsGefFields05());
 //        killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();

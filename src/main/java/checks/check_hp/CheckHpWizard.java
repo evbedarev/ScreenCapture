@@ -27,21 +27,21 @@ public class CheckHpWizard extends CheckHpByClass {
 //            checkSilenceStatus();
             actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
-            while (checkHpToEndRun(image)) {
-                if (checkDie.check()) {
-                    break;
-                }
-                locationCheck.locationCheck();
-//                checkSilenceStatus();
-                if (checkAgressorIsNear.check()) {
-                    actions.teleport();
-                    SleepTime.sleep(1000);
-                } else {
-                    SleepTime.sleep(1000);
-                    actions.heal();
-                }
-                image = capture.takeScreenShot();
-            }
+//            while (checkHpToEndRun(image)) {
+//                if (checkDie.check()) {
+//                    break;
+//                }
+//                locationCheck.locationCheck();
+////                checkSilenceStatus();
+//                if (checkAgressorIsNear.check()) {
+//                    actions.teleport();
+//                    SleepTime.sleep(1000);
+//                } else {
+//                    SleepTime.sleep(1000);
+//                    actions.heal();
+//                }
+//                image = capture.takeScreenShot();
+//            }
         }
 
         if (Prop.NEED_HEAL) {
