@@ -9,11 +9,16 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.*;
+import logic.kill_monster.Goblin;
+import logic.kill_monster.PecoPeco;
+import logic.kill_monster.Poring;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
+import logic.move_by_card.PointsMocField01;
 import logic.move_by_card.PointsPrtField08;
-import logic.take_loot.*;
+import logic.take_loot.Bottle;
+import logic.take_loot.Card;
+import logic.take_loot.Coupon;
+import logic.take_loot.TakeLoot;
 import main.Prop;
 
 import java.awt.image.BufferedImage;
@@ -21,14 +26,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicPrtField08 extends LogicLocation {
+public class LogicMocField01 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     Mouse mouse;
     private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
-    public LogicPrtField08(int threadId) throws Exception {
+    public LogicMocField01(int threadId) throws Exception {
         xy1 = Optional.empty();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
@@ -39,12 +44,11 @@ public class LogicPrtField08 extends LogicLocation {
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                    new Poring()
+                    new PecoPeco()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Bottle(),
                 new Coupon(),
 //                new Clothes()
         };
@@ -68,7 +72,7 @@ public class LogicPrtField08 extends LogicLocation {
 //        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
 //        locationCheck.locationCheck();
 //        checkDie.check();
-        moveByCard.move(killMonsterList, new PointsPrtField08());
+        moveByCard.move(killMonsterList, new PointsMocField01());
 //        killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();

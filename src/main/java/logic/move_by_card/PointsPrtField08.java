@@ -1,24 +1,24 @@
 package logic.move_by_card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PointsPrtField08 implements Points{
-    private List<int[]> points;
+    private List<int[]> points = new ArrayList<>();
 
     public PointsPrtField08() {
-        points.add(new int[] {1471,150});
-        points.add(new int[] {1492,150});
-        points.add(new int[] {1504,151});
-        points.add(new int[] {1516,151});
-        points.add(new int[] {1525,154});
-        points.add(new int[] {1551,146});
-        points.add(new int[] {1562,136});
-        points.add(new int[] {1554,127});
-        points.add(new int[] {1566,116});
-        points.add(new int[] {1561,96});
-        points.add(new int[] {1564,77});
-        points.add(new int[] {1551,73});
-        points.add(new int[] {1544,83});
+        points.add(new int[] {1484,55});
+        points.add(new int[] {1488,114});
+        points.add(new int[] {1518,95});
+        points.add(new int[] {1518,95});
+        points.add(new int[] {1534,117});
+        points.add(new int[] {1545,123});
+        points.add(new int[] {1535,150});
+        points.add(new int[] {1549,148});
+        points.add(new int[] {1545,123});
+        points.add(new int[] {1534,117});
+        points.add(new int[] {1539,56});
+
     }
 
     @Override

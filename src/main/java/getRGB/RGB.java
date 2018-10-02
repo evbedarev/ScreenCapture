@@ -8,13 +8,13 @@ import java.awt.image.BufferedImage;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
-        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-        compareFragmentImage.getRgb();
+//        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
+//        compareFragmentImage.getRgb();
+//Map rgb -2374501
+        findPixelRgb(-2374501);
 
-//        findPixelRgb(-16776192);
-
-//        showRGB(new int[] {1586,194}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
-//        showRGB(new int[] {1577,54}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {1480,125}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
     }
 // Coursor rgb -16250872
@@ -33,7 +33,8 @@ public class RGB {
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x=0; x < image.getWidth(); x++) {
                 if (image.getRGB(x,y) == intRGB) {
-                    System.out.println("x=" + x + " y=" + y);
+//                    System.out.println("x=" + x + " y=" + y);
+                    System.out.println("points.add(new int[] {"+ x +"," + y +"});");
                 }
             }
         }

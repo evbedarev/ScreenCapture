@@ -11,8 +11,8 @@ import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
-import logic.move_by_card.PointsPrtField08;
+import logic.move_by_card.PointsMocField01;
+import logic.move_by_card.PointsMocField11;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -21,14 +21,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicPrtField08 extends LogicLocation {
+public class LogicMocField11 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
     Mouse mouse;
     private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
-    public LogicPrtField08(int threadId) throws Exception {
+    public LogicMocField11(int threadId) throws Exception {
         xy1 = Optional.empty();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
@@ -39,14 +39,15 @@ public class LogicPrtField08 extends LogicLocation {
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                    new Poring()
+                        new Scorpion(),
+                        new BabyDesertWolf(),
+                        new Condor()
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-                new Bottle(),
                 new Coupon(),
-//                new Clothes()
+                new Clothes()
         };
 
         loot = new TakeLoot[] {
@@ -68,7 +69,7 @@ public class LogicPrtField08 extends LogicLocation {
 //        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
 //        locationCheck.locationCheck();
 //        checkDie.check();
-        moveByCard.move(killMonsterList, new PointsPrtField08());
+        moveByCard.move(killMonsterList, new PointsMocField11());
 //        killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();

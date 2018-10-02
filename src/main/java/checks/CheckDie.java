@@ -68,6 +68,22 @@ public abstract class CheckDie implements AfterDeath {
         return false;
     }
 
+    public boolean check(BufferedImage image) throws Exception {
+        keys = Keys.getInstance();
+        if (!Prop.CHECK_DIE) return false;
+        if (checkDeathLabel()) return true;
+        if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP_DEATH) {
+            while (!checkDeathLabel()) {
+                keys.keyPress(KeyEvent.VK_ESCAPE);
+                SleepTime.sleep(2000);
+                image = capture.takeScreenShot();
+                if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP_DEATH) return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public void putItems(List<KafraLoot> kafraLootList) throws Exception {
         actions = Actions.instance();
         InterfaceActions interfaceActions = InterfaceActions.getInstance();

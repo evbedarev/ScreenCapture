@@ -2,7 +2,6 @@ package logic.move_by_card;
 
 import actions.Actions;
 import actions.SleepTime;
-import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -15,7 +14,6 @@ import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -102,53 +100,70 @@ public class MoveByCard {
         return new int[] {(int)x, (int)y};
     }
 
-    public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) throws Exception {
-        xy = takeCoordsFromMap();
-        keys = Keys.getInstance();
-        int countMoves = 0;
+    public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
+        try {
+            Prop.cast.cast();
+            xy = takeCoordsFromMap();
+            keys = Keys.getInstance();
+            int countMoves = 0;
 
-        LoggerSingle.logDebug(this.toString(),"My cooord X is :" + xy.get()[0]);
-        LoggerSingle.logDebug(this.toString(),"My cooord Y is :" + xy.get()[1]);
-        LoggerSingle.logDebug(this.toString(),"Going to point cooord X is :" + point[0]);
-        LoggerSingle.logDebug(this.toString(),"Going to point cooord Y is :" + point[1]);
+            LoggerSingle.logDebug(this.toString(), "My cooord X is :" + xy.get()[0]);
+            LoggerSingle.logDebug(this.toString(), "My cooord Y is :" + xy.get()[1]);
+            LoggerSingle.logDebug(this.toString(), "Going to point cooord X is :" + point[0]);
+            LoggerSingle.logDebug(this.toString(), "Going to point cooord Y is :" + point[1]);
 
-        if (!xy.isPresent())
-            return false;
+            if (!xy.isPresent())
+                return false;
 
-        while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
-            int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-            LoggerSingle.logDebug(this.toString(),"Mouse cooord X is :" + coords[0]);
-            LoggerSingle.logDebug(this.toString(),"Mouse cooord Y is :" + coords[1]);
+            while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
+                int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
+                LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
+                LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
 
-            mouse.mouseMove(coords[0], coords[1]);
-            SleepTime.sleep(200);
+                mouse.mouseMove(coords[0], coords[1]);
+                //            SleepTime.sleep(200);
 
-            screenShot = capture.takeScreenShot();
-            if (!checkMonsterUnderCoursor(coords,killMonsterlist))
+                screenShot = capture.takeScreenShot();
+
+                //            if (!checkMonsterUnderCoursor(coords,killMonsterlist))
                 mouse.mouseClick(coords[0], coords[1]);
 
-            for (KillMonster killMonster : killMonsterlist) {
-               while (killMonster.findMonster()) {
-                   keys.keyPress(Prop.SPELL_ATTACK_KEY);
-                   killMonster.findAndKill();
-                   logicLocation.checkMyHp();
-                   checkDie.check();
-                   SleepTime.sleep(2000);
-               }
-//             logicLocation.findAndKill(killMonster);
+                for (KillMonster killMonster : killMonsterlist) {
+                    //               while (killMonster.findMonster()) {
+                    //                   keys.keyPress(Prop.SPELL_ATTACK_KEY);
+                    //                   killMonster.findAndKill();
+                    //                   logicLocation.checkMyHp();
+                    //                   checkDie.check();
+                    //                   SleepTime.sleep(1000);
+                    //               }
+
+//                   while (killMonster.findMonster()) {
+//                       killMonster.findAndKill();
+//                       logicLocation.checkMyHp();
+//                       checkDie.check();
+//                       SleepTime.sleep(1000);
+//                   }
+                    logicLocation.findAndKill(killMonster);
+                }
+
+                if (countMoves > 50) {
+                    actions.useWing();
+                    countMoves = 0;
+                }
+
+//                logicLocation.checkMyHp();
+                checkDie.check(screenShot);
+
+                xy = takeCoordsFromMap();
+                //            System.out.println("My cooord X is :" + xy.get()[0]);
+                //            System.out.println("My cooord Y is :" + xy.get()[1]);
+                countMoves++;
             }
-
-            if (countMoves > 10) {
-                actions.useWing();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            while (true) {
+                    SleepTime.sleep(5000);
             }
-
-            logicLocation.checkMyHp();
-            checkDie.check();
-
-            xy = takeCoordsFromMap();
-//            System.out.println("My cooord X is :" + xy.get()[0]);
-//            System.out.println("My cooord Y is :" + xy.get()[1]);
-            countMoves++;
         }
 
 //        System.out.println("Arrive to point: " + point[0] + ", " + point[1]);
@@ -157,16 +172,9 @@ public class MoveByCard {
 
     public void move(List<KillMonster> killMonsters, Points pointsOnCard) throws Exception {
         List<int[]> points = pointsOnCard.getPoints();
-
-        for (int[] point : points) {
-            moveToPoint(point, killMonsters);
-        }
-
+        points.forEach(e -> moveToPoint(e,killMonsters));
         Collections.reverse(points);
-
-        for (int[] point : points) {
-            moveToPoint(point, killMonsters);
-        }
+        points.forEach(e -> moveToPoint(e,killMonsters));
     }
 
     /**

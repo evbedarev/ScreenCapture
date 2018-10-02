@@ -13,7 +13,7 @@ public class testFindFragments {
         actions.standUp();
 //        if (CheckOverweight.check()) {
 ////            actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
-////                    Prop.ROOT_DIR + "Loot\\GreenHerb\\");
+////                    Prop.ROOT_DIR + "Loot\\GreenPlant\\");
 ////            actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
 ////                    Prop.ROOT_DIR + "Loot\\YellowHerb\\");
 //        }

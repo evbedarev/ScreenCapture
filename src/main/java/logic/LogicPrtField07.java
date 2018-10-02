@@ -8,7 +8,10 @@ import key_and_mouse.Mouse;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Rocker;
+import logic.kill_monster.SavageBaby;
 import logic.move_by_card.MoveByCard;
+import logic.move_by_card.PointsPrtField07;
+import logic.move_by_card.PointsPrtField08;
 import logic.take_loot.*;
 import main.Prop;
 import java.util.stream.Collectors;
@@ -23,13 +26,14 @@ public class LogicPrtField07 extends LogicLocation {
     public LogicPrtField07(int threadId) throws Exception {
         mouse = Mouse.getInstance();
         keys = Keys.getInstance();
-        moveByCard = MoveByCard.getInstance();
+        moveByCard = MoveByCard.getInstance(this);
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new PrtField07());
         lootAround.initialize(new HandYun11());
         killMonsterList = Stream
-                .of(new Rocker())
+                .of(new Rocker(),
+                        new SavageBaby())
                 .collect(Collectors.toList());
 
 
@@ -56,8 +60,7 @@ public class LogicPrtField07 extends LogicLocation {
 //        moveByCard.move(locationCheck, killMonsterList);
 //        killMonsterList.forEach(this::findAndKill);
 //        count++;
-        actions.useWing();
-        SleepTime.sleep(5000);
+        moveByCard.move(killMonsterList, new PointsPrtField07());
     }
 
     public void checkMyHp() throws Exception {
