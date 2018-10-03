@@ -27,6 +27,13 @@ public class PointsMocField11 implements Points{
         points.add(new int[] {1549,61});
         points.add(new int[] {1567,79});
         points.add(new int[] {1560,95});
+        points.add(new int[] {1556,86});
+        points.add(new int[] {1554,93});
+        points.add(new int[] {1552,91});
+        points.add(new int[] {1546,92});
+        points.add(new int[] {1526,77});
+        points.add(new int[] {1506,83});
+        points.add(new int[] {1524,120});
     }
 
     @Override

@@ -74,6 +74,14 @@ public class InterfaceActions {
                 "PressOk");
     }
 
+    public boolean pressOk(BufferedImage screenShot) throws Exception {
+        return pressOnImage(screenShot,
+                new int[]{0, 1600, 0, 900},
+                5000,
+                Prop.ROOT_DIR + "Interface\\Ok\\",
+                "PressOk");
+    }
+
     public void pressReturnToLastSavepoint() throws Exception {
         pressOnImage(new int[]{0, 1600, 0, 900},
                 2000,

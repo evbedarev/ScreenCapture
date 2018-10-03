@@ -1,5 +1,7 @@
 package logic.kill_monster;
 
+import actions.Actions;
+import actions.InterfaceActions;
 import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -9,6 +11,7 @@ import logic.Capture;
 import logic.RgbParameter;
 import main.Prop;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.Optional;
 public class Monster implements KillMonster {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
+    public InterfaceActions interfaceActions;
+    public Actions actions;
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
@@ -27,6 +32,8 @@ public class Monster implements KillMonster {
         capture = Capture.instance();
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
+        interfaceActions = InterfaceActions.getInstance();
+        actions = Actions.instance();
     }
 
     @Override
@@ -82,6 +89,11 @@ public class Monster implements KillMonster {
 //                SleepTime.sleep(1500);
                 spellAttack();
                 mouse.mouseClick(x + 5, y + 20);
+                BufferedImage image = capture.takeScreenShot();
+                if (checkDialogWindow(image)) {
+                    actions.stepAside(new int[] {600, 800});
+                }
+
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;
@@ -92,8 +104,7 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean findAndKillAround() throws
-            AWTException,
-            InterruptedException {
+            Exception {
         SleepTime.sleep(500);
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
@@ -105,13 +116,19 @@ public class Monster implements KillMonster {
                     new int[] {400, 1100, 75, 700});
 
             if (xy.isPresent()) {
+                int rndInt = (int)(Math.random() * 5000);
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 spellAttack();
                 mouse.mouseClick(x + 5, y + 25);
 //                if (attackBySpell)
 //                    mouse.mouseClick(x + 5, y + 10);
-
+                if (rndInt < 1000) {
+                    BufferedImage image = capture.takeScreenShot();
+                    if (checkDialogWindow(image)) {
+                        actions.stepAside(new int[]{600, 800});
+                    }
+                }
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;
@@ -144,5 +161,15 @@ public class Monster implements KillMonster {
 
     public List<RgbParameter> getRgbParameterList() {
         return rgbParameterList;
+    }
+
+    private boolean checkDialogWindow(BufferedImage image) throws Exception {
+        boolean wasDialog = false;
+        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressClose(image)) {
+            image = capture.takeScreenShot();
+            SleepTime.sleep(500);
+            wasDialog = true;
+        }
+        return wasDialog;
     }
 }

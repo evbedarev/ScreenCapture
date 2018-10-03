@@ -119,4 +119,18 @@ public class LootAround implements TakeLoot {
         }
         return false;
     }
+
+    @Override
+    public void pickUp(BufferedImage screenShot) throws Exception {
+        while (takeLoot(screenShot)) {
+            SleepTime.sleep(1000);
+            checkHP.checkHp();
+        }
+    }
+
+
+    @Override
+    public boolean takeLoot(BufferedImage screenShot) throws Exception {
+        return false;
+    }
 }

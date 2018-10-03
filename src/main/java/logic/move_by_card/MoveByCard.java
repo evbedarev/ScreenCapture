@@ -1,6 +1,7 @@
 package logic.move_by_card;
 
 import actions.Actions;
+import actions.InterfaceActions;
 import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
@@ -14,6 +15,7 @@ import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.nio.BufferOverflowException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,7 @@ public class MoveByCard {
     private static MoveByCard instance;
     int coordsYUp, coordsYDown, coordXLeft, coordXRight;
     private Mouse mouse;
+    private InterfaceActions interfaceActions;
     private Actions actions;
     private FindPixels findImageHard;
     private LogicLocation logicLocation;
@@ -39,6 +42,7 @@ public class MoveByCard {
         findImageHard = new FindPixels();
         capture = Capture.instance();
         this.logicLocation = logicLocation;
+        interfaceActions = InterfaceActions.getInstance();
     }
 
     static public MoveByCard getInstance(LogicLocation logicLocation) throws AWTException {
@@ -121,13 +125,14 @@ public class MoveByCard {
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
 
-                mouse.mouseMove(coords[0], coords[1]);
-                //            SleepTime.sleep(200);
-
                 screenShot = capture.takeScreenShot();
-
-                //            if (!checkMonsterUnderCoursor(coords,killMonsterlist))
                 mouse.mouseClick(coords[0], coords[1]);
+
+                if (checkDialogWindow(screenShot)) {
+                    moveToPoint(point);
+                }
+
+//                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
                     //               while (killMonster.findMonster()) {
@@ -151,7 +156,6 @@ public class MoveByCard {
                     actions.useWing();
                     countMoves = 0;
                 }
-
 //                logicLocation.checkMyHp();
                 checkDie.check(screenShot);
 
@@ -166,9 +170,55 @@ public class MoveByCard {
                     SleepTime.sleep(5000);
             }
         }
-
 //        System.out.println("Arrive to point: " + point[0] + ", " + point[1]);
         return true;
+    }
+
+
+    public boolean moveToPoint(int[] point) {
+        try {
+            Prop.cast.cast();
+            xy = takeCoordsFromMap();
+            keys = Keys.getInstance();
+            int countMoves = 0;
+
+            if (!xy.isPresent())
+                return false;
+
+            while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
+                int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
+
+                mouse.mouseMove(coords[0], coords[1]);
+                screenShot = capture.takeScreenShot();
+                mouse.mouseClick(coords[0], coords[1]);
+
+                if (countMoves > 50) {
+                    actions.useWing();
+                    countMoves = 0;
+                }
+
+                checkDie.check(screenShot);
+
+                xy = takeCoordsFromMap();
+                countMoves++;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
+        return true;
+    }
+
+    private boolean checkDialogWindow(BufferedImage image) throws Exception {
+        boolean wasDialog = false;
+        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressClose(image)) {
+            image = capture.takeScreenShot();
+            SleepTime.sleep(500);
+            wasDialog = true;
+        }
+        return wasDialog;
     }
 
     public void move(List<KillMonster> killMonsters, Points pointsOnCard) throws Exception {
@@ -204,7 +254,6 @@ public class MoveByCard {
         }
         return false;
     }
-
 
     private Optional<int[]> takeCoordsFromMap() throws Exception {
         screenShot = capture.takeScreenShot();

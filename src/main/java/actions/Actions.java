@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class Actions {
@@ -118,6 +119,24 @@ public class Actions {
         keys.keyPress(Prop.PRESERVE);
     }
 
+    public void stepAside(int[] radiuses) throws Exception {
+        double t = 2 * Math.PI * Math.random();
+        double minRadius = radiuses[0];
+        double maxRadius = radiuses[1];
+
+        double x = minRadius * Math.cos(t);
+        double x1 = maxRadius * Math.cos(t);
+
+        double mediumX = x + Math.random()*(x1 - x);
+        double mediumR = mediumX/Math.cos(t);
+        double mediumY = mediumR * Math.sin(t);
+
+        mouse.mouseClick(800 + (int) Math.round(mediumX),
+                450 + (int) Math.round(mediumY));
+        SleepTime.sleep(1000);
+    }
+
+
 
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
         locationCheck.locationCheck();
@@ -181,6 +200,16 @@ public class Actions {
         if (REPEAT_USEFUL_LOOT++ % 4 == 0)
             slide();
     }
+
+    public void pickUpCard(BufferedImage screenShot) throws Exception {
+        for (TakeLoot takeLoot: usefulLoot) {
+            takeLoot.pickUp(screenShot);
+        }
+        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
+            slide();
+    }
+
+
 
     public void dropItem(String dirInventory, String dirLoot) throws Exception {
         Optional<int[]> xy;
