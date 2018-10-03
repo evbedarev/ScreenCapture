@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class InterfaceActions {
@@ -48,6 +49,24 @@ public class InterfaceActions {
         }
     }
 
+    private boolean pressOnImage(BufferedImage screenShot,
+                              int[] area,
+                              int sleepTime,
+                              String pathFragment,
+                              String methodName) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(area);
+        xy = findFragmentInImage.findImage(screenShot, pathFragment);
+        if (xy.isPresent()) {
+            mouse.mouseClick(xy.get()[0], xy.get()[1]);
+            SleepTime.sleep(sleepTime);
+            logger.info(methodName + ": find and click." );
+            return true;
+        }
+
+        return false;
+    }
+
     public void pressOk() throws Exception {
         pressOnImage(new int[]{0, 1600, 0, 900},
                 5000,
@@ -82,11 +101,27 @@ public class InterfaceActions {
                 "PressNext");
     }
 
+    public boolean pressNext(BufferedImage screenShot) throws Exception{
+        return pressOnImage(screenShot,
+                new int[]{0, 1600, 0, 900},
+                2000,
+                Prop.ROOT_DIR + "Interface\\Next\\",
+                "PressNext");
+    }
+
     public void openWarehouse() throws Exception{
         pressOnImage(new int[]{0, 1600, 0, 900},
                 2000,
                 Prop.ROOT_DIR + "Interface\\OpenWarehouse\\",
                 "OpenWarehouse");
+    }
+
+    public boolean pressClose(BufferedImage screenShot) throws Exception{
+        return pressOnImage(screenShot,
+                new int[]{0, 1600, 0, 900},
+                2000,
+                Prop.ROOT_DIR + "Interface\\Close\\",
+                "PressClose");
     }
 
     public void pressClose() throws Exception{

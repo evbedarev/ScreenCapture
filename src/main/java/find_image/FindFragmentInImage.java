@@ -43,6 +43,20 @@ public class FindFragmentInImage {
         return Optional.empty();
     }
 
+    public Optional<int[]> findImage(BufferedImage screenshot, String dir) throws Exception{
+        capture = Capture.instance();
+        imageList = findFragmentFiles.fragments("frag*", dir);
+        Optional<int[]> xy;
+        for (BufferedImage image: imageList) {
+            xy = findImageHard.findImageInArea(screenshot, image,
+                    screen);
+            if (xy.isPresent())
+                return xy;
+        }
+        return Optional.empty();
+    }
+
+
     public Optional<int[]> findImageExcludeArea(String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);

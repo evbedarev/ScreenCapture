@@ -77,6 +77,7 @@ public class MoveByCard {
             x = x2 + 400;
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
+
         LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
         LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
 
