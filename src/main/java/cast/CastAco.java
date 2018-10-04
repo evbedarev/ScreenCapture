@@ -47,18 +47,6 @@ public class CastAco extends Cast {
     public void cast() throws Exception {
         if (threadId == 0) {
 
-            if (AGI_UP.get() > 240) {
-                LoggerSingle.logInfo(this.toString(), "cast AGI UP");
-                keys.keyPress(KeyEvent.VK_F4);
-                SleepTime.sleep(500);
-                try {
-                    mouse.mouseClick(800, 420);
-                } catch (AWTException exception) {
-                    exception.printStackTrace();
-                }
-                AGI_UP.set(0);
-            }
-
             if (BLESS.get() > 240) {
                 LoggerSingle.logInfo(this.toString(), "cast BLESS");
                 keys.keyPress(KeyEvent.VK_F5);
@@ -69,6 +57,19 @@ public class CastAco extends Cast {
                     exception.printStackTrace();
                 }
                 BLESS.set(0);
+                SleepTime.sleep(1000);
+            }
+
+            if (AGI_UP.get() > 240) {
+                LoggerSingle.logInfo(this.toString(), "cast AGI UP");
+                keys.keyPress(KeyEvent.VK_F4);
+                SleepTime.sleep(500);
+                try {
+                    mouse.mouseClick(800, 420);
+                } catch (AWTException exception) {
+                    exception.printStackTrace();
+                }
+                AGI_UP.set(0);
             }
         }
     }

@@ -133,6 +133,8 @@ public class MoveByCard {
                     moveToPoint(point);
                 }
 
+                LoggerSingle.logInfo(this.toString(), "Go to point");
+
 //                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
@@ -191,6 +193,10 @@ public class MoveByCard {
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
 
+                if (checkDialogWindow(screenShot)) {
+                   SleepTime.sleep(500);
+                }
+
                 mouse.mouseMove(coords[0], coords[1]);
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
@@ -216,9 +222,11 @@ public class MoveByCard {
 
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
-        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressClose(image)) {
+        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
             image = capture.takeScreenShot();
+            mouse.mouseMove(0,0);
             SleepTime.sleep(500);
+            LoggerSingle.logInfo(this.toString(), "In dialog");
             wasDialog = true;
         }
         return wasDialog;
