@@ -26,6 +26,7 @@ public abstract class Cast extends Thread {
     final static AtomicInteger BASH = new AtomicInteger(0);
     final static AtomicInteger PRESERVE = new AtomicInteger(0);
     final static AtomicInteger AGI_UP = new AtomicInteger(0);
+    final static AtomicInteger BLESS = new AtomicInteger(0);
 
 
     public static final AtomicInteger TIMER_CHECK_OVERWEIGHT = new AtomicInteger(0);

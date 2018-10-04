@@ -58,6 +58,18 @@ public class CastAco extends Cast {
                 }
                 AGI_UP.set(0);
             }
+
+            if (BLESS.get() > 240) {
+                LoggerSingle.logInfo(this.toString(), "cast BLESS");
+                keys.keyPress(KeyEvent.VK_F5);
+                SleepTime.sleep(500);
+                try {
+                    mouse.mouseClick(800, 420);
+                } catch (AWTException exception) {
+                    exception.printStackTrace();
+                }
+                BLESS.set(0);
+            }
         }
     }
 
@@ -65,6 +77,7 @@ public class CastAco extends Cast {
     public void incrementValues() throws InterruptedException {
         incrementConst();
         AGI_UP.incrementAndGet();
+        BLESS.incrementAndGet();
         sleep(1000);
     }
 }

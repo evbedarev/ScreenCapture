@@ -34,6 +34,7 @@ public class MoveByCard {
     List<KillMonster> killMonsters;
     private AfterDeath checkDie = Prop.checkDie;
     private Keys keys;
+    private int[] previousPoint;
 
     private MoveByCard(LogicLocation logicLocation) throws AWTException {
         xy1 = Optional.empty();
@@ -152,9 +153,10 @@ public class MoveByCard {
                     logicLocation.findAndKill(killMonster);
                 }
 
-                if (countMoves > 50) {
-                    actions.useWing();
+                if (countMoves > 30) {
+                    moveToPoint(previousPoint);
                     countMoves = 0;
+                    LoggerSingle.logInfo(this.toString(), "Return to previous point");
                 }
 //                logicLocation.checkMyHp();
                 checkDie.check(screenShot);
@@ -164,6 +166,7 @@ public class MoveByCard {
                 //            System.out.println("My cooord Y is :" + xy.get()[1]);
                 countMoves++;
             }
+            previousPoint = point;
         } catch (Exception exception) {
             exception.printStackTrace();
             while (true) {
