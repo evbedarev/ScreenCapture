@@ -1,17 +1,11 @@
 package cast;
 
-import actions.InterfaceActions;
 import actions.SleepTime;
-import checks.location.CheckOverweight;
-import find_image.FindFragmentInImage;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import main.Prop;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class CastAco extends Cast {
     private final int threadId;

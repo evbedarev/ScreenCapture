@@ -201,9 +201,10 @@ public class MoveByCard {
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
-                if (countMoves > 50) {
+                if (countMoves > 20) {
                     actions.useWing();
                     countMoves = 0;
+                    return false;
                 }
 
                 checkDie.check(screenShot);
