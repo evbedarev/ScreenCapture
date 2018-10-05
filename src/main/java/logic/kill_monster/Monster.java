@@ -165,11 +165,14 @@ public class Monster implements KillMonster {
 
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
-        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressClose(image)) {
+        while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
             image = capture.takeScreenShot();
+            mouse.mouseMove(0,0);
             SleepTime.sleep(500);
+            LoggerSingle.logInfo(this.toString(), "In dialog");
             wasDialog = true;
         }
         return wasDialog;
     }
+
 }
