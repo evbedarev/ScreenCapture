@@ -17,14 +17,11 @@ public class CheckHpWizard extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
-        checkSilenceStatus();
+//        checkSilenceStatus();
         BufferedImage image = capture.takeScreenShot();
         if (checkHptoRun(image)) {
             date = new Date();
             storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
-
-            locationCheck.locationCheck();
-//            checkSilenceStatus();
             actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
 //            while (checkHpToEndRun(image)) {

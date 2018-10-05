@@ -44,7 +44,7 @@ public class Loot implements TakeLoot {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {0,1600,0,900});
+                    new int[] {0,1600,124,900});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];

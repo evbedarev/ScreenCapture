@@ -6,6 +6,7 @@ import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
+import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
 import main.Prop;
@@ -26,6 +27,7 @@ public class LogicGefField05 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef05();
         actions = Actions.instance();
+        moveByCard = MoveByCard.getInstance(this);
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
@@ -38,8 +40,8 @@ public class LogicGefField05 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-            new Clothes(),
-                new Shield(),
+//            new Clothes(),
+//                new Shield(),
 //            new Mask(logger),
                 new Coupon()
         };

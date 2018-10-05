@@ -76,6 +76,7 @@ public class Actions {
 
     public void useWing() throws Exception {
         keys.keyPress(Prop.WING_KEY);
+        LoggerSingle.logInfo(this.getClass().toString(), " Use Wing Key.");
         SleepTime.sleep(5000);
     }
 
