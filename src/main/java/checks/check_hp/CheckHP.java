@@ -1,5 +1,7 @@
 package checks.check_hp;
 
+import java.awt.image.BufferedImage;
+
 public class CheckHP implements CheckHitPoints {
     private static volatile CheckHP instance;
     private boolean checkHp;
@@ -28,5 +30,11 @@ public class CheckHP implements CheckHitPoints {
         if (!checkHp)
             return;
         checkHitPoints.checkHp();
+    }
+
+    public void checkHp(BufferedImage image) throws Exception {
+        if (!checkHp)
+            return;
+        checkHitPoints.checkHp(image);
     }
 }

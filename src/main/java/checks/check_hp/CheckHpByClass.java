@@ -66,6 +66,12 @@ public abstract class CheckHpByClass implements CheckHitPoints {
         }
     }
 
+    void needHeal(BufferedImage image) throws Exception{
+        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
+            actions.heal();
+        }
+    }
+
     void checkSilenceStatus() throws InterruptedException {
 //        BufferedImage image = capture.takeScreenShot();
         //image.getRGB(790,332) == -1
@@ -77,4 +83,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
 
     @Override
     public abstract void checkHp() throws Exception;
+
+    @Override
+    public abstract void checkHp(BufferedImage image) throws Exception;
 }

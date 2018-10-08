@@ -6,6 +6,9 @@ import checks.location.GefField10;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
+import logic.move_by_card.MoveByCard;
+import logic.move_by_card.PointsGefField10;
+import logic.move_by_card.PointsMocField12;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -24,6 +27,7 @@ public class LogicGefField10 extends LogicLocation {
     public LogicGefField10(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef05();
+        moveByCard = MoveByCard.getInstance(this);
         this.threadId = threadId;
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField10());
@@ -38,8 +42,8 @@ public class LogicGefField10 extends LogicLocation {
         usefulLoot = new TakeLoot[]{
                 new Card(),
 //            new Clothes(logger),
-                new Shield(),
-                new Mask(),
+//                new Shield(),
+//                new Mask(),
                 new Coupon()
         };
 
@@ -50,30 +54,11 @@ public class LogicGefField10 extends LogicLocation {
 
     @Override
     public void createThread() throws Exception {
-        Thread thread = new LogicGefField10(1);
-        thread.start();
         start();
     }
 
     public void mainHandle() throws Exception {
-        if (threadId == 0) {
-            locationCheck.locationCheck();
-            checkSP.enoghtSP();
-            killMonsterList.forEach(this::findAndKill);
-            checkMyHp();
-            actions.pickUpCard();
-            actions.pickUpLoot(locationCheck);
-            teleport();
-            count++;
-            checkCast();
-        }
-
-        if (threadId == 1) {
-            ATOMIC_GUARD.incrementAndGet();
-            ATOMIC_AWAKENING.incrementAndGet();
-            ATOMIC_DEFENDER.incrementAndGet();
-            sleep(1000);
-        }
+        moveByCard.move(killMonsterList, new PointsGefField10());
     }
 
     public void checkMyHp() throws Exception {

@@ -29,8 +29,26 @@ public class CheckHpAco extends CheckHpByClass {
 //        }
 
         if (Prop.NEED_HEAL) {
-            if (!checkAgressorIsNear.check())
-                needHeal();
+            needHeal();
+        }
+//        if (needPotion(image)) {
+//            keys.keyPress(KeyEvent.VK_F1);
+//        }
+    }
+
+    public void checkHp(BufferedImage image) throws Exception {
+//        BufferedImage image = capture.takeScreenShot();
+//        if (checkHptoRun(image)) {
+//            date = new Date();
+//            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+//
+////            locationCheck.locationCheck();
+//            actions.useWing();
+//            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
+//        }
+
+        if (Prop.NEED_HEAL) {
+            needHeal(image);
         }
 //        if (needPotion(image)) {
 //            keys.keyPress(KeyEvent.VK_F1);

@@ -129,8 +129,11 @@ public class MoveByCard {
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
+                logicLocation.checkMyHp(screenShot);
+
                 if (checkDialogWindow(screenShot)) {
-                    moveToPoint(point);
+                    actions.stepAside(new int[] {400, 500});
+//                    moveToPoint(point);
                 }
 
                 LoggerSingle.logInfo(this.toString(), "Go to point");
@@ -155,7 +158,7 @@ public class MoveByCard {
                     logicLocation.findAndKill(killMonster);
                 }
 
-                if (countMoves > 30) {
+                if (countMoves > 60) {
                     moveToPoint(previousPoint);
                     countMoves = 0;
                     LoggerSingle.logInfo(this.toString(), "Return to previous point");
@@ -195,13 +198,14 @@ public class MoveByCard {
 
                 if (checkDialogWindow(screenShot)) {
                    SleepTime.sleep(500);
+                   actions.stepAside(new int[] {400, 500});
                 }
 
                 mouse.mouseMove(coords[0], coords[1]);
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
-                if (countMoves > 20) {
+                if (countMoves > 40) {
                     actions.useWing();
                     countMoves = 0;
                     return false;

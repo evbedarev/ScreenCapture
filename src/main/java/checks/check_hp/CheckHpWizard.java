@@ -49,4 +49,19 @@ public class CheckHpWizard extends CheckHpByClass {
 //            keys.keyPress(KeyEvent.VK_F1);
 //        }
     }
+
+    @Override
+    public void checkHp(BufferedImage image) throws Exception {
+        if (checkHptoRun(image)) {
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+            actions.useWing();
+            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
+        }
+
+        if (Prop.NEED_HEAL) {
+            if (!checkAgressorIsNear.check())
+                needHeal();
+        }
+    }
 }

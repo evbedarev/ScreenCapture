@@ -1,14 +1,9 @@
 package cast;
 
 import actions.Actions;
-import checks.CheckDie;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeathYun04;
-import checks.afterDeath.AfterDeathYun11;
-import checks.location.CheckOverweight;
 import key_and_mouse.Keys;
-import logger.LoggerSingle;
-import main.Prop;
 
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,6 +22,8 @@ public abstract class Cast extends Thread {
     final static AtomicInteger PRESERVE = new AtomicInteger(0);
     final static AtomicInteger AGI_UP = new AtomicInteger(0);
     final static AtomicInteger BLESS = new AtomicInteger(0);
+    final static AtomicInteger ADRENALINE_RUSH = new AtomicInteger(0);
+    final static AtomicInteger POWER_THRUST = new AtomicInteger(0);
 
 
     public static final AtomicInteger TIMER_CHECK_OVERWEIGHT = new AtomicInteger(0);

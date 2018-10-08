@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Monster implements KillMonster {
-    List<RgbParameter> rgbParameterList = new ArrayList<>();
+    protected List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     public InterfaceActions interfaceActions;
     public Actions actions;

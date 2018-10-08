@@ -62,4 +62,34 @@ public class CheckHpPaladin extends CheckHpByClass {
 //            keys.keyPress(KeyEvent.VK_F1);
 //        }
     }
+
+    @Override
+    public void checkHp(BufferedImage image) throws Exception {
+
+        if (checkHptoRun(image)) {
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+            locationCheck.locationCheck();
+            checkSilenceStatus();
+            actions.teleport();
+            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
+            while (checkHpToEndRun(image)) {
+                if (checkDie.check()) {
+                    break;
+                }
+                locationCheck.locationCheck();
+                if (checkAgressorIsNear.check()) {
+                    actions.teleport();
+                    SleepTime.sleep(1000);
+                }
+                SleepTime.sleep(1000);
+                actions.heal();
+                image = capture.takeScreenShot();
+            }
+
+        }
+        if (Prop.NEED_HEAL) {
+            needHeal();
+        }
+    }
 }

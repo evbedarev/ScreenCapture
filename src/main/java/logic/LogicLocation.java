@@ -5,6 +5,7 @@ import actions.SleepTime;
 import checks.*;
 import checks.afterDeath.AfterDeath;
 import checks.check_hp.CheckHP;
+import key_and_mouse.Keys;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -13,6 +14,8 @@ import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -33,6 +36,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
+    private Keys keys;
 
     public abstract void createThread() throws Exception;
 
@@ -96,6 +100,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     void killMonstersAround(KillMonster monster) throws Exception {
+        keys = Keys.getInstance();
         while(monster.findAndKillAround()) {
             duringTheFight();
             checkMyHp();
@@ -103,6 +108,8 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
+        SleepTime.sleep(500);
+        keys.keyPress(KeyEvent.VK_F8);
     }
 
 
@@ -110,6 +117,11 @@ public abstract class LogicLocation extends Thread implements Logic {
         actions.pickUpCard();
         checkHP.checkHp();
     }
+
+    public void checkMyHp(BufferedImage image) throws Exception {
+        checkHP.checkHp(image);
+    }
+
 
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;

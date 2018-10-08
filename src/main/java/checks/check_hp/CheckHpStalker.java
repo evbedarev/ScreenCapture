@@ -55,4 +55,34 @@ public class CheckHpStalker extends CheckHpByClass {
 //            keys.keyPress(KeyEvent.VK_F1);
 //        }
     }
+
+    @Override
+    public void checkHp(BufferedImage image) throws Exception {
+        if (checkHptoRun(image)) {
+            /* TEST */
+            date = new Date();
+            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
+
+            locationCheck.locationCheck();
+            actions.useWing();
+            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
+            while (checkHpToEndRun(image)) {
+                if (checkDie.check()) {
+                    break;
+                }
+                locationCheck.locationCheck();
+                checkSilenceStatus();
+                if (checkAgressorIsNear.check()) {
+                    actions.teleport();
+                    SleepTime.sleep(1000);
+                }
+                SleepTime.sleep(1000);
+                actions.heal();
+                image = capture.takeScreenShot();
+            }
+        }
+        if (Prop.NEED_HEAL) {
+            needHeal();
+        }
+    }
 }
