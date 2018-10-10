@@ -1,0 +1,72 @@
+package logic.move_by_card;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PointsCmdField04 implements Points{
+    private List<int[]> points = new ArrayList<>();
+
+    public PointsCmdField04() {
+        points.add(new int[] {1475, 140});
+        points.add(new int[] {1499, 132});
+        points.add(new int[] {1522, 142});
+        points.add(new int[] {1543, 135});
+        points.add(new int[] {1560, 140});
+        points.add(new int[] {1572, 140});
+        points.add(new int[] {1555, 128});
+        points.add(new int[] {1558, 116});
+        points.add(new int[] {1544, 117});
+        points.add(new int[] {1534, 126});
+        points.add(new int[] {1520, 131});
+        points.add(new int[] {1520, 131});
+        //climb  the mountain
+        points.add(new int[] {1494, 118});
+        points.add(new int[] {1520, 131});
+        points.add(new int[] {1501, 117});
+        points.add(new int[] {1497, 116});
+        points.add(new int[] {1495, 108});
+        ///points.add(new int[] {,});
+        points.add(new int[] {1502, 105});
+        points.add(new int[] {1495, 108});
+        points.add(new int[] {1484, 108});
+        points.add(new int[] {1489, 100});
+        points.add(new int[] {1484, 108});
+        points.add(new int[] {1473, 120});
+        points.add(new int[] {1474, 100});
+        points.add(new int[] {1478, 90});
+        points.add(new int[] {1470, 83});
+        points.add(new int[] {1498, 60});
+        //go to tunnel
+        points.add(new int[] {1486, 70});
+        points.add(new int[] {1492, 68});
+        points.add(new int[] {1494, 71});
+        points.add(new int[] {1497, 69});
+        ///
+        points.add(new int[] {1505, 70});
+        points.add(new int[] {1507, 66});
+        points.add(new int[] {1517, 80});
+        points.add(new int[] {1530, 84});
+        points.add(new int[] {1517, 80});
+        points.add(new int[] {1542, 70});
+        points.add(new int[] {1517, 80});
+        points.add(new int[] {1543, 79});
+        points.add(new int[] {1553, 82});
+        points.add(new int[] {1556, 78});
+        points.add(new int[] {1561, 78});
+        points.add(new int[] {1561, 73});
+
+
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public List<int[]> getPoints() {
+        return points;
+    }
+}

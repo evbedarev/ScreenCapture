@@ -108,7 +108,6 @@ public class MoveByCard {
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
         try {
-            Prop.cast.cast();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
             int countMoves = 0;
@@ -125,7 +124,7 @@ public class MoveByCard {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
-
+                Prop.cast.cast();
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
