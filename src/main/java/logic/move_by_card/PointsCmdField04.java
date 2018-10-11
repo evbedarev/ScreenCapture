@@ -21,8 +21,6 @@ public class PointsCmdField04 implements Points{
         points.add(new int[] {1520, 131});
         //climb  the mountain
         points.add(new int[] {1494, 118});
-        points.add(new int[] {1520, 131});
-        points.add(new int[] {1501, 117});
         points.add(new int[] {1497, 116});
         points.add(new int[] {1495, 108});
         ///points.add(new int[] {,});
@@ -32,6 +30,7 @@ public class PointsCmdField04 implements Points{
         points.add(new int[] {1489, 100});
         points.add(new int[] {1484, 108});
         points.add(new int[] {1473, 120});
+        points.add(new int[] {1484, 108});
         points.add(new int[] {1474, 100});
         points.add(new int[] {1478, 90});
         points.add(new int[] {1470, 83});
@@ -46,14 +45,31 @@ public class PointsCmdField04 implements Points{
         points.add(new int[] {1507, 66});
         points.add(new int[] {1517, 80});
         points.add(new int[] {1530, 84});
-        points.add(new int[] {1517, 80});
         points.add(new int[] {1542, 70});
-        points.add(new int[] {1517, 80});
         points.add(new int[] {1543, 79});
         points.add(new int[] {1553, 82});
         points.add(new int[] {1556, 78});
         points.add(new int[] {1561, 78});
         points.add(new int[] {1561, 73});
+
+        //reverse
+
+        points.add(new int[] {1561, 78});
+        points.add(new int[] {1556, 78});
+        points.add(new int[] {1543, 79});
+        points.add(new int[] {1533, 68});
+        ///
+        points.add(new int[] {1530, 70});
+        points.add(new int[] {1523, 63});
+        points.add(new int[] {1511, 59});
+        points.add(new int[] {1518, 59});
+        points.add(new int[] {1531, 59});
+        points.add(new int[] {1540, 60});
+        points.add(new int[] {1549, 65});
+        points.add(new int[] {1562, 60});
+        points.add(new int[] {1572, 75});
+//        points.add(new int[] {,});
+//        points.add(new int[] {,});
 
 
 
