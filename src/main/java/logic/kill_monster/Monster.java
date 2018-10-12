@@ -155,7 +155,7 @@ public class Monster implements KillMonster {
         if (attackBySpell)
             SleepTime.sleep(100);
         else
-            SleepTime.sleep(500);
+            SleepTime.sleep(200);
         attackBySpell = false;
     }
 

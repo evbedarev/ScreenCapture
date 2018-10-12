@@ -29,6 +29,7 @@ public class PointsGefFields05 implements Points{
         points.add(new int[] {1497,67});
         points.add(new int[] {1489,73});
         points.add(new int[] {1488,97});
+        points.add(new int[] {1482,106});
         points.add(new int[] {1496,115});
     }
 

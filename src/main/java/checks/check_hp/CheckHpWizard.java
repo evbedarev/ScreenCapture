@@ -22,7 +22,7 @@ public class CheckHpWizard extends CheckHpByClass {
         if (checkHptoRun(image)) {
             date = new Date();
             storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
-            actions.useWing();
+//            actions.useWing();
             LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
 //            while (checkHpToEndRun(image)) {
 //                if (checkDie.check()) {

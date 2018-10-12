@@ -68,6 +68,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
             while (monster.kill()) {
+                Prop.cast.cast();
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
                 count = 0;
@@ -86,7 +87,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             SleepTime.sleep(200);
             duringTheFight();
-            SleepTime.sleep(500);
+            SleepTime.sleep(200);
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
                 actions.teleport();
@@ -95,7 +96,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             }
         }
 //        actions.pickUpLoot(locationCheck);
-//        actions.stepAside(new int[] {100,200});
+        actions.stepAside(new int[] {100,200});
         actions.pickUpCard();
     }
 
@@ -108,8 +109,10 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
-        SleepTime.sleep(500);
-        keys.keyPress(KeyEvent.VK_F8);
+//        actions.stepAside(new int[] {100,200});
+//        actions.pickUpCard();
+//        SleepTime.sleep(500);
+//        keys.keyPress(KeyEvent.VK_F8);
     }
 
 

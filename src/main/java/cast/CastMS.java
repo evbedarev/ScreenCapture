@@ -44,12 +44,6 @@ public class CastMS extends Cast {
             if (ADRENALINE_RUSH.get() > 150) {
                 LoggerSingle.logInfo(this.toString(), "cast ADRENALINE_RUSH");
                 keys.keyPress(KeyEvent.VK_F4);
-                SleepTime.sleep(500);
-                try {
-                    mouse.mouseClick(800, 420);
-                } catch (AWTException exception) {
-                    exception.printStackTrace();
-                }
                 ADRENALINE_RUSH.set(0);
                 SleepTime.sleep(1000);
             }
@@ -57,12 +51,6 @@ public class CastMS extends Cast {
             if (POWER_THRUST.get() > 100) {
                 LoggerSingle.logInfo(this.toString(), "cast POWER_THRUST");
                 keys.keyPress(KeyEvent.VK_F5);
-                SleepTime.sleep(500);
-                try {
-                    mouse.mouseClick(800, 420);
-                } catch (AWTException exception) {
-                    exception.printStackTrace();
-                }
                 POWER_THRUST.set(0);
             }
         }

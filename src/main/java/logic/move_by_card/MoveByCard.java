@@ -124,7 +124,6 @@ public class MoveByCard {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
-                Prop.cast.cast();
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
@@ -189,8 +188,10 @@ public class MoveByCard {
             keys = Keys.getInstance();
             int countMoves = 0;
 
-            if (!xy.isPresent())
+            if (!xy.isPresent()) {
+                actions.stepAside(new int[]{100, 200});
                 return false;
+            }
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
