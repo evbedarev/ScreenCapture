@@ -33,8 +33,10 @@ public class CheckHpMS extends CheckHpByClass {
 //        }
     }
 
-    void needHeal(BufferedImage image) throws Exception{
-        keys.keyPress(KeyEvent.VK_F3);
+    void needHeal(BufferedImage image) throws Exception {
+        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
+            keys.keyPress(KeyEvent.VK_F3);
+        }
     }
 
     public void checkHp(BufferedImage image) throws Exception {

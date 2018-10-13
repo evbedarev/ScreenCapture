@@ -96,8 +96,8 @@ public abstract class LogicLocation extends Thread implements Logic {
             }
         }
 //        actions.pickUpLoot(locationCheck);
-        actions.stepAside(new int[] {100,200});
-        actions.pickUpCard();
+//        actions.stepAside(new int[] {100,200});
+//        actions.pickUpCard();
     }
 
     void killMonstersAround(KillMonster monster) throws Exception {
@@ -111,8 +111,8 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
 //        actions.stepAside(new int[] {100,200});
 //        actions.pickUpCard();
-//        SleepTime.sleep(500);
-//        keys.keyPress(KeyEvent.VK_F8);
+        SleepTime.sleep(500);
+        keys.keyPress(KeyEvent.VK_F8);
     }
 
 
