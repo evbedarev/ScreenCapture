@@ -10,9 +10,7 @@ import logic.kill_monster.monstersOnLocation.MonstersGef05;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsCmdField04;
 import logic.move_by_card.PointsGefFields05;
-import logic.take_loot.Card;
-import logic.take_loot.Coupon;
-import logic.take_loot.TakeLoot;
+import logic.take_loot.*;
 import main.Prop;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -49,6 +47,11 @@ public class LogicCmdField04 extends LogicLocation {
         };
 
         loot = new TakeLoot[] {
+                new Cyfar(),
+                new SeaOtterFur(),
+                new GlassBead()
+
+
 //            new PowderOfButterfly(logger),
         };
     }

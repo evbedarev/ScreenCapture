@@ -44,7 +44,7 @@ public class Loot implements TakeLoot {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {0,1600,124,900});
+                    new int[] {0,1600,127,900});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
@@ -64,11 +64,12 @@ public class Loot implements TakeLoot {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImage(
+            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     screenShot,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb());
+                    parameter.getAncillaryRgb(),
+                    new int[] {0,1600,127,900});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
