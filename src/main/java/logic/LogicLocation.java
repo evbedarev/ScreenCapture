@@ -87,7 +87,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             SleepTime.sleep(200);
             duringTheFight();
-            SleepTime.sleep(200);
+            SleepTime.sleep(500);
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
                 actions.teleport();
@@ -97,7 +97,8 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
 //        actions.pickUpLoot(locationCheck);
 //        actions.stepAside(new int[] {100,200});
-//        actions.pickUpCard();
+        actions.pickUpCard();
+//        actions.pickUpLoot(locationCheck);
     }
 
     void killMonstersAround(KillMonster monster) throws Exception {
@@ -109,8 +110,6 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
-//        actions.stepAside(new int[] {100,200});
-//        actions.pickUpCard();
         SleepTime.sleep(500);
         keys.keyPress(KeyEvent.VK_F8);
     }

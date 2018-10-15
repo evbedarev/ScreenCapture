@@ -121,6 +121,7 @@ public class MoveByCard {
                 return false;
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
+                Prop.cast.cast();
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
