@@ -11,16 +11,6 @@ public class AttackYun11 extends Attack {
     public AtomicInteger ATTACK_TIMER = new AtomicInteger(0);
 
     public AttackYun11() throws AWTException {
-//        rgbParameterList.add(new RgbParameter(-3487264,
-////                new int[] {40,40},
-////                new int[] {-329481}));
-////
-////        rgbParameterList.add(new RgbParameter(-395017,
-////                new int[] {40,40},
-////                new int[] {-395017}));
-////        rgbParameterList.add(new RgbParameter(-395016,
-////                new int[] {40,40},
-////                new int[] {-3421470}));
         rgbParameterList.add(new RgbParameter(-395017,
                 new int[] {40,40},
                 new int[] {-460810}));
