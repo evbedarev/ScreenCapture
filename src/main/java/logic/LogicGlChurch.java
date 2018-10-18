@@ -7,6 +7,9 @@ import checks.location.GlChurch;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
+import logic.move_by_card.MoveByCard;
+import logic.move_by_card.PointsGlChurch;
+import logic.move_by_card.PointsInSphinx3;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -20,10 +23,13 @@ public class LogicGlChurch extends LogicLocation {
     public LogicGlChurch(int threadId) throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
+        moveByCard = MoveByCard.getInstance(this);
         locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new EvilDruid(), new Wraith())
+                .of(new EvilDruid(),
+                        new Wraith(),
+                        new Mimic())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] { new Fabric()
@@ -45,25 +51,13 @@ public class LogicGlChurch extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        if (checkDie.check()) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
-        }
-        locationCheck.locationCheck();
-        checkSP.enoghtSP();
-        killMonsterList.forEach(this::findAndKill);
-        checkMyHp();
-        actions.pickUpCard();
-        actions.pickUpLoot(locationCheck);
-        teleport();
-        count++;
+        moveByCard.move(killMonsterList, new PointsGlChurch());
     }
 
-    public void checkMyHp() throws Exception {
-        actions.pickUpCard();
-        checkHP.checkHp();
-    }
+//    public void checkMyHp() throws Exception {
+//        actions.pickUpCard();
+//        checkHP.checkHp();
+//    }
 
     void teleport() throws Exception {
         runFromMonster();

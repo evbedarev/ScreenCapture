@@ -1,5 +1,6 @@
 package checks.check_hp;
 
+import actions.SleepTime;
 import checks.LocationCheck;
 import main.Prop;
 
@@ -15,6 +16,12 @@ public class CheckHpMS extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
+        if (checkDie.check()) {
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
+
 //        BufferedImage image = capture.takeScreenShot();
 //        if (checkHptoRun(image)) {
 //            date = new Date();

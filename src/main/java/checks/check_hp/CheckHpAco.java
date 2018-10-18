@@ -18,15 +18,12 @@ public class CheckHpAco extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
-//        BufferedImage image = capture.takeScreenShot();
-//        if (checkHptoRun(image)) {
-//            date = new Date();
-//            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");
-//
-////            locationCheck.locationCheck();
-//            actions.useWing();
-//            LoggerSingle.logInfo(this.getClass().toString(), " Too little HP, run away.");
-//        }
+
+        if (checkDie.check()) {
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
 
         if (Prop.NEED_HEAL) {
             needHeal();
