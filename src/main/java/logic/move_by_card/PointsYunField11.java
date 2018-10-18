@@ -145,6 +145,59 @@ public class PointsYunField11 implements Points{
         points.add(new int[] {1487, 52});
         points.add(new int[] {1487, 56});
 
+        points.add(new int[] {1486, 55});
+        points.add(new int[] {1486, 55});
+        points.add(new int[] {1487, 57});
+        points.add(new int[] {1488, 61});
+        points.add(new int[] {1487, 64});
+        points.add(new int[] {1486, 67});
+        points.add(new int[] {1485, 68});
+        points.add(new int[] {1481, 68});
+        points.add(new int[] {1478, 70});
+        points.add(new int[] {1475, 70});
+        points.add(new int[] {1476, 69});
+        points.add(new int[] {1479, 67});
+        points.add(new int[] {1479, 66});
+        points.add(new int[] {1479, 63});
+        points.add(new int[] {1479, 59});
+        points.add(new int[] {1482, 59});
+        points.add(new int[] {1482, 58});
+        points.add(new int[] {1479, 56});
+        points.add(new int[] {1475, 55});
+        points.add(new int[] {1472, 54});
+        points.add(new int[] {1471, 54});
+        points.add(new int[] {1467, 54});
+        points.add(new int[] {1468, 56});
+        points.add(new int[] {1470, 58});
+        points.add(new int[] {1470, 62});
+        points.add(new int[] {1472, 65});
+        points.add(new int[] {1471, 68});
+        points.add(new int[] {1469, 70});
+        points.add(new int[] {1469, 72});
+        points.add(new int[] {1471, 75});
+        points.add(new int[] {1474, 78});
+        points.add(new int[] {1477, 77});
+        points.add(new int[] {1480, 74});
+        points.add(new int[] {1483, 74});
+        points.add(new int[] {1486, 77});
+        points.add(new int[] {1484, 76});
+        points.add(new int[] {1481, 75});
+        points.add(new int[] {1478, 77});
+        points.add(new int[] {1475, 80});
+        points.add(new int[] {1475, 82});
+        points.add(new int[] {1475, 86});
+        points.add(new int[] {1475, 89});
+        points.add(new int[] {1478, 91});
+        points.add(new int[] {1481, 90});
+        points.add(new int[] {1480, 94});
+        points.add(new int[] {1478, 96});
+        points.add(new int[] {1478, 99});
+        points.add(new int[] {1475, 99});
+        points.add(new int[] {1474, 97});
+        points.add(new int[] {1471, 94});
+        points.add(new int[] {1470, 90});
+
+
 
     }
 

@@ -34,7 +34,7 @@ public class Attack implements AttackInterface {
             AWTException,
             InterruptedException{
 
-        LoggerSingle.logDebug(this.toString(), "Finding monster ");
+        LoggerSingle.logDebug(this.toString(), "Finding attack cursor");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsNear3Times(
