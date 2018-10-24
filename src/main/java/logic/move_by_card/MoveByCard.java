@@ -77,9 +77,9 @@ public class MoveByCard {
         }
 
         if (x1 > x2)
-            x = x2 - 400;
+            x = x2 - 550;
         if (x1 < x2)
-            x = x2 + 400;
+            x = x2 + 550;
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
 
@@ -157,7 +157,7 @@ public class MoveByCard {
                     logicLocation.findAndKill(killMonster);
                 }
 
-                if (countMoves > 60) {
+                if (countMoves > 20) {
                     moveToPoint(previousPoint);
                     countMoves = 0;
                     LoggerSingle.logInfo(this.toString(), "Return to previous point");
@@ -206,10 +206,12 @@ public class MoveByCard {
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
-                if (countMoves > 40) {
-                    actions.useWing();
-                    countMoves = 0;
-                    return false;
+                if (countMoves > 20) {
+                    while (true)
+                        SleepTime.sleep(5000);
+//                    actions.useWing();
+//                    countMoves = 0;
+//                    return false;
                 }
 
                 checkDie.check(screenShot);
