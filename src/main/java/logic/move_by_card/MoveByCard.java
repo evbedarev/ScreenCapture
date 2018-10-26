@@ -70,16 +70,16 @@ public class MoveByCard {
         x = 800;
 
         if (x2 == 800 && y2 > 450) {
-            return new int[] {800, 880};
+            return new int[] {800, 800};
         }
         if (x2 == 800 && y2 < 450) {
-            return new int[] {800, 20};
+            return new int[] {800, 100};
         }
 
         if (x1 > x2)
-            x = x2 - 530;
+            x = x2 - 400;
         if (x1 < x2)
-            x = x2 + 530;
+            x = x2 + 400;
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
 
@@ -93,10 +93,10 @@ public class MoveByCard {
             y = 450;
 
             if (y1 > y2)
-                y = y2 - 330;
+                y = y2 - 350;
 
             if (y1 < y2)
-                y = y2 + 330;
+                y = y2 + 350;
 
             x = (((y - y1)/(y2-y1))*(x2 - x1) + x1);
         } else {
@@ -210,7 +210,6 @@ public class MoveByCard {
                 xy = takeCoordsFromMap();
                 countMoves++;
             }
-
         } catch (Exception exception) {
             exception.printStackTrace();
             while (true) {

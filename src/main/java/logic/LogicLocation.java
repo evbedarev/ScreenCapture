@@ -105,17 +105,8 @@ public abstract class LogicLocation extends Thread implements Logic {
         keys = Keys.getInstance();
         while(monster.findAndKillAround()) {
 //            duringTheFight();
-
             checkMyHp();
             SleepTime.sleep(1000);
-//            keys.keyPress(KeyEvent.VK_F6);
-//            System.out.println("F6");
-//            SleepTime.sleep(200);
-//            keys.keyPress(KeyEvent.VK_F6);
-//            SleepTime.sleep(200);
-//            keys.keyPress(KeyEvent.VK_F6);
-//            SleepTime.sleep(200);e
-
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }

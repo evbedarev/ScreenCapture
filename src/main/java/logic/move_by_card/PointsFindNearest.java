@@ -1,0 +1,64 @@
+package logic.move_by_card;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class PointsFindNearest implements Points{
+    private List<int[]> points = new ArrayList<>();
+
+    public PointsFindNearest() {
+        points.add(new int[] {1482,143});
+        points.add(new int[] {1495,139});
+        points.add(new int[] {1510,132});
+        points.add(new int[] {1520,127});
+        points.add(new int[] {1520,127});
+        points.add(new int[] {1520,130});
+        points.add(new int[] {1534,134});
+        points.add(new int[] {1544,134});
+        points.add(new int[] {1550,139});
+        points.add(new int[] {1566,142});
+    }
+
+    /**
+     * Создает новый
+     * @param myPoint - текущее положение на карте
+     * @return
+     */
+    public List<int[]> findNearestPoint(int[] myPoint) {
+        int value;
+
+        Map<Integer,Integer> pointMap = new HashMap<>();
+
+        points.forEach(e -> pointMap.put(points.indexOf(e),e[0] + e[1]));
+        for (Map.Entry<Integer, Integer> entry : pointMap.entrySet()) {
+            value = Math.abs(entry.getValue() - (myPoint[0] + myPoint[1]));
+            entry.setValue(value);
+        }
+        Comparator<Map.Entry<Integer, Integer>> valueComparator = Comparator.comparing(Map.Entry::getValue);
+        Map<Integer, Integer> sortedMapPoints = pointMap.entrySet().stream().sorted(valueComparator)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        for (Map.Entry<Integer, Integer> entry : sortedMapPoints.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+        }
+        int nearValueIndex = (int) sortedMapPoints.keySet().toArray()[0];
+        return refacorListOfPoints(nearValueIndex);
+    }
+
+    private List<int[]> refacorListOfPoints(int pointIndex) {
+        List<int[]> newPoints = new ArrayList<>();
+        newPoints.add(points.get(pointIndex));
+        for (int i = pointIndex + 1; i < points.size(); i++) {
+            newPoints.add(points.get(i));
+        }
+
+        for (int i = 0; i < pointIndex; i++) {
+            newPoints.add(points.get(i));
+        }
+        return newPoints;
+    }
+
+    @Override
+    public List<int[]> getPoints() {
+        return points;
+    }
+}
