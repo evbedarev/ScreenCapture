@@ -40,7 +40,11 @@ public class CheckHpWizard extends CheckHpByClass {
 //                image = capture.takeScreenShot();
 //            }
         }
-
+        if (checkDie.check()) {
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
         if (Prop.NEED_HEAL) {
             if (!checkAgressorIsNear.check())
                 needHeal();

@@ -51,4 +51,10 @@ public class CheckHpAco extends CheckHpByClass {
 //            keys.keyPress(KeyEvent.VK_F1);
 //        }
     }
+//
+//    void needHeal(BufferedImage image) throws Exception{
+//        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
+//            keys.keyPress(KeyEvent.VK_F3);
+//        }
+//    }
 }

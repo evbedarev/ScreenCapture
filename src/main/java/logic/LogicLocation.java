@@ -68,11 +68,11 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
             while (monster.kill()) {
-                Prop.cast.cast();
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
                 count = 0;
             }
+            Prop.cast.cast();
 //            actions.pickUpCard();
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -85,7 +85,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             killMonstersAround(monster);
         } else {
             checkMyHp();
-//            SleepTime.sleep(200);
+            SleepTime.sleep(200);
 //            duringTheFight();
             SleepTime.sleep(500);
             killMonstersAround(monster);
@@ -95,8 +95,8 @@ public abstract class LogicLocation extends Thread implements Logic {
                         "teleporting. Mobs behind the walls");
             }
         }
-//        actions.pickUpLoot(locationCheck);
-//        actions.stepAside(new int[] {100,200});
+        actions.stepAside(new int[] {100,200});
+        actions.pickUpLoot(locationCheck);
         actions.pickUpCard();
 //        actions.pickUpLoot(locationCheck);
     }
@@ -105,18 +105,27 @@ public abstract class LogicLocation extends Thread implements Logic {
         keys = Keys.getInstance();
         while(monster.findAndKillAround()) {
 //            duringTheFight();
+
             checkMyHp();
             SleepTime.sleep(1000);
+//            keys.keyPress(KeyEvent.VK_F6);
+//            System.out.println("F6");
+//            SleepTime.sleep(200);
+//            keys.keyPress(KeyEvent.VK_F6);
+//            SleepTime.sleep(200);
+//            keys.keyPress(KeyEvent.VK_F6);
+//            SleepTime.sleep(200);e
+
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
         }
-        SleepTime.sleep(500);
-        keys.keyPress(KeyEvent.VK_F8);
+//        SleepTime.sleep(500);
+//        keys.keyPress(KeyEvent.VK_F8);
     }
 
 
     public void checkMyHp() throws Exception {
-//        actions.pickUpCard();
+        actions.pickUpCard();
         checkHP.checkHp();
     }
 

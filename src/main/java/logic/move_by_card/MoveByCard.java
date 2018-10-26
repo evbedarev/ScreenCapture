@@ -22,7 +22,7 @@ import java.util.Optional;
 
 public class MoveByCard {
     private static MoveByCard instance;
-    int coordsYUp, coordsYDown, coordXLeft, coordXRight;
+    int coordsYUp, coordsYDown, coordXLeft, coordXRight, prePointCounter;
     private Mouse mouse;
     private InterfaceActions interfaceActions;
     private Actions actions;
@@ -70,16 +70,16 @@ public class MoveByCard {
         x = 800;
 
         if (x2 == 800 && y2 > 450) {
-            return new int[] {800, 800};
+            return new int[] {800, 880};
         }
         if (x2 == 800 && y2 < 450) {
-            return new int[] {800, 100};
+            return new int[] {800, 20};
         }
 
         if (x1 > x2)
-            x = x2 - 400;
+            x = x2 - 530;
         if (x1 < x2)
-            x = x2 + 400;
+            x = x2 + 530;
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
 
@@ -93,10 +93,10 @@ public class MoveByCard {
             y = 450;
 
             if (y1 > y2)
-                y = y2 - 350;
+                y = y2 - 330;
 
             if (y1 < y2)
-                y = y2 + 350;
+                y = y2 + 330;
 
             x = (((y - y1)/(y2-y1))*(x2 - x1) + x1);
         } else {
@@ -114,8 +114,7 @@ public class MoveByCard {
 
             LoggerSingle.logDebug(this.toString(), "My cooord X is :" + xy.get()[0]);
             LoggerSingle.logDebug(this.toString(), "My cooord Y is :" + xy.get()[1]);
-            LoggerSingle.logDebug(this.toString(), "Going to point cooord X is :" + point[0]);
-            LoggerSingle.logDebug(this.toString(), "Going to point cooord Y is :" + point[1]);
+            LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
 
             if (!xy.isPresent())
                 return false;
@@ -136,31 +135,17 @@ public class MoveByCard {
                 }
 
                 LoggerSingle.logInfo(this.toString(), "Go to point");
-
-//                actions.pickUpCard(screenShot);
+                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
-                    //               while (killMonster.findMonster()) {
-                    //                   keys.keyPress(Prop.SPELL_ATTACK_KEY);
-                    //                   killMonster.findAndKill();
-                    //                   logicLocation.checkMyHp();
-                    //                   checkDie.check();
-                    //                   SleepTime.sleep(1000);
-                    //               }
-
-//                   while (killMonster.findMonster()) {
-//                       killMonster.findAndKill();
-//                       logicLocation.checkMyHp();
-//                       checkDie.check();
-//                       SleepTime.sleep(1000);
-//                   }
                     logicLocation.findAndKill(killMonster);
                 }
 
-                if (countMoves > 60) {
+                if (countMoves > 10) {
                     moveToPoint(previousPoint);
                     countMoves = 0;
-                    LoggerSingle.logInfo(this.toString(), "Return to previous point");
+                    LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + previousPoint[0] +
+                            ", " + previousPoint[1] + "}");
                 }
 //                logicLocation.checkMyHp();
                 checkDie.check(screenShot);
@@ -169,8 +154,14 @@ public class MoveByCard {
                 //            System.out.println("My cooord X is :" + xy.get()[0]);
                 //            System.out.println("My cooord Y is :" + xy.get()[1]);
                 countMoves++;
+                prePointCounter++;
             }
-            previousPoint = point;
+
+            if (prePointCounter%4 == 0) {
+                previousPoint = point;
+                prePointCounter = 1;
+            }
+
         } catch (Exception exception) {
             exception.printStackTrace();
             while (true) {
@@ -194,9 +185,11 @@ public class MoveByCard {
                 return false;
             }
 
-            while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
+            while (Math.abs(xy.get()[0] - point[0]) > 1 | Math.abs(xy.get()[1] - point[1]) > 1) {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
 
+                LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + point[0] +
+                        ", " + point[1] + "}");
                 if (checkDialogWindow(screenShot)) {
                    SleepTime.sleep(500);
                    actions.stepAside(new int[] {400, 500});
@@ -217,6 +210,7 @@ public class MoveByCard {
                 xy = takeCoordsFromMap();
                 countMoves++;
             }
+
         } catch (Exception exception) {
             exception.printStackTrace();
             while (true) {
