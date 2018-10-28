@@ -72,7 +72,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                 SleepTime.sleep(200);
                 count = 0;
             }
-            Prop.cast.cast();
+//            Prop.cast.cast();
 //            actions.pickUpCard();
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -86,7 +86,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         } else {
             checkMyHp();
             SleepTime.sleep(200);
-//            duringTheFight();
+            duringTheFight();
             SleepTime.sleep(500);
             killMonstersAround(monster);
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {

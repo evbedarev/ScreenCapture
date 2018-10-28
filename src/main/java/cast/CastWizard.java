@@ -1,5 +1,6 @@
 package cast;
 
+import actions.SleepTime;
 import checks.location.CheckOverweight;
 import logger.LoggerSingle;
 import main.Prop;
@@ -8,6 +9,7 @@ import java.awt.*;
 
 public class CastWizard extends Cast {
     private final int threadId;
+    private int randomTime;
 
     public CastWizard(int threadId) throws AWTException {
         this.threadId = threadId;
@@ -15,6 +17,7 @@ public class CastWizard extends Cast {
 
     @Override
     public void begin() throws AWTException {
+        randomTime = 60 + (30 * (int) Math.random());
         Thread thread = new CastWizard(1);
         thread.start();
     }
@@ -30,12 +33,17 @@ public class CastWizard extends Cast {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-
     }
 
     @Override
     public void cast() throws Exception {
         if (threadId == 0) {
+
+            if (ATOMIC_AWAKENING.get() > (60 * randomTime)) {
+                SleepTime.sleep(10 * 60 * 1000);
+                randomTime = 60 + (int) (30 * Math.random());
+                ATOMIC_AWAKENING.set(0);
+            }
 
             if (TIMER_CHECK_OVERWEIGHT.get() > Prop.TIMER_CHECK_OVERWEIGHT) {
                 LoggerSingle.logInfo(this.toString(), "Cheking overweight");

@@ -125,6 +125,7 @@ public class MoveByCard {
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
                 LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
                 screenShot = capture.takeScreenShot();
+
                 mouse.mouseClick(coords[0], coords[1]);
 
                 logicLocation.checkMyHp(screenShot);
