@@ -19,11 +19,11 @@ public class LogicYunField11 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicYunField11(int threadId) throws Exception {
+    public LogicYunField11() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         actions = Actions.instance();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsYunField11());
         locationCheck = new LocationCheck(new YunField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
@@ -51,7 +51,7 @@ public class LogicYunField11 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsYunField11());
+        moveByCard.move(killMonsterList);
 //        Prop.cast.cast();
 //        checkDie.check();
 ////        if (checkDie.check()) {

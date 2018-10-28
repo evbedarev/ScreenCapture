@@ -86,6 +86,11 @@ public class PointsBeachDun03 implements Points{
     }
 
     @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
+    }
+
+    @Override
     public List<int[]> getPoints() {
         return points;
     }

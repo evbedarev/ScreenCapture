@@ -16,7 +16,7 @@ public class LogicGefField11 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicGefField11(int threadId) throws Exception {
+    public LogicGefField11() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
         actions = Actions.instance();

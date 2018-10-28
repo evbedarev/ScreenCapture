@@ -19,10 +19,10 @@ public class LogicGefField08 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicGefField08(int threadId) throws Exception {
+    public LogicGefField08() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsGefField08());
         locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
@@ -52,7 +52,7 @@ public class LogicGefField08 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsGefField08());
+        moveByCard.move(killMonsterList);
     }
 
 //    public void checkMyHp() throws Exception {

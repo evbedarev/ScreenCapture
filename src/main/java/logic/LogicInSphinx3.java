@@ -31,7 +31,7 @@ public class LogicInSphinx3 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef05();
         actions = Actions.instance();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsInSphinx3());
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
@@ -56,7 +56,7 @@ public class LogicInSphinx3 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsInSphinx3());
+        moveByCard.move(killMonsterList);
     }
 
 //    public void checkMyHp() throws Exception {

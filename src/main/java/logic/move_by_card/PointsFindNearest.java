@@ -3,20 +3,11 @@ package logic.move_by_card;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PointsFindNearest implements Points{
+public class PointsFindNearest {
     private List<int[]> points = new ArrayList<>();
 
     public PointsFindNearest() {
-        points.add(new int[] {1482,143});
-        points.add(new int[] {1495,139});
-        points.add(new int[] {1510,132});
-        points.add(new int[] {1520,127});
-        points.add(new int[] {1520,127});
-        points.add(new int[] {1520,130});
-        points.add(new int[] {1534,134});
-        points.add(new int[] {1544,134});
-        points.add(new int[] {1550,139});
-        points.add(new int[] {1566,142});
+
     }
 
     /**
@@ -41,6 +32,7 @@ public class PointsFindNearest implements Points{
             System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
         }
         int nearValueIndex = (int) sortedMapPoints.keySet().toArray()[0];
+
         return refacorListOfPoints(nearValueIndex);
     }
 
@@ -54,10 +46,19 @@ public class PointsFindNearest implements Points{
         for (int i = 0; i < pointIndex; i++) {
             newPoints.add(points.get(i));
         }
+
+        for (int[] newPoint : newPoints) {
+            System.out.println("Values of List is: " + newPoint[0] + "," + newPoint[1]);
+
+        }
         return newPoints;
     }
 
-    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
+    }
+
+
     public List<int[]> getPoints() {
         return points;
     }

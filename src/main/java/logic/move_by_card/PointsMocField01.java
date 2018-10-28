@@ -12,8 +12,11 @@ public class PointsMocField01 implements Points{
         points.add(new int[] {1525,107});
         points.add(new int[] {1556,142});
         points.add(new int[] {1561,62});
+    }
 
-
+    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
     }
 
     @Override

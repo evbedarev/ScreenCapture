@@ -209,8 +209,11 @@ public class PointsPrtField08 implements Points{
         points.add(new int[] {1523, 149});
         points.add(new int[] {1522, 147});
         points.add(new int[] {1520, 145});
+    }
 
-
+    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class LogicEinDun01 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicEinDun01(int threadId) throws Exception {
+    public LogicEinDun01() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
 
         attack = new AttackYun11();

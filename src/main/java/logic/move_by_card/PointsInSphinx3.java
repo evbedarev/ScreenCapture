@@ -93,6 +93,12 @@ public class PointsInSphinx3 implements Points{
         points.add(new int[] {1464, 112});
     }
 
+
+    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
+    }
+
     @Override
     public List<int[]> getPoints() {
         return points;

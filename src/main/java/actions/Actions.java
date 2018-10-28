@@ -77,9 +77,15 @@ public class Actions {
     public void useWing() throws Exception {
         keys.keyPress(Prop.WING_KEY);
         LoggerSingle.logInfo(this.getClass().toString(), " Use Wing Key.");
-        SleepTime.sleep(5000);
+        SleepTime.sleep(3000);
     }
 
+    public void useWing(LocationCheck locationCheck) throws Exception {
+        keys.keyPress(Prop.WING_KEY);
+        LoggerSingle.logInfo(this.getClass().toString(), " Use Wing Key.");
+        SleepTime.sleep(3000);
+        locationCheck.locationCheck();
+    }
 
     public void sitDown () throws  InterruptedException {
         keys.keyPress(KeyEvent.VK_INSERT);

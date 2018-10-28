@@ -22,11 +22,11 @@ public class LogicBeachDun03 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicBeachDun03(int threadId) throws Exception {
+    public LogicBeachDun03() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         actions = Actions.instance();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsBeachDun03());
         locationCheck = new LocationCheck(new YunField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
@@ -56,7 +56,7 @@ public class LogicBeachDun03 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsBeachDun03());
+        moveByCard.move(killMonsterList);
 //        Prop.cast.cast();
 //        checkDie.check();
 ////        if (checkDie.check()) {

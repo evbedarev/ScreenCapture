@@ -59,7 +59,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         while (attack.kill()) {
             count = 0;
             checkMyHp();
-            SleepTime.sleep(400);
+            SleepTime.sleep(500);
             if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
     }
@@ -129,8 +129,9 @@ public abstract class LogicLocation extends Thread implements Logic {
     abstract void runFromMonster() throws Exception;
     abstract void teleport() throws Exception;
 
-
-
+    public LocationCheck getLocationCheck() {
+        return locationCheck;
+    }
 
 
 }

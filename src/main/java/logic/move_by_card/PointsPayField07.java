@@ -42,8 +42,11 @@ public class PointsPayField07 implements Points{
         points.add(new int[] {1480,96});
         points.add(new int[] {1490,99});
         points.add(new int[] {1496,92});
+    }
 
-
+    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
     }
 
     @Override

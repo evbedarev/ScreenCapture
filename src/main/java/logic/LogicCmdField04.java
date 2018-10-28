@@ -29,7 +29,7 @@ public class LogicCmdField04 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef05();
         actions = Actions.instance();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this,  new PointsCmdField04());
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
@@ -62,7 +62,7 @@ public class LogicCmdField04 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsCmdField04());
+        moveByCard.move(killMonsterList);
 
 //        locationCheck.locationCheck();
 //        checkSP.enoghtSP();

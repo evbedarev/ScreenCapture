@@ -20,9 +20,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * Класс который отлеживает передвижение по карте, перемещает персонажа по заданным точкам
+ */
+
 public class MoveByCard {
     private static MoveByCard instance;
-    int coordsYUp, coordsYDown, coordXLeft, coordXRight, prePointCounter;
+    int coordsYUp, coordsYDown, coordXLeft, coordXRight;
     private Mouse mouse;
     private InterfaceActions interfaceActions;
     private Actions actions;
@@ -34,9 +39,12 @@ public class MoveByCard {
     List<KillMonster> killMonsters;
     private AfterDeath checkDie = Prop.checkDie;
     private Keys keys;
-    private int[] previousPoint;
+    private Points pointsOnCard;
+    private PointsFindNearest findNearest = new PointsFindNearest();
+    private boolean flagOfNewPoints = false;
+    private int[] prevPos = new int[] {0,0};
 
-    private MoveByCard(LogicLocation logicLocation) throws AWTException {
+    private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         xy1 = Optional.empty();
         actions = Actions.instance();
         mouse = Mouse.getInstance();
@@ -44,11 +52,13 @@ public class MoveByCard {
         capture = Capture.instance();
         this.logicLocation = logicLocation;
         interfaceActions = InterfaceActions.getInstance();
+        this.pointsOnCard = pointsOnCard;
+        findNearest.setPoints(pointsOnCard.getPoints());
     }
 
-    static public MoveByCard getInstance(LogicLocation logicLocation) throws AWTException {
+    static public MoveByCard getInstance(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         if (instance == null) {
-            instance = new MoveByCard(logicLocation);
+            instance = new MoveByCard(logicLocation, pointsOnCard);
         }
         return instance;
     }
@@ -59,6 +69,14 @@ public class MoveByCard {
         coordsYUp = coordsArr[2];
         coordsYDown = coordsArr[3];
     }
+
+    /**
+     * Вычисляет положение курсора для дальнейшего передвижения к заданной точке
+     * @param x2 - расстояние по оси Х от текущего положения до следующей точки
+     * @param y2 - расстояние по оси Y от текущего положения до следующей точки
+     * @return - возвращает координаты на которые должен быть перемещен курсор для движения
+     * в сторону следующей точки.
+     */
 
     public int[] moveMouseDirectly(int x2, int y2) {
         double x, y, x1, y1;
@@ -119,6 +137,12 @@ public class MoveByCard {
             if (!xy.isPresent())
                 return false;
 
+            if ((screenShot.getRGB(1340, 881) == -1) || (screenShot.getRGB(1399, 882) == -1)) {
+                while (true) {
+                    SleepTime.sleep(5000);
+                }
+            }
+
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
@@ -135,32 +159,36 @@ public class MoveByCard {
 //                    moveToPoint(point);
                 }
 
-                LoggerSingle.logInfo(this.toString(), "Go to point");
+                LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
                 actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
                 }
 
-                if (countMoves > 10) {
-                    moveToPoint(previousPoint);
-                    countMoves = 0;
-                    LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + previousPoint[0] +
-                            ", " + previousPoint[1] + "}");
+                if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
+                    actions.useWing(logicLocation.getLocationCheck());
+                    SleepTime.sleep(1000);
+                    flagOfNewPoints = true;
+                    break;
+                } else {
+                    prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
+//                if (countMoves > 7) {
+//                    actions.useWing(logicLocation.getLocationCheck());
+//                    SleepTime.sleep(1000);
+//                    flagOfNewPoints = true;
+//                    break;
+////                    moveToPoint(previousPoint);
+////                    countMoves = 0;
+////                    LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + previousPoint[0] +
+////                            ", " + previousPoint[1] + "}");
+//                }
 //                logicLocation.checkMyHp();
                 checkDie.check(screenShot);
 
                 xy = takeCoordsFromMap();
-                //            System.out.println("My cooord X is :" + xy.get()[0]);
-                //            System.out.println("My cooord Y is :" + xy.get()[1]);
                 countMoves++;
-                prePointCounter++;
-            }
-
-            if (prePointCounter%4 == 0) {
-                previousPoint = point;
-                prePointCounter = 1;
             }
 
         } catch (Exception exception) {
@@ -200,7 +228,7 @@ public class MoveByCard {
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
 
-                if (countMoves > 40) {
+                if (countMoves > 5) {
                     actions.useWing();
                     countMoves = 0;
                     return false;
@@ -232,11 +260,24 @@ public class MoveByCard {
         return wasDialog;
     }
 
-    public void move(List<KillMonster> killMonsters, Points pointsOnCard) throws Exception {
+    public void move(List<KillMonster> killMonsters) throws Exception {
         List<int[]> points = pointsOnCard.getPoints();
-        points.forEach(e -> moveToPoint(e,killMonsters));
-        Collections.reverse(points);
-        points.forEach(e -> moveToPoint(e,killMonsters));
+        for (int[] point : points) {
+            if (flagOfNewPoints) {
+                flagOfNewPoints = false;
+                pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
+                for (int[] ints : pointsOnCard.getPoints()) {
+                    System.out.println("Values of New List is: " + ints[0] + "," + ints[1]);
+
+                }
+                break;
+            }
+            moveToPoint(point, killMonsters);
+        }
+
+//        points.forEach(e -> moveToPoint(e,killMonsters));
+//        Collections.reverse(points);
+//        points.forEach(e -> moveToPoint(e,killMonsters));
     }
 
     /**

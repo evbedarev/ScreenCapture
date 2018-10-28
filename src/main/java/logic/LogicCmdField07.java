@@ -18,7 +18,7 @@ public class LogicCmdField07 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicCmdField07(int threadId) throws Exception {
+    public LogicCmdField07() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
         actions = Actions.instance();

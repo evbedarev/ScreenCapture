@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface Points {
     List<int[]> getPoints();
+    void setPoints(List<int[]> points);
 }

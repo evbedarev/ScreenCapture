@@ -27,6 +27,11 @@ public class PointsPrtField07 implements Points{
     }
 
     @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
+    }
+
+    @Override
     public List<int[]> getPoints() {
         return points;
     }

@@ -19,16 +19,14 @@ import java.util.stream.Stream;
 public class LogicGefField10 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
-    private final int threadId;
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
-    public LogicGefField10(int threadId) throws Exception {
+    public LogicGefField10() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef05();
-        moveByCard = MoveByCard.getInstance(this);
-        this.threadId = threadId;
+        moveByCard = MoveByCard.getInstance(this, new PointsGefField10());
         actions = Actions.instance();
         locationCheck = new LocationCheck(new GefField10());
         lootAround.initialize(new HandYun11());
@@ -58,7 +56,7 @@ public class LogicGefField10 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        moveByCard.move(killMonsterList, new PointsGefField10());
+        moveByCard.move(killMonsterList);
     }
 
     public void checkMyHp() throws Exception {

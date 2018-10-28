@@ -33,11 +33,11 @@ public class LogicMocField01 extends LogicLocation {
     private MoveByCard moveByCard;
     Optional<int[]> xy, xy1, mouseClickCoord;
 
-    public LogicMocField01(int threadId) throws Exception {
+    public LogicMocField01() throws Exception {
         xy1 = Optional.empty();
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackGef11();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsMocField01());
         actions = Actions.instance();
         locationCheck = new LocationCheck(new PrtField08());
         lootAround.initialize(new HandYun11());
@@ -72,7 +72,7 @@ public class LogicMocField01 extends LogicLocation {
 //        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
 //        locationCheck.locationCheck();
 //        checkDie.check();
-        moveByCard.move(killMonsterList, new PointsMocField01());
+        moveByCard.move(killMonsterList);
 //        killMonsterList.forEach(this::findAndKill);
 //        checkMyHp();
 //        actions.pickUpCard();

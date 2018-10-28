@@ -18,7 +18,7 @@ public class LogicYunField04 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicYunField04(int threadId) throws Exception {
+    public LogicYunField04() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new YunField04());

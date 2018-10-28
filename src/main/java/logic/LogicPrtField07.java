@@ -23,10 +23,10 @@ public class LogicPrtField07 extends LogicLocation {
     Mouse mouse;
 
 
-    public LogicPrtField07(int threadId) throws Exception {
+    public LogicPrtField07() throws Exception {
         mouse = Mouse.getInstance();
         keys = Keys.getInstance();
-        moveByCard = MoveByCard.getInstance(this);
+        moveByCard = MoveByCard.getInstance(this, new PointsPrtField07());
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new PrtField07());
@@ -60,7 +60,7 @@ public class LogicPrtField07 extends LogicLocation {
 //        moveByCard.move(locationCheck, killMonsterList);
 //        killMonsterList.forEach(this::findAndKill);
 //        count++;
-        moveByCard.move(killMonsterList, new PointsPrtField07());
+        moveByCard.move(killMonsterList);
     }
 
     public void checkMyHp() throws Exception {

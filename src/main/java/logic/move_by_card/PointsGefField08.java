@@ -264,7 +264,11 @@ public class PointsGefField08 implements Points{
         points.add(new int[] {1516, 139});
         points.add(new int[] {1513, 139});
         points.add(new int[] {1511, 141});
+    }
 
+    @Override
+    public void setPoints(List<int[]> points) {
+        this.points = points;
     }
 
     @Override

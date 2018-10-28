@@ -40,8 +40,10 @@ public class CastWizard extends Cast {
         if (threadId == 0) {
 
             if (ATOMIC_AWAKENING.get() > (60 * randomTime)) {
+                LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 SleepTime.sleep(10 * 60 * 1000);
                 randomTime = 60 + (int) (30 * Math.random());
+                LoggerSingle.logInfo(this.toString(), "Awakening after AFK ");
                 ATOMIC_AWAKENING.set(0);
             }
 

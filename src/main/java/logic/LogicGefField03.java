@@ -19,7 +19,7 @@ public class LogicGefField03 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicGefField03(int threadId) throws Exception {
+    public LogicGefField03() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         actions = Actions.instance();
