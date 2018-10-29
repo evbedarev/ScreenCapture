@@ -69,20 +69,20 @@ public class LocationCheck {
     }
 
     public void locationCheck() throws Exception {
-//        while (!verifyMap.onDesiredLocation()) {
-//            SleepTime.sleep(5000);
-//            LoggerSingle.logInfo(this.toString(), "Нахожусь не на карте!!");
-//            findWaprPortal();
-//            SleepTime.sleep(2000);
-//            if (verifyMap.onDesiredLocation()) {
-//                actions.teleport();
-//                SleepTime.sleep(2000);
-//            }
-//            countForSendMsg++;
-//            if (countForSendMsg == 100) {
-//                sendMessage.send(new MsgLocationChanged());
-//            }
-//        }
-//        countForSendMsg = 0;
+        while (!verifyMap.onDesiredLocation()) {
+            SleepTime.sleep(5000);
+            LoggerSingle.logInfo(this.toString(), "Нахожусь не на карте!!");
+            findWaprPortal();
+            SleepTime.sleep(2000);
+            if (verifyMap.onDesiredLocation()) {
+                actions.teleport();
+                SleepTime.sleep(2000);
+            }
+            countForSendMsg++;
+            if (countForSendMsg == 100) {
+                sendMessage.send(new MsgLocationChanged());
+            }
+        }
+        countForSendMsg = 0;
     }
 }

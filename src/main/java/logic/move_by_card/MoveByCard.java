@@ -11,6 +11,7 @@ import logger.LoggerSingle;
 import logic.Capture;
 import logic.LogicLocation;
 import logic.RgbParameter;
+import logic.kill_monster.Human;
 import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
@@ -43,6 +44,7 @@ public class MoveByCard {
     private PointsFindNearest findNearest = new PointsFindNearest();
     private boolean flagOfNewPoints = false;
     private int[] prevPos = new int[] {0,0};
+    private Human human = new Human();
 
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         xy1 = Optional.empty();
@@ -159,6 +161,14 @@ public class MoveByCard {
 //                    moveToPoint(point);
                 }
 
+//                if (human.findMonster()) {
+//                    actions.useWing(logicLocation.getLocationCheck());
+//                    SleepTime.sleep(1000);
+//                    flagOfNewPoints = true;
+//                    LoggerSingle.logInfo(this.toString(), "Found human near. User wing.");
+//                    break;
+//                }
+
                 LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
                 actions.pickUpCard(screenShot);
 
@@ -174,17 +184,7 @@ public class MoveByCard {
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
-//                if (countMoves > 7) {
-//                    actions.useWing(logicLocation.getLocationCheck());
-//                    SleepTime.sleep(1000);
-//                    flagOfNewPoints = true;
-//                    break;
-////                    moveToPoint(previousPoint);
-////                    countMoves = 0;
-////                    LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + previousPoint[0] +
-////                            ", " + previousPoint[1] + "}");
-//                }
-//                logicLocation.checkMyHp();
+
                 checkDie.check(screenShot);
 
                 xy = takeCoordsFromMap();
@@ -195,54 +195,6 @@ public class MoveByCard {
             exception.printStackTrace();
             while (true) {
                     SleepTime.sleep(5000);
-            }
-        }
-//        System.out.println("Arrive to point: " + point[0] + ", " + point[1]);
-        return true;
-    }
-
-
-    public boolean moveToPoint(int[] point) {
-        try {
-            Prop.cast.cast();
-            xy = takeCoordsFromMap();
-            keys = Keys.getInstance();
-            int countMoves = 0;
-
-            if (!xy.isPresent()) {
-                actions.stepAside(new int[]{100, 200});
-                return false;
-            }
-
-            while (Math.abs(xy.get()[0] - point[0]) > 1 | Math.abs(xy.get()[1] - point[1]) > 1) {
-                int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-
-                LoggerSingle.logInfo(this.toString(), "Return to previous point: {" + point[0] +
-                        ", " + point[1] + "}");
-                if (checkDialogWindow(screenShot)) {
-                   SleepTime.sleep(500);
-                   actions.stepAside(new int[] {400, 500});
-                }
-
-                mouse.mouseMove(coords[0], coords[1]);
-                screenShot = capture.takeScreenShot();
-                mouse.mouseClick(coords[0], coords[1]);
-
-                if (countMoves > 5) {
-                    actions.useWing();
-                    countMoves = 0;
-                    return false;
-                }
-
-                checkDie.check(screenShot);
-
-                xy = takeCoordsFromMap();
-                countMoves++;
-            }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            while (true) {
-                SleepTime.sleep(5000);
             }
         }
         return true;
@@ -326,215 +278,5 @@ public class MoveByCard {
         return xy;
     }
 }
-
-
-//////////PRONTERA 8 /////////////////////////////////
-//        this.locationCheck = locationCheck;
-//        this.killMonsters = killMonsters;
-//
-//        if (checkLocationYUP(coordsYUp))
-//            moveDown();
-//
-//        if (checkLocationYDown(coordsYDown))
-//            moveUp();
-//
-//        if (checkLocationXLeft(coordXLeft))
-//            moveRight();
-//
-//        if (checkLocationXRight(coordXRight))
-//            moveLeft();
-//
-//        xy = takeCoordsFromMap();
-//        if (!xy1.isPresent()) {
-//            mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//            xy1 = takeCoordsFromMap();
-//        }
-//
-//        SleepTime.sleep(200);
-//        if ((xy.get()[0] != xy1.get()[0]) || (xy.get()[1] != xy1.get()[1])) {
-//            mouse.mouseClick(mouseClickCoord.get()[0], mouseClickCoord.get()[1]);
-//        } else {
-//            mouseClickCoord =actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//        }
-//
-//        SleepTime.sleep(200);
-//        xy1 = takeCoordsFromMap();
-//////////////////////////////////////////
-
-//    private boolean checkLocationYUP(int coord) throws Exception {
-//        screenShot = capture.takeScreenShot();
-//        Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-//                screenShot,
-//                -2752512,
-//                new int[] {2,2},
-//                new int[] {-2752512},
-//                new int[] {1459, 1586, 43, 168});
-//
-//        if (xy.isPresent()) {
-//            int y = xy.get()[1];
-//            return y < coord;
-//        }
-//        return false;
-//    }
-//
-//    private boolean checkLocationYDown(int coord) throws Exception {
-//        screenShot = capture.takeScreenShot();
-//        Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-//                screenShot,
-//                -2752512,
-//                new int[] {2,2},
-//                new int[] {-2752512},
-//                new int[] {1459, 1586, 43, 168});
-//
-//        if (xy.isPresent()) {
-//            int y = xy.get()[1];
-//            return y > coord;
-//        }
-//
-//        return false;
-//    }
-//
-//
-//    private boolean checkLocationXLeft(int coord) throws Exception {
-//        screenShot = capture.takeScreenShot();
-//        Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-//                screenShot,
-//                -2752512,
-//                new int[] {2,2},
-//                new int[] {-2752512},
-//                new int[] {1459, 1586, 43, 168});
-//
-//        if (xy.isPresent()) {
-//            int x = xy.get()[0];
-//            return x < coord;
-//        }
-//        return false;
-//    }
-//
-//    private boolean checkLocationXRight(int coord) throws Exception {
-//        screenShot = capture.takeScreenShot();
-//        Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
-//                screenShot,
-//                -2752512,
-//                new int[] {2,2},
-//                new int[] {-2752512},
-//                new int[] {1459, 1586, 43, 168});
-//
-//        if (xy.isPresent()) {
-//            int x = xy.get()[0];
-//            return x > coord;
-//        }
-//        return false;
-//    }
-//
-//
-//
-//    public void moveDown() throws Exception {
-//        Optional<int[]> y, y1;
-//        centredMap();
-//        SleepTime.sleep(200);
-//        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Down");
-//        while (!checkLocationYDown(coordsYUp + ((coordsYDown - coordsYUp)/2))) {
-//            y = takeCoordsFromMap();
-//            mouse.mouseClick(805, 700);
-//            SleepTime.sleep(500);
-//            y1 = takeCoordsFromMap();
-//
-//            if (!y.isPresent() || !y1.isPresent())
-//                break;
-//
-//            if (y.get()[0] == y1.get()[0])
-//                break;
-//
-//            for (KillMonster killMonster: killMonsters) {
-//                killMonster.findAndKill();
-//            }
-//        }
-//
-//        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//    }
-//
-//
-//    public void moveUp() throws Exception {
-//        Optional<int[]> y, y1;
-//        centredMap();
-//        SleepTime.sleep(200);
-//        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Up");
-//        while (!checkLocationYUP(coordsYUp + ((coordsYDown - coordsYUp)/2))) {
-//            y = takeCoordsFromMap();
-//            mouse.mouseClick(805, 200);
-//            SleepTime.sleep(500);
-//            y1 = takeCoordsFromMap();
-//
-//            if (!y.isPresent() || !y1.isPresent())
-//                break;
-//
-//            if (y.get()[0] == y1.get()[0])
-//                break;
-//
-//            for (KillMonster killMonster: killMonsters) {
-//                killMonster.findAndKill();
-//            }
-//        }
-//        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//    }
-//
-//
-//    public void moveLeft() throws Exception {
-//        Optional<int[]> x, x1;
-//        centredMap();
-//        SleepTime.sleep(200);
-//        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Left");
-//        while (!checkLocationXLeft(coordXLeft + ((coordXRight - coordXLeft)/2))) {
-//            x = takeCoordsFromMap();
-//            mouse.mouseClick(300, 461);
-//            SleepTime.sleep(500);
-//            x1 = takeCoordsFromMap();
-//
-//            if (!x.isPresent() || !x1.isPresent())
-//                break;
-//            if (x.get()[0] == x1.get()[0])
-//                break;
-//
-//            for (KillMonster killMonster: killMonsters) {
-//                killMonster.findAndKill();
-//            }
-//        }
-//        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//    }
-//
-//    public void moveRight() throws Exception {
-//        Optional<int[]> x, x1;
-//        centredMap();
-//        SleepTime.sleep(200);
-//        LoggerSingle.logInfo(this.toString(), this.toString() + " Move Right");
-//        while (!checkLocationXRight(coordXLeft + ((coordXRight - coordXLeft)/2))) {
-//            x = takeCoordsFromMap();
-//            mouse.mouseClick(1200, 461);
-//            SleepTime.sleep(500);
-//            x1 = takeCoordsFromMap();
-//
-//            if (!x.isPresent() || !x1.isPresent())
-//                break;
-//
-//            if (x.get()[0] == x1.get()[0])
-//                break;
-//
-//            for (KillMonster killMonster: killMonsters) {
-//                killMonster.findAndKill();
-//            }
-//        }
-//        mouseClickCoord = actions.stepAside(locationCheck, new int[]{500, 600}, true);
-//    }
-//
-//    private void centredMap() throws InterruptedException {
-//        mouse.pressRight();
-//        SleepTime.sleep(50);
-//        mouse.releaseRight();
-//        SleepTime.sleep(100);
-//        mouse.pressRight();
-//        SleepTime.sleep(50);
-//        mouse.releaseRight();
-//    }
 
 
