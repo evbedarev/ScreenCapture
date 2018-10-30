@@ -1,10 +1,12 @@
 package logic.kill_monster;
 
 import logic.RgbParameter;
-import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 public interface KillMonster {
+
+    boolean findMonster(BufferedImage image) throws Exception;
 
     boolean findAndKill() throws
             Exception;

@@ -9,7 +9,6 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.Capture;
 import logic.RgbParameter;
-import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -50,6 +49,29 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                SleepTime.sleep(1000);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findMonster(BufferedImage image) throws Exception {
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+                    image,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {780, 825, 348, 448});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];

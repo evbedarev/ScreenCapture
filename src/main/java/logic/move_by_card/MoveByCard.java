@@ -158,16 +158,14 @@ public class MoveByCard {
 
                 if (checkDialogWindow(screenShot)) {
                     actions.stepAside(new int[] {400, 500});
-//                    moveToPoint(point);
+                    wingAway();
+                    break;
                 }
 
-//                if (human.findMonster()) {
-//                    actions.useWing(logicLocation.getLocationCheck());
-//                    SleepTime.sleep(1000);
-//                    flagOfNewPoints = true;
-//                    LoggerSingle.logInfo(this.toString(), "Found human near. User wing.");
-//                    break;
-//                }
+                if (human.findMonster(screenShot)) {
+                    wingAway();
+                    break;
+                }
 
                 LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
                 actions.pickUpCard(screenShot);
@@ -177,9 +175,7 @@ public class MoveByCard {
                 }
 
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    actions.useWing(logicLocation.getLocationCheck());
-                    SleepTime.sleep(1000);
-                    flagOfNewPoints = true;
+                    wingAway();
                     break;
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
@@ -200,6 +196,12 @@ public class MoveByCard {
         return true;
     }
 
+    /**
+     * Проверяет нет ли диалога, если есть то закрывает его.
+     * @param image - скриншот
+     * @return - возвращает был ли диалог.
+     * @throws Exception
+     */
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
         while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
@@ -210,6 +212,18 @@ public class MoveByCard {
             wasDialog = true;
         }
         return wasDialog;
+    }
+
+    /**
+     * метод который телепортирует в случайную точку.
+     * Обязательно после имплементации использовать break;
+     * @throws Exception
+     */
+    private void wingAway() throws Exception {
+        actions.useWing(logicLocation.getLocationCheck());
+        SleepTime.sleep(1000);
+        flagOfNewPoints = true;
+        LoggerSingle.logInfo(this.toString(), "Found human near. User wing.");
     }
 
     public void move(List<KillMonster> killMonsters) throws Exception {

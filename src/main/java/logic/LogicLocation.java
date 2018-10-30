@@ -37,6 +37,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
     private Keys keys;
+    private int cntAttack;
 
     public abstract void createThread() throws Exception;
 
@@ -67,10 +68,15 @@ public abstract class LogicLocation extends Thread implements Logic {
     public void findAndKill(KillMonster monster) {
         try {
             ATTACK_MOBS_BEHIND_WALLS.set(0);
+            cntAttack = 0;
             while (monster.kill()) {
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
                 count = 0;
+                if (cntAttack > 5) {
+                    actions.useWing();
+                    SleepTime.sleep(2000);
+                }
             }
 //            Prop.cast.cast();
 //            actions.pickUpCard();
@@ -88,20 +94,24 @@ public abstract class LogicLocation extends Thread implements Logic {
             SleepTime.sleep(200);
             duringTheFight();
             SleepTime.sleep(500);
-            killMonstersAround(monster);
+            if (!killMonstersAround(monster)) {
+                cntAttack++;
+            } else {
+                cntAttack = 0;
+            }
             if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
                 actions.teleport();
                 LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
                         "teleporting. Mobs behind the walls");
             }
         }
+//        actions.pickUpLoot(locationCheck);
         actions.stepAside(new int[] {100,200});
-        actions.pickUpLoot(locationCheck);
         actions.pickUpCard();
 //        actions.pickUpLoot(locationCheck);
     }
 
-    void killMonstersAround(KillMonster monster) throws Exception {
+    boolean killMonstersAround(KillMonster monster) throws Exception {
         keys = Keys.getInstance();
         while(monster.findAndKillAround()) {
 //            duringTheFight();
@@ -109,9 +119,11 @@ public abstract class LogicLocation extends Thread implements Logic {
             SleepTime.sleep(1000);
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
+            return true;
         }
 //        SleepTime.sleep(500);
 //        keys.keyPress(KeyEvent.VK_F8);
+        return false;
     }
 
 
