@@ -222,6 +222,7 @@ public class MoveByCard {
     private void wingAway() throws Exception {
         actions.useWing(logicLocation.getLocationCheck());
         SleepTime.sleep(1000);
+        xy = takeCoordsFromMap();
         flagOfNewPoints = true;
         LoggerSingle.logInfo(this.toString(), "Found human near. User wing.");
     }
@@ -231,10 +232,10 @@ public class MoveByCard {
         for (int[] point : points) {
             if (flagOfNewPoints) {
                 flagOfNewPoints = false;
+                LoggerSingle.logInfo(this.toString(), "Coordinates after teleporting is : " + xy.get()[0] + "," + xy.get()[1]);
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
                 for (int[] ints : pointsOnCard.getPoints()) {
-                    System.out.println("Values of New List is: " + ints[0] + "," + ints[1]);
-
+                    LoggerSingle.logInfo(this.toString(),"Values of New List is: " + ints[0] + "," + ints[1]);
                 }
                 break;
             }

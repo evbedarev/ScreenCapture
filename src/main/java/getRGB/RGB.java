@@ -82,7 +82,7 @@ public class RGB {
             int y = xy.get()[1];
 
 //            LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
-            SleepTime.sleep(3000);
+            SleepTime.sleep(1000);
         }
         return xy;
     }

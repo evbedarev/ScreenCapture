@@ -3,6 +3,7 @@ package logic;
 import actions.Actions;
 import actions.SleepTime;
 import checks.LocationCheck;
+import checks.location.MocField11;
 import checks.location.PrtField08;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
@@ -34,7 +35,7 @@ public class LogicMocField11 extends LogicLocation {
         attack = new AttackGef11();
         moveByCard = MoveByCard.getInstance(this, new PointsMocField11());
         actions = Actions.instance();
-        locationCheck = new LocationCheck(new PrtField08());
+        locationCheck = new LocationCheck(new MocField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream

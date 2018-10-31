@@ -71,7 +71,7 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {780, 825, 348, 448});
+                    new int[] {780, 825, 348, 449});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
