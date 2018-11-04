@@ -13,8 +13,12 @@ public interface KillMonster {
 
     boolean kill() throws Exception;
 
+    boolean findAndKill(BufferedImage image) throws Exception;
+
     boolean findAndKillAround() throws
             Exception;
+
+    boolean kill(BufferedImage image) throws Exception;
 
     boolean findMonster() throws Exception;
 

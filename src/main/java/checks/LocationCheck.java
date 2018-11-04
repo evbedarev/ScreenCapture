@@ -75,7 +75,7 @@ public class LocationCheck {
             findWaprPortal();
             SleepTime.sleep(2000);
             if (verifyMap.onDesiredLocation()) {
-                actions.teleport();
+                actions.useWing();
                 SleepTime.sleep(2000);
             }
             countForSendMsg++;

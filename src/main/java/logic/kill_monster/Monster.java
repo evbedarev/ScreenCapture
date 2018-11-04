@@ -41,6 +41,11 @@ public class Monster implements KillMonster {
     }
 
     @Override
+    public boolean kill(BufferedImage image) throws Exception {
+        return findAndKill(image);
+    }
+
+    @Override
     public boolean findMonster() throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
@@ -118,6 +123,32 @@ public class Monster implements KillMonster {
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public boolean findAndKill(BufferedImage image) throws Exception {
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+                    image,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {0,1600, 0, 900});
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+
+                mouse.mouseClick(x + 5, y + 20);
+                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                SleepTime.sleep(1000);
                 return true;
             }
         }

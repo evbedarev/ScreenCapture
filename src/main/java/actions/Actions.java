@@ -140,7 +140,8 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(1000);
+        SleepTime.sleep(700);
+        LoggerSingle.logInfo(this.toString(), "Step aside without Location check");
     }
 
 
@@ -160,8 +161,9 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(1000);
+        SleepTime.sleep(800);
         locationCheck.locationCheck();
+        LoggerSingle.logInfo(this.toString(), "Step aside with Location check");
     }
 
     public Optional<int[]> stepAside(LocationCheck locationCheck, int[] radiuses, boolean needCoords) throws Exception {

@@ -2,49 +2,46 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
-import checks.location.GefField05;
+import checks.location.CmdFiled02;
+import logic.attacks.AttackCmdField02;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.*;
-import logic.kill_monster.monstersOnLocation.MonstersGef05;
+import logic.kill_monster.Galapago;
+import logic.kill_monster.Seal;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
+import logic.move_by_card.PointsCmdField02;
 import logic.take_loot.*;
 import main.Prop;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicGefField05 extends LogicLocation {
+public class LogicCmdField02 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
-    private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
-    private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);
-    private final static AtomicInteger ATOMIC_DEFENDER = new AtomicInteger(0);
 
 
-    public LogicGefField05() throws Exception {
+    public LogicCmdField02() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackGef05();
+        attack = new AttackCmdField02();
         actions = Actions.instance();
-        moveByCard = MoveByCard.getInstance(this,  new PointsGefFields05());
-        locationCheck = new LocationCheck(new GefField05());
+        moveByCard = MoveByCard.getInstance(this,  new PointsCmdField02());
+        locationCheck = new LocationCheck(new CmdFiled02());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
                 .of(
-                        new ThiefBug(),
-                        new Creamy(),
-                        new Smokie()
+                        new Seal(),
+                        new Galapago()
+
                 ).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//            new Clothes(),
-//                new Shield(),
-//            new Mask(logger),
-                new Coupon()
+                new Coupon(),
+                new BlueHerb(),
+                new Cyfar(),
+                new Zargon()
         };
 
         loot = new TakeLoot[] {
@@ -60,16 +57,6 @@ public class LogicGefField05 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         moveByCard.move(killMonsterList);
-
-//        locationCheck.locationCheck();
-//        checkSP.enoghtSP();
-//        killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
-//        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-//        teleport();
-//        count++;
-//        Prop.cast.cast();
     }
 
     public void checkMyHp() throws Exception {

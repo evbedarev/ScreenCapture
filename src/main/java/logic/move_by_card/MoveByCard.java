@@ -132,8 +132,6 @@ public class MoveByCard {
             keys = Keys.getInstance();
             int countMoves = 0;
 
-            LoggerSingle.logDebug(this.toString(), "My cooord X is :" + xy.get()[0]);
-            LoggerSingle.logDebug(this.toString(), "My cooord Y is :" + xy.get()[1]);
             LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
 
             if (!xy.isPresent())
@@ -147,13 +145,11 @@ public class MoveByCard {
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
+                logicLocation.getLocationCheck().locationCheck();
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-                LoggerSingle.logDebug(this.toString(), "Mouse cooord X is :" + coords[0]);
-                LoggerSingle.logDebug(this.toString(), "Mouse cooord Y is :" + coords[1]);
                 screenShot = capture.takeScreenShot();
 
                 mouse.mouseClick(coords[0], coords[1]);
-
                 logicLocation.checkMyHp(screenShot);
 
                 if (checkDialogWindow(screenShot)) {
@@ -168,7 +164,7 @@ public class MoveByCard {
                 }
 
                 LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
-                actions.pickUpCard(screenShot);
+//                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
@@ -176,6 +172,7 @@ public class MoveByCard {
 
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
                     wingAway();
+                    LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
                     break;
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
@@ -224,7 +221,7 @@ public class MoveByCard {
         SleepTime.sleep(1000);
         xy = takeCoordsFromMap();
         flagOfNewPoints = true;
-        LoggerSingle.logInfo(this.toString(), "Found human near. User wing.");
+        LoggerSingle.logInfo(this.toString(), " Use wing.");
     }
 
     public void move(List<KillMonster> killMonsters) throws Exception {

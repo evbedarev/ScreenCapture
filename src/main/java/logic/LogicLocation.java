@@ -37,6 +37,8 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
     private Keys keys;
+    Capture capture;
+    BufferedImage screenShot;
     private int cntAttack;
 
     public abstract void createThread() throws Exception;
@@ -47,6 +49,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             actions = Actions.instance();
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();
+            capture = Capture.instance();
             while (true) {
                 mainHandle();
             }
@@ -73,9 +76,10 @@ public abstract class LogicLocation extends Thread implements Logic {
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
                 count = 0;
-                if (cntAttack > 2) {
+                if (cntAttack > 4) {
                     actions.useWing();
                     SleepTime.sleep(2000);
+                    cntAttack = 0;
                     LoggerSingle.logInfo("LogicLocation.findAndKill",
                             "use wing. can't walk to the monster");
                 }
@@ -92,19 +96,14 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkMyHp();
             killMonstersAround(monster);
         } else {
-            checkMyHp();
-            SleepTime.sleep(200);
-            duringTheFight();
-            SleepTime.sleep(500);
+//            checkMyHp();
+//            SleepTime.sleep(200);
+//            duringTheFight();
+            SleepTime.sleep(1000);
             if (!killMonstersAround(monster)) {
                 cntAttack++;
             } else {
                 cntAttack = 0;
-            }
-            if (ATTACK_MOBS_BEHIND_WALLS.get() > Prop.ATTACK_MOBS_BEHIND_WALLS) {
-                actions.teleport();
-                LoggerSingle.logInfo("LogicLocation.attackBySwordOrSpell",
-                        "teleporting. Mobs behind the walls");
             }
         }
 //        actions.pickUpLoot(locationCheck);
@@ -115,17 +114,16 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     boolean killMonstersAround(KillMonster monster) throws Exception {
         keys = Keys.getInstance();
+        boolean killAll = false;
         while(monster.findAndKillAround()) {
 //            duringTheFight();
             checkMyHp();
-            SleepTime.sleep(1000);
+            SleepTime.sleep(600);
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
-            return true;
+            killAll = true;
         }
-//        SleepTime.sleep(500);
-//        keys.keyPress(KeyEvent.VK_F8);
-        return false;
+        return killAll;
     }
 
 
@@ -138,6 +136,9 @@ public abstract class LogicLocation extends Thread implements Logic {
         checkHP.checkHp(image);
     }
 
+    public BufferedImage takeScreenShot() {
+        return capture.takeScreenShot();
+    }
 
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;
