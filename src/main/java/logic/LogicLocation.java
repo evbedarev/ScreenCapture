@@ -70,7 +70,6 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void findAndKill(KillMonster monster) {
         try {
-            ATTACK_MOBS_BEHIND_WALLS.set(0);
             cntAttack = 0;
             while (monster.kill()) {
                 attackBySwordOrSpell(monster);
@@ -82,6 +81,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                     cntAttack = 0;
                     LoggerSingle.logInfo("LogicLocation.findAndKill",
                             "use wing. can't walk to the monster");
+                    break;
                 }
             }
 //            Prop.cast.cast();
