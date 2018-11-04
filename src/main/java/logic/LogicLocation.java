@@ -74,7 +74,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             cntAttack = 0;
             while (monster.kill()) {
                 attackBySwordOrSpell(monster);
-                SleepTime.sleep(200);
+                SleepTime.sleep(400);
                 count = 0;
                 if (cntAttack > 4) {
                     actions.useWing();
@@ -118,7 +118,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         while(monster.findAndKillAround()) {
 //            duringTheFight();
             checkMyHp();
-            SleepTime.sleep(600);
+            SleepTime.sleep(900);
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
             killAll = true;

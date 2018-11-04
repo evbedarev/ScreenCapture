@@ -18,8 +18,8 @@ public class CmdFiled02 extends Location {
 
     @Override
     public boolean onDesiredLocation() {
-        PORTAL_RGB = new int[] {1575,137, -6280000, -600000};
-        PORTAL_RGB_1 = new int[] {1530,48, -6280000, -400000};
+        PORTAL_RGB = new int[] {1575,137, -6280000, -300000};
+        PORTAL_RGB_1 = new int[] {1530,48, -6280000, -200000};
         return checkRgbLocation();
     }
 }

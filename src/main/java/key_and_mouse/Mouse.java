@@ -7,6 +7,7 @@ import java.awt.event.InputEvent;
 
 public class Mouse {
     private static volatile Mouse instance;
+    private long countMouseClick = 0;
     Robot robot;
 
     private Mouse() throws AWTException {
@@ -30,10 +31,12 @@ public class Mouse {
 
     public void mouseClick(int x, int y, int button_mask, int sleepTime)
             throws AWTException, InterruptedException {
+        countMouseClick++;
         robot.mouseMove(x, y);
         robot.mousePress(button_mask);
         SleepTime.sleep(sleepTime);
         robot.mouseRelease(button_mask);
+        System.out.println("Count mouse click = " + countMouseClick);
     }
 
     public void leftClick() throws InterruptedException {
