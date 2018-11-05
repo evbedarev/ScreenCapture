@@ -3,14 +3,9 @@ package main;
 import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
-import checks.check_hp.CheckHitPoints;
-import checks.check_hp.CheckHpAco;
-import checks.check_hp.CheckHpStalker;
-import checks.check_hp.CheckHpWizard;
+import checks.check_hp.*;
 import checks.location.*;
 import logic.*;
-import logic.LogicWizard.LogicWizardMagmaDun01;
-import logic.LogicWizard.LogicWizardYunField04;
 import logic.take_loot.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,10 +25,10 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicPrtField08(0);
-        cast = new CastWizard(0);
-        locationCheck = new LocationCheck(new PrtField08());
-        checkHitPoints = new CheckHpWizard(locationCheck);
+        logic = new LogicCmdField02();
+        cast = new CastMS( 0);
+        locationCheck = new LocationCheck(new CmdFiled02());
+        checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
     }

@@ -1,6 +1,7 @@
 package logic;
 
 import checks.LocationCheck;
+import checks.location.GefField08;
 import checks.location.GlChurch;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
@@ -23,7 +24,7 @@ public class LogicGefField08 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         moveByCard = MoveByCard.getInstance(this, new PointsGefField08());
-        locationCheck = new LocationCheck(new GlChurch());
+        locationCheck = new LocationCheck(new GefField08());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
                 .of(new MonstersGef08())
