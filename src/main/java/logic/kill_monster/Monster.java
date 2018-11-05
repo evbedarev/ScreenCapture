@@ -135,12 +135,11 @@ public class Monster implements KillMonster {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
                     image,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb(),
-                    new int[] {0,1600, 0, 900});
+                    parameter.getAncillaryRgb());
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
