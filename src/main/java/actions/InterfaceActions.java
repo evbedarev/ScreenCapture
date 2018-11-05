@@ -35,7 +35,7 @@ public class InterfaceActions {
         return instance;
     }
 
-    private void pressOnImage(int[] area,
+    private boolean pressOnImage(int[] area,
                               int sleepTime,
                               String pathFragment,
                               String methodName) throws Exception {
@@ -46,7 +46,9 @@ public class InterfaceActions {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
             SleepTime.sleep(sleepTime);
             logger.info(methodName + ": find and click." );
+            return true;
         }
+        return false;
     }
 
     private boolean pressOnImage(BufferedImage screenShot,
@@ -205,6 +207,36 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0], xy.get()[1]);
         }
+    }
 
+    public boolean goToCharSelect() throws Exception {
+        int cnt = 0;
+        while (!pressCharSelect()) {
+            cnt++;
+            SleepTime.sleep(2000);
+            if (cnt > 4) {
+                break;
+            }
+        }
+        return checkInCharSelect();
+    }
+
+    private boolean checkInCharSelect() throws Exception {
+       return pressOnImage(new int[]{0, 1600, 0, 900},
+                1000,
+                Prop.ROOT_DIR + "Interface\\CheckInCharSelect\\",
+                "CheckInCharSelect");
+    }
+
+    public boolean pressCharSelect() throws Exception {
+        boolean returnValue = false;
+        keys.keyPress(KeyEvent.VK_ESCAPE);
+        Thread.sleep(2000);
+        returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
+                1000,
+                Prop.ROOT_DIR + "Interface\\CharSelect\\",
+                "CharSelect");
+        Thread.sleep(4000);
+        return returnValue;
     }
 }

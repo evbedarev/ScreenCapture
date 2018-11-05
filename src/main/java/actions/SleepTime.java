@@ -11,4 +11,10 @@ public final class SleepTime {
             exception.printStackTrace();
         }
     }
+
+    public static void loopSleep() {
+        while (true) {
+            sleep(5000);
+        }
+    }
 }
