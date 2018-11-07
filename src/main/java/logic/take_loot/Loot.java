@@ -53,6 +53,7 @@ public class Loot implements TakeLoot {
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
                 SleepTime.sleep(100);
+                mouse.mouseMove(0,0);
                 return true;
             }
         }
@@ -78,6 +79,7 @@ public class Loot implements TakeLoot {
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
                 SleepTime.sleep(100);
+                mouse.mouseMove(0,0);
                 return true;
             }
         }

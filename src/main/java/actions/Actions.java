@@ -140,7 +140,7 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(700);
+        SleepTime.sleep(300);
         LoggerSingle.logInfo(this.toString(), "Step aside without Location check");
     }
 
@@ -161,7 +161,7 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(800);
+        SleepTime.sleep(300);
         locationCheck.locationCheck();
         LoggerSingle.logInfo(this.toString(), "Step aside with Location check");
     }
@@ -183,7 +183,7 @@ public class Actions {
         xy = Optional.of(new int[] {800 + (int) Math.round(mediumX),450 + (int) Math.round(mediumY)});
         mouse.mouseClick(xy.get()[0], xy.get()[1]);
 
-        SleepTime.sleep(1000);
+        SleepTime.sleep(300);
         locationCheck.locationCheck();
         return xy;
     }
