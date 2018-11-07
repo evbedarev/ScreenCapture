@@ -165,7 +165,7 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {650, 950, 275, 600});
+                    new int[] {200, 1400, 100, 700});
 
             if (xy.isPresent()) {
                 int rndInt = (int)(Math.random() * 5000);
