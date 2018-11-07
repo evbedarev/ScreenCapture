@@ -9,4 +9,7 @@ public interface FindImage {
     Optional<int[]> findImageExcludeArea (BufferedImage screenShot, BufferedImage fragment);
     Optional<int[]> findImageExcludeArea (BufferedImage screenShot, BufferedImage fragment,
                                           int[] xy);
+    Optional<int[]> findImageInArea (BufferedImage screenShot, BufferedImage fragment, int[] xy);
+    Optional<int[]> findPixel (BufferedImage screenShot, int[] rgb);
+
 }

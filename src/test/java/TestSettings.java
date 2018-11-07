@@ -1,11 +1,10 @@
 import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-import main.Settings;
+        import static org.junit.Assert.assertTrue;
+        import main.Prop;
 public class TestSettings {
 
     @Test
     public void testingSettings() {
-        Settings settings = Settings.instance();
-        assertTrue(settings.screenWidth == 1600);
+        assertTrue(Prop.SCREEN_WIDTH == 1600);
     }
 }

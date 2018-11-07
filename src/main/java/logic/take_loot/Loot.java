@@ -1,55 +1,85 @@
 package logic.take_loot;
 
-import find_fragments.FindFragmentFiles;
-import find_fragments.FindFragments;
-import find_image.FindImageHard;
+import actions.SleepTime;
+import checks.check_hp.CheckHP;
+import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import logic.Capture;
-import main.Settings;
+import logic.RgbParameter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Loot implements TakeLoot {
-    String rootDir = "C:\\Users\\тест\\ScreenCapture\\src\\main\\resources\\Loot\\Bottleq\\";
-    String wildcard = "fragmq*";
-    Settings settings;
-
-    final Capture capture;
+    List<RgbParameter> rgbParameterList = new ArrayList<>();
+    Capture capture;
     final Mouse mouse;
-    final Keys keys;
-    final FindImageHard findImageHard;
+    final Keys keys = Keys.getInstance();
+    final FindPixels findImageHard;
+    CheckHP checkHP = CheckHP.instance();
+    LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
-        settings = Settings.instance();
-        capture = new Capture();
-        mouse = new Mouse();
-        keys = new Keys();
-        findImageHard = new FindImageHard();
+        capture = Capture.instance();
+        mouse = Mouse.getInstance();
+        findImageHard = new FindPixels();
     }
 
     @Override
-    public boolean takeLoot() throws
-            IOException,
-            AWTException,
-            InterruptedException {
+    public boolean take() throws Exception {
+        return takeLoot();
+    }
 
-        BufferedImage screenShot = capture.takeScreenShot();
-
+    @Override
+    public boolean takeLoot() throws Exception {
+        LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
-        FindFragments fragmentFiles = new FindFragmentFiles(
-                wildcard,
-                rootDir);
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {0,1600,127,900});
 
-        for (BufferedImage fragment: fragmentFiles.fragments()) {
-            Optional<int[]> xy = findImageHard.findImageExcludeArea(screenShot, fragment);
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                mouse.mouseClick(x + 18, y + 20);
+
+                mouse.mouseClick(x, y);
+                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                SleepTime.sleep(100);
+                mouse.mouseMove(0,0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean takeLoot(BufferedImage screenShot) throws Exception {
+        LoggerSingle.logDebug(this.toString(), "Finding loot ");
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+                    screenShot,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {0,1600,127,900});
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+
+                mouse.mouseClick(x, y);
+                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                SleepTime.sleep(100);
+                mouse.mouseMove(0,0);
                 return true;
             }
         }
@@ -58,9 +88,18 @@ public class Loot implements TakeLoot {
 
     @Override
     public void pickUp() throws Exception {
-        TakeLoot takeLoot = this;
-        while (takeLoot.takeLoot()) {
-            Thread.sleep(1000);
+        while (take()) {
+            SleepTime.sleep(1000);
+            checkHP.checkHp();
+        }
+    }
+
+    @Override
+    public void pickUp(BufferedImage screenShot) throws Exception {
+        while (takeLoot(screenShot)) {
+            screenShot = capture.takeScreenShot();
+            SleepTime.sleep(1000);
+            checkHP.checkHp();
         }
     }
 }

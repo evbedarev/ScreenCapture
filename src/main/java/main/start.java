@@ -1,15 +1,14 @@
 package main;
 
-import logic.LogicForNovice;
-import logic.kill_monster.KillMonster;
-
-import java.awt.*;
-import java.io.IOException;
+import actions.SleepTime;
+import logic.*;
 
 public class start {
+    static Logic logic;
 
     public static void main(String[] args) throws Exception {
-        LogicForNovice logicForNovice = new LogicForNovice();
-        logicForNovice.start();
+        SleepTime.sleep(5000);
+        Prop.initialize();
+        Prop.logic.createThread();
     }
 }
