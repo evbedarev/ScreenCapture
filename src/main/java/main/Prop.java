@@ -25,9 +25,9 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicMocField12();
+        logic = new LogicGefField04();
         cast = new CastMS( 0);
-        locationCheck = new LocationCheck(new MocField12());
+        locationCheck = new LocationCheck(new GefField04());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();

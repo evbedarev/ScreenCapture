@@ -147,7 +147,7 @@ public class Monster implements KillMonster {
 
                 mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(1000);
+                SleepTime.sleep(200);
                 return true;
             }
         }
