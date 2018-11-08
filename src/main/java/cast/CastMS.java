@@ -48,7 +48,7 @@ public class CastMS extends Cast {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
                 if (interfaceActions.goToCharSelect()) {
-                    SleepTime.sleep(20 * 60 * 1000);
+                    SleepTime.sleep(50 * 60 * 1000);
                     randomTime = 80 + (int) (30 * Math.random());
                     LoggerSingle.logInfo(this.toString(), "Awakening after AFK ");
                     keys.keyPress(KeyEvent.VK_ENTER);
@@ -61,14 +61,14 @@ public class CastMS extends Cast {
 
             if (ADRENALINE_RUSH.get() > 150) {
                 LoggerSingle.logInfo(this.toString(), "cast ADRENALINE_RUSH");
-                keys.keyPress(KeyEvent.VK_F4);
+//                keys.keyPress(KeyEvent.VK_F4);
                 ADRENALINE_RUSH.set(0);
                 SleepTime.sleep(1000);
             }
 
             if (POWER_THRUST.get() > 100) {
                 LoggerSingle.logInfo(this.toString(), "cast POWER_THRUST");
-                keys.keyPress(KeyEvent.VK_F5);
+//                keys.keyPress(KeyEvent.VK_F5);
                 POWER_THRUST.set(0);
             }
         }

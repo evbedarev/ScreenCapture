@@ -1,6 +1,7 @@
 package key_and_mouse;
 
 import actions.SleepTime;
+import logger.LoggerSingle;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -36,7 +37,7 @@ public class Mouse {
         robot.mousePress(button_mask);
         SleepTime.sleep(sleepTime);
         robot.mouseRelease(button_mask);
-        System.out.println("Count mouse click = " + countMouseClick);
+        LoggerSingle.logInfo(this.toString(),("Count mouse click = " + countMouseClick));
     }
 
     public void leftClick() throws InterruptedException {
