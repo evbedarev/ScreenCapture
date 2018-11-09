@@ -156,10 +156,10 @@ public class MoveByCard {
                     break;
                 }
 
-                if (human.findMonster(screenShot)) {
-                    wingAway();
-                    break;
-                }
+//                if (human.findMonster(screenShot)) {
+//                    wingAway();
+//                    break;
+//                }
 
                 LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
 //                actions.pickUpCard(screenShot);
