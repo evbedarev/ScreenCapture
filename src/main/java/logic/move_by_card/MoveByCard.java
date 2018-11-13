@@ -135,11 +135,7 @@ public class MoveByCard {
             if (!xy.isPresent())
                 return false;
 
-            if ((screenShot.getRGB(1340, 881) == -1) || (screenShot.getRGB(1399, 882) == -1)) {
-                while (true) {
-                    SleepTime.sleep(5000);
-                }
-            }
+            actions.checkResources(screenShot);
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();

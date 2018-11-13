@@ -261,4 +261,14 @@ public class Actions {
 //        SleepTime.sleep(50);
 //        mouse.releaseRight();
     }
+
+    public void checkResources(BufferedImage screenShot) {
+        if ((screenShot.getRGB(1340, 881) == -1) ||
+                (screenShot.getRGB(1399, 882) == -1) ||
+                (screenShot.getRGB(1369, 882) == -1)) {
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
+    }
 }
