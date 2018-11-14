@@ -39,6 +39,11 @@ public class Monster implements KillMonster {
     public boolean kill() throws Exception {
         for (int i = 0; i < 3; i++) {
             BufferedImage image = capture.takeScreenShot();
+
+            actions.checkResources(image);
+            if (checkDialogWindow(image)) {
+                actions.stepAside(new int[]{600, 800});
+            }
             if (findAndKill(image)) return true;
         }
         return false;
@@ -156,6 +161,13 @@ public class Monster implements KillMonster {
     public boolean killArround() throws Exception {
         for (int i = 0; i < 3; i++) {
             BufferedImage image = capture.takeScreenShot();
+
+            actions.checkResources(image);
+
+            if (checkDialogWindow(image)) {
+                actions.stepAside(new int[]{600, 800});
+            }
+
             if (findAndKillAround(image)) return true;
         }
         return false;
@@ -208,17 +220,13 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {650, 950, 275, 600});
+                    new int[] {0, 1600, 100, 900});
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 spellAttack();
                 mouse.mouseClick(x + 5, y + 25);
-
-                if (checkDialogWindow(image)) {
-                    actions.stepAside(new int[]{600, 800});
-                }
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
