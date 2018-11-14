@@ -37,12 +37,11 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean kill() throws Exception {
-        return findAndKill();
-    }
-
-    @Override
-    public boolean kill(BufferedImage image) throws Exception {
-        return findAndKill(image);
+        for (int i = 0; i < 3; i++) {
+            BufferedImage image = capture.takeScreenShot();
+            if (findAndKill(image)) return true;
+        }
+        return false;
     }
 
     @Override
@@ -82,6 +81,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                SleepTime.sleep(1000);
                 return true;
             }
         }
@@ -128,18 +128,16 @@ public class Monster implements KillMonster {
         return false;
     }
 
-
     @Override
     public boolean findAndKill(BufferedImage image) throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+            Optional<int[]> xy = findImageHard.findPixelsInImage(
                     image,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
-                    parameter.getAncillaryRgb(),
-                    new int[] {0,1600, 0, 900});
+                    parameter.getAncillaryRgb());
 
             if (xy.isPresent()) {
                 int x = xy.get()[0];
@@ -147,13 +145,22 @@ public class Monster implements KillMonster {
 
                 mouse.mouseClick(x + 5, y + 20);
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(200);
+                SleepTime.sleep(1000);
                 return true;
             }
         }
         return false;
     }
-//
+
+    @Override
+    public boolean killArround() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            BufferedImage image = capture.takeScreenShot();
+            if (findAndKillAround(image)) return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean findAndKillAround() throws
             Exception {
@@ -165,7 +172,7 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {200, 1400, 100, 700});
+                    new int[] {650, 950, 275, 600});
 
             if (xy.isPresent()) {
                 int rndInt = (int)(Math.random() * 5000);
@@ -181,6 +188,38 @@ public class Monster implements KillMonster {
                         actions.stepAside(new int[]{600, 800});
                     }
                 }
+                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+                sleepAfterAttack();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findAndKillAround(BufferedImage image) throws
+            Exception {
+        SleepTime.sleep(500);
+        LoggerSingle.logDebug(this.toString(), "Finding monster ");
+        //It's bad, later change. Need to load in constructor.
+        for (RgbParameter parameter: rgbParameterList) {
+            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+                    image,
+                    parameter.getMainRgb(),
+                    parameter.getSubImageSize(),
+                    parameter.getAncillaryRgb(),
+                    new int[] {650, 950, 275, 600});
+
+            if (xy.isPresent()) {
+                int x = xy.get()[0];
+                int y = xy.get()[1];
+                spellAttack();
+                mouse.mouseClick(x + 5, y + 25);
+
+                if (checkDialogWindow(image)) {
+                    actions.stepAside(new int[]{600, 800});
+                }
+
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
                 return true;

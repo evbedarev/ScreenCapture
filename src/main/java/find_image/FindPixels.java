@@ -53,7 +53,7 @@ public class FindPixels implements FindPixelsInImage {
         return Optional.empty();
     }
 
-    public Optional<int[]> findPixels3Times( int mainRgb,
+    public Optional<int[]> findPixels3Times(  int mainRgb,
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
