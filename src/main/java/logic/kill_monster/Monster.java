@@ -153,7 +153,7 @@ public class Monster implements KillMonster {
         }
         return false;
     }
-
+//
     @Override
     public boolean findAndKillAround() throws
             Exception {
