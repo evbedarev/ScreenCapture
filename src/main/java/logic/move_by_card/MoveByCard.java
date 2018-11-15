@@ -132,8 +132,11 @@ public class MoveByCard {
             keys = Keys.getInstance();
             LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
 
-            if (!xy.isPresent())
+            if (!xy.isPresent()) {
+                wingAway();
+                LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
                 return false;
+            }
 
             actions.checkResources(screenShot);
 

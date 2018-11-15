@@ -37,13 +37,8 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean kill() throws Exception {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             BufferedImage image = capture.takeScreenShot();
-
-            actions.checkResources(image);
-            if (checkDialogWindow(image)) {
-                actions.stepAside(new int[]{600, 800});
-            }
             if (findAndKill(image)) return true;
         }
         return false;
@@ -149,6 +144,13 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x + 5, y + 20);
+
+                if (checkDialogWindow(image)) {
+                    actions.stepAside(new int[]{600, 800});
+                }
+
+                actions.checkResources(image);
+
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(1000);
                 return true;
@@ -159,15 +161,8 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean killArround() throws Exception {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             BufferedImage image = capture.takeScreenShot();
-
-            actions.checkResources(image);
-
-            if (checkDialogWindow(image)) {
-                actions.stepAside(new int[]{600, 800});
-            }
-
             if (findAndKillAround(image)) return true;
         }
         return false;
@@ -227,6 +222,12 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
                 spellAttack();
                 mouse.mouseClick(x + 5, y + 25);
+
+                actions.checkResources(image);
+
+                if (checkDialogWindow(image)) {
+                    actions.stepAside(new int[]{600, 800});
+                }
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
