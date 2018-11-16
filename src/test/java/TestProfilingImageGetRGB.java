@@ -1,7 +1,6 @@
 import logic.Capture;
 import org.junit.Before;
 import org.junit.Test;
-import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 
 import java.awt.image.BufferedImage;

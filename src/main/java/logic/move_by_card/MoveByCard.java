@@ -30,18 +30,17 @@ public class MoveByCard {
     private static MoveByCard instance;
     int coordsYUp, coordsYDown, coordXLeft, coordXRight;
     private static Mouse mouse;
-    private InterfaceActions interfaceActions;
+    private static InterfaceActions interfaceActions;
     private static Actions actions;
     private static FindPixels findImageHard;
     private static LogicLocation logicLocation;
     private static Capture capture;
     private static BufferedImage screenShot;
     private static Optional<int[]> xy;
-    List<KillMonster> killMonsters;
-    private AfterDeath checkDie = Prop.checkDie;
-    private Keys keys;
-    private Points pointsOnCard;
-    private PointsFindNearest findNearest = new PointsFindNearest();
+    private static AfterDeath checkDie = Prop.checkDie;
+    private static Keys keys;
+    private static Points pointsOnCard;
+    private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
     private int[] prevPos = new int[] {0,0};
     private Human human = new Human();
@@ -51,13 +50,13 @@ public class MoveByCard {
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
         capture = Capture.instance();
-        this.logicLocation = logicLocation;
+        MoveByCard.logicLocation = logicLocation;
         interfaceActions = InterfaceActions.getInstance();
-        this.pointsOnCard = pointsOnCard;
+        MoveByCard.pointsOnCard = pointsOnCard;
         findNearest.setPoints(pointsOnCard.getPoints());
     }
 
-    static public MoveByCard getInstance(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
+    public static MoveByCard getInstance(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         if (instance == null) {
             instance = new MoveByCard(logicLocation, pointsOnCard);
         }
@@ -238,10 +237,6 @@ public class MoveByCard {
             }
             moveToPoint(point, killMonsters);
         }
-
-//        points.forEach(e -> moveToPoint(e,killMonsters));
-//        Collections.reverse(points);
-//        points.forEach(e -> moveToPoint(e,killMonsters));
     }
 
     /**
