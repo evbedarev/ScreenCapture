@@ -25,9 +25,9 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicCmdField02();
+        logic = new LogicYunField12();
         cast = new CastMS( 0);
-        locationCheck = new LocationCheck(new CmdFiled02());
+        locationCheck = new LocationCheck(new YunField12());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
@@ -44,7 +44,7 @@ public class Prop {
 
     //SPEED SETTINGS
     //Через сколько секунд улетать если залип курсор атаки на мобе за стеной
-    public final static int ATTACK_MOBS_BEHIND_WALLS = 60;
+    public final static int     ATTACK_MOBS_BEHIND_WALLS = 60;
     //Количество проверок экрана на наличие монстров()
     public final static int COUNT_OF_CHECKS_MONSTER = 4;
     //Через сколько секунд повторить атаку

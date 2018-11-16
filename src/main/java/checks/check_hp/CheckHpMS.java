@@ -2,6 +2,7 @@ package checks.check_hp;
 
 import actions.SleepTime;
 import checks.LocationCheck;
+import logic.move_by_card.MoveByCard;
 import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -16,9 +17,7 @@ public class CheckHpMS extends CheckHpByClass {
     @Override
     public void checkHp() throws Exception {
         if (checkDie.check()) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
+            SleepTime.loopSleep();
         }
 
         if (Prop.NEED_HEAL) {
@@ -28,7 +27,6 @@ public class CheckHpMS extends CheckHpByClass {
 
     @Override
     void needHeal(BufferedImage image) throws Exception {
-
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             keys.keyPress(KeyEvent.VK_F3);
         }
@@ -44,13 +42,16 @@ public class CheckHpMS extends CheckHpByClass {
 
     public void checkHp(BufferedImage image) throws Exception {
         if (checkDie.check(image)) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
+            SleepTime.loopSleep();
         }
 
         if (Prop.NEED_HEAL) {
             needHeal(image);
         }
+
+        if (checkHpToEndRun(image)) {
+            MoveByCard.wingAway();
+        }
+
     }
 }

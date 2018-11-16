@@ -29,25 +29,24 @@ import java.util.Optional;
 public class MoveByCard {
     private static MoveByCard instance;
     int coordsYUp, coordsYDown, coordXLeft, coordXRight;
-    private Mouse mouse;
+    private static Mouse mouse;
     private InterfaceActions interfaceActions;
-    private Actions actions;
-    private FindPixels findImageHard;
-    private LogicLocation logicLocation;
-    private Capture capture;
-    private BufferedImage screenShot;
-    private Optional<int[]> xy, xy1, mouseClickCoord;
+    private static Actions actions;
+    private static FindPixels findImageHard;
+    private static LogicLocation logicLocation;
+    private static Capture capture;
+    private static BufferedImage screenShot;
+    private static Optional<int[]> xy;
     List<KillMonster> killMonsters;
     private AfterDeath checkDie = Prop.checkDie;
     private Keys keys;
     private Points pointsOnCard;
     private PointsFindNearest findNearest = new PointsFindNearest();
-    private boolean flagOfNewPoints = false;
+    private static boolean flagOfNewPoints = false;
     private int[] prevPos = new int[] {0,0};
     private Human human = new Human();
 
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
-        xy1 = Optional.empty();
         actions = Actions.instance();
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
@@ -212,18 +211,23 @@ public class MoveByCard {
      * Обязательно после имплементации использовать break;
      * @throws Exception
      */
-    private void wingAway() throws Exception {
+    public static void wingAway() throws Exception {
         actions.useWing(logicLocation.getLocationCheck());
         SleepTime.sleep(1000);
         xy = takeCoordsFromMap();
         flagOfNewPoints = true;
-        LoggerSingle.logInfo(this.toString(), " Use wing.");
+        LoggerSingle.logInfo("MoveByClass", " Use wing.");
     }
 
     public void move(List<KillMonster> killMonsters) throws Exception {
         List<int[]> points = pointsOnCard.getPoints();
         for (int[] point : points) {
             if (flagOfNewPoints) {
+                if (!xy.isPresent()) {
+                    wingAway();
+                    LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
+                    continue;
+                }
                 flagOfNewPoints = false;
                 LoggerSingle.logInfo(this.toString(), "Coordinates after teleporting is : " + xy.get()[0] + "," + xy.get()[1]);
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
@@ -267,7 +271,7 @@ public class MoveByCard {
         return false;
     }
 
-    private Optional<int[]> takeCoordsFromMap() throws Exception {
+    private static Optional<int[]> takeCoordsFromMap() throws Exception {
         screenShot = capture.takeScreenShot();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
