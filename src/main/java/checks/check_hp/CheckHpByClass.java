@@ -11,6 +11,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.Capture;
+import logic.move_by_card.MoveByCard;
 import main.Prop;
 import storage_image.StorageImageFile;
 
@@ -34,6 +35,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     FindPixels findImageHard;
     StorageImageFile storageImageFile = StorageImageFile.instance();
     CheckSilence checkSilence;
+    MoveByCard move;
 
     public CheckHpByClass(LocationCheck locationCheck) throws AWTException {
         this.locationCheck = locationCheck;
