@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MonstersYun11 extends Monster {
-    public MonstersYun11() throws AWTException {
+public class MonstersYun12 extends Monster {
+    public MonstersYun12() throws AWTException {
         List<Monster> monsters = Stream.of(
                 new Mantis(),
                 new Geographer()

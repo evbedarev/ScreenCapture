@@ -8,6 +8,7 @@ import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Geographer;
 import logic.kill_monster.Goat;
 import logic.kill_monster.Mantis;
+import logic.kill_monster.monstersOnLocation.MonstersYun12;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsYunField12;
 import logic.take_loot.*;
@@ -29,8 +30,7 @@ public class LogicYunField12 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
-                .of(new Mantis(),
-                        new Geographer())
+                .of(new MonstersYun12())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
