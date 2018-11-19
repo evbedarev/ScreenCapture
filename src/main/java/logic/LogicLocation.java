@@ -72,6 +72,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             cntAttack = 0;
             while (monster.kill()) {
+                SleepTime.sleep(2000);
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
                 if (cntAttack > 4) {
