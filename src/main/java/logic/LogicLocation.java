@@ -5,6 +5,8 @@ import actions.SleepTime;
 import checks.*;
 import checks.afterDeath.AfterDeath;
 import checks.check_hp.CheckHP;
+import find_fragments.FindFragmentFiles;
+import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
@@ -36,9 +38,11 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
+    static FindFragmentInImage findFragmentInImage;
     private Keys keys;
     Capture capture;
     BufferedImage screenShot;
+    private List<BufferedImage> attackLine;
     private int cntAttack;
 
     public abstract void createThread() throws Exception;
@@ -50,6 +54,9 @@ public abstract class LogicLocation extends Thread implements Logic {
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();
             capture = Capture.instance();
+            FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
+            attackLine = findFragmentFiles.fragments("frag*", Prop.ROOT_DIR + "KillMonsters\\Attack\\");
+            findFragmentInImage = FindFragmentInImage.getInstance();
             while (true) {
                 mainHandle();
             }
@@ -58,13 +65,19 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    void duringTheFight() throws Exception {
-        ATTACK_TIMER.set(0);
-        while (attack.kill()) {
-            count = 0;
-            checkMyHp();
-            SleepTime.sleep(500);
-            if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
+    boolean duringTheFight() throws Exception {
+        int countTimes = 0;
+        while (true) {
+            if (findFragmentInImage.findImage(attackLine).isPresent()) {
+                SleepTime.sleep(2000);
+                countTimes++;
+            } else {
+                return false;
+            }
+
+            if (countTimes > 10) {
+                return false;
+            }
         }
     }
 
@@ -98,7 +111,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         } else {
 //            checkMyHp();
 //            SleepTime.sleep(200);
-//            duringTheFight();
+            duringTheFight();
             SleepTime.sleep(300);
             if (!killMonstersAround(monster)) {
                 cntAttack++;
@@ -117,7 +130,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         keys = Keys.getInstance();
         boolean killAll = false;
         while(monster.findAndKillAround()) {
-//            duringTheFight();
+            duringTheFight();
             countAttack++;
             checkMyHp();
             SleepTime.sleep(500);

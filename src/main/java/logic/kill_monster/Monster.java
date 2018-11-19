@@ -3,6 +3,7 @@ package logic.kill_monster;
 import actions.Actions;
 import actions.InterfaceActions;
 import actions.SleepTime;
+import checks.check_hp.CheckHP;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -24,6 +25,7 @@ public class Monster implements KillMonster {
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
+    static final CheckHP checkHP = CheckHP.instance();
     private static boolean attackBySpell = false;
 
 
@@ -149,6 +151,8 @@ public class Monster implements KillMonster {
                     actions.stepAside(new int[]{600, 800});
                 }
 
+                checkHP.checkHp(image);
+
                 actions.checkResources(image);
 
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
@@ -228,6 +232,8 @@ public class Monster implements KillMonster {
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
                 }
+
+                checkHP.checkHp(image);
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();

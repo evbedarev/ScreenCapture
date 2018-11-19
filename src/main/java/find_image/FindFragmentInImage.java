@@ -29,6 +29,13 @@ public class FindFragmentInImage {
         return instance;
     }
 
+    /**
+     * Находи файлы начинающиеся с 'frag' в директории и ищет их на скриншоте.
+     * * пример директории: Prop.ROOT_DIR + "Interface\\CheckDie\\"
+     * @param dir - директория где находятся файлы
+     * @return - координаты найденого изображения.
+     * @throws Exception
+     */
     public Optional<int[]> findImage(String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);
@@ -43,6 +50,14 @@ public class FindFragmentInImage {
         return Optional.empty();
     }
 
+    /**
+     * Находи файлы начинающиеся с 'frag' в директории и ищет их на скриншоте.
+     * пример директории: Prop.ROOT_DIR + "Interface\\CheckDie\\"
+     * @param screenshot - скриншот
+     * @param dir - директория где находятся файлы
+     * @return - координаты найденого изображения.
+     * @throws Exception
+     */
     public Optional<int[]> findImage(BufferedImage screenshot, String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);
@@ -55,6 +70,22 @@ public class FindFragmentInImage {
         }
         return Optional.empty();
     }
+
+    public Optional<int[]> findImage(List<BufferedImage> imageList) throws Exception{
+        capture = Capture.instance();
+        Optional<int[]> xy;
+        for (BufferedImage image: imageList) {
+            BufferedImage screenshot = capture.takeScreenShot();
+            xy = findImageHard.findImageInArea(screenshot, image,
+                    screen);
+            if (xy.isPresent())
+                return xy;
+        }
+        return Optional.empty();
+    }
+
+
+
 
 
     public Optional<int[]> findImageExcludeArea(String dir) throws Exception{
