@@ -55,7 +55,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             checkSP.initialize();
             capture = Capture.instance();
             FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
-            attackLine = findFragmentFiles.fragments("frag*", Prop.ROOT_DIR + "KillMonsters\\Attack\\");
+            attackLine = findFragmentFiles.fragments("frag*", Prop.ROOT_DIR + "KillMonsters\\LineHpMonsters\\");
             findFragmentInImage = FindFragmentInImage.getInstance();
             while (true) {
                 mainHandle();
