@@ -66,18 +66,12 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     boolean duringTheFight() throws Exception {
-        int countTimes = 0;
         while (true) {
             if (findFragmentInImage.findImage(attackLine).isPresent()) {
                 SleepTime.sleep(500);
                 System.out.println("Find line in screen");
-                countTimes++;
             } else {
                 System.out.println("return false");
-                return false;
-            }
-
-            if (countTimes > 15) {
                 return false;
             }
         }
@@ -85,13 +79,18 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void findAndKill(KillMonster monster) {
         try {
-            cntAttack = 0;
+//            cntAttack = 0;
+
+            int cntAttemptsAttack = 0;
             while (monster.kill()) {
                 SleepTime.sleep(1000);
 //                attackBySwordOrSpell(monster);
-                duringTheFight();
+                if (!duringTheFight())
+                    cntAttemptsAttack++;
+
                 SleepTime.sleep(200);
-                if (cntAttack > 15) {
+
+                if (cntAttemptsAttack > 2) {
                     actions.useWing();
                     SleepTime.sleep(1000);
                     cntAttack = 0;
@@ -99,7 +98,16 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
-                cntAttack++;
+
+//                if (cntAttack > 15) {
+//                    actions.useWing();
+//                    SleepTime.sleep(1000);
+//                    cntAttack = 0;
+//                    LoggerSingle.logInfo("LogicLocation.findAndKill",
+//                            "use wing. can't walk to the monster");
+//                    break;
+//                }
+//                cntAttack++;
             }
 //            Prop.cast.cast();
 //            actions.pickUpCard();
