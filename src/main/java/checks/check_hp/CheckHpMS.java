@@ -49,9 +49,9 @@ public class CheckHpMS extends CheckHpByClass {
             needHeal(image);
         }
 
-        if (checkHpToEndRun(image)) {
-            MoveByCard.wingAway();
-        }
+//        if (checkHpToEndRun(image)) {
+//            MoveByCard.wingAway();
+//        }
 
     }
 }

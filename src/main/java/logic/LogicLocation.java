@@ -67,12 +67,15 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     boolean duringTheFight() throws Exception {
         boolean wasAnAttack = false;
+        int timerRepeatAttack = 0;
         findFragmentInImage.setScreen(new int[] {0, 1600, 0, 900});
         while (findFragmentInImage.findImage(attackLine).isPresent()) {
             SleepTime.sleep(500);
             System.out.println("Find line in screen");
             wasAnAttack = true;
             checkMyHp(findFragmentInImage.getCurrentScreenShot());
+            if (timerRepeatAttack > 20) break;
+            timerRepeatAttack++;
         }
         return wasAnAttack;
     }
