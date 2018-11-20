@@ -2,7 +2,6 @@ package find_image;
 
 import find_fragments.FindFragmentFiles;
 import logic.Capture;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
@@ -74,19 +73,17 @@ public class FindFragmentInImage {
     public Optional<int[]> findImage(List<BufferedImage> imageList) throws Exception{
         capture = Capture.instance();
         Optional<int[]> xy;
-        for (BufferedImage image: imageList) {
-            BufferedImage screenshot = capture.takeScreenShot();
-            xy = findImageHard.findImageInArea(screenshot, image,
-                    screen);
-            if (xy.isPresent())
-                return xy;
+        for (int i = 0; i < 2; i++) {
+            for (BufferedImage image: imageList) {
+                BufferedImage screenshot = capture.takeScreenShot();
+                xy = findImageHard.findImageInArea(screenshot, image,
+                        screen);
+                if (xy.isPresent())
+                    return xy;
+            }
         }
         return Optional.empty();
     }
-
-
-
-
 
     public Optional<int[]> findImageExcludeArea(String dir) throws Exception{
         capture = Capture.instance();
@@ -101,7 +98,4 @@ public class FindFragmentInImage {
         }
         return Optional.empty();
     }
-
-
-
 }

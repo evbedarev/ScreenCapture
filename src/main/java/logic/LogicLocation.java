@@ -87,10 +87,11 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             cntAttack = 0;
             while (monster.kill()) {
-                SleepTime.sleep(500);
-                attackBySwordOrSpell(monster);
+                SleepTime.sleep(1000);
+//                attackBySwordOrSpell(monster);
+                duringTheFight();
                 SleepTime.sleep(200);
-                if (cntAttack > 4) {
+                if (cntAttack > 15) {
                     actions.useWing();
                     SleepTime.sleep(1000);
                     cntAttack = 0;
@@ -98,6 +99,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
+                cntAttack++;
             }
 //            Prop.cast.cast();
 //            actions.pickUpCard();
