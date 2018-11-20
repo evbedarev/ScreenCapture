@@ -69,6 +69,7 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean findMonster(BufferedImage image) throws Exception {
+        boolean value = false;
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
@@ -84,10 +85,12 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(1000);
-                return true;
+                value = true;
+                break;
             }
         }
-        return false;
+        checkHP.checkHp(image);
+        return value;
     }
 
     /**
@@ -132,6 +135,7 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean findAndKill(BufferedImage image) throws Exception {
+        boolean value = false;
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
@@ -150,17 +154,16 @@ public class Monster implements KillMonster {
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
                 }
-
                 checkHP.checkHp(image);
-
                 actions.checkResources(image);
-
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(1000);
-                return true;
+                value = true;
+                break;
             }
         }
-        return false;
+        checkHP.checkHp(image);
+        return value;
     }
 
     @Override
@@ -210,6 +213,7 @@ public class Monster implements KillMonster {
     @Override
     public boolean findAndKillAround(BufferedImage image) throws
             Exception {
+        boolean value = false;
         SleepTime.sleep(500);
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
@@ -237,10 +241,12 @@ public class Monster implements KillMonster {
 
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 sleepAfterAttack();
-                return true;
+                value = true;
+                break;
             }
         }
-        return false;
+        checkHP.checkHp(image);
+        return value;
     }
 
     private void spellAttack() throws
