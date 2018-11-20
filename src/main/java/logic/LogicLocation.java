@@ -66,16 +66,14 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     boolean duringTheFight() throws Exception {
+        boolean wasAnAttack = false;
         findFragmentInImage.setScreen(new int[] {0, 1600, 0, 900});
-        while (true) {
-            if (findFragmentInImage.findImage(attackLine).isPresent()) {
-                SleepTime.sleep(500);
-                System.out.println("Find line in screen");
-            } else {
-                System.out.println("return false");
-                return false;
-            }
+        while (findFragmentInImage.findImage(attackLine).isPresent()) {
+            SleepTime.sleep(500);
+            System.out.println("Find line in screen");
+            wasAnAttack = true;
         }
+        return wasAnAttack;
     }
 
     public void findAndKill(KillMonster monster) {
