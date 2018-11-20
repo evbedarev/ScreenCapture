@@ -80,13 +80,13 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             int cntAttemptsAttack = 0;
             while (monster.kill()) {
-                SleepTime.sleep(1000);
+                SleepTime.sleep(500);
                 if (!duringTheFight())
                     cntAttemptsAttack++;
 
                 SleepTime.sleep(200);
 
-                if (cntAttemptsAttack > 2) {
+                if (cntAttemptsAttack > 4) {
                     actions.useWing();
                     SleepTime.sleep(1000);
                     cntAttack = 0;
