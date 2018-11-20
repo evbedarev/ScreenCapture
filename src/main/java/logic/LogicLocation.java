@@ -74,7 +74,10 @@ public abstract class LogicLocation extends Thread implements Logic {
             System.out.println("Find line in screen");
             wasAnAttack = true;
             checkMyHp(findFragmentInImage.getCurrentScreenShot());
-            if (timerRepeatAttack > 20) break;
+            if (timerRepeatAttack > 40) {
+                MoveByCard.wingAway();
+                break;
+            }
             timerRepeatAttack++;
         }
         return wasAnAttack;
