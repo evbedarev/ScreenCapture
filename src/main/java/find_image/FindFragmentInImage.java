@@ -13,6 +13,7 @@ public class FindFragmentInImage {
     private Capture capture;
     private int[] screen = new int[] {0,1600,0,900};
     private List<BufferedImage> imageList;
+    private static BufferedImage screenShot;
 
     public void setScreen(int[] screen) {
         this.screen = screen;
@@ -40,8 +41,8 @@ public class FindFragmentInImage {
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            BufferedImage screenshot = capture.takeScreenShot();
-            xy = findImageHard.findImageInArea(screenshot, image,
+            screenShot = capture.takeScreenShot();
+            xy = findImageHard.findImageInArea(screenShot, image,
                     screen);
             if (xy.isPresent())
                 return xy;
@@ -75,8 +76,8 @@ public class FindFragmentInImage {
         Optional<int[]> xy;
         for (int i = 0; i < 2; i++) {
             for (BufferedImage image: imageList) {
-                BufferedImage screenshot = capture.takeScreenShot();
-                xy = findImageHard.findImageInArea(screenshot, image,
+                screenShot = capture.takeScreenShot();
+                xy = findImageHard.findImageInArea(screenShot, image,
                         screen);
                 if (xy.isPresent())
                     return xy;
@@ -90,12 +91,16 @@ public class FindFragmentInImage {
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            BufferedImage screenshot = capture.takeScreenShot();
-            xy = findImageHard.findImageExcludeArea(screenshot, image,
+            screenShot = capture.takeScreenShot();
+            xy = findImageHard.findImageExcludeArea(screenShot, image,
                     screen);
             if (xy.isPresent())
                 return xy;
         }
         return Optional.empty();
+    }
+
+    public BufferedImage getCurrentScreenShot() {
+        return screenShot;
     }
 }

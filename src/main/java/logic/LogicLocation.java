@@ -72,6 +72,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             SleepTime.sleep(500);
             System.out.println("Find line in screen");
             wasAnAttack = true;
+            checkMyHp(findFragmentInImage.getCurrentScreenShot());
         }
         return wasAnAttack;
     }
