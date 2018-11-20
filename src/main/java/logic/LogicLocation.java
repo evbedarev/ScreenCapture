@@ -66,6 +66,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     boolean duringTheFight() throws Exception {
+        findFragmentInImage.setScreen(new int[] {0, 1600, 0, 900});
         while (true) {
             if (findFragmentInImage.findImage(attackLine).isPresent()) {
                 SleepTime.sleep(500);
@@ -79,12 +80,9 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void findAndKill(KillMonster monster) {
         try {
-//            cntAttack = 0;
-
             int cntAttemptsAttack = 0;
             while (monster.kill()) {
                 SleepTime.sleep(1000);
-//                attackBySwordOrSpell(monster);
                 if (!duringTheFight())
                     cntAttemptsAttack++;
 
@@ -98,19 +96,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
-
-//                if (cntAttack > 15) {
-//                    actions.useWing();
-//                    SleepTime.sleep(1000);
-//                    cntAttack = 0;
-//                    LoggerSingle.logInfo("LogicLocation.findAndKill",
-//                            "use wing. can't walk to the monster");
-//                    break;
-//                }
-//                cntAttack++;
             }
-//            Prop.cast.cast();
-//            actions.pickUpCard();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
