@@ -92,6 +92,8 @@ public abstract class LogicLocation extends Thread implements Logic {
                 SleepTime.sleep(500);
                 if (!duringTheFight())
                     cntAttemptsAttack++;
+                else
+                    cntAttemptsAttack = 0;
 
                 SleepTime.sleep(200);
 
