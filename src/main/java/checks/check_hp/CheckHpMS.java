@@ -45,6 +45,10 @@ public class CheckHpMS extends CheckHpByClass {
             SleepTime.loopSleep();
         }
 
+        if (image.getRGB(Prop.X_HP_TO_RUN,Prop.Y_HP) != Prop.RGB_HP) {
+            MoveByCard.wingAway();
+        }
+
         if (Prop.NEED_HEAL) {
             needHeal(image);
         }

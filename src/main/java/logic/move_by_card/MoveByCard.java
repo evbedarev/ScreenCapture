@@ -164,7 +164,7 @@ public class MoveByCard {
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
                 }
-
+                SleepTime.sleep(1000);
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
                     wingAway();
                     LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");

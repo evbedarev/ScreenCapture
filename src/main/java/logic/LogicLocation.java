@@ -86,6 +86,8 @@ public abstract class LogicLocation extends Thread implements Logic {
     public void findAndKill(KillMonster monster) {
         try {
             int cntAttemptsAttack = 0;
+            boolean wasAttacks = false;
+            Prop.cast.cast();
             while (monster.kill()) {
                 SleepTime.sleep(500);
                 if (!duringTheFight())
@@ -101,7 +103,10 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
+                wasAttacks = true;
             }
+            if (wasAttacks)
+                actions.pickUpCard();
         } catch (Exception exception) {
             exception.printStackTrace();
         }

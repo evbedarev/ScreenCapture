@@ -22,8 +22,6 @@ public abstract class Cast extends Thread {
     final static AtomicInteger PRESERVE = new AtomicInteger(0);
     final static AtomicInteger AGI_UP = new AtomicInteger(0);
     final static AtomicInteger BLESS = new AtomicInteger(0);
-    final static AtomicInteger ADRENALINE_RUSH = new AtomicInteger(0);
-    final static AtomicInteger POWER_THRUST = new AtomicInteger(0);
     final static AtomicInteger WAITING_TIME = new AtomicInteger(0);
 
 
@@ -37,6 +35,9 @@ public abstract class Cast extends Thread {
         ATOMIC_AWAKENING.incrementAndGet();
         TIMER_CHECK_OVERWEIGHT.incrementAndGet();
         WAITING_TIME.incrementAndGet();
+    }
+
+    protected void waitingCharSelect() {
     }
 
     public abstract void begin() throws AWTException;
