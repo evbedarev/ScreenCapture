@@ -130,8 +130,6 @@ public class MoveByCard {
         try {
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
-            int countMoves = 0;
-
             LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
 
             if (!xy.isPresent())
@@ -154,7 +152,7 @@ public class MoveByCard {
                 logicLocation.checkMyHp(screenShot);
 
                 if (checkDialogWindow(screenShot)) {
-                    actions.stepAside(new int[] {400, 500});
+//                    actions.stepAside(new int[] {400, 500});
                     wingAway();
                     break;
                 }
@@ -182,7 +180,6 @@ public class MoveByCard {
                 checkDie.check(screenShot);
 
                 xy = takeCoordsFromMap();
-                countMoves++;
             }
 
         } catch (Exception exception) {

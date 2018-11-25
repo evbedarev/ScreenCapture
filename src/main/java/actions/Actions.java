@@ -183,7 +183,7 @@ public class Actions {
         xy = Optional.of(new int[] {800 + (int) Math.round(mediumX),450 + (int) Math.round(mediumY)});
         mouse.mouseClick(xy.get()[0], xy.get()[1]);
 
-        SleepTime.sleep(200);
+        SleepTime.sleep(300);
         locationCheck.locationCheck();
         return xy;
     }

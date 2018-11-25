@@ -75,7 +75,6 @@ public abstract class LogicLocation extends Thread implements Logic {
                 SleepTime.sleep(2000);
                 attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
-                count = 0;
                 if (cntAttack > 4) {
                     actions.useWing();
                     SleepTime.sleep(2000);

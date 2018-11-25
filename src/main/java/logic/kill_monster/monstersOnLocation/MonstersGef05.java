@@ -11,8 +11,8 @@ public class MonstersGef05 extends Monster {
     public MonstersGef05() throws AWTException {
         List<Monster> monsters = Stream.of(
                 new ThiefBug(),
-                new Creamy(),
-                new Smokie()
+                new Creamy()
+//                new Smokie()
                 ).collect(Collectors.toList());
 
         for (Monster monster : monsters) {
