@@ -140,7 +140,7 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(700);
+        SleepTime.sleep(300);
         LoggerSingle.logInfo(this.toString(), "Step aside without Location check");
     }
 
@@ -161,7 +161,7 @@ public class Actions {
 
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
-        SleepTime.sleep(800);
+        SleepTime.sleep(300);
         locationCheck.locationCheck();
         LoggerSingle.logInfo(this.toString(), "Step aside with Location check");
     }
@@ -183,7 +183,7 @@ public class Actions {
         xy = Optional.of(new int[] {800 + (int) Math.round(mediumX),450 + (int) Math.round(mediumY)});
         mouse.mouseClick(xy.get()[0], xy.get()[1]);
 
-        SleepTime.sleep(1000);
+        SleepTime.sleep(200);
         locationCheck.locationCheck();
         return xy;
     }
@@ -192,7 +192,7 @@ public class Actions {
         if (Prop.SUPER_PREMIUM) {
             stepAside(locationCheck, new int[] {75, 150} );
             keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_1);
-            SleepTime.sleep(1000);
+            SleepTime.sleep(800);
         } else {
             for (TakeLoot takeLoot : loot) {
                 takeLoot.pickUp();
@@ -260,5 +260,15 @@ public class Actions {
 //        mouse.mouseMove(x, 540);
 //        SleepTime.sleep(50);
 //        mouse.releaseRight();
+    }
+
+    public void moveChat() throws InterruptedException {
+        mouse.mouseMove(560, 883);
+        SleepTime.sleep(300);
+        mouse.pressLeft();
+        SleepTime.sleep(400);
+        mouse.mouseMove(10, 883);
+        SleepTime.sleep(300);
+        mouse.releaseLeft();
     }
 }
