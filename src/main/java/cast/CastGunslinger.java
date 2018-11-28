@@ -94,7 +94,7 @@ public class CastGunslinger extends Cast {
     @Override
     public void incrementValues() throws InterruptedException {
         incrementConst();
-//        GATLING_FEVER.incrementAndGet();
+        GATLING_FEVER.incrementAndGet();
         FLIP_THE_COINS.incrementAndGet();
 //        ADJUSTMENT.incrementAndGet();
         sleep(1000);

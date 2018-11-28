@@ -39,7 +39,7 @@ public class Monster implements KillMonster {
 
     @Override
     public boolean kill() throws Exception {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             BufferedImage image = capture.takeScreenShot();
             if (findAndKill(image)) return true;
         }
