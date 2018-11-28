@@ -149,7 +149,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
 
-                mouse.mouseClick(x - 5, y + 20);
+                mouse.mouseClick(x + 5, y + 20);
 
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});

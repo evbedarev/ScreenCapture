@@ -8,7 +8,7 @@ public class Nereid extends Monster {
     public Nereid() throws AWTException {
         rgbParameterList.add(new RgbParameter(-2115,
                 new int[] {70,70},
-                new int[] {-6320192,-5201711,-14734296, -5201711, -7899480}));
+                new int[] {-5201711, -7899480}));
     }
 }
 //2018-10-16 15:16:55 INFO  CompareFragmentImage:55 - All images equals RGB = -2115 x=16 y=9

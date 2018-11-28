@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class GrandPecoPeco extends Monster {
     public GrandPecoPeco() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-8688756,
+        rgbParameterList.add(new RgbParameter(-1527931,
                 new int[] {80,80},
-                new int[] {-1527931, -1131377}));
+                new int[] {-8688756, -1131377}));
     }
 }

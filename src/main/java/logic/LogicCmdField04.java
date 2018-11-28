@@ -2,6 +2,7 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
+import checks.location.CmdFiled04;
 import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
@@ -30,7 +31,7 @@ public class LogicCmdField04 extends LogicLocation {
         attack = new AttackGef05();
         actions = Actions.instance();
         moveByCard = MoveByCard.getInstance(this,  new PointsCmdField04());
-        locationCheck = new LocationCheck(new GefField05());
+        locationCheck = new LocationCheck(new CmdFiled04());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
@@ -40,9 +41,6 @@ public class LogicCmdField04 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//            new Clothes(),
-//                new Shield(),
-//            new Mask(logger),
                 new Coupon()
         };
 

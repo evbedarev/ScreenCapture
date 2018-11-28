@@ -70,16 +70,23 @@ public abstract class LogicLocation extends Thread implements Logic {
         int timerRepeatAttack = 0;
         findFragmentInImage.setScreen(new int[] {0, 1600, 0, 900});
         while (findFragmentInImage.findImage(attackLine).isPresent()) {
-            SleepTime.sleep(500);
-            System.out.println("Find line in screen");
+            SleepTime.sleep(300);
             wasAnAttack = true;
             checkMyHp(findFragmentInImage.getCurrentScreenShot());
-            if (timerRepeatAttack > 40) {
+            if (timerRepeatAttack > 20) {
                 MoveByCard.wingAway();
                 break;
             }
             timerRepeatAttack++;
         }
+
+        if (wasAnAttack)
+            LoggerSingle.logInfo("LogicLocation.duringTheFight",
+                "duringTheFight return True");
+        else
+            LoggerSingle.logInfo("LogicLocation.duringTheFight",
+                "duringTheFight return False");
+
         return wasAnAttack;
     }
 
@@ -87,9 +94,10 @@ public abstract class LogicLocation extends Thread implements Logic {
         try {
             int cntAttemptsAttack = 0;
             boolean wasAttacks = false;
-            Prop.cast.cast();
+//            Prop.cast.cast();
             while (monster.kill()) {
-                SleepTime.sleep(500);
+                wasAttacks = true;
+                SleepTime.sleep(400);
                 if (!duringTheFight())
                     cntAttemptsAttack++;
                 else
@@ -99,16 +107,19 @@ public abstract class LogicLocation extends Thread implements Logic {
 
                 if (cntAttemptsAttack > 4) {
                     actions.useWing();
-                    SleepTime.sleep(1000);
-                    cntAttack = 0;
+                    SleepTime.sleep(500);
                     LoggerSingle.logInfo("LogicLocation.findAndKill",
                             "use wing. can't walk to the monster");
                     break;
                 }
-                wasAttacks = true;
             }
-            if (wasAttacks)
+
+            if (wasAttacks) {
+                actions.stepAside(new int[]{50, 100});
                 actions.pickUpCard();
+                actions.pickUpLoot(locationCheck);
+            }
+
         } catch (Exception exception) {
             exception.printStackTrace();
         }

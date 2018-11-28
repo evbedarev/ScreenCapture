@@ -15,6 +15,8 @@ public class CastGunslinger extends Cast {
     private Mouse mouse;
     private int randomTime;
     final static AtomicInteger GATLING_FEVER = new AtomicInteger(0);
+    final static AtomicInteger FLIP_THE_COINS = new AtomicInteger(0);
+    final static AtomicInteger ADJUSTMENT = new AtomicInteger(0);
 
     public CastGunslinger(int threadId) throws AWTException {
         randomTime = 80 + (30 * (int) Math.random());
@@ -46,6 +48,7 @@ public class CastGunslinger extends Cast {
     @Override
     public void cast() throws Exception {
         if (threadId == 0) {
+
             if (WAITING_TIME.get() > (60 * randomTime)) {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
@@ -67,13 +70,33 @@ public class CastGunslinger extends Cast {
                 SleepTime.sleep(3000);
                 GATLING_FEVER.set(0);
             }
+
+            if (FLIP_THE_COINS.get() > 300) {
+                LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
+                for (int i = 0; i < 20; i++) {
+                    keys.keyPress(KeyEvent.VK_F6);
+                    SleepTime.sleep(300);
+                }
+                FLIP_THE_COINS.set(0);
+            }
+
+            if (ADJUSTMENT.get() > 30) {
+                LoggerSingle.logInfo(this.toString(), "cast ADJUSTMENT");
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(1000);
+                ADJUSTMENT.set(0);
+            }
+
+
         }
     }
 
     @Override
     public void incrementValues() throws InterruptedException {
         incrementConst();
-        GATLING_FEVER.incrementAndGet();
+//        GATLING_FEVER.incrementAndGet();
+        FLIP_THE_COINS.incrementAndGet();
+//        ADJUSTMENT.incrementAndGet();
         sleep(1000);
     }
 }

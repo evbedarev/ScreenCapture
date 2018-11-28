@@ -74,7 +74,7 @@ public class FindFragmentInImage {
     public Optional<int[]> findImage(List<BufferedImage> imageList) throws Exception{
         capture = Capture.instance();
         Optional<int[]> xy;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             for (BufferedImage image: imageList) {
                 screenShot = capture.takeScreenShot();
                 xy = findImageHard.findImageInArea(screenShot, image,
