@@ -135,29 +135,23 @@ public class MoveByCard {
                 LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
                 return false;
             }
-
             actions.checkResources(screenShot);
-
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
                 logicLocation.getLocationCheck().locationCheck();
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 screenShot = capture.takeScreenShot();
-
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
-
                 if (checkDialogWindow(screenShot)) {
 //                    actions.stepAside(new int[] {400, 500});
                     wingAway();
                     break;
                 }
-
 //                if (human.findMonster(screenShot)) {
 //                    wingAway();
 //                    break;
 //                }
-
                 LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
 //                actions.pickUpCard(screenShot);
 
@@ -172,12 +166,9 @@ public class MoveByCard {
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
-
                 checkDie.check(screenShot);
-
                 xy = takeCoordsFromMap();
             }
-
         } catch (Exception exception) {
             exception.printStackTrace();
             while (true) {

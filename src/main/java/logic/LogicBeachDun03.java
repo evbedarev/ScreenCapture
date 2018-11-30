@@ -2,6 +2,7 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
+import checks.location.BeachDun03;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
@@ -9,6 +10,7 @@ import logic.kill_monster.Goat;
 import logic.kill_monster.Hydra;
 import logic.kill_monster.Nereid;
 import logic.kill_monster.TharaFrog;
+import logic.kill_monster.monstersOnLocation.MonstersBeachDun03;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsBeachDun03;
 import logic.move_by_card.PointsYunField11;
@@ -27,25 +29,19 @@ public class LogicBeachDun03 extends LogicLocation {
         attack = new AttackYun11();
         actions = Actions.instance();
         moveByCard = MoveByCard.getInstance(this, new PointsBeachDun03());
-        locationCheck = new LocationCheck(new YunField11());
+        locationCheck = new LocationCheck(new BeachDun03());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
-                .of( new Nereid(),
-                        new TharaFrog(),
-                        new Hydra())
+                .of( new MonstersBeachDun03())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {
-//                new AntelopeSkin(),
-//                new Bottle(),
-//                new AntelopeHorn()
         };
         
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//                new BlueHerb(),
                 new Coupon(),
         };
     }

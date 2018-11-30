@@ -13,8 +13,6 @@ import logic.move_by_card.MoveByCard;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
-
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -70,6 +68,7 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void findAndKill(KillMonster monster) {
         try {
+            boolean wasAttack = false;
             cntAttack = 0;
             while (monster.kill()) {
                 SleepTime.sleep(500);
@@ -83,9 +82,13 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
+                wasAttack = true;
             }
-//            Prop.cast.cast();
-//            actions.pickUpCard();
+            if (wasAttack) {
+                actions.stepAside(new int[]{50, 100});
+                actions.pickUpCard();
+                actions.pickUpLoot(locationCheck);
+            }
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -106,10 +109,6 @@ public abstract class LogicLocation extends Thread implements Logic {
                 cntAttack = 0;
             }
         }
-//        actions.pickUpLoot(locationCheck);
-        actions.stepAside(new int[] {50,100});
-        actions.pickUpCard();
-        actions.pickUpLoot(locationCheck);
     }
 
     boolean killMonstersAround(KillMonster monster) throws Exception {

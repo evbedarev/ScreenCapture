@@ -10,14 +10,15 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class CastMS extends Cast {
+public class CastGunslinger extends Cast {
     private final int threadId;
     private Mouse mouse;
     private int randomTime;
-    final static AtomicInteger ADRENALINE_RUSH = new AtomicInteger(0);
-    final static AtomicInteger POWER_THRUST = new AtomicInteger(0);
+    final static AtomicInteger GATLING_FEVER = new AtomicInteger(0);
+    final static AtomicInteger FLIP_THE_COINS = new AtomicInteger(0);
+    final static AtomicInteger ADJUSTMENT = new AtomicInteger(0);
 
-    public CastMS(int threadId) throws AWTException {
+    public CastGunslinger(int threadId) throws AWTException {
         randomTime = 80 + (30 * (int) Math.random());
         this.threadId = threadId;
         mouse = Mouse.getInstance();
@@ -26,7 +27,7 @@ public class CastMS extends Cast {
 
     @Override
     public void begin() throws AWTException {
-        Thread thread = new CastMS(1);
+        Thread thread = new CastGunslinger(1);
         thread.start();
     }
 
@@ -47,6 +48,7 @@ public class CastMS extends Cast {
     @Override
     public void cast() throws Exception {
         if (threadId == 0) {
+
             if (WAITING_TIME.get() > (60 * randomTime)) {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
@@ -62,26 +64,39 @@ public class CastMS extends Cast {
                 }
             }
 
-            if (ADRENALINE_RUSH.get() > 150) {
-                LoggerSingle.logInfo(this.toString(), "cast ADRENALINE_RUSH");
-//                keys.keyPress(KeyEvent.VK_F4);
-                ADRENALINE_RUSH.set(0);
-                SleepTime.sleep(1000);
+            if (GATLING_FEVER.get() > 165) {
+                LoggerSingle.logInfo(this.toString(), "cast GATLING_FEVER");
+                keys.keyPress(KeyEvent.VK_F4);
+                SleepTime.sleep(3000);
+                GATLING_FEVER.set(0);
             }
 
-            if (POWER_THRUST.get() > 100) {
-                LoggerSingle.logInfo(this.toString(), "cast POWER_THRUST");
-//                keys.keyPress(KeyEvent.VK_F5);
-                POWER_THRUST.set(0);
+            if (FLIP_THE_COINS.get() > 300) {
+                LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
+                for (int i = 0; i < 20; i++) {
+                    keys.keyPress(KeyEvent.VK_F6);
+                    SleepTime.sleep(300);
+                }
+                FLIP_THE_COINS.set(0);
             }
+
+            if (ADJUSTMENT.get() > 30) {
+                LoggerSingle.logInfo(this.toString(), "cast ADJUSTMENT");
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(1000);
+                ADJUSTMENT.set(0);
+            }
+
+
         }
     }
 
     @Override
     public void incrementValues() throws InterruptedException {
         incrementConst();
-        POWER_THRUST.incrementAndGet();
-        ADRENALINE_RUSH.incrementAndGet();
+//        GATLING_FEVER.incrementAndGet();
+//        FLIP_THE_COINS.incrementAndGet();
+//        ADJUSTMENT.incrementAndGet();
         sleep(1000);
     }
 }

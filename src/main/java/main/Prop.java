@@ -25,15 +25,14 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicCmdField04();
-        cast = new CastMS( 0);
-        locationCheck = new LocationCheck(new CmdFiled04());
+
+        logic = new LogicYunField08();
+        cast = new CastGunslinger(0);
+        locationCheck = new LocationCheck(new YunField08());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
     }
-
-
 
     ///////////////////////////////////////////
     public static final int SCREEN_WIDTH = 1600;
@@ -64,9 +63,10 @@ public class Prop {
     ///////////////HEAL SKILL///////////////////////
     public static final boolean NEED_HEAL = true;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
-    public static final int X_HP_HEAL = 70; //Only for acolyte
-    public static final int X_HP_TO_RUN = 60;
-    public static final int X_HP_TO_END_RUN = 144;
+
+    public static final int X_HP_HEAL = 110; //Only for acolyte
+    public static final int X_HP_TO_RUN = 66;
+    public static final int X_HP_TO_END_RUN = 110;
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////

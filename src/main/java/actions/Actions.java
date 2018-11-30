@@ -250,7 +250,7 @@ public class Actions {
     public void heal() throws Exception {
         keys.keyPress(Prop.HEAL_KEY);
         SleepTime.sleep(500);
-        mouse.mouseClick(800, 400);
+//        mouse.mouseClick(800, 400);
     }
 
     private void slide() throws InterruptedException {

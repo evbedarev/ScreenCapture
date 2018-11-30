@@ -2,7 +2,6 @@ package find_image;
 
 import find_fragments.FindFragmentFiles;
 import logic.Capture;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +13,7 @@ public class FindFragmentInImage {
     private Capture capture;
     private int[] screen = new int[] {0,1600,0,900};
     private List<BufferedImage> imageList;
+    private static BufferedImage screenShot;
 
     public void setScreen(int[] screen) {
         this.screen = screen;
@@ -29,13 +29,20 @@ public class FindFragmentInImage {
         return instance;
     }
 
+    /**
+     * Находи файлы начинающиеся с 'frag' в директории и ищет их на скриншоте.
+     * * пример директории: Prop.ROOT_DIR + "Interface\\CheckDie\\"
+     * @param dir - директория где находятся файлы
+     * @return - координаты найденого изображения.
+     * @throws Exception
+     */
     public Optional<int[]> findImage(String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            BufferedImage screenshot = capture.takeScreenShot();
-            xy = findImageHard.findImageInArea(screenshot, image,
+            screenShot = capture.takeScreenShot();
+            xy = findImageHard.findImageInArea(screenShot, image,
                     screen);
             if (xy.isPresent())
                 return xy;
@@ -43,6 +50,14 @@ public class FindFragmentInImage {
         return Optional.empty();
     }
 
+    /**
+     * Находи файлы начинающиеся с 'frag' в директории и ищет их на скриншоте.
+     * пример директории: Prop.ROOT_DIR + "Interface\\CheckDie\\"
+     * @param screenshot - скриншот
+     * @param dir - директория где находятся файлы
+     * @return - координаты найденого изображения.
+     * @throws Exception
+     */
     public Optional<int[]> findImage(BufferedImage screenshot, String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);
@@ -56,14 +71,28 @@ public class FindFragmentInImage {
         return Optional.empty();
     }
 
+    public Optional<int[]> findImage(List<BufferedImage> imageList) throws Exception{
+        capture = Capture.instance();
+        Optional<int[]> xy;
+        for (int i = 0; i < 3; i++) {
+            for (BufferedImage image: imageList) {
+                screenShot = capture.takeScreenShot();
+                xy = findImageHard.findImageInArea(screenShot, image,
+                        screen);
+                if (xy.isPresent())
+                    return xy;
+            }
+        }
+        return Optional.empty();
+    }
 
     public Optional<int[]> findImageExcludeArea(String dir) throws Exception{
         capture = Capture.instance();
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            BufferedImage screenshot = capture.takeScreenShot();
-            xy = findImageHard.findImageExcludeArea(screenshot, image,
+            screenShot = capture.takeScreenShot();
+            xy = findImageHard.findImageExcludeArea(screenShot, image,
                     screen);
             if (xy.isPresent())
                 return xy;
@@ -71,6 +100,7 @@ public class FindFragmentInImage {
         return Optional.empty();
     }
 
-
-
+    public BufferedImage getCurrentScreenShot() {
+        return screenShot;
+    }
 }

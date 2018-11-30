@@ -41,9 +41,6 @@ public class LogicCmdField04 extends LogicLocation {
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
-//            new Clothes(),
-//                new Shield(),
-//            new Mask(logger),
                 new Coupon()
         };
 
