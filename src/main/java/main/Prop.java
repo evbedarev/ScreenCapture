@@ -25,9 +25,9 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicGefField08();
+        logic = new LogicYunField08();
         cast = new CastGunslinger(0);
-        locationCheck = new LocationCheck(new GefField08());
+        locationCheck = new LocationCheck(new YunField08());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
@@ -63,8 +63,8 @@ public class Prop {
     public static final boolean NEED_HEAL = true;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
     public static final int X_HP_HEAL = 110; //Only for acolyte
-    public static final int X_HP_TO_RUN = 60;
-    public static final int X_HP_TO_END_RUN = 144;
+    public static final int X_HP_TO_RUN = 66;
+    public static final int X_HP_TO_END_RUN = 110;
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////

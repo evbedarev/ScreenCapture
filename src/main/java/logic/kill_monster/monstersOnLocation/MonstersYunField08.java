@@ -11,8 +11,8 @@ public class MonstersYunField08 extends Monster {
     public MonstersYunField08() throws AWTException {
         List<Monster> monsters = Stream.of(
                 new Geographer(),
-                new GrandPecoPeco()
-//                new Goat()
+                new GrandPecoPeco(),
+                new Goat()
                 ).collect(Collectors.toList());
 
         for (Monster monster : monsters) {
