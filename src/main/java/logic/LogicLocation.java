@@ -5,8 +5,6 @@ import actions.SleepTime;
 import checks.*;
 import checks.afterDeath.AfterDeath;
 import checks.check_hp.CheckHP;
-import find_fragments.FindFragmentFiles;
-import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
@@ -15,8 +13,6 @@ import logic.move_by_card.MoveByCard;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
-
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -38,11 +34,9 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LocationCheck locationCheck;
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
-    static FindFragmentInImage findFragmentInImage;
     private Keys keys;
     Capture capture;
     BufferedImage screenShot;
-    private List<BufferedImage> attackLine;
     private int cntAttack;
 
     public abstract void createThread() throws Exception;
@@ -54,9 +48,6 @@ public abstract class LogicLocation extends Thread implements Logic {
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();
             capture = Capture.instance();
-            FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
-            attackLine = findFragmentFiles.fragments("frag*", Prop.ROOT_DIR + "KillMonsters\\LineHpMonsters\\");
-            findFragmentInImage = FindFragmentInImage.getInstance();
             while (true) {
                 mainHandle();
             }
@@ -65,61 +56,39 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    boolean duringTheFight() throws Exception {
-        boolean wasAnAttack = false;
-        int timerRepeatAttack = 0;
-        findFragmentInImage.setScreen(new int[] {0, 1600, 0, 900});
-        while (findFragmentInImage.findImage(attackLine).isPresent()) {
-            SleepTime.sleep(300);
-            wasAnAttack = true;
-            checkMyHp(findFragmentInImage.getCurrentScreenShot());
-            if (timerRepeatAttack > 20) {
-                MoveByCard.wingAway();
-                break;
-            }
-            timerRepeatAttack++;
+    void duringTheFight() throws Exception {
+        ATTACK_TIMER.set(0);
+        while (attack.kill()) {
+            count = 0;
+            checkMyHp();
+            SleepTime.sleep(500);
+            if (ATTACK_TIMER.incrementAndGet() > Prop.ATTACK_TIMER) break;
         }
-
-        if (wasAnAttack)
-            LoggerSingle.logInfo("LogicLocation.duringTheFight",
-                "duringTheFight return True");
-        else
-            LoggerSingle.logInfo("LogicLocation.duringTheFight",
-                "duringTheFight return False");
-
-        return wasAnAttack;
     }
 
     public void findAndKill(KillMonster monster) {
         try {
-            int cntAttemptsAttack = 0;
-            boolean wasAttacks = false;
-//            Prop.cast.cast();
+            boolean wasAttack = false;
+            cntAttack = 0;
             while (monster.kill()) {
-                wasAttacks = true;
-                SleepTime.sleep(400);
-                if (!duringTheFight())
-                    cntAttemptsAttack++;
-                else
-                    cntAttemptsAttack = 0;
-
+                SleepTime.sleep(500);
+                attackBySwordOrSpell(monster);
                 SleepTime.sleep(200);
-
-                if (cntAttemptsAttack > 4) {
+                if (cntAttack > 4) {
                     actions.useWing();
-                    SleepTime.sleep(500);
+                    SleepTime.sleep(1000);
+                    cntAttack = 0;
                     LoggerSingle.logInfo("LogicLocation.findAndKill",
                             "use wing. can't walk to the monster");
                     break;
                 }
+                wasAttack = true;
             }
-
-            if (wasAttacks) {
+            if (wasAttack) {
                 actions.stepAside(new int[]{50, 100});
                 actions.pickUpCard();
                 actions.pickUpLoot(locationCheck);
             }
-
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -132,7 +101,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         } else {
 //            checkMyHp();
 //            SleepTime.sleep(200);
-            duringTheFight();
+//            duringTheFight();
             SleepTime.sleep(300);
             if (!killMonstersAround(monster)) {
                 cntAttack++;
@@ -140,10 +109,6 @@ public abstract class LogicLocation extends Thread implements Logic {
                 cntAttack = 0;
             }
         }
-//        actions.pickUpLoot(locationCheck);
-        actions.stepAside(new int[] {50,100});
-        actions.pickUpCard();
-        actions.pickUpLoot(locationCheck);
     }
 
     boolean killMonstersAround(KillMonster monster) throws Exception {
@@ -151,7 +116,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         keys = Keys.getInstance();
         boolean killAll = false;
         while(monster.findAndKillAround()) {
-            duringTheFight();
+//            duringTheFight();
             countAttack++;
             checkMyHp();
             SleepTime.sleep(500);
