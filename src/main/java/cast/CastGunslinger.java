@@ -48,7 +48,6 @@ public class CastGunslinger extends Cast {
     @Override
     public void cast() throws Exception {
         if (threadId == 0) {
-
             if (WAITING_TIME.get() > (60 * randomTime)) {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
@@ -73,7 +72,7 @@ public class CastGunslinger extends Cast {
 
             if (FLIP_THE_COINS.get() > 300) {
                 LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
-                for (int i = 0; i < 20; i++) {
+                for (int i = 0; i < 25; i++) {
                     keys.keyPress(KeyEvent.VK_F6);
                     SleepTime.sleep(300);
                 }
@@ -87,7 +86,10 @@ public class CastGunslinger extends Cast {
                 ADJUSTMENT.set(0);
             }
 
-
+            if (ATOMIC_AWAKENING.get() > 1800) {
+                actions.drinkAwaikeningPotion();
+                ATOMIC_AWAKENING.set(0);
+            }
         }
     }
 
@@ -95,7 +97,7 @@ public class CastGunslinger extends Cast {
     public void incrementValues() throws InterruptedException {
         incrementConst();
 //        GATLING_FEVER.incrementAndGet();
-//        FLIP_THE_COINS.incrementAndGet();
+        FLIP_THE_COINS.incrementAndGet();
 //        ADJUSTMENT.incrementAndGet();
         sleep(1000);
     }
