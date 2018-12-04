@@ -4,6 +4,7 @@ import actions.Actions;
 import actions.InterfaceActions;
 import actions.SleepTime;
 import checks.check_hp.CheckHP;
+import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -116,10 +117,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-//                mouse.mouseClick(x + 5, y + 20);
-//                SleepTime.sleep(1500);
-                spellAttack();
-                mouse.mouseClick(x + 5, y + 20);
+                action(x, y);
                 BufferedImage image = capture.takeScreenShot();
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[] {600, 800});
@@ -148,8 +146,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-
-                mouse.mouseClick(x + 5, y + 20);
+                action(x, y);
 
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
@@ -192,8 +189,7 @@ public class Monster implements KillMonster {
                 int rndInt = (int)(Math.random() * 5000);
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack();
-                mouse.mouseClick(x + 5, y + 25);
+                action(x, y);
 //                if (attackBySpell)
 //                    mouse.mouseClick(x + 5, y + 10);
                 if (rndInt < 1000) {
@@ -228,11 +224,8 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                spellAttack();
-                mouse.mouseClick(x + 5, y + 25);
-
+                action(x, y);
                 actions.checkResources(image);
-
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
                 }
@@ -249,19 +242,6 @@ public class Monster implements KillMonster {
         return value;
     }
 
-    private void spellAttack() throws
-            InterruptedException {
-        int rndInt;
-//        if (Prop.NEED_SPELL_ATTACK ) {
-//            rndInt = (int)(Math.random() * 2000);
-//            System.out.println(rndInt);
-//            if (rndInt < 2000) {
-//                keys.keyPress(Prop.SPELL_ATTACK_KEY);
-//                SleepTime.sleep(200);
-//                attackBySpell = true;
-//            }
-//        }
-    }
 
     private void sleepAfterAttack() throws InterruptedException {
         if (attackBySpell)
@@ -285,6 +265,25 @@ public class Monster implements KillMonster {
             wasDialog = true;
         }
         return wasDialog;
+    }
+
+    void action(int x, int y) throws Exception {
+        spellAttack();
+        mouse.mouseClick(x + 5, y + 25);
+    }
+
+    private void spellAttack() throws
+            InterruptedException {
+        int rndInt;
+//        if (Prop.NEED_SPELL_ATTACK ) {
+//            rndInt = (int)(Math.random() * 2000);
+//            System.out.println(rndInt);
+//            if (rndInt < 2000) {
+//                keys.keyPress(Prop.SPELL_ATTACK_KEY);
+//                SleepTime.sleep(200);
+//                attackBySpell = true;
+//            }
+//        }
     }
 
 }
