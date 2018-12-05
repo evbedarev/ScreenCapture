@@ -43,6 +43,7 @@ public class LogicYunField08 extends LogicLocation {
                 new WindOfVerdure(),
                 new BlueHerb(),
                 new Bottle(),
+                new PecoFeather(),
                 new Coupon()
         };
     }

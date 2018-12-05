@@ -12,8 +12,8 @@ import java.util.Optional;
 public class RGB {
     public static void main(String[] args) throws Exception {
 
-//        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
-//        compareFragmentImage.getRgb();
+        CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
+        compareFragmentImage.getRgb();
 //Map rgb -2374501
 //        findPixelRgb(-2374501);
 
@@ -21,12 +21,12 @@ public class RGB {
 //        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
 
-        while (true) {
-            Optional<int[]> xy = takeCoordsFromMap();
-            if (xy.isPresent()) {
-                System.out.println("points.add(new int[] {" + xy.get()[0] +", " + xy.get()[1] +"});");
-            }
-        }
+//        while (true) {
+//            Optional<int[]> xy = takeCoordsFromMap();
+//            if (xy.isPresent()) {
+//                System.out.println("points.add(new int[] {" + xy.get()[0] +", " + xy.get()[1] +"});");
+//            }
+//        }
     }
 // Coursor rgb -16250872
 //-3552801/-65794
