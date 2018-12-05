@@ -226,13 +226,13 @@ public class Actions {
         SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
         SleepTime.sleep(500);
-
         xy = findFragmentInImage.findImage(dirInventory);
+
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
         }
-        SleepTime.sleep(1000);
 
+        SleepTime.sleep(1000);
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0], xy.get()[1]);
@@ -246,6 +246,28 @@ public class Actions {
 
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
     }
+
+    public void putItemToCart(String dirLoot, String dirCell) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
+
+        SleepTime.sleep(1000);
+
+        xy = findFragmentInImage.findImage(dirLoot);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.pressLeft();
+        }
+
+        xy = findFragmentInImage.findImage(dirCell);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.releaseLeft();
+        }
+
+        keys.keyPress(KeyEvent.VK_ENTER);
+    }
+
 
     public void heal() throws Exception {
         keys.keyPress(Prop.HEAL_KEY);

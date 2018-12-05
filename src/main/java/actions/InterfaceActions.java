@@ -228,8 +228,14 @@ public class InterfaceActions {
                 "CheckInCharSelect");
     }
 
+    /**
+     * Переходит в меню выбора персонажа.
+     * Если перешло возвращает True иначе False.
+     * @return - boolean
+     * @throws Exception
+     */
     public boolean pressCharSelect() throws Exception {
-        boolean returnValue = false;
+        boolean returnValue;
         keys.keyPress(KeyEvent.VK_ESCAPE);
         Thread.sleep(2000);
         returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
