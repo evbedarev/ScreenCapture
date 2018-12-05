@@ -3,6 +3,7 @@ package logic.kill_monster;
 import actions.Actions;
 import actions.InterfaceActions;
 import actions.SleepTime;
+import checks.Check;
 import checks.check_hp.CheckHP;
 import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import find_image.FindPixels;
@@ -24,6 +25,7 @@ public class Monster implements KillMonster {
     public InterfaceActions interfaceActions;
     public Actions actions;
     final Mouse mouse;
+    final Check check = Check.getInstance();
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     static final CheckHP checkHP = CheckHP.instance();
@@ -152,7 +154,7 @@ public class Monster implements KillMonster {
                     actions.stepAside(new int[]{600, 800});
                 }
                 checkHP.checkHp(image);
-                actions.checkResources(image);
+                check.checkResources(image);
                 LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(1000);
                 value = true;
@@ -225,7 +227,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 action(x, y);
-                actions.checkResources(image);
+                check.checkResources(image);
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
                 }

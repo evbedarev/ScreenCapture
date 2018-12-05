@@ -3,6 +3,7 @@ package logic.move_by_card;
 import actions.Actions;
 import actions.InterfaceActions;
 import actions.SleepTime;
+import checks.Check;
 import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -39,6 +40,7 @@ public class MoveByCard {
     private static Optional<int[]> xy;
     private static AfterDeath checkDie = Prop.checkDie;
     private static Keys keys;
+    private static final Check check= Check.getInstance();
     private static Points pointsOnCard;
     private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
@@ -135,7 +137,7 @@ public class MoveByCard {
                 LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
                 return false;
             }
-            actions.checkResources(screenShot);
+            check.checkResources(screenShot);
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
                 logicLocation.getLocationCheck().locationCheck();

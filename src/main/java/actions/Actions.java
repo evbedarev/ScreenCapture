@@ -262,13 +262,4 @@ public class Actions {
 //        mouse.releaseRight();
     }
 
-    public void checkResources(BufferedImage screenShot) {
-        if ((screenShot.getRGB(1340, 881) == -1) ||
-                (screenShot.getRGB(1399, 887) == -1) ||
-                (screenShot.getRGB(1364, 875) == -1)) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
-        }
-    }
 }
