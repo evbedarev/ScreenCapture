@@ -33,7 +33,7 @@ public class LogicGefField08 extends LogicLocation {
         loot = new TakeLoot[] {
                 new WhiteHerb(),
                 new DragonTail(),
-                new Zargon()
+//                new Zargon()
         };
 
         usefulLoot = new TakeLoot[] {
