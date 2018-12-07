@@ -1,5 +1,6 @@
 package actions;
 
+import checks.Check;
 import checks.CheckMsg;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 public class InterfaceActions {
     private static volatile InterfaceActions instance;
+    private Check check;
     Keys keys = Keys.getInstance();
     Mouse mouse;
     CheckMsg checkMsg;
@@ -22,6 +24,7 @@ public class InterfaceActions {
 
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
+        check = Check.getInstance();
     }
 
     public static InterfaceActions getInstance() throws AWTException {
@@ -235,14 +238,19 @@ public class InterfaceActions {
      * @throws Exception
      */
     public boolean pressCharSelect() throws Exception {
-        boolean returnValue;
-        keys.keyPress(KeyEvent.VK_ESCAPE);
-        Thread.sleep(2000);
-        returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
-                1000,
-                Prop.ROOT_DIR + "Interface\\CharSelect\\",
-                "CharSelect");
-        Thread.sleep(4000);
+        boolean returnValue = false;
+        for (int i = 0; i < 10; i++) {
+            if (check.checkCharSelectLabel().isPresent()) {
+                returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
+                        1000,
+                        Prop.ROOT_DIR + "Interface\\CharSelect\\",
+                        "CharSelect");
+                Thread.sleep(4000);
+            }
+            Thread.sleep(2000);
+            keys.keyPress(KeyEvent.VK_ESCAPE);
+        }
         return returnValue;
     }
+
 }

@@ -17,7 +17,7 @@ import java.util.Optional;
 public class Check {
     private static final String CHAR_SELECT_IMAGE_PATH = Prop.ROOT_DIR + "Interface\\CheckInCharSelect\\";
     private static final String TRADE_OPEN_IMAGE_PATH = Prop.ROOT_DIR + "Interface\\TradeOpen\\";
-
+    private static Optional<int[]> xy = Optional.empty();
 
     public static volatile Check instance;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
@@ -41,6 +41,11 @@ public class Check {
         return instance;
     }
 
+    private void setScreenAndEmptyValue(int[] screenSize) {
+        xy = Optional.empty();
+        findFragmentInImage.setScreen(screenSize);
+    }
+
     public void checkResources(BufferedImage screenShot) {
         if ((screenShot.getRGB(1340, 881) == -1) ||
                 (screenShot.getRGB(1399, 887) == -1) ||
@@ -55,7 +60,7 @@ public class Check {
                               int sleepTime,
                               String pathFragment,
                               String methodName) throws Exception {
-        Optional<int[]> xy;
+        xy = Optional.empty();
         findFragmentInImage.setScreen(area);
         xy = findFragmentInImage.findImage(pathFragment);
         if (xy.isPresent()) {
@@ -66,21 +71,34 @@ public class Check {
         return false;
     }
 
-    boolean checkInCharSelect() throws Exception {
+    public boolean checkInCharSelect() throws Exception {
         return findImage(new int[]{0, 1600, 0, 900},
                 1000,
                CHAR_SELECT_IMAGE_PATH,
                 "Check.checkInCharSelect");
     }
 
-
-    boolean checkTradeIsOpen() throws Exception {
+    public boolean checkTradeIsOpen() throws Exception {
         return findImage(new int[]{0, 1600, 0, 900},
                 1000,
                 TRADE_OPEN_IMAGE_PATH,
                 "Check.checkTradeIsOpen");
     }
 
+
+    public Optional<int[]>  checkDeathLabel() throws Exception {
+        xy = Optional.empty();
+        findFragmentInImage.setScreen(new int[]{600, 1000, 500, 900});
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CheckDie\\");
+        return xy;
+    }
+
+    public Optional<int[]>  checkCharSelectLabel() throws Exception {
+        xy = Optional.empty();
+        findFragmentInImage.setScreen(new int[]{600, 1000, 500, 900});
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CharSelect\\");
+        return xy;
+    }
 
 
 }

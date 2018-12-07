@@ -40,7 +40,7 @@ public class MoveByCard {
     private static Optional<int[]> xy;
     private static AfterDeath checkDie = Prop.checkDie;
     private static Keys keys;
-    private static final Check check= Check.getInstance();
+    private static Check check;
     private static Points pointsOnCard;
     private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
@@ -50,6 +50,7 @@ public class MoveByCard {
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         actions = Actions.instance();
         mouse = Mouse.getInstance();
+        check = Check.getInstance();
         findImageHard = new FindPixels();
         capture = Capture.instance();
         MoveByCard.logicLocation = logicLocation;
