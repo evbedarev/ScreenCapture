@@ -1,15 +1,11 @@
 package actions;
 
 import checks.Check;
-import checks.CheckMsg;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.move_by_card.MoveByCard;
 import main.Prop;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -17,15 +13,16 @@ import java.util.Optional;
 
 public class InterfaceActions {
     private static volatile InterfaceActions instance;
-    private Check check;
-    Keys keys = Keys.getInstance();
-    Mouse mouse;
-    CheckMsg checkMsg;
-    FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    private final Check check;
+    private final Keys keys = Keys.getInstance();
+    private final Mouse mouse;
+    private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    private final Actions actions;
 
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
+        actions = Actions.instance();
     }
 
     public static InterfaceActions getInstance() throws AWTException {
@@ -218,10 +215,10 @@ public class InterfaceActions {
      * @return true if success, else false
      * @throws Exception
      */
-
     public boolean goToCharSelect() throws Exception {
         for (int i = 0; i < 10; i++) {
             mouse.mouseMove(1,1);
+
             if (!check.checkCharSelectLabel().isPresent()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
@@ -239,10 +236,12 @@ public class InterfaceActions {
                 LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
                 SleepTime.loopSleep();
             }
-            MoveByCard.wingAway();
+
+            actions.useWing();
             SleepTime.sleep(4000);
 
         }
+
         LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");
         return false;
     }
