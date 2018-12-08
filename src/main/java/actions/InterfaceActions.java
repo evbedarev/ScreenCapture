@@ -5,6 +5,7 @@ import checks.CheckMsg;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import main.Prop;
 import org.apache.log4j.Logger;
 
@@ -19,7 +20,6 @@ public class InterfaceActions {
     Keys keys = Keys.getInstance();
     Mouse mouse;
     CheckMsg checkMsg;
-    Logger logger = Logger.getLogger(this.getClass());
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
 
     private InterfaceActions() throws AWTException {
@@ -48,7 +48,7 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
             SleepTime.sleep(sleepTime);
-            logger.info(methodName + ": find and click." );
+            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
             SleepTime.sleep(sleepTime);
-            logger.info(methodName + ": find and click." );
+            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
             return true;
         }
 
@@ -103,7 +103,7 @@ public class InterfaceActions {
             SleepTime.sleep(1000);
             mouse.mouseClick(xy.get()[0] + 20, xy.get()[1] + 80);
             SleepTime.sleep(5000);
-            logger.info("pressOnKafra" + ": find and click." );
+            LoggerSingle.logInfo("InterfaceActions", "pressOnKafra: find and click." );
         }
     }
 
@@ -229,8 +229,10 @@ public class InterfaceActions {
             SleepTime.sleep(5000);
 
             if (check.checkInCharSelect())
+                LoggerSingle.logInfo("InterfaceActions", "in character select...");
                 return true;
         }
+        LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");
         return false;
     }
 

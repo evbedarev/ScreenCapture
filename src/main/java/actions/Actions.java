@@ -21,7 +21,6 @@ public class Actions {
     Keys keys = Keys.getInstance();
     Mouse mouse;
     CheckMsg checkMsg;
-    Logger logger = Logger.getLogger(this.getClass());
     private TakeLoot[] loot;
     private TakeLoot[] usefulLoot;
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
@@ -32,7 +31,6 @@ public class Actions {
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
         interfaceActions = InterfaceActions.getInstance();
-        checkMsg = new CheckMsg(logger);
     }
 
     static public Actions instance() throws AWTException {
