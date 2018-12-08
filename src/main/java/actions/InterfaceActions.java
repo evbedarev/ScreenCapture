@@ -17,12 +17,10 @@ public class InterfaceActions {
     private final Keys keys = Keys.getInstance();
     private final Mouse mouse;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
-    private final Actions actions;
 
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
-        actions = Actions.instance();
     }
 
     public static InterfaceActions getInstance() throws AWTException {
