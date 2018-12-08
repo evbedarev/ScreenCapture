@@ -212,23 +212,25 @@ public class InterfaceActions {
         }
     }
 
-    public boolean goToCharSelect() throws Exception {
-        int cnt = 0;
-        while (!pressCharSelect()) {
-            cnt++;
-            SleepTime.sleep(2000);
-            if (cnt > 4) {
-                break;
-            }
-        }
-        return checkInCharSelect();
-    }
+    /**
+     *
+     * @return true if success, else false
+     * @throws Exception
+     */
 
-    private boolean checkInCharSelect() throws Exception {
-       return pressOnImage(new int[]{0, 1600, 0, 900},
-                1000,
-                Prop.ROOT_DIR + "Interface\\CheckInCharSelect\\",
-                "CheckInCharSelect");
+    public boolean goToCharSelect() throws Exception {
+        for (int i = 0; i < 10; i++) {
+            if (!check.checkCharSelectLabel().isPresent()) {
+                keys.keyPress(KeyEvent.VK_ESCAPE);
+                SleepTime.sleep(2000);
+            }
+
+            if (pressCharSelect()) {
+                return true;
+            }
+            SleepTime.sleep(5000);
+        }
+        return false;
     }
 
     /**
@@ -239,17 +241,15 @@ public class InterfaceActions {
      */
     public boolean pressCharSelect() throws Exception {
         boolean returnValue = false;
-        for (int i = 0; i < 10; i++) {
-            if (check.checkCharSelectLabel().isPresent()) {
-                returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
-                        1000,
-                        Prop.ROOT_DIR + "Interface\\CharSelect\\",
-                        "CharSelect");
-                Thread.sleep(4000);
-            }
-            Thread.sleep(2000);
-            keys.keyPress(KeyEvent.VK_ESCAPE);
+        if (check.checkCharSelectLabel().isPresent()) {
+            returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
+                    1000,
+                    Prop.ROOT_DIR + "Interface\\CharSelect\\",
+                    "CharSelect");
+            Thread.sleep(4000);
         }
+        Thread.sleep(2000);
+        keys.keyPress(KeyEvent.VK_ESCAPE);
         return returnValue;
     }
 
