@@ -1,12 +1,11 @@
 package actions;
 
-import checks.CheckMsg;
+import checks.Check;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logger.LoggerSingle;
 import main.Prop;
-import org.apache.log4j.Logger;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -14,14 +13,14 @@ import java.util.Optional;
 
 public class InterfaceActions {
     private static volatile InterfaceActions instance;
-    Keys keys = Keys.getInstance();
-    Mouse mouse;
-    CheckMsg checkMsg;
-    Logger logger = Logger.getLogger(this.getClass());
-    FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    private final Check check;
+    private final Keys keys = Keys.getInstance();
+    private final Mouse mouse;
+    private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
 
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
+        check = Check.getInstance();
     }
 
     public static InterfaceActions getInstance() throws AWTException {
@@ -45,7 +44,7 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
             SleepTime.sleep(sleepTime);
-            logger.info(methodName + ": find and click." );
+            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
             return true;
         }
         return false;
@@ -62,7 +61,7 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
             SleepTime.sleep(sleepTime);
-            logger.info(methodName + ": find and click." );
+            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
             return true;
         }
 
@@ -100,7 +99,7 @@ public class InterfaceActions {
             SleepTime.sleep(1000);
             mouse.mouseClick(xy.get()[0] + 20, xy.get()[1] + 80);
             SleepTime.sleep(5000);
-            logger.info("pressOnKafra" + ": find and click." );
+            LoggerSingle.logInfo("InterfaceActions", "pressOnKafra: find and click." );
         }
     }
 
@@ -209,29 +208,49 @@ public class InterfaceActions {
         }
     }
 
+    /**
+     *  Go to mode character select.
+     * @return true if success, else false
+     * @throws Exception
+     */
     public boolean goToCharSelect() throws Exception {
-        int cnt = 0;
-        while (!pressCharSelect()) {
-            cnt++;
-            SleepTime.sleep(2000);
-            if (cnt > 4) {
-                break;
+        for (int i = 0; i < 10; i++) {
+            mouse.mouseMove(1,1);
+
+            pressCharSelect();
+            SleepTime.sleep(1000);
+
+            if (check.checkInCharSelect()) {
+                LoggerSingle.logInfo("InterfaceActions", "in character select...");
+                return true;
             }
+
+            if (!check.checkIsThereWing()) {
+                LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
+                SleepTime.loopSleep();
+            }
+
+            keys.keyPress(Prop.WING_KEY);
+            SleepTime.sleep(4000);
+
         }
-        return checkInCharSelect();
+
+        LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");
+        return false;
     }
 
-    private boolean checkInCharSelect() throws Exception {
-       return pressOnImage(new int[]{0, 1600, 0, 900},
-                1000,
-                Prop.ROOT_DIR + "Interface\\CheckInCharSelect\\",
-                "CheckInCharSelect");
-    }
-
+    /**
+     * Переходит в меню выбора персонажа.
+     * Если перешло возвращает True иначе False.
+     * @return - boolean
+     * @throws Exception
+     */
     public boolean pressCharSelect() throws Exception {
-        boolean returnValue = false;
-        keys.keyPress(KeyEvent.VK_ESCAPE);
-        Thread.sleep(2000);
+        boolean returnValue;
+        if (!check.checkCharSelectLabel().isPresent()) {
+            Thread.sleep(2000);
+            keys.keyPress(KeyEvent.VK_ESCAPE);
+        }
         returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
                 1000,
                 Prop.ROOT_DIR + "Interface\\CharSelect\\",
@@ -239,4 +258,5 @@ public class InterfaceActions {
         Thread.sleep(4000);
         return returnValue;
     }
+
 }

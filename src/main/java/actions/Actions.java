@@ -21,7 +21,6 @@ public class Actions {
     Keys keys = Keys.getInstance();
     Mouse mouse;
     CheckMsg checkMsg;
-    Logger logger = Logger.getLogger(this.getClass());
     private TakeLoot[] loot;
     private TakeLoot[] usefulLoot;
     FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
@@ -32,7 +31,6 @@ public class Actions {
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
         interfaceActions = InterfaceActions.getInstance();
-        checkMsg = new CheckMsg(logger);
     }
 
     static public Actions instance() throws AWTException {
@@ -192,7 +190,7 @@ public class Actions {
         if (Prop.SUPER_PREMIUM) {
             stepAside(locationCheck, new int[] {75, 150} );
             keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_1);
-            SleepTime.sleep(800);
+            SleepTime.sleep(1000);
         } else {
             for (TakeLoot takeLoot : loot) {
                 takeLoot.pickUp();
@@ -226,13 +224,13 @@ public class Actions {
         SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
         SleepTime.sleep(500);
-
         xy = findFragmentInImage.findImage(dirInventory);
+
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
         }
-        SleepTime.sleep(1000);
 
+        SleepTime.sleep(1000);
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0], xy.get()[1]);
@@ -247,10 +245,32 @@ public class Actions {
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
     }
 
+    public void putItemToCart(String dirLoot, String dirCell) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
+
+        SleepTime.sleep(1000);
+
+        xy = findFragmentInImage.findImage(dirLoot);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.pressLeft();
+        }
+
+        xy = findFragmentInImage.findImage(dirCell);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0], xy.get()[1]);
+            mouse.releaseLeft();
+        }
+
+        keys.keyPress(KeyEvent.VK_ENTER);
+    }
+
+
     public void heal() throws Exception {
         keys.keyPress(Prop.HEAL_KEY);
         SleepTime.sleep(500);
-        mouse.mouseClick(800, 400);
+//        mouse.mouseClick(800, 400);
     }
 
     private void slide() throws InterruptedException {
@@ -262,13 +282,4 @@ public class Actions {
 //        mouse.releaseRight();
     }
 
-    public void moveChat() throws InterruptedException {
-        mouse.mouseMove(560, 883);
-        SleepTime.sleep(300);
-        mouse.pressLeft();
-        SleepTime.sleep(400);
-        mouse.mouseMove(10, 883);
-        SleepTime.sleep(300);
-        mouse.releaseLeft();
-    }
 }
