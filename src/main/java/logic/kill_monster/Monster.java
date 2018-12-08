@@ -21,6 +21,7 @@ public class Monster implements KillMonster {
     Capture capture;
     public InterfaceActions interfaceActions;
     public Actions actions;
+    static Optional<int[]> xy = Optional.empty();
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
@@ -49,8 +50,9 @@ public class Monster implements KillMonster {
     public boolean findMonster() throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixels3Times(
+            xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());
@@ -70,8 +72,9 @@ public class Monster implements KillMonster {
     public boolean findMonster(BufferedImage image) throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+            xy = findImageHard.findPixelsInImageExcludeArea(
                     image,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
@@ -102,8 +105,9 @@ public class Monster implements KillMonster {
 
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixels3Times(
+            xy = findImageHard.findPixels3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb());
@@ -133,8 +137,9 @@ public class Monster implements KillMonster {
     public boolean findAndKill(BufferedImage image) throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(
+            xy = findImageHard.findPixelsInImageExcludeArea(
                     image,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
@@ -160,8 +165,9 @@ public class Monster implements KillMonster {
         SleepTime.sleep(500);
         LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
+            xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),

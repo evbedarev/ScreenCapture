@@ -19,6 +19,7 @@ public class Loot implements TakeLoot {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
+    static Optional<int[]> xy = Optional.empty();
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
@@ -39,8 +40,9 @@ public class Loot implements TakeLoot {
     public boolean takeLoot() throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
+            xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
@@ -64,8 +66,9 @@ public class Loot implements TakeLoot {
     public boolean takeLoot(BufferedImage screenShot) throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+            xy = findImageHard.findPixelsInImageInArea(
                     screenShot,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),

@@ -10,8 +10,10 @@ import java.util.*;
 import java.util.List;
 
 public class FindPixels implements FindPixelsInImage {
-    final Logger logger = Logger.getLogger(this.getClass());
-    static Capture capture;
+    private final Logger logger = Logger.getLogger(this.getClass());
+    private static Capture capture;
+    private static Optional<int[]> xy;
+    private static BufferedImage screenShot;
 
     /**
      * Ищет изображение по пикселям на картинке
@@ -56,8 +58,7 @@ public class FindPixels implements FindPixelsInImage {
     public Optional<int[]> findPixels3Times( int mainRgb,
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
-        Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
+        xy = Optional.empty();
         capture = Capture.instance();
         for (int i=0; i < 2; i++) {
             screenShot = capture.takeScreenShot();
@@ -85,8 +86,7 @@ public class FindPixels implements FindPixelsInImage {
     public Optional<int[]> findPixelsNear3Times(  int mainRgb,
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
-        Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
+        xy = Optional.empty();
         capture = Capture.instance();
         for (int i=0; i < 2; i++) {
             screenShot = capture.takeScreenShot();
@@ -155,8 +155,7 @@ public class FindPixels implements FindPixelsInImage {
                                                  int[] subImgCoord,
                                                  int[] ancillaryRgb,
                                                  int[] coordsArea) throws AWTException {
-        Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
+        xy = Optional.empty();
         capture = Capture.instance();
         for (int i=0; i < 4; i++) {
             screenShot = capture.takeScreenShot();
@@ -262,6 +261,7 @@ public class FindPixels implements FindPixelsInImage {
             int[] subImgCoord,
             int[] ancillaryRgb,
             int[] coordsArea) {
+
         List<int[]> listCoords = new ArrayList<>();
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
@@ -307,7 +307,6 @@ public class FindPixels implements FindPixelsInImage {
             int[] ancillaryRgb,
             int[] excludeArea) {
 
-        List<int[]> listCoords = new ArrayList<>();
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
 
