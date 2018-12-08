@@ -6,6 +6,7 @@ import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
+import logic.move_by_card.MoveByCard;
 import main.Prop;
 import org.apache.log4j.Logger;
 
@@ -220,19 +221,27 @@ public class InterfaceActions {
 
     public boolean goToCharSelect() throws Exception {
         for (int i = 0; i < 10; i++) {
+            mouse.mouseMove(0,0);
             if (!check.checkCharSelectLabel().isPresent()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
             }
 
             pressCharSelect();
-            SleepTime.sleep(5000);
+            SleepTime.sleep(1000);
 
             if (check.checkInCharSelect()) {
                 LoggerSingle.logInfo("InterfaceActions", "in character select...");
                 return true;
             }
-            mouse.mouseMove(0,0);
+
+            if (!check.checkIsThereWing()) {
+                LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
+                SleepTime.loopSleep();
+            }
+            MoveByCard.wingAway();
+            SleepTime.sleep(4000);
+
         }
         LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");
         return false;

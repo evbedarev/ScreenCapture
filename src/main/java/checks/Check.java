@@ -5,6 +5,7 @@ import actions.SleepTime;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
+import logic.Capture;
 import main.Prop;
 import org.apache.log4j.Logger;
 import java.awt.*;
@@ -47,10 +48,24 @@ public class Check {
         if ((screenShot.getRGB(1340, 881) == -1) ||
                 (screenShot.getRGB(1399, 887) == -1) ||
                 (screenShot.getRGB(1364, 875) == -1)) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
+            SleepTime.loopSleep();
         }
+    }
+
+    public void checkIsThereWing(BufferedImage screenShot) {
+        if ((screenShot.getRGB(1340, 881) == -1))
+            SleepTime.loopSleep();
+    }
+
+    /**
+     * Slowly method that checks is wings exists
+     * if there no wings method sleep in cycle
+     * @throws AWTException
+     */
+    public boolean checkIsThereWing() throws AWTException {
+        Capture capture = Capture.instance();
+        BufferedImage screenShot = capture.takeScreenShot();
+        return screenShot.getRGB(1340, 881) == -1;
     }
 
     private boolean findImage(int[] area,
