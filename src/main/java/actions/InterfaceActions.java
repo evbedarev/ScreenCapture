@@ -246,16 +246,16 @@ public class InterfaceActions {
      * @throws Exception
      */
     public boolean pressCharSelect() throws Exception {
-        boolean returnValue = false;
-        if (check.checkCharSelectLabel().isPresent()) {
-            returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
-                    1000,
-                    Prop.ROOT_DIR + "Interface\\CharSelect\\",
-                    "CharSelect");
-            Thread.sleep(4000);
+        boolean returnValue;
+        if (!check.checkCharSelectLabel().isPresent()) {
+            Thread.sleep(2000);
+            keys.keyPress(KeyEvent.VK_ESCAPE);
         }
-        Thread.sleep(2000);
-        keys.keyPress(KeyEvent.VK_ESCAPE);
+        returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
+                1000,
+                Prop.ROOT_DIR + "Interface\\CharSelect\\",
+                "CharSelect");
+        Thread.sleep(4000);
         return returnValue;
     }
 
