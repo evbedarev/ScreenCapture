@@ -129,6 +129,7 @@ public class MoveByCard {
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
         try {
+            interfaceActions.goToCharSelect();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
             LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
