@@ -228,9 +228,11 @@ public class InterfaceActions {
             pressCharSelect();
             SleepTime.sleep(5000);
 
-            if (check.checkInCharSelect())
+            if (check.checkInCharSelect()) {
                 LoggerSingle.logInfo("InterfaceActions", "in character select...");
                 return true;
+            }
+            mouse.mouseMove(0,0);
         }
         LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");
         return false;
