@@ -213,7 +213,7 @@ public class InterfaceActions {
     }
 
     /**
-     *
+     *  Go to mode character select.
      * @return true if success, else false
      * @throws Exception
      */
