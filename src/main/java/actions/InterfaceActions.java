@@ -217,11 +217,6 @@ public class InterfaceActions {
         for (int i = 0; i < 10; i++) {
             mouse.mouseMove(1,1);
 
-            if (!check.checkCharSelectLabel().isPresent()) {
-                keys.keyPress(KeyEvent.VK_ESCAPE);
-                SleepTime.sleep(2000);
-            }
-
             pressCharSelect();
             SleepTime.sleep(1000);
 
