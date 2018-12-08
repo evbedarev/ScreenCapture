@@ -237,7 +237,7 @@ public class InterfaceActions {
                 SleepTime.loopSleep();
             }
 
-            actions.useWing();
+            keys.keyPress(Prop.WING_KEY);
             SleepTime.sleep(4000);
 
         }
