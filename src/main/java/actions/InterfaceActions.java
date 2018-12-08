@@ -225,10 +225,11 @@ public class InterfaceActions {
                 SleepTime.sleep(2000);
             }
 
-            if (pressCharSelect()) {
-                return true;
-            }
+            pressCharSelect();
             SleepTime.sleep(5000);
+
+            if (check.checkInCharSelect())
+                return true;
         }
         return false;
     }
