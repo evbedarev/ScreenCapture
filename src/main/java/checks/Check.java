@@ -65,7 +65,7 @@ public class Check {
     public boolean checkIsThereWing() throws AWTException {
         Capture capture = Capture.instance();
         BufferedImage screenShot = capture.takeScreenShot();
-        return screenShot.getRGB(1340, 881) == -1;
+        return screenShot.getRGB(1340, 881) != -1;
     }
 
     private boolean findImage(int[] area,

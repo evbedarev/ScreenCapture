@@ -221,7 +221,7 @@ public class InterfaceActions {
 
     public boolean goToCharSelect() throws Exception {
         for (int i = 0; i < 10; i++) {
-            mouse.mouseMove(0,0);
+            mouse.mouseMove(1,1);
             if (!check.checkCharSelectLabel().isPresent()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
