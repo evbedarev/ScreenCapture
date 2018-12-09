@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Monster implements KillMonster {
+    StringBuilder message = new StringBuilder();
     protected List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     public InterfaceActions interfaceActions;
@@ -60,7 +61,8 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+
+                LoggerSingle.logInfo(this.toString() + ".findMonster", createMsg(x,y).toString());
                 SleepTime.sleep(1000);
                 return true;
             }
@@ -84,7 +86,7 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findMonster", createMsg(x,y).toString());
                 return true;
             }
         }
@@ -124,7 +126,7 @@ public class Monster implements KillMonster {
                     actions.stepAside(new int[] {600, 800});
                 }
 
-                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKill", createMsg(x,y).toString());
                 sleepAfterAttack();
                 return true;
             }
@@ -151,7 +153,7 @@ public class Monster implements KillMonster {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x + 5, y + 20);
-                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findMonster", createMsg(x,y).toString());
                 SleepTime.sleep(500);
                 return true;
             }
@@ -187,7 +189,7 @@ public class Monster implements KillMonster {
                         actions.stepAside(new int[]{600, 800});
                     }
                 }
-                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", createMsg(x,y).toString());
                 sleepAfterAttack();
                 return true;
             }
@@ -233,4 +235,12 @@ public class Monster implements KillMonster {
         return wasDialog;
     }
 
+    private StringBuilder createMsg(int x, int y) {
+        message.delete(0,message.length());
+        message.append("Killing monster , coordinates: x=");
+        message.append(x);
+        message.append(" y=");
+        message.append(y);
+        return message;
+    }
 }

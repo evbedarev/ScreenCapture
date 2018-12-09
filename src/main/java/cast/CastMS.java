@@ -14,7 +14,8 @@ public class CastMS extends Cast {
     private final int threadId;
     private Mouse mouse;
     private int randomTime;
-    public static final int timeInCharselect = 30 * 60 * 1000;
+    public static final int TIME_IN_CHARSELECT = 30 * 60 * 1000;
+    public static final int TIME_IN_CHARSELECT_TEST = 2 * 60 * 1000;
     private final static AtomicInteger CART_BOOST = new AtomicInteger(0);
 
     public CastMS(int threadId) throws AWTException {
@@ -52,12 +53,12 @@ public class CastMS extends Cast {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
                 if (interfaceActions.goToCharSelect()) {
-                    SleepTime.sleep(timeInCharselect);
+                    SleepTime.sleep(TIME_IN_CHARSELECT);
                     randomTime = 60 + (int) (30 * Math.random());
                     LoggerSingle.logInfo(this.toString(), "Awakening after AFK ");
                     keys.keyPress(KeyEvent.VK_ENTER);
                     SleepTime.sleep(2000);
-                    actions.moveChat();
+//                    actions.moveChat();
                     SleepTime.sleep(1000);
                     WAITING_TIME.set(0);
                 } else {

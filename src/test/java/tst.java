@@ -9,10 +9,12 @@ import java.util.Optional;
 
 public class tst {
     public static  Optional<int[]> xy;
+    static String msg;
     public static void main(String[] args) throws Exception {
         long timeBefore = System.currentTimeMillis();
-        for (int i = 0; i < 900000; i++) {
-            xy = Optional.empty();
+        for (int i = 0; i < 50000; i++) {
+            StringBuilder msgBuilder = new StringBuilder();
+            msgBuilder.append(22);
         }
         long timeAfter = System.currentTimeMillis();
         System.out.println("TIme: " + (timeAfter - timeBefore));

@@ -45,6 +45,7 @@ public class MoveByCard {
     private boolean flagOfNewPoints = false;
     private int[] prevPos = new int[] {0,0};
     private Human human = new Human();
+    private final StringBuilder message = new StringBuilder();
 
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         xy1 = Optional.empty();
@@ -85,7 +86,7 @@ public class MoveByCard {
         x1 = 800;
         y1 = 450;
         x2 = 800 + x2;
-        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
+//        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
         y2 = Math.abs(450 + y2);
         x = 800;
 
@@ -103,11 +104,11 @@ public class MoveByCard {
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
 
-        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
-        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
+//        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
+//        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
 
         if (y >= 900 || y < 0) {
-            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
+//            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
             x1 = 800;
             y1 = 450;
             y = 450;
@@ -120,9 +121,9 @@ public class MoveByCard {
 
             x = (((y - y1)/(y2-y1))*(x2 - x1) + x1);
         } else {
-            LoggerSingle.logDebug(this.toString(),"Calculated by X ");
+//            LoggerSingle.logDebug(this.toString(),"Calculated by X ");
         }
-        LoggerSingle.logDebug(this.toString(),"Result values: " + Math.abs(x) + "," + Math.abs(y));
+//        LoggerSingle.logDebug(this.toString(),"Result values: " + Math.abs(x) + "," + Math.abs(y));
         return new int[] {(int)x, (int)y};
     }
 
@@ -130,7 +131,15 @@ public class MoveByCard {
         try {
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
-            LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
+
+            message.delete(0, message.length());
+            message.append("Going to point cooords : {");
+            message.append(point[0]);
+            message.append(", ");
+            message.append(point[1]);
+            message.append("}");
+
+            LoggerSingle.logInfo(this.toString(), message.toString());
 
             if (!xy.isPresent())
                 return false;
@@ -162,7 +171,14 @@ public class MoveByCard {
 //                    break;
 //                }
 
-                LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
+                message.delete(0, message.length());
+                message.append("Going to point cooords : {");
+                message.append(point[0]);
+                message.append(", ");
+                message.append(point[1]);
+                message.append("}");
+
+                LoggerSingle.logInfo(this.toString(), message.toString());
 //                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
@@ -227,7 +243,12 @@ public class MoveByCard {
         for (int[] point : points) {
             if (flagOfNewPoints) {
                 flagOfNewPoints = false;
-                LoggerSingle.logInfo(this.toString(), "Coordinates after teleporting is : " + xy.get()[0] + "," + xy.get()[1]);
+                message.delete(0, message.length());
+                message.append("Coordinates after teleporting is : ");
+                message.append(xy.get()[0]);
+                message.append(",");
+                message.append(xy.get()[1]);
+                LoggerSingle.logInfo(this.toString(), message.toString());
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
                 for (int[] ints : pointsOnCard.getPoints()) {
                     LoggerSingle.logInfo(this.toString(),"Values of New List is: " + ints[0] + "," + ints[1]);

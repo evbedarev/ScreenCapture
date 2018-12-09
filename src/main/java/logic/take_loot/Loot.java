@@ -23,6 +23,7 @@ public class Loot implements TakeLoot {
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
+    StringBuilder message = new StringBuilder();
     LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
@@ -53,7 +54,7 @@ public class Loot implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(),createMsg(x,y).toString());
                 SleepTime.sleep(100);
                 mouse.mouseMove(0,0);
                 return true;
@@ -80,7 +81,7 @@ public class Loot implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(),createMsg(x,y).toString());
                 SleepTime.sleep(100);
                 mouse.mouseMove(0,0);
                 return true;
@@ -104,5 +105,14 @@ public class Loot implements TakeLoot {
             SleepTime.sleep(1000);
             checkHP.checkHp();
         }
+    }
+
+    private StringBuilder createMsg(int x, int y) {
+        message.delete(0,message.length());
+        message.append("Taking loot, coordinates: x=");
+        message.append(x);
+        message.append(" y=");
+        message.append(y);
+        return message;
     }
 }
