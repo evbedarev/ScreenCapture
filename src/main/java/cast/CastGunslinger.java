@@ -70,7 +70,7 @@ public class CastGunslinger extends Cast {
                 GATLING_FEVER.set(0);
             }
 
-            if (FLIP_THE_COINS.get() > 300) {
+            if (FLIP_THE_COINS.get() > 150) {
                 LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
                 keys.keyPress(KeyEvent.VK_F6);
                 SleepTime.sleep(300);
@@ -96,7 +96,7 @@ public class CastGunslinger extends Cast {
         incrementConst();
 //        GATLING_FEVER.incrementAndGet();
         FLIP_THE_COINS.incrementAndGet();
-//        ADJUSTMENT.incrementAndGet();
+        ADJUSTMENT.incrementAndGet();
         sleep(1000);
     }
 }
