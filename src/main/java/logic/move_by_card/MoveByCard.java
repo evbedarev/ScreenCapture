@@ -44,6 +44,7 @@ public class MoveByCard {
     private static Points pointsOnCard;
     private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
+    private static StringBuilder sbMessage = new StringBuilder();
     private int[] prevPos = new int[] {0,0};
     private Human human = new Human();
 
@@ -87,7 +88,7 @@ public class MoveByCard {
         x1 = 800;
         y1 = 450;
         x2 = 800 + x2;
-        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
+//        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
         y2 = Math.abs(450 + y2);
         x = 800;
 
@@ -105,11 +106,11 @@ public class MoveByCard {
 
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
 
-        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
-        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
+//        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
+//        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
 
         if (y >= 900 || y < 0) {
-            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
+//            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
             x1 = 800;
             y1 = 450;
             y = 450;
@@ -122,9 +123,9 @@ public class MoveByCard {
 
             x = (((y - y1)/(y2-y1))*(x2 - x1) + x1);
         } else {
-            LoggerSingle.logDebug(this.toString(),"Calculated by X ");
+//            LoggerSingle.logDebug(this.toString(),"Calculated by X ");
         }
-        LoggerSingle.logDebug(this.toString(),"Result values: " + Math.abs(x) + "," + Math.abs(y));
+//        LoggerSingle.logDebug(this.toString(),"Result values: " + Math.abs(x) + "," + Math.abs(y));
         return new int[] {(int)x, (int)y};
     }
 
@@ -133,7 +134,9 @@ public class MoveByCard {
             interfaceActions.goToCharSelect();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
-            LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
+
+            createMessage("Going to point cooords : {", point[0], point[1]);
+            LoggerSingle.logInfo(this.toString(), sbMessage.toString());
 
             if (!xy.isPresent()) {
                 wingAway();
@@ -149,16 +152,9 @@ public class MoveByCard {
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
                 if (checkDialogWindow(screenShot)) {
-//                    actions.stepAside(new int[] {400, 500});
                     wingAway();
                     break;
                 }
-//                if (human.findMonster(screenShot)) {
-//                    wingAway();
-//                    break;
-//                }
-                LoggerSingle.logInfo(this.toString(), "Go to point: " + point[0] + ", " + point[1]);
-//                actions.pickUpCard(screenShot);
 
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
@@ -224,11 +220,9 @@ public class MoveByCard {
                     continue;
                 }
                 flagOfNewPoints = false;
-                LoggerSingle.logInfo(this.toString(), "Coordinates after teleporting is : " + xy.get()[0] + "," + xy.get()[1]);
+                createMessage("Coordinates after teleporting is : ", xy.get()[0], xy.get()[1]);
+                LoggerSingle.logInfo(this.toString(), sbMessage.toString());
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
-                for (int[] ints : pointsOnCard.getPoints()) {
-                    LoggerSingle.logInfo(this.toString(),"Values of New List is: " + ints[0] + "," + ints[1]);
-                }
                 break;
             }
             moveToPoint(point, killMonsters);
@@ -279,6 +273,15 @@ public class MoveByCard {
             SleepTime.sleep(200);
         }
         return xy;
+    }
+
+    private void createMessage(String msg, int cord1, int cord2) {
+        sbMessage.delete(0,sbMessage.length());
+        sbMessage.append(msg);
+        sbMessage.append(cord1);
+        sbMessage.append(", ");
+        sbMessage.append(cord2);
+        sbMessage.append("}");
     }
 }
 
