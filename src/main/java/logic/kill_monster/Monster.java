@@ -154,7 +154,7 @@ public class Monster implements KillMonster {
                 }
                 checkHP.checkHp(image);
                 check.checkResources(image);
-                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 SleepTime.sleep(1000);
                 value = true;
                 break;
@@ -286,5 +286,4 @@ public class Monster implements KillMonster {
 //            }
 //        }
     }
-
 }
