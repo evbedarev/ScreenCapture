@@ -27,7 +27,8 @@ public class LogicGlChurch extends LogicLocation {
         locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
         killMonsterList = Stream
-                .of(new EvilDruid(),
+                .of(    new WraithDeath(),
+                        new EvilDruid(),
                         new Wraith(),
                         new Mimic())
                 .collect(Collectors.toList());
