@@ -40,7 +40,7 @@ public class MoveByCard {
     private static Optional<int[]> xy;
     private static AfterDeath checkDie = Prop.checkDie;
     private static Keys keys;
-    private static final Check check= Check.getInstance();
+    private static Check check;
     private static Points pointsOnCard;
     private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
@@ -56,6 +56,7 @@ public class MoveByCard {
         interfaceActions = InterfaceActions.getInstance();
         MoveByCard.pointsOnCard = pointsOnCard;
         findNearest.setPoints(pointsOnCard.getPoints());
+        check = Check.getInstance();
     }
 
     public static MoveByCard getInstance(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {

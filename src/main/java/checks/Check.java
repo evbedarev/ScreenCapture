@@ -7,11 +7,9 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import main.Prop;
 import org.apache.log4j.Logger;
-import sun.security.util.SecurityConstants;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Executable;
 import java.util.Optional;
 
 public class Check {
@@ -72,7 +70,6 @@ public class Check {
                CHAR_SELECT_IMAGE_PATH,
                 "Check.checkInCharSelect");
     }
-
 
     boolean checkTradeIsOpen() throws Exception {
         return findImage(new int[]{0, 1600, 0, 900},

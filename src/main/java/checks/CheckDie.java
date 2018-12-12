@@ -8,7 +8,6 @@ import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import logic.Capture;
 import main.Prop;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -50,6 +49,7 @@ public abstract class CheckDie implements AfterDeath {
         return false;
     }
 
+    @Override
     public boolean check() throws Exception {
         capture = Capture.instance();
         keys = Keys.getInstance();
@@ -68,6 +68,7 @@ public abstract class CheckDie implements AfterDeath {
         return false;
     }
 
+    @Override
     public boolean check(BufferedImage image) throws Exception {
         keys = Keys.getInstance();
         if (!Prop.CHECK_DIE) return false;
