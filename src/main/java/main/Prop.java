@@ -26,9 +26,9 @@ public class Prop {
 
     public static void initialize() throws Exception {
 
-        logic = new LogicGefField04();
+        logic = new LogicYunField11();
         cast = new CastGunslinger(0);
-        locationCheck = new LocationCheck(new GefField04());
+        locationCheck = new LocationCheck(new YunField11());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
