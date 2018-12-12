@@ -5,7 +5,6 @@ import actions.InterfaceActions;
 import actions.SleepTime;
 import checks.Check;
 import checks.check_hp.CheckHP;
-import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;

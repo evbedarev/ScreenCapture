@@ -50,6 +50,7 @@ public class MoveByCard {
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         actions = Actions.instance();
         mouse = Mouse.getInstance();
+        check = Check.getInstance();
         findImageHard = new FindPixels();
         capture = Capture.instance();
         MoveByCard.logicLocation = logicLocation;
@@ -129,6 +130,7 @@ public class MoveByCard {
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
         try {
+            interfaceActions.goToCharSelect();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
             LoggerSingle.logInfo(this.toString(), "Going to point cooords : {" + point[0] + ", " + point[1] + "}");
