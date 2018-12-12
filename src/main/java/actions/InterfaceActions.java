@@ -258,5 +258,4 @@ public class InterfaceActions {
         Thread.sleep(4000);
         return returnValue;
     }
-
 }
