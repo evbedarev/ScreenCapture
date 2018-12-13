@@ -3,6 +3,7 @@ package checks.location;
 import logic.Capture;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class GefField08 extends Location {
@@ -22,5 +23,12 @@ public class GefField08 extends Location {
         PORTAL_RGB = new int[] {1531,164, -6280000, -700000};
         PORTAL_RGB_1 = new int[] {1527,47, -6280000, -900000};
         return checkRgbLocation();
+    }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1531,164, -6280000, -700000};
+        PORTAL_RGB_1 = new int[] {1527,47, -6280000, -900000};
+        return checkRgbLocation(screenShot);
     }
 }

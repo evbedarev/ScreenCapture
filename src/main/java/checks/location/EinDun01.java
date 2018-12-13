@@ -24,4 +24,11 @@ public class EinDun01 extends Location {
         PORTAL_RGB_1 = new int[] {1468,165, -6280000, -1200000};
         return checkRgbLocation();
     }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1571,75, -15724529, -13000000};
+        PORTAL_RGB_1 = new int[] {1468,165, -6280000, -1200000};
+        return checkRgbLocation(screenShot);
+    }
 }

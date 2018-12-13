@@ -3,6 +3,7 @@ package checks.location;
 import logic.Capture;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class CmdFiled04 extends Location {
 
@@ -21,5 +22,12 @@ public class CmdFiled04 extends Location {
         PORTAL_RGB = new int[] {1582,78, -6280000, -300000};
         PORTAL_RGB_1 = new int[] {1464,80, -6280000, -200000};
         return checkRgbLocation();
+    }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1582,78, -6280000, -300000};
+        PORTAL_RGB_1 = new int[] {1464,80, -6280000, -200000};
+        return checkRgbLocation(screenShot);
     }
 }

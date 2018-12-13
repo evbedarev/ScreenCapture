@@ -24,4 +24,11 @@ public class CmdField07 extends Location {
         PORTAL_RGB_1 = new int[] {1502,126, -1088703, -1088701};
         return checkRgbLocation();
     }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1547,141, -10265990, -10265988};
+        PORTAL_RGB_1 = new int[] {1502,126, -1088703, -1088701};
+        return checkRgbLocation(screenShot);
+    }
 }

@@ -7,13 +7,13 @@ import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGlChurch;
-import logic.take_loot.*;
+import    logic.take_loot.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LogicGlChurch extends LogicLocation {
+    public class LogicGlChurch extends LogicLocation {
 
-    private static final int COUNT_OF_ATTACKS = 100;
+        private static final int COUNT_OF_ATTACKS = 100;
 
     public LogicGlChurch() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;

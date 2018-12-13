@@ -3,6 +3,7 @@ package checks.location;
 import logic.Capture;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class MocField11 extends Location {
@@ -22,5 +23,12 @@ public class MocField11 extends Location {
         PORTAL_RGB = new int[] {1520,49, -14000000, -500000};
         PORTAL_RGB_1 = new int[] {1584,106, -14000000, -700000};
         return checkRgbLocation();
+    }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1520,49, -14000000, -500000};
+        PORTAL_RGB_1 = new int[] {1584,106, -14000000, -700000};
+        return checkRgbLocation(screenShot);
     }
 }

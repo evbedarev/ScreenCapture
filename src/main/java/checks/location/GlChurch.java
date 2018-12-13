@@ -3,6 +3,7 @@ package checks.location;
 import logic.Capture;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class GlChurch extends Location {
@@ -22,5 +23,12 @@ public class GlChurch extends Location {
         PORTAL_RGB = new int[] {1523,165, -6280000, -1200000};
         PORTAL_RGB_1 = new int[] {1465,47, -6280000, -1200000};
         return checkRgbLocation();
+    }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1523,165, -6280000, -1200000};
+        PORTAL_RGB_1 = new int[] {1465,47, -6280000, -1200000};
+        return checkRgbLocation(screenShot);
     }
 }

@@ -4,33 +4,42 @@ import logger.LoggerSingle;
 import logic.Capture;
 
 import java.awt.image.BufferedImage;
+import java.util.function.Function;
 
 public abstract class Location implements VerifyMap {
     protected Capture capture;
     protected static int[] PORTAL_RGB;
     protected static int[] PORTAL_RGB_1;
 
-
     /**
      * Проверяет находится ли RGB пикселя в нужном промежутке значений.
      * PORTAL_RGB - array {x,y, minimal value RGB, max value RGB}
      * @return boolean
      */
-    boolean checkRgbLocation() {
+    protected Function<BufferedImage, Boolean> rgbLocation = e -> {
         boolean findRGB1, findRGB2;
-        BufferedImage image = capture.takeScreenShot();
-        int rgb = image.getRGB(PORTAL_RGB[0], PORTAL_RGB[1]);
-        int rgb1 = image.getRGB(PORTAL_RGB_1[0], PORTAL_RGB_1[1]);
+        int rgb = e.getRGB(PORTAL_RGB[0], PORTAL_RGB[1]);
+        int rgb1 = e.getRGB(PORTAL_RGB_1[0], PORTAL_RGB_1[1]);
         findRGB1 = rgb > PORTAL_RGB[2] && rgb < PORTAL_RGB[3];
         findRGB2 = rgb1 > PORTAL_RGB_1[2] && rgb1 < PORTAL_RGB_1[3];
 
         if (findRGB1 || findRGB2) {
             return true;
         } else {
-            showRGB(PORTAL_RGB, image);
-            showRGB(PORTAL_RGB_1, image);
+            showRGB(PORTAL_RGB, e);
+            showRGB(PORTAL_RGB_1, e);
             return false;
         }
+    };
+
+
+    boolean checkRgbLocation() {
+        BufferedImage image = capture.takeScreenShot();
+        return rgbLocation.apply(image);
+    }
+
+    boolean checkRgbLocation(BufferedImage image) {
+        return rgbLocation.apply(image);
     }
 
     private void showRGB(int[] xy, BufferedImage bufferedImage) {
@@ -40,4 +49,7 @@ public abstract class Location implements VerifyMap {
 
     @Override
     public abstract boolean onDesiredLocation();
+
+    @Override
+    public abstract boolean onDesiredLocation(BufferedImage screenShot);
 }

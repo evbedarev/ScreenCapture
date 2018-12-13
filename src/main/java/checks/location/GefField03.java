@@ -23,4 +23,11 @@ public class GefField03 extends Location {
         PORTAL_RGB_1 = new int[] {1480,46, -6280000, -1200000};
         return checkRgbLocation();
     }
+
+    @Override
+    public boolean onDesiredLocation(BufferedImage screenShot) {
+        PORTAL_RGB = new int[] {1582,144, -6280000, -1200000};
+        PORTAL_RGB_1 = new int[] {1480,46, -6280000, -1200000};
+        return checkRgbLocation(screenShot);
+    }
 }

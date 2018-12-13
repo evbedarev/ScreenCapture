@@ -13,6 +13,7 @@ import logic.kill_monster.Warp;
 import main.Prop;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class LocationCheck {
     private VerifyMap verifyMap;
@@ -77,6 +78,25 @@ public class LocationCheck {
             if (verifyMap.onDesiredLocation()) {
                 actions.useWing();
                 SleepTime.sleep(2000);
+            }
+            countForSendMsg++;
+            if (countForSendMsg == 100) {
+                sendMessage.send(new MsgLocationChanged());
+            }
+        }
+        countForSendMsg = 0;
+    }
+
+    public void locationCheck(BufferedImage image) throws Exception {
+        while (!verifyMap.onDesiredLocation(image)) {
+            SleepTime.sleep(5000);
+            LoggerSingle.logInfo(this.toString(), "Нахожусь не на карте!!");
+            findWaprPortal();
+            SleepTime.sleep(2000);
+            if (verifyMap.onDesiredLocation()) {
+                actions.useWing();
+                SleepTime.sleep(2000);
+                break;
             }
             countForSendMsg++;
             if (countForSendMsg == 100) {
