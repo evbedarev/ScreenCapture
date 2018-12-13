@@ -12,8 +12,5 @@ public class Wraith extends Monster {
                 new int[] {-12702394, -12767931, -8491121}));
     }
 
-    @Override
-    void action(int x, int y) throws Exception {
-        MoveByCard.wingAway();
-    }
+
 }
