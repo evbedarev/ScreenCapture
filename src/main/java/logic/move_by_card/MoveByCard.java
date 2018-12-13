@@ -143,6 +143,7 @@ public class MoveByCard {
                 return false;
             }
             check.checkResources(screenShot);
+
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
                 logicLocation.getLocationCheck().locationCheck(screenShot);
@@ -168,6 +169,11 @@ public class MoveByCard {
                 }
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
+
+                if (!xy.isPresent()) {
+                    wingAway();
+                    break;
+                }
             }
         } catch (Exception exception) {
             exception.printStackTrace();
