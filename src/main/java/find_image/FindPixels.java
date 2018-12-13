@@ -41,10 +41,10 @@ public class FindPixels implements FindPixelsInImage {
                 }
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
-                    logger.debug( " coordinates is " + x + ',' + y );
+//                    logger.debug( " coordinates is " + x + ',' + y );
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+//                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
                         return Optional.of(new int[] {x, y});
                     }
                 }
@@ -138,10 +138,10 @@ public class FindPixels implements FindPixelsInImage {
                 }
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
-                    logger.debug( " coordinates is " + x + ',' + y );
+//                    logger.debug( " coordinates is " + x + ',' + y );
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+//                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
                         return Optional.of(new int[] {x, y});
                     }
                 }
@@ -183,7 +183,7 @@ public class FindPixels implements FindPixelsInImage {
                 return Integer.compare(abs(o1[0] - screenCenter), abs(o2[0] - screenCenter));
             }
         });
-        logger.debug("return coords of fragment: x=" + listCoords.get(0)[0] + " y=" + listCoords.get(0)[1]);
+//        logger.debug("return coords of fragment: x=" + listCoords.get(0)[0] + " y=" + listCoords.get(0)[1]);
         return listCoords.get(0);
     }
 
@@ -221,17 +221,17 @@ public class FindPixels implements FindPixelsInImage {
                 return false;
             }
         }
-        logger.debug("Find rgb " + ancillaryRgb + " in area x_up=" + x_up_left +
-                "y_up_left " + y_up_left + " width " + width + " height " + height);
+//        logger.debug("Find rgb " + ancillaryRgb + " in area x_up=" + x_up_left +
+//                "y_up_left " + y_up_left + " width " + width + " height " + height);
         return true;
     }
 
     public Optional<int[]> findPixel(BufferedImage screenShot, int ancillaryRgb) {
-        logger.debug("Searching rgb " + ancillaryRgb);
+//        logger.debug("Searching rgb " + ancillaryRgb);
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
                 if (screenShot.getRGB(x, y) == ancillaryRgb) {
-                    logger.debug("Find ancillary rgb " + ancillaryRgb + " coordinates is " + x + ',' + y);
+//                    logger.debug("Find ancillary rgb " + ancillaryRgb + " coordinates is " + x + ',' + y);
                     return Optional.of(new int[] {x, y}) ;
                 }
             }
@@ -274,17 +274,17 @@ public class FindPixels implements FindPixelsInImage {
                 }
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
-                    logger.debug( " coordinates is " + x + ',' + y );
+//                    logger.debug( " coordinates is " + x + ',' + y );
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+//                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
                         listCoords.add(new int[] {x, y});
                     }
                 }
             }
         }
         if (listCoords.size() > 0) {
-            logger.debug("Size of listCoords is: " + listCoords.size());
+//            logger.debug("Size of listCoords is: " + listCoords.size());
             return Optional.of(listCoords.size());
         }
         return Optional.empty();
@@ -328,10 +328,10 @@ public class FindPixels implements FindPixelsInImage {
 
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
-                    logger.debug( " coordinates is " + x + ',' + y );
+//                    logger.debug( " coordinates is " + x + ',' + y );
 
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
+//                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
                         return Optional.of(new int[] {x, y});
                     }
                 }
