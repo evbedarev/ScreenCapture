@@ -1,8 +1,6 @@
 package logic.kill_monster;
 
 import logic.RgbParameter;
-import logic.move_by_card.MoveByCard;
-
 import java.awt.*;
 
 public class Wraith extends Monster {
@@ -11,6 +9,4 @@ public class Wraith extends Monster {
                 new int[] {100,100},
                 new int[] {-12702394, -12767931, -8491121}));
     }
-
-
 }

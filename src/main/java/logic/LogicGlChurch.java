@@ -8,8 +8,6 @@ import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGlChurch;
 import logic.take_loot.*;
-import main.Prop;
-
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
