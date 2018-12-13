@@ -17,8 +17,6 @@ import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.BufferOverflowException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,6 +129,7 @@ public class MoveByCard {
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
         try {
+            long before = System.currentTimeMillis();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
 
@@ -151,6 +150,7 @@ public class MoveByCard {
 //                screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
+//
                 if (checkDialogWindow(screenShot)) {
                     wingAway();
                     break;
@@ -167,6 +167,7 @@ public class MoveByCard {
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
+
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
 
@@ -174,6 +175,10 @@ public class MoveByCard {
                     wingAway();
                     break;
                 }
+
+                long after = System.currentTimeMillis();
+                createMessage("Time going to point is: ", (int)(after - before),0);
+                LoggerSingle.logInfo(this.toString(), sbMessage.toString());
             }
         } catch (Exception exception) {
             exception.printStackTrace();

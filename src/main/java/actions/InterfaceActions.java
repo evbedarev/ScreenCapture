@@ -1,6 +1,7 @@
 package actions;
 
 import checks.Check;
+import find_fragments.FindFragmentFiles;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -9,6 +10,8 @@ import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class InterfaceActions {
@@ -17,6 +20,10 @@ public class InterfaceActions {
     private final Keys keys = Keys.getInstance();
     private final Mouse mouse;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
+    private static final FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
+    private static List<BufferedImage> pressOkList = new ArrayList<>();
+    private static List<BufferedImage> pressNextList = new ArrayList<>();
+    private static List<BufferedImage> pressCloseList = new ArrayList<>();
 
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
@@ -32,6 +39,15 @@ public class InterfaceActions {
             }
         }
         return instance;
+    }
+
+    public void initialize() throws Exception {
+        pressOkList = findFragmentFiles.fragments("frag*",
+                Prop.ROOT_DIR + "Interface\\Ok\\");
+        pressNextList = findFragmentFiles.fragments("frag*",
+                Prop.ROOT_DIR + "Interface\\Next\\");
+        pressCloseList = findFragmentFiles.fragments("frag*",
+                Prop.ROOT_DIR + "Interface\\Close\\");
     }
 
     private boolean pressOnImage(int[] area,
@@ -64,7 +80,23 @@ public class InterfaceActions {
             LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
             return true;
         }
+        return false;
+    }
 
+    private boolean pressOnImage(BufferedImage screenShot,
+                                 int[] area,
+                                 int sleepTime,
+                                 List<BufferedImage> imageList,
+                                 String methodName) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(area);
+        xy = findFragmentInImage.findImage(screenShot, imageList);
+        if (xy.isPresent()) {
+            mouse.mouseClick(xy.get()[0], xy.get()[1]);
+            SleepTime.sleep(sleepTime);
+            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
+            return true;
+        }
         return false;
     }
 
@@ -79,7 +111,7 @@ public class InterfaceActions {
         return pressOnImage(screenShot,
                 new int[]{0, 1600, 0, 900},
                 5000,
-                Prop.ROOT_DIR + "Interface\\Ok\\",
+                pressOkList,
                 "PressOk");
     }
 
@@ -114,7 +146,7 @@ public class InterfaceActions {
         return pressOnImage(screenShot,
                 new int[]{0, 1600, 0, 900},
                 2000,
-                Prop.ROOT_DIR + "Interface\\Next\\",
+                pressNextList,
                 "PressNext");
     }
 
@@ -129,7 +161,7 @@ public class InterfaceActions {
         return pressOnImage(screenShot,
                 new int[]{0, 1600, 0, 900},
                 2000,
-                Prop.ROOT_DIR + "Interface\\Close\\",
+                pressCloseList,
                 "PressClose");
     }
 
