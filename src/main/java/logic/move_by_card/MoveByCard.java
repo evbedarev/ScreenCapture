@@ -147,7 +147,7 @@ public class MoveByCard {
                 Prop.cast.cast();
                 logicLocation.getLocationCheck().locationCheck(screenShot);
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-//                screenShot = capture.takeScreenShot();
+                screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
 //
