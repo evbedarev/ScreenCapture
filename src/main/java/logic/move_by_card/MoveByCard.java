@@ -17,6 +17,8 @@ import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.nio.BufferOverflowException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,7 +147,7 @@ public class MoveByCard {
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 Prop.cast.cast();
-                logicLocation.getLocationCheck().locationCheck(screenShot);
+//                logicLocation.getLocationCheck().locationCheck(screenShot);
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);

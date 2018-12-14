@@ -135,7 +135,6 @@ public class Monster implements KillMonster {
     @Override
     public boolean findAndKill(BufferedImage image) throws Exception {
         boolean value = false;
-        LoggerSingle.logDebug(this.toString(), "Finding monster ");
         //It's bad, later change. Need to load in constructor.
         for (RgbParameter parameter: rgbParameterList) {
             Optional<int[]> xy = findImageHard.findPixelsInImage(
@@ -160,7 +159,7 @@ public class Monster implements KillMonster {
                 break;
             }
         }
-        checkHP.checkHp(image);
+//        checkHP.checkHp(image);
         return value;
     }
 
@@ -239,7 +238,7 @@ public class Monster implements KillMonster {
                 break;
             }
         }
-        checkHP.checkHp(image);
+//        checkHP.checkHp(image);
         return value;
     }
 
