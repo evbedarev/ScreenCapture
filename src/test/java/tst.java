@@ -5,17 +5,18 @@ import main.Prop;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 public class tst {
-
+    public static  Optional<int[]> xy;
+    static String msg;
     public static void main(String[] args) throws Exception {
-        PointsFindNearestTest pnts = new PointsFindNearestTest();
-        PointsMocField11 pointsMocField11 = new PointsMocField11();
-        pnts.setPoints(pointsMocField11.getPoints());
-
-        List<int[]> pointsList = pnts.findNearestPoint(new int[] {1496,116});
-        for (int[] ints : pointsList) {
-            System.out.println("coord {" + ints[0] + "," + ints[1] + "}");
+        long timeBefore = System.currentTimeMillis();
+        for (int i = 0; i < 50000; i++) {
+            StringBuilder msgBuilder = new StringBuilder();
+            msgBuilder.append(22);
         }
+        long timeAfter = System.currentTimeMillis();
+        System.out.println("TIme: " + (timeAfter - timeBefore));
     }
 }

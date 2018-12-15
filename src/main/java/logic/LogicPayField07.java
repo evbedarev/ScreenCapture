@@ -3,6 +3,7 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.GefField05;
+import checks.location.PayField07;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
@@ -32,7 +33,7 @@ public class LogicPayField07 extends LogicLocation {
         attack = new AttackGef05();
         actions = Actions.instance();
         moveByCard = MoveByCard.getInstance(this, new PointsPayField07());
-        locationCheck = new LocationCheck(new GefField05());
+        locationCheck = new LocationCheck(new PayField07());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream

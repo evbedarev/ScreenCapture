@@ -6,9 +6,9 @@ import java.awt.*;
 
 public class Galapago extends Monster {
     public Galapago() throws AWTException {
-        rgbParameterList.add(new RgbParameter(-11390654,
+        rgbParameterList.add(new RgbParameter(-1071757,
                 new int[] {100,100},
-                new int[] {-14086136, -4356964, -9745846}));
+                new int[] {-14086136, -2175290}));
 
     }
 }

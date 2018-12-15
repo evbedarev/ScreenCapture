@@ -19,9 +19,11 @@ public class Loot implements TakeLoot {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
     Capture capture;
     final Mouse mouse;
+    static Optional<int[]> xy = Optional.empty();
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
+    StringBuilder message = new StringBuilder();
     LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
@@ -39,8 +41,9 @@ public class Loot implements TakeLoot {
     public boolean takeLoot() throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsArround3Times(
+            xy = findImageHard.findPixelsArround3Times(
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
@@ -51,7 +54,7 @@ public class Loot implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(),createMsg(x,y).toString());
                 SleepTime.sleep(100);
                 mouse.mouseMove(0,0);
                 return true;
@@ -64,8 +67,9 @@ public class Loot implements TakeLoot {
     public boolean takeLoot(BufferedImage screenShot) throws Exception {
         LoggerSingle.logDebug(this.toString(), "Finding loot ");
         //It's bad, later change. Need to load in constructor.
+        xy = Optional.empty();
         for (RgbParameter parameter: rgbParameterList) {
-            Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
+            xy = findImageHard.findPixelsInImageInArea(
                     screenShot,
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
@@ -77,7 +81,7 @@ public class Loot implements TakeLoot {
                 int y = xy.get()[1];
 
                 mouse.mouseClick(x, y);
-                LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString(),createMsg(x,y).toString());
                 SleepTime.sleep(100);
                 mouse.mouseMove(0,0);
                 return true;
@@ -101,5 +105,14 @@ public class Loot implements TakeLoot {
             SleepTime.sleep(1000);
             checkHP.checkHp();
         }
+    }
+
+    private StringBuilder createMsg(int x, int y) {
+        message.delete(0,message.length());
+        message.append("Taking loot, coordinates: x=");
+        message.append(x);
+        message.append(" y=");
+        message.append(y);
+        return message;
     }
 }

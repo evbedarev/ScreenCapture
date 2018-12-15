@@ -11,13 +11,13 @@ import java.util.Optional;
 
 public class RGB {
     public static void main(String[] args) throws Exception {
-
+//
         CompareFragmentImage compareFragmentImage = new CompareFragmentImage();
         compareFragmentImage.getRgb();
 //Map rgb -2374501
 //        findPixelRgb(-2374501);
 
-//        showRGB(new int[] {1480,125}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {1370,882}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
 

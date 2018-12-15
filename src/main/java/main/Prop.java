@@ -25,9 +25,9 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
 
     public static void initialize() throws Exception {
-        logic = new LogicGefField05();
+        logic = new LogicGefField08();
         cast = new CastMS( 0);
-        locationCheck = new LocationCheck(new GefField05());
+        locationCheck = new LocationCheck(new GefField08());
         checkHitPoints = new CheckHpMS(locationCheck);
         initializeCharacter();
         cast.begin();
@@ -64,8 +64,8 @@ public class Prop {
     ///////////////HEAL SKILL///////////////////////
     public static final boolean NEED_HEAL = true;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
-    public static final int X_HP_HEAL = 144; //Only for acolyte
-    public static final int X_HP_TO_RUN = 100;
+    public static final int X_HP_HEAL = 99 ; //Only for acolyte
+    public static final int X_HP_TO_RUN = 70;
     public static final int X_HP_TO_END_RUN = 144;
     ///////////////////////////////////////////////
 

@@ -19,8 +19,8 @@ public class PayField07 extends Location {
 
     @Override
     public boolean onDesiredLocation() {
-        PORTAL_RGB = new int[] {1582,76, -6280000, -1200000};
-        PORTAL_RGB_1 = new int[] {1466,103, -6280000, -1200000};
+        PORTAL_RGB = new int[] {1584,76, -6280000, -1200000};
+        PORTAL_RGB_1 = new int[] {1461,105, -6280000, -1200000};
         return checkRgbLocation();
     }
 }
