@@ -1,5 +1,6 @@
 package main;
 
+import actions.InterfaceActions;
 import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
@@ -23,13 +24,15 @@ public class Prop {
     public static final AfterDeath checkDie = new AfterDeathYun04();
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
+    public static InterfaceActions interfaceActions;
 
     public static void initialize() throws Exception {
-
-        logic = new LogicGlChurch();
+        logic = new LogicBeachDun03();
         cast = new CastGunslinger(0);
-        locationCheck = new LocationCheck(new GlChurch());
+        locationCheck = new LocationCheck(new BeachDun03());
         checkHitPoints = new CheckHpMS(locationCheck);
+        interfaceActions  = InterfaceActions.getInstance();
+        interfaceActions.initialize();
         initializeCharacter();
         cast.begin();
     }

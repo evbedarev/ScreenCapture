@@ -104,8 +104,10 @@ public abstract class LogicLocation extends Thread implements Logic {
 //            duringTheFight();
             SleepTime.sleep(300);
             if (!killMonstersAround(monster)) {
+                System.out.println("return false");
                 cntAttack++;
             } else {
+                System.out.println("return true");
                 cntAttack = 0;
             }
         }
@@ -123,7 +125,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
             killAll = true;
-            if (countAttack > 3) return false;
+            if (countAttack > 2) return false;
         }
         return killAll;
     }

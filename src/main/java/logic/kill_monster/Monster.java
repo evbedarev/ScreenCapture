@@ -85,8 +85,9 @@ public class Monster implements KillMonster {
             if (xy.isPresent()) {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
-                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(1000);
+//                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findMonster", "Killing monster");
+                sleepAfterAttack();
                 value = true;
                 break;
             }
@@ -124,7 +125,8 @@ public class Monster implements KillMonster {
                     actions.stepAside(new int[] {600, 800});
                 }
 
-                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
+//                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster");
                 sleepAfterAttack();
                 return true;
             }
@@ -153,8 +155,9 @@ public class Monster implements KillMonster {
                 }
                 checkHP.checkHp(image);
                 check.checkResources(image);
-                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
-                SleepTime.sleep(1000);
+//                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster");
+                sleepAfterAttack();
                 value = true;
                 break;
             }
@@ -198,7 +201,8 @@ public class Monster implements KillMonster {
                         actions.stepAside(new int[]{600, 800});
                     }
                 }
-                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+//                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster");
                 sleepAfterAttack();
                 return true;
             }
@@ -232,7 +236,8 @@ public class Monster implements KillMonster {
 
                 checkHP.checkHp(image);
 
-                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+//                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
+                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster");
                 sleepAfterAttack();
                 value = true;
                 break;

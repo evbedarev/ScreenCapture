@@ -145,7 +145,7 @@ public class Actions {
 
 
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
-        locationCheck.locationCheck();
+//        locationCheck.locationCheck();
         double t = 2 * Math.PI * Math.random();
         double minRadius = radiuses[0];
         double maxRadius = radiuses[1];
@@ -160,7 +160,7 @@ public class Actions {
         mouse.mouseClick(800 + (int) Math.round(mediumX),
                 450 + (int) Math.round(mediumY));
         SleepTime.sleep(300);
-        locationCheck.locationCheck();
+//        locationCheck.locationCheck();
         LoggerSingle.logInfo(this.toString(), "Step aside with Location check");
     }
 

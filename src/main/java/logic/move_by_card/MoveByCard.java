@@ -131,6 +131,7 @@ public class MoveByCard {
 
     public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
         try {
+            int countMoves = 0;
             long before = System.currentTimeMillis();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
@@ -163,9 +164,13 @@ public class MoveByCard {
                 }
 
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    wingAway();
-                    LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
-                    break;
+                    if (countMoves > 1) {
+                        wingAway();
+                        LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
+                        countMoves = 0;
+                        break;
+                    }
+                    countMoves++;
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
