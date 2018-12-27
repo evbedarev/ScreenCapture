@@ -57,6 +57,13 @@ public class CastGunslinger extends Cast {
                     LoggerSingle.logInfo(this.toString(), "Awakening after AFK ");
                     keys.keyPress(KeyEvent.VK_ENTER);
                     SleepTime.sleep(2000);
+                    mouse.mouseMove(575, 875);
+                    SleepTime.sleep(200);
+                    mouse.pressLeft();
+                    SleepTime.sleep(200);
+                    mouse.mouseMove(575, 875);
+                    SleepTime.sleep(200);
+                    mouse.releaseLeft();
                     WAITING_TIME.set(0);
                 } else {
                     SleepTime.loopSleep();
