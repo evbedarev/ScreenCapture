@@ -19,7 +19,7 @@ public class CastGunslinger extends Cast {
     final static AtomicInteger ADJUSTMENT = new AtomicInteger(0);
 
     public CastGunslinger(int threadId) throws AWTException {
-        randomTime = 80 + (30 * (int) Math.random());
+        randomTime = 80 + (30 * (int) Math.random()); //80 + (30 * (int) Math.random());
         this.threadId = threadId;
         mouse = Mouse.getInstance();
 
@@ -52,17 +52,17 @@ public class CastGunslinger extends Cast {
                 LoggerSingle.logInfo(this.toString(), "Sleeping after " + 60 * randomTime + "hours working" );
                 InterfaceActions interfaceActions = InterfaceActions.getInstance();
                 if (interfaceActions.goToCharSelect()) {
-                    SleepTime.sleep(50 * 60 * 1000);
-                    randomTime = 80 + (int) (30 * Math.random());
+                    SleepTime.sleep(50 * 60 * 1000);//50
+                    randomTime = 80 + (30 * (int) Math.random());
                     LoggerSingle.logInfo(this.toString(), "Awakening after AFK ");
                     keys.keyPress(KeyEvent.VK_ENTER);
                     SleepTime.sleep(2000);
-                    mouse.mouseMove(575, 875);
+                    mouse.mouseMove(575, 896);
                     SleepTime.sleep(200);
                     mouse.pressLeft();
-                    SleepTime.sleep(200);
-                    mouse.mouseMove(575, 875);
-                    SleepTime.sleep(200);
+                    SleepTime.sleep(500);
+                    mouse.mouseMove(5, 896);
+                    SleepTime.sleep(500);
                     mouse.releaseLeft();
                     WAITING_TIME.set(0);
                 } else {
