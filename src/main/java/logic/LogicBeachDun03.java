@@ -3,6 +3,7 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.BeachDun03;
+import checks.location.Comodo;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
@@ -11,9 +12,7 @@ import logic.kill_monster.Hydra;
 import logic.kill_monster.Nereid;
 import logic.kill_monster.TharaFrog;
 import logic.kill_monster.monstersOnLocation.MonstersBeachDun03;
-import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsBeachDun03;
-import logic.move_by_card.PointsYunField11;
+import logic.move_by_card.*;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -52,22 +51,13 @@ public class LogicBeachDun03 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
+        if (countStartProgram == 0) {
+            MoveToLocation moveToLocation = new MoveToLocation(this, new PointsComodo());
+            moveToLocation.move();
+            moveToLocation.lastAction(new int[]{965, 429});
+        }
         moveByCard.move(killMonsterList);
-//        Prop.cast.cast();
-//        checkDie.check();
-////        if (checkDie.check()) {
-////            while (true) {
-////                SleepTime.sleep(5000);
-////            }
-////        }
-//        locationCheck.locationCheck();
-////        checkSP.enoghtSP();
-//        killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
-//        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-//        teleport();
-//        count++;
+        countStartProgram++;
     }
 
     void teleport() throws Exception {

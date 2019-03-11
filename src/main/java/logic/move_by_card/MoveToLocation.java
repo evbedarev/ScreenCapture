@@ -4,7 +4,9 @@ import actions.Actions;
 import actions.InterfaceActions;
 import actions.SleepTime;
 import checks.Check;
+import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
+import checks.location.BeachDun03;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -15,10 +17,10 @@ import logic.RgbParameter;
 import logic.kill_monster.Human;
 import logic.kill_monster.KillMonster;
 import main.Prop;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.nio.BufferOverflowException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +29,7 @@ import java.util.Optional;
  * Класс который отлеживает передвижение по карте, перемещает персонажа по заданным точкам
  */
 
-public class MoveByCard {
-    private static MoveByCard instance;
+public class MoveToLocation {
     int coordsYUp, coordsYDown, coordXLeft, coordXRight;
     private static Mouse mouse;
     private static InterfaceActions interfaceActions;
@@ -47,25 +48,16 @@ public class MoveByCard {
     private static StringBuilder sbMessage = new StringBuilder();
     private int[] prevPos = new int[] {0,0};
 
-    private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
+    public MoveToLocation(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         actions = Actions.instance();
         mouse = Mouse.getInstance();
         check = Check.getInstance();
         findImageHard = new FindPixels();
         capture = Capture.instance();
-        MoveByCard.logicLocation = logicLocation;
         interfaceActions = InterfaceActions.getInstance();
-        MoveByCard.pointsOnCard = pointsOnCard;
+        MoveToLocation.pointsOnCard = pointsOnCard;
         findNearest.setPoints(pointsOnCard.getPoints());
         check = Check.getInstance();
-    }
-
-
-    public static MoveByCard getInstance(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
-        if (instance == null) {
-            instance = new MoveByCard(logicLocation, pointsOnCard);
-        }
-        return instance;
     }
 
     public void initialize(int[] coordsArr) throws AWTException {
@@ -129,7 +121,7 @@ public class MoveByCard {
         return new int[] {(int)x, (int)y};
     }
 
-    public boolean moveToPoint(int[] point, List<KillMonster> killMonsterlist) {
+    public boolean moveToPoint(int[] point) {
         try {
             int countMoves = 0;
             long before = System.currentTimeMillis();
@@ -147,24 +139,18 @@ public class MoveByCard {
             check.checkResources(screenShot);
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
-                Prop.cast.cast();
-                logicLocation.getLocationCheck().locationCheck(screenShot);
+//                logicLocation.getLocationCheck().locationCheck(screenShot);
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
                 screenShot = capture.takeScreenShot();
                 mouse.mouseClick(coords[0], coords[1]);
-                logicLocation.checkMyHp(screenShot);
 //
                 if (checkDialogWindow(screenShot)) {
                     wingAway();
                     break;
                 }
 
-                for (KillMonster killMonster : killMonsterlist) {
-                    logicLocation.findAndKill(killMonster);
-                }
-
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    if (countMoves > 1) {
+                    if (countMoves > 5) {
                         wingAway();
                         LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
                         countMoves = 0;
@@ -179,8 +165,8 @@ public class MoveByCard {
                 xy = takeCoordsFromMap();
 
                 if (!xy.isPresent()) {
-                    wingAway();
-                    break;
+                    xy = Optional.of(prevPos);
+                    mouse.mouseClick(coords[0], coords[1]);
                 }
 
                 long after = System.currentTimeMillis();
@@ -220,14 +206,14 @@ public class MoveByCard {
      * @throws Exception
      */
     public static void wingAway() throws Exception {
-        actions.useWing(logicLocation.getLocationCheck());
+        keys.keyPress(KeyEvent.VK_F7);
         SleepTime.sleep(1000);
         xy = takeCoordsFromMap();
         flagOfNewPoints = true;
         LoggerSingle.logInfo("MoveByClass", " Use wing.");
     }
 
-    public void move(List<KillMonster> killMonsters) throws Exception {
+    public void move() throws Exception {
         List<int[]> points = pointsOnCard.getPoints();
         for (int[] point : points) {
             if (flagOfNewPoints) {
@@ -242,35 +228,8 @@ public class MoveByCard {
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
                 break;
             }
-            moveToPoint(point, killMonsters);
+            moveToPoint(point);
         }
-    }
-
-    /**
-     * Проверяет есть ли под курсором моб
-     * @param coords - координаты курсора
-     * @param killMonsterList - список монстров
-     * @return
-     */
-    private boolean checkMonsterUnderCoursor(int[] coords, List<KillMonster> killMonsterList) {
-        List<RgbParameter> rgbParameter;
-        screenShot = capture.takeScreenShot();
-
-        for (KillMonster killMonster : killMonsterList) {
-            rgbParameter = killMonster.getRgbParameterList();
-            for (RgbParameter parameter : rgbParameter) {
-                Optional<int[]> coordsCoursor = findImageHard.findPixelsInImageInArea(
-                        screenShot,
-                        parameter.getMainRgb(),
-                        parameter.getSubImageSize(),
-                        parameter.getAncillaryRgb(),
-                        new int[] {coords[0] - 40, coords[0] + 40, coords[1] - 40, coords[1] + 40});
-
-                if (coordsCoursor.isPresent())
-                    return true;
-            }
-        }
-        return false;
     }
 
     private static Optional<int[]> takeCoordsFromMap() throws Exception {
@@ -286,6 +245,7 @@ public class MoveByCard {
             int x = xy.get()[0];
             int y = xy.get()[1];
 
+
 //            LoggerSingle.logInfo(this.toString(), "Location TP " + this.toString() + ", coordinates: x=" + x + " y=" + y);
             SleepTime.sleep(200);
         }
@@ -300,6 +260,19 @@ public class MoveByCard {
         sbMessage.append(cord2);
         sbMessage.append("}");
     }
+
+    public void lastAction(int[] coordsToClick) throws Exception {
+        SleepTime.sleep(4000);
+        mouse.mouseClick(coordsToClick[0], coordsToClick[1]);
+        mouse.mouseClick(coordsToClick[0], coordsToClick[1]);
+        SleepTime.sleep(4000);
+        LocationCheck locationCheck = new LocationCheck(new BeachDun03());
+        locationCheck.locationCheck();
+        System.out.println("all right");
+//        keys.keyPress(KeyEvent.VK_F7);
+        SleepTime.sleep(3000);
+    }
+
 }
 
 
