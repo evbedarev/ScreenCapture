@@ -20,7 +20,7 @@ public class LogicBeachDun02 extends LogicLocation {
 
     private static final int COUNT_OF_ATTACKS = 100;
 
-    public LogicBeachDun02(int threadId) throws Exception {
+    public LogicBeachDun02() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackBeachDun02();
         actions = Actions.instance();
@@ -31,8 +31,8 @@ public class LogicBeachDun02 extends LogicLocation {
         killMonsterList = Stream
                 .of(
                         new Megalith(),
-                        new StalacticGolem(),
-                        new TriJoint())
+                        new StalacticGolem())
+//                        new TriJoint())
                 .collect(Collectors.toList());
 
         loot = new TakeLoot[] {

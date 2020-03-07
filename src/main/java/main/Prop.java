@@ -27,9 +27,9 @@ public class Prop {
     public static InterfaceActions interfaceActions;
 
     public static void initialize() throws Exception {
-        logic = new LogicBeachDun03();
+        logic = new LogicCmdField02();
         cast = new CastGunslinger(0);
-        locationCheck = new LocationCheck(new BeachDun03());
+        locationCheck = new LocationCheck(new CmdFiled02());
         checkHitPoints = new CheckHpMS(locationCheck);
         interfaceActions  = InterfaceActions.getInstance();
         interfaceActions.initialize();
