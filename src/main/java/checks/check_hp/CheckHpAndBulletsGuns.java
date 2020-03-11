@@ -2,6 +2,7 @@ package checks.check_hp;
 
 import actions.SleepTime;
 import checks.LocationCheck;
+import logger.LoggerSingle;
 import logic.move_by_card.MoveByCard;
 import main.Prop;
 
@@ -42,9 +43,14 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
     }
 
     public boolean checkBullets(BufferedImage image) {
-        return (image.getRGB(1370,880) != -1071757);
+        if (image.getRGB(1370,880) != -1071757) {
+            LoggerSingle.logInfo(this.getClass().toString(), "No bullets for shot, sleeping");
+            return true;
+        }
+        return false;
     }
 
+    @Override
     public void checkHp(BufferedImage image) throws Exception {
         if (checkDie.check(image) || checkBullets(image)) {
             SleepTime.loopSleep();
@@ -57,10 +63,5 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
         if (Prop.NEED_HEAL) {
             needHeal(image);
         }
-
-//        if (checkHpToEndRun(image)) {
-//            MoveByCard.wingAway();
-//        }
-
     }
 }

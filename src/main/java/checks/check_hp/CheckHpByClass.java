@@ -75,8 +75,6 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     }
 
     void checkSilenceStatus() throws InterruptedException {
-//        BufferedImage image = capture.takeScreenShot();
-        //image.getRGB(790,332) == -1
         if (checkSilence.check()) {
             keys.keyPress(KeyEvent.VK_F4);
             SleepTime.sleep(500);

@@ -26,20 +26,6 @@ public class CheckHpMS extends CheckHpByClass {
     }
 
     @Override
-    void needHeal(BufferedImage image) throws Exception {
-        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
-            keys.keyPress(KeyEvent.VK_F3);
-        }
-    }
-
-    @Override
-    void needHeal() throws Exception{
-        BufferedImage image = capture.takeScreenShot();
-        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
-            keys.keyPress(KeyEvent.VK_F3);
-        }
-    }
-
     public void checkHp(BufferedImage image) throws Exception {
         if (checkDie.check(image)) {
             SleepTime.loopSleep();
@@ -52,10 +38,20 @@ public class CheckHpMS extends CheckHpByClass {
         if (Prop.NEED_HEAL) {
             needHeal(image);
         }
+    }
 
-//        if (checkHpToEndRun(image)) {
-//            MoveByCard.wingAway();
-//        }
+    @Override
+    void needHeal(BufferedImage image) throws Exception {
+        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
+            keys.keyPress(KeyEvent.VK_F3);
+        }
+    }
 
+    @Override
+    void needHeal() throws Exception{
+        BufferedImage image = capture.takeScreenShot();
+        if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
+            keys.keyPress(KeyEvent.VK_F3);
+        }
     }
 }
