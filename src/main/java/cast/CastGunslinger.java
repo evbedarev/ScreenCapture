@@ -70,21 +70,21 @@ public class CastGunslinger extends Cast {
                 }
             }
 
-            if (GATLING_FEVER.get() > 165) {
-                LoggerSingle.logInfo(this.toString(), "cast GATLING_FEVER");
-                keys.keyPress(KeyEvent.VK_F4);
-                SleepTime.sleep(3000);
-                GATLING_FEVER.set(0);
-            }
+//            if (GATLING_FEVER.get() > 165) {
+//                LoggerSingle.logInfo(this.toString(), "cast GATLING_FEVER");
+//                keys.keyPress(KeyEvent.VK_F4);
+//                SleepTime.sleep(3000);
+//                GATLING_FEVER.set(0);
+//            }
 
             if (FLIP_THE_COINS.get() > 85) {
                 LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
                 keys.keyPress(KeyEvent.VK_F6);
-                SleepTime.sleep(1500);
-                keys.keyPress(KeyEvent.VK_F4);
-                SleepTime.sleep(1500);
-                keys.keyPress(KeyEvent.VK_F6);
-                SleepTime.sleep(500);
+//                SleepTime.sleep(1500);
+//                keys.keyPress(KeyEvent.VK_F4);
+//                SleepTime.sleep(1500);
+//                keys.keyPress(KeyEvent.VK_F6);
+//                SleepTime.sleep(500);
                 FLIP_THE_COINS.set(0);
             }
 
@@ -95,10 +95,10 @@ public class CastGunslinger extends Cast {
                 ADJUSTMENT.set(0);
             }
 
-            if (ATOMIC_AWAKENING.get() > 1800) {
-                actions.drinkAwaikeningPotion();
-                ATOMIC_AWAKENING.set(0);
-            }
+//            if (ATOMIC_AWAKENING.get() > 1800) {
+//                actions.drinkAwaikeningPotion();
+//                ATOMIC_AWAKENING.set(0);
+//            }
         }
     }
 
@@ -106,7 +106,7 @@ public class CastGunslinger extends Cast {
     public void incrementValues() throws InterruptedException {
         incrementConst();
 //        GATLING_FEVER.incrementAndGet();
-//        FLIP_THE_COINS.incrementAndGet();
+        FLIP_THE_COINS.incrementAndGet();
 //        ADJUSTMENT.incrementAndGet();
         sleep(1000);
     }
