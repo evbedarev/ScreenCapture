@@ -30,7 +30,7 @@ public class Prop {
         logic = new LogicCmdField02();
         cast = new CastGunslinger(0);
         locationCheck = new LocationCheck(new CmdFiled02());
-        checkHitPoints = new CheckHpMS(locationCheck);
+        checkHitPoints = new CheckHpAndBulletsGuns(locationCheck);
         interfaceActions  = InterfaceActions.getInstance();
         interfaceActions.initialize();
         initializeCharacter();
