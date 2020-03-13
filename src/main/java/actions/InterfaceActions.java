@@ -1,6 +1,7 @@
 package actions;
 
-import actions.PressOnImage.PressOnImage;
+import actions.press_on_image.PressOnImage;
+import actions.press_on_image.image_params.PropsForPress;
 import checks.Check;
 import find_fragments.FindFragmentFiles;
 import find_image.FindFragmentInImage;
@@ -29,7 +30,7 @@ public class InterfaceActions {
     private static List<BufferedImage> pressNextList = new ArrayList<>();
     private static List<BufferedImage> pressCloseList = new ArrayList<>();
     private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-    private final PressOnImage pressOnImage = context.getBean("pressOnImage", PressOnImage.class);
+    private final PressOnImage pressOnImage = new PressOnImage();
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
@@ -56,18 +57,13 @@ public class InterfaceActions {
     }
 
     public void pressOk() throws Exception {
-        pressOnImage.press(ALL_SCREEN,
-                5000,
-                Prop.ROOT_DIR + "Interface\\Ok\\",
-                "PressOk");
+        pressOnImage.press(context.getBean("pressOk", PropsForPress.class));
     }
 
     public boolean pressOk(BufferedImage screenShot) throws Exception {
-        return pressOnImage.press(screenShot,
-                ALL_SCREEN,
-                5000,
-                pressOkList,
-                "PressOk");
+        PropsForPress propsForPress = context.getBean("pressOkWithScreenShot", PropsForPress.class);
+        propsForPress.setScreenShot(screenShot);
+        return pressOnImage.press(propsForPress);
     }
 
     public void pressReturnToLastSavepoint() throws Exception {

@@ -1,12 +1,10 @@
-package actions.PressOnImage;
+package actions.press_on_image;
 
+import actions.press_on_image.image_params.PropsForPress;
 import find_fragments.FindFragmentFiles;
 import main.Prop;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +20,18 @@ public class MapOfProps {
     private static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
     public MapOfProps() {
        mapOfProps.put("pressNext", new PropsForPress(ALL_SCREEN,
-               2000, "pressNext", null, null));
+               2000, "pressNext",
+               Prop.ROOT_DIR + "Interface\\Next\\",
+               null));
+
        mapOfProps.put("pressNextWithImage", new PropsForPress(ALL_SCREEN,
                2000,
                "pressNext",
                null,
                (List<BufferedImage>) context.getBean("pressNextList",  List.class)));
+       mapOfProps.put("pressOk", new PropsForPress(ALL_SCREEN,
+               2000, "pressOk",
+               Prop.ROOT_DIR + "Interface\\Ok\\",
+               null));
     }
 }
