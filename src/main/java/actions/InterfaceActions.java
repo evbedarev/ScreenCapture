@@ -1,5 +1,6 @@
 package actions;
 
+import actions.PressOnImage.PressOnImage;
 import checks.Check;
 import find_fragments.FindFragmentFiles;
 import find_image.FindFragmentInImage;
@@ -7,6 +8,8 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import main.Prop;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class InterfaceActions {
+    private static final int[] ALL_SCREEN = new int[]{0, 1600, 0, 900};
     private static volatile InterfaceActions instance;
     private final Check check;
     private final Keys keys = Keys.getInstance();
@@ -24,7 +28,8 @@ public class InterfaceActions {
     private static List<BufferedImage> pressOkList = new ArrayList<>();
     private static List<BufferedImage> pressNextList = new ArrayList<>();
     private static List<BufferedImage> pressCloseList = new ArrayList<>();
-
+    private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+    private final PressOnImage pressOnImage = context.getBean("pressOnImage", PressOnImage.class);
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
@@ -50,73 +55,23 @@ public class InterfaceActions {
                 Prop.ROOT_DIR + "Interface\\Close\\");
     }
 
-    private boolean pressOnImage(int[] area,
-                              int sleepTime,
-                              String pathFragment,
-                              String methodName) throws Exception {
-        Optional<int[]> xy;
-        findFragmentInImage.setScreen(area);
-        xy = findFragmentInImage.findImage(pathFragment);
-        if (xy.isPresent()) {
-            mouse.mouseClick(xy.get()[0], xy.get()[1]);
-            SleepTime.sleep(sleepTime);
-            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
-            return true;
-        }
-        return false;
-    }
-
-    private boolean pressOnImage(BufferedImage screenShot,
-                              int[] area,
-                              int sleepTime,
-                              String pathFragment,
-                              String methodName) throws Exception {
-        Optional<int[]> xy;
-        findFragmentInImage.setScreen(area);
-        xy = findFragmentInImage.findImage(screenShot, pathFragment);
-        if (xy.isPresent()) {
-            mouse.mouseClick(xy.get()[0], xy.get()[1]);
-            SleepTime.sleep(sleepTime);
-            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
-            return true;
-        }
-        return false;
-    }
-
-    private boolean pressOnImage(BufferedImage screenShot,
-                                 int[] area,
-                                 int sleepTime,
-                                 List<BufferedImage> imageList,
-                                 String methodName) throws Exception {
-        Optional<int[]> xy;
-        findFragmentInImage.setScreen(area);
-        xy = findFragmentInImage.findImage(screenShot, imageList);
-        if (xy.isPresent()) {
-            mouse.mouseClick(xy.get()[0], xy.get()[1]);
-            SleepTime.sleep(sleepTime);
-            LoggerSingle.logInfo(this.toString() + "+" + methodName, ": find and click." );
-            return true;
-        }
-        return false;
-    }
-
     public void pressOk() throws Exception {
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 5000,
                 Prop.ROOT_DIR + "Interface\\Ok\\",
                 "PressOk");
     }
 
     public boolean pressOk(BufferedImage screenShot) throws Exception {
-        return pressOnImage(screenShot,
-                new int[]{0, 1600, 0, 900},
+        return pressOnImage.press(screenShot,
+                ALL_SCREEN,
                 5000,
                 pressOkList,
                 "PressOk");
     }
 
     public void pressReturnToLastSavepoint() throws Exception {
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\CheckDie\\",
                 "pressReturnToLastSavepoint");
@@ -124,7 +79,7 @@ public class InterfaceActions {
 
     public void pressOnKafra() throws Exception {
         Optional<int[]> xy;
-        findFragmentInImage.setScreen(new int[]{0, 1600, 0, 900});
+        findFragmentInImage.setScreen(ALL_SCREEN);
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\Kafra\\");
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 20, xy.get()[1] + 80);
@@ -136,65 +91,65 @@ public class InterfaceActions {
     }
 
     public void pressNext() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\Next\\",
                 "PressNext");
     }
 
     public boolean pressNext(BufferedImage screenShot) throws Exception{
-        return pressOnImage(screenShot,
-                new int[]{0, 1600, 0, 900},
+        return pressOnImage.press(screenShot,
+                ALL_SCREEN,
                 2000,
                 pressNextList,
                 "PressNext");
     }
 
     public void openWarehouse() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\OpenWarehouse\\",
                 "OpenWarehouse");
     }
 
     public boolean pressClose(BufferedImage screenShot) throws Exception{
-        return pressOnImage(screenShot,
-                new int[]{0, 1600, 0, 900},
+        return pressOnImage.press(screenShot,
+                ALL_SCREEN,
                 2000,
                 pressCloseList,
                 "PressClose");
     }
 
     public void pressClose() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\Close\\",
                 "PressClose");
     }
 
     public void pressKafraTeleport() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\KafraTeleport\\",
                 "KafraTeleport");
     }
 
     public void pressDownArrow() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\DownArrow\\",
                 "DownArrow");
     }
 
     public void pressCmdField07() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\TeleportCmdField07\\",
                 "TeleportCmdField07");
     }
 
     public void pressGefField10() throws Exception{
-        pressOnImage(new int[]{0, 1600, 0, 900},
+        pressOnImage.press(ALL_SCREEN,
                 2000,
                 Prop.ROOT_DIR + "Interface\\TeleportGefField10\\",
                 "TeleportGefField10");
@@ -283,7 +238,7 @@ public class InterfaceActions {
             Thread.sleep(2000);
             keys.keyPress(KeyEvent.VK_ESCAPE);
         }
-        returnValue = pressOnImage(new int[]{0, 1600, 0, 900},
+        returnValue = pressOnImage.press(ALL_SCREEN,
                 1000,
                 Prop.ROOT_DIR + "Interface\\CharSelect\\",
                 "CharSelect");
