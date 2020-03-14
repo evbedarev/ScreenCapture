@@ -1,6 +1,7 @@
 package actions;
 
 import actions.press_on_image.PressOnImage;
+import actions.press_on_image.SpringConfig;
 import actions.press_on_image.image_params.PropsForPress;
 import checks.Check;
 import find_fragments.FindFragmentFiles;
@@ -23,7 +24,7 @@ public class InterfaceActions {
     private final Keys keys = Keys.getInstance();
     private final Mouse mouse;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
-    private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+    private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
     private final PressOnImage pressOnImage = new PressOnImage();
     private InterfaceActions() throws AWTException {
         mouse = Mouse.getInstance();
