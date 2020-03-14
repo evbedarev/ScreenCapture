@@ -17,7 +17,7 @@ public class RGB {
 //Map rgb -2374501
 //        findPixelRgb(-2374501);
 
-        showRGB(new int[] {14,844}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Interface\\CheckIsAttackMonsterOtherPlayer\\checkAttackOtherPlayer.png");
+        showRGB(new int[] {1390,890}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\for_test\\CheckBullets.png");
 //        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
 
