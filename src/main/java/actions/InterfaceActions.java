@@ -56,21 +56,22 @@ public class InterfaceActions {
                 Prop.ROOT_DIR + "Interface\\Close\\");
     }
 
+    PropsForPress getPropsForImagesWithScreenShot(BufferedImage screenShot, String nameBean) {
+        PropsForPress propsForPress = context.getBean(nameBean, PropsForPress.class);
+        propsForPress.setScreenShot(screenShot);
+        return propsForPress;
+
+    }
     public void pressOk() throws Exception {
         pressOnImage.press(context.getBean("pressOk", PropsForPress.class));
     }
 
     public boolean pressOk(BufferedImage screenShot) throws Exception {
-        PropsForPress propsForPress = context.getBean("pressOkWithScreenShot", PropsForPress.class);
-        propsForPress.setScreenShot(screenShot);
-        return pressOnImage.press(propsForPress);
+        return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressOkWithScreenShot"));
     }
 
     public void pressReturnToLastSavepoint() throws Exception {
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\CheckDie\\",
-                "pressReturnToLastSavepoint");
+        pressOnImage.press(context.getBean("pressReturnToLastSavepoint", PropsForPress.class));
     }
 
     public void pressOnKafra() throws Exception {
@@ -87,61 +88,35 @@ public class InterfaceActions {
     }
 
     public void pressNext() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\Next\\",
-                "PressNext");
+        pressOnImage.press(context.getBean("pressNext", PropsForPress.class));
     }
 
     public boolean pressNext(BufferedImage screenShot) throws Exception{
-        return pressOnImage.press(screenShot,
-                ALL_SCREEN,
-                2000,
-                pressNextList,
-                "PressNext");
+        return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressNextWithScreenShot"));
     }
 
     public void openWarehouse() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\OpenWarehouse\\",
-                "OpenWarehouse");
+        pressOnImage.press(context.getBean("pressForOpenWarehouse", PropsForPress.class));
     }
 
     public boolean pressClose(BufferedImage screenShot) throws Exception{
-        return pressOnImage.press(screenShot,
-                ALL_SCREEN,
-                2000,
-                pressCloseList,
-                "PressClose");
+        return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressCloseWithScreenShot");
     }
 
     public void pressClose() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\Close\\",
-                "PressClose");
+        pressOnImage.press(context.getBean("pressClose", PropsForPress.class));
     }
 
     public void pressKafraTeleport() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\KafraTeleport\\",
-                "KafraTeleport");
+        pressOnImage.press(context.getBean("pressOnKafraTeleportButton", PropsForPress.class));
     }
 
     public void pressDownArrow() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\DownArrow\\",
-                "DownArrow");
+        pressOnImage.press(context.getBean("PressOnDownArrow", PropsForPress.class));
     }
 
     public void pressCmdField07() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\TeleportCmdField07\\",
-                "TeleportCmdField07");
+        pressOnImage.press(context.getBean("pressCmdField07", PropsForPress.class));
     }
 
     public void pressGefField10() throws Exception{

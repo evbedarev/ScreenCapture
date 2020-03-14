@@ -18,6 +18,11 @@ public class PropsForPress {
         this.imageList = imageList;
     }
 
+    public PropsForPress(String methodName, String pathFragment) {
+        this.methodName = methodName;
+        this.pathFragment = pathFragment;
+    }
+
     public PropsForPress() {
     }
 

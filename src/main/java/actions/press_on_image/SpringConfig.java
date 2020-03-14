@@ -1,7 +1,6 @@
 package actions.press_on_image;
 
-import actions.press_on_image.image_params.PropsForPress;
-import actions.press_on_image.image_params.PropsPressOk;
+import actions.press_on_image.image_params.*;
 import find_fragments.FindFragmentFiles;
 import main.Prop;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +29,7 @@ public class SpringConfig {
     @Bean
     public List<BufferedImage> pressNextList() throws IOException {
         return FindFragmentFiles.getInstance().fragments("frag", Prop.ROOT_DIR + "Interface\\Next\\");
-    }
+}
 
     @Bean
     public List<BufferedImage> pressCloseList() throws IOException {
@@ -47,6 +46,42 @@ public class SpringConfig {
         return new PropsPressOk(pressOkList());
     }
 
-//    @Bean
-//    public PropsForPress
+    @Bean
+    public PropsForPress pressNext() {
+        return new PressNextList();
+    }
+
+    @Bean
+    public PropsForPress pressNextWithScreenShot() throws IOException {
+        return new PressNextList(pressNextList());
+    }
+
+    @Bean
+    public PropsForPress pressReturnToLastSavepoint() {
+        return new PressReturnToLastSavepoint();
+    }
+    @Bean
+    public PropsForPress pressForOpenWarehouse() {
+        return new PropsForPress("PressForOpenWarehouse", Prop.ROOT_DIR + "Interface\\OpenWarehouse\\");
+    }
+    @Bean
+    public PropsForPress pressClose() {
+        return new PropsPressClose();
+    }
+    @Bean
+    public PropsForPress pressCloseWithScreenShot() throws IOException {
+        return new PropsPressClose(pressCloseList());
+    }
+    @Bean
+    public PropsForPress pressOnKafraTeleportButton() {
+        return new PropsForPress("PressOnKafraTeleportButton ",Prop.ROOT_DIR + "Interface\\KafraTeleport\\");
+    }
+    @Bean
+    public PropsForPress pressOnDownArrow() {
+        return new PropsForPress("PressOnDownArrow",Prop.ROOT_DIR + "Interface\\DownArrow\\");
+    }
+    @Bean
+    public PropsForPress pressCmdField07() {
+        return new PropsForPress("TeleportCmdField07",Prop.ROOT_DIR + "Interface\\TeleportCmdField07\\");
+    }
 }
