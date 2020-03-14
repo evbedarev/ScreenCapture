@@ -43,7 +43,7 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
     }
 
     public boolean checkBullets(BufferedImage image) {
-        if (image.getRGB(1370,880) != -1071757) {
+        if (image.getRGB(1370,880) == -1) {
             LoggerSingle.logInfo(this.getClass().toString(), "No bullets for shot, sleeping");
             return true;
         }
