@@ -14,8 +14,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class InterfaceActions {
@@ -25,7 +23,6 @@ public class InterfaceActions {
     private final Keys keys = Keys.getInstance();
     private final Mouse mouse;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
-    private static final FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
     private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
     private final PressOnImage pressOnImage = new PressOnImage();
     private InterfaceActions() throws AWTException {
@@ -155,23 +152,18 @@ public class InterfaceActions {
     public boolean goToCharSelect() throws Exception {
         for (int i = 0; i < 10; i++) {
             mouse.mouseMove(1,1);
-
             pressCharSelect();
             SleepTime.sleep(1000);
-
             if (check.checkInCharSelect()) {
                 LoggerSingle.logInfo("InterfaceActions", "in character select...");
                 return true;
             }
-
             if (!check.checkIsThereWing()) {
                 LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
                 SleepTime.loopSleep();
             }
-
             keys.keyPress(Prop.WING_KEY);
             SleepTime.sleep(4000);
-
         }
 
         LoggerSingle.logInfo("InterfaceActions", "Failed go to mode character select...");

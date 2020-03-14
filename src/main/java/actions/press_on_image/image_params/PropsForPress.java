@@ -1,8 +1,4 @@
 package actions.press_on_image.image_params;
-
-import actions.press_on_image.PressOnImage;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -25,34 +21,27 @@ public class PropsForPress {
 
     public PropsForPress() {
     }
-
     public int[] getArea() {
         return area;
     }
-
     public int getSleepTime() {
         return sleepTime;
     }
-
     public String getPathFragment() {
         return pathFragment;
     }
     public String getMethodName() {
         return methodName;
     }
-
     public void setScreenShot(BufferedImage screenShot) {
         this.screenShot = screenShot;
     }
-
     public List<BufferedImage> getImageList() {
         return imageList;
     }
-
     public BufferedImage getScreenShot() {
         return screenShot;
     }
-
     public int typeOfPressParams() {
         if (methodName != null && pathFragment != null && screenShot != null) {
             return 1;
