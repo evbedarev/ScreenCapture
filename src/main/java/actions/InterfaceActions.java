@@ -26,9 +26,6 @@ public class InterfaceActions {
     private final Mouse mouse;
     private final FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
     private static final FindFragmentFiles findFragmentFiles = FindFragmentFiles.getInstance();
-    private static List<BufferedImage> pressOkList = new ArrayList<>();
-    private static List<BufferedImage> pressNextList = new ArrayList<>();
-    private static List<BufferedImage> pressCloseList = new ArrayList<>();
     private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
     private final PressOnImage pressOnImage = new PressOnImage();
     private InterfaceActions() throws AWTException {
@@ -47,21 +44,12 @@ public class InterfaceActions {
         return instance;
     }
 
-    public void initialize() throws Exception {
-        pressOkList = findFragmentFiles.fragments("frag*",
-                Prop.ROOT_DIR + "Interface\\Ok\\");
-        pressNextList = findFragmentFiles.fragments("frag*",
-                Prop.ROOT_DIR + "Interface\\Next\\");
-        pressCloseList = findFragmentFiles.fragments("frag*",
-                Prop.ROOT_DIR + "Interface\\Close\\");
-    }
-
     PropsForPress getPropsForImagesWithScreenShot(BufferedImage screenShot, String nameBean) {
         PropsForPress propsForPress = context.getBean(nameBean, PropsForPress.class);
         propsForPress.setScreenShot(screenShot);
         return propsForPress;
-
     }
+
     public void pressOk() throws Exception {
         pressOnImage.press(context.getBean("pressOk", PropsForPress.class));
     }
@@ -100,7 +88,7 @@ public class InterfaceActions {
     }
 
     public boolean pressClose(BufferedImage screenShot) throws Exception{
-        return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressCloseWithScreenShot");
+        return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressCloseWithScreenShot"));
     }
 
     public void pressClose() throws Exception{
@@ -120,10 +108,7 @@ public class InterfaceActions {
     }
 
     public void pressGefField10() throws Exception{
-        pressOnImage.press(ALL_SCREEN,
-                2000,
-                Prop.ROOT_DIR + "Interface\\TeleportGefField10\\",
-                "TeleportGefField10");
+        pressOnImage.press(context.getBean("TeleportGefField10", PropsForPress.class));
     }
 
     public void openInventory() throws InterruptedException {
@@ -144,7 +129,6 @@ public class InterfaceActions {
             mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
         }
         SleepTime.sleep(1000);
-
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
@@ -161,15 +145,12 @@ public class InterfaceActions {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HoneyInKafra\\");
-        if (xy.isPresent()) {
-            mouse.mouseMove(xy.get()[0], xy.get()[1]);
-        }
+        xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
     }
 
     /**
      *  Go to mode character select.
      * @return true if success, else false
-     * @throws Exception
      */
     public boolean goToCharSelect() throws Exception {
         for (int i = 0; i < 10; i++) {
@@ -209,10 +190,7 @@ public class InterfaceActions {
             Thread.sleep(2000);
             keys.keyPress(KeyEvent.VK_ESCAPE);
         }
-        returnValue = pressOnImage.press(ALL_SCREEN,
-                1000,
-                Prop.ROOT_DIR + "Interface\\CharSelect\\",
-                "CharSelect");
+        returnValue = pressOnImage.press(context.getBean("pressCharSelect", PropsForPress.class));
         Thread.sleep(4000);
         return returnValue;
     }

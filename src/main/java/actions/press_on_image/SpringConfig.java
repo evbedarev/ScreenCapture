@@ -64,10 +64,12 @@ public class SpringConfig {
     public PropsForPress pressForOpenWarehouse() {
         return new PropsForPress("PressForOpenWarehouse", Prop.ROOT_DIR + "Interface\\OpenWarehouse\\");
     }
+
     @Bean
     public PropsForPress pressClose() {
         return new PropsPressClose();
     }
+
     @Bean
     public PropsForPress pressCloseWithScreenShot() throws IOException {
         return new PropsPressClose(pressCloseList());
@@ -83,5 +85,13 @@ public class SpringConfig {
     @Bean
     public PropsForPress pressCmdField07() {
         return new PropsForPress("TeleportCmdField07",Prop.ROOT_DIR + "Interface\\TeleportCmdField07\\");
+    }
+    @Bean
+    public PropsForPress pressGefField10() {
+        return new PropsForPress("TeleportGefField10",Prop.ROOT_DIR + "Interface\\TeleportGefField10\\");
+    }
+    @Bean
+    public PropsForPress pressCharSelect() {
+        return new PressCharSelect();
     }
 }
