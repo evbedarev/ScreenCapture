@@ -4,9 +4,12 @@ import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField07;
 import checks.location.YunField11;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static main.Prop.*;
 
 public class RouteYunField11 extends RouteModel {
 
@@ -33,7 +36,7 @@ public class RouteYunField11 extends RouteModel {
         System.out.println("on location");
         moveUp(new Route(new int[] {},  new int[] {0,50}));
 
-        verifyMap = new YunField07();
+        verifyMap = Prop.context.getBean(YunField07.class);
         while (!verifyMap.onDesiredLocation()) {
             mouse.mouseClick(600, 461);
             SleepTime.sleep(3000);

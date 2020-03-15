@@ -144,11 +144,9 @@ public abstract class LogicLocation extends Thread implements Logic {
     public BufferedImage takeScreenShot() {
         return capture.takeScreenShot();
     }
-
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;
     abstract void teleport() throws Exception;
-
     public LocationCheck getLocationCheck() {
         return locationCheck;
     }

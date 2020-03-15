@@ -2,14 +2,12 @@ package actions;
 
 import checks.CheckMsg;
 import checks.LocationCheck;
-import checks.location.Location;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.take_loot.TakeLoot;
 import main.Prop;
-import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -225,11 +223,9 @@ public class Actions {
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
         SleepTime.sleep(500);
         xy = findFragmentInImage.findImage(dirInventory);
-
         if (xy.isPresent()) {
             mouse.mouseClick(xy.get()[0], xy.get()[1]);
         }
-
         SleepTime.sleep(1000);
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
@@ -248,15 +244,12 @@ public class Actions {
     public void putItemToCart(String dirLoot, String dirCell) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
-
         SleepTime.sleep(1000);
-
         xy = findFragmentInImage.findImage(dirLoot);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0], xy.get()[1]);
             mouse.pressLeft();
         }
-
         xy = findFragmentInImage.findImage(dirCell);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0], xy.get()[1]);

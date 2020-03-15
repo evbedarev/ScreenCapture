@@ -5,9 +5,9 @@ import logic.Capture;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class CmdFiled04 extends Location {
+public class CmdField04 extends Location {
 
-    public CmdFiled04() throws AWTException {
+    public CmdField04() throws AWTException {
         capture = Capture.instance();
     }
 

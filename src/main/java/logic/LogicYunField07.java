@@ -1,17 +1,12 @@
 package logic;
 
-import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField07;
 import logic.attacks.AttackYun07;
-import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun07;
-import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
-
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,7 +17,7 @@ public class LogicYunField07 extends LogicLocation {
     public LogicYunField07() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun07();
-        locationCheck = new LocationCheck(new YunField07());
+        locationCheck = new LocationCheck(Prop.context.getBean(YunField07.class));
         lootAround.initialize(new HandYun07());
         killMonsterList = Stream
                 .of(new MonstersYun07())

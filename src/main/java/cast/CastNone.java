@@ -2,6 +2,7 @@ package cast;
 
 import actions.InterfaceActions;
 import actions.SleepTime;
+import checks.LocationCheck;
 import checks.location.CheckOverweight;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Mouse;
@@ -62,7 +63,7 @@ public class CastNone extends Cast {
                     LoggerSingle.logInfo(this.toString(), "Dropping YellowHerb");
                     actions.dropItem(Prop.ROOT_DIR + "Interface\\MarkerInventory\\1\\",
                             Prop.ROOT_DIR + "Loot\\YellowHerb\\");
-                    actions.teleport(Prop.locationCheck);
+                    actions.teleport(Prop.context.getBean("locationCheck", LocationCheck.class));
                 }
                 TIMER_CHECK_OVERWEIGHT.set(0);
             }

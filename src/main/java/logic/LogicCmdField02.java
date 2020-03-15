@@ -2,9 +2,8 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
-import checks.location.CmdFiled02;
+import checks.location.CmdField02;
 import logic.attacks.AttackCmdField02;
-import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Galapago;
 import logic.kill_monster.Seal;
@@ -26,7 +25,7 @@ public class LogicCmdField02 extends LogicLocation {
         attack = new AttackCmdField02();
         actions = Actions.instance();
         moveByCard = MoveByCard.getInstance(this,  new PointsCmdField02());
-        locationCheck = new LocationCheck(new CmdFiled02());
+        locationCheck = new LocationCheck(Prop.context.getBean(CmdField02.class));
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream

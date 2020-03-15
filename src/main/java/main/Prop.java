@@ -8,6 +8,8 @@ import checks.check_hp.*;
 import checks.location.*;
 import logic.*;
 import logic.take_loot.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,6 @@ import java.util.List;
  */
 public class Prop {
     /////////////////GLOBAL////////////////////
-    public static LocationCheck locationCheck;
     public static Logic logic;
     public static final boolean SUPER_PREMIUM = false;
     public static final boolean CHECK_DIE = true;
@@ -25,12 +26,12 @@ public class Prop {
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
+    public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
     public static void initialize() throws Exception {
         logic = new LogicCmdField02();
         cast = new CastGunslinger(0);
-        locationCheck = new LocationCheck(new CmdFiled02());
-        checkHitPoints = new CheckHpAndBulletsGuns(locationCheck);
+        checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
         initializeCharacter();
         cast.begin();

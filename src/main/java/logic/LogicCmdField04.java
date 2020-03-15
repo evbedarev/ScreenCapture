@@ -2,15 +2,12 @@ package logic;
 
 import actions.Actions;
 import checks.LocationCheck;
-import checks.location.CmdFiled04;
-import checks.location.GefField05;
+import checks.location.CmdField04;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.monstersOnLocation.MonstersCmdField04;
-import logic.kill_monster.monstersOnLocation.MonstersGef05;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsCmdField04;
-import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -31,7 +28,7 @@ public class LogicCmdField04 extends LogicLocation {
         attack = new AttackGef05();
         actions = Actions.instance();
         moveByCard = MoveByCard.getInstance(this,  new PointsCmdField04());
-        locationCheck = new LocationCheck(new CmdFiled04());
+        locationCheck = new LocationCheck(new CmdField04());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream
