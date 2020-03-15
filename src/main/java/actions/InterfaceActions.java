@@ -4,7 +4,6 @@ import actions.press_on_image.PressOnImage;
 import actions.press_on_image.SpringConfig;
 import actions.press_on_image.image_params.PropsForPress;
 import checks.Check;
-import find_fragments.FindFragmentFiles;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;

@@ -21,10 +21,10 @@ public class PressOnImage {
         Optional<int[]> xy = Optional.empty();
         findFragmentInImage.setScreen(props.getArea());
         if (props.typeOfPressParams() == 3)
-           xy = findFragmentInImage.findImage(props.getPathFragment());
+            xy = findFragmentInImage.findImage(props.getPathFragment());
         else if (props.typeOfPressParams() == 1)
             xy = findFragmentInImage.findImage(props.getScreenShot(),
-                                               props.getPathFragment());
+                    props.getPathFragment());
         else if (props.typeOfPressParams() == 2)
             xy = findFragmentInImage.findImage(props.getScreenShot(),
                     props.getImageList());

@@ -31,6 +31,7 @@ public class Monster implements KillMonster {
     private static boolean attackBySpell = false;
 
 
+
     public Monster() throws AWTException {
         capture = Capture.instance();
         mouse = Mouse.getInstance();

@@ -1,5 +1,7 @@
 package actions;
 
+import actions.press_on_image.actions_spring.ActionConfigSpring;
+import actions.press_on_image.actions_spring.StepAside;
 import checks.CheckMsg;
 import checks.LocationCheck;
 import find_image.FindFragmentInImage;
@@ -8,6 +10,7 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.take_loot.TakeLoot;
 import main.Prop;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -25,6 +28,8 @@ public class Actions {
     private InterfaceActions interfaceActions;
     private static int REPEAT_LOOT = 0;
     private static int REPEAT_USEFUL_LOOT = 0;
+    private AnnotationConfigApplicationContext actionContext = new AnnotationConfigApplicationContext(ActionConfigSpring.class);
+    private StepAside stepAside = actionContext.getBean(StepAside.class);
 
     private Actions() throws AWTException {
         mouse = Mouse.getInstance();
@@ -123,65 +128,15 @@ public class Actions {
     }
 
     public void stepAside(int[] radiuses) throws Exception {
-        double t = 2 * Math.PI * Math.random();
-        double minRadius = radiuses[0];
-        double maxRadius = radiuses[1];
-
-        double x = minRadius * Math.cos(t);
-        double x1 = maxRadius * Math.cos(t);
-
-        double mediumX = x + Math.random()*(x1 - x);
-        double mediumR = mediumX/Math.cos(t);
-        double mediumY = mediumR * Math.sin(t);
-
-        mouse.mouseClick(800 + (int) Math.round(mediumX),
-                450 + (int) Math.round(mediumY));
-        SleepTime.sleep(300);
-        LoggerSingle.logInfo(this.toString(), "Step aside without Location check");
+        stepAside.stepAsideSimple();
     }
 
-
-
     public void stepAside(LocationCheck locationCheck, int[] radiuses) throws Exception {
-//        locationCheck.locationCheck();
-        double t = 2 * Math.PI * Math.random();
-        double minRadius = radiuses[0];
-        double maxRadius = radiuses[1];
-
-        double x = minRadius * Math.cos(t);
-        double x1 = maxRadius * Math.cos(t);
-
-        double mediumX = x + Math.random()*(x1 - x);
-        double mediumR = mediumX/Math.cos(t);
-        double mediumY = mediumR * Math.sin(t);
-
-        mouse.mouseClick(800 + (int) Math.round(mediumX),
-                450 + (int) Math.round(mediumY));
-        SleepTime.sleep(300);
-//        locationCheck.locationCheck();
-        LoggerSingle.logInfo(this.toString(), "Step aside with Location check");
+        stepAside.stepAsideSimple();
     }
 
     public Optional<int[]> stepAside(LocationCheck locationCheck, int[] radiuses, boolean needCoords) throws Exception {
-        Optional<int[]> xy;
-        locationCheck.locationCheck();
-        double t = 2 * Math.PI * Math.random();
-        double minRadius = radiuses[0];
-        double maxRadius = radiuses[1];
-
-        double x = minRadius * Math.cos(t);
-        double x1 = maxRadius * Math.cos(t);
-
-        double mediumX = x + Math.random()*(x1 - x);
-        double mediumR = mediumX/Math.cos(t);
-        double mediumY = mediumR * Math.sin(t);
-
-        xy = Optional.of(new int[] {800 + (int) Math.round(mediumX),450 + (int) Math.round(mediumY)});
-        mouse.mouseClick(xy.get()[0], xy.get()[1]);
-
-        SleepTime.sleep(300);
-        locationCheck.locationCheck();
-        return xy;
+        return stepAside.stepAside(locationCheck, radiuses, needCoords);
     }
 
     public void pickUpLoot(LocationCheck locationCheck) throws Exception {
