@@ -10,8 +10,16 @@ import java.util.*;
 import java.util.List;
 
 public class FindPixels implements FindPixelsInImage {
-    final Logger logger = Logger.getLogger(this.getClass());
+//    final Logger logger = Logger.getLogger(this.getClass());
     static Capture capture;
+    BufferedImage screenShot;
+    static {
+        try {
+            capture = Capture.instance();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Ищет изображение по пикселям на картинке
@@ -57,8 +65,6 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
-        capture = Capture.instance();
         for (int i=0; i < 2; i++) {
             screenShot = capture.takeScreenShot();
             xy = findPixelsInImageInArea(
@@ -86,8 +92,6 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
-        capture = Capture.instance();
         for (int i=0; i < 2; i++) {
             screenShot = capture.takeScreenShot();
             xy = findPixelsInImageInArea(
@@ -138,10 +142,7 @@ public class FindPixels implements FindPixelsInImage {
                 }
 
                 if (screenShot.getRGB(x, y) == mainRgb) {
-//                    logger.debug( " coordinates is " + x + ',' + y );
-
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
-//                        logger.debug("Find rgb " + mainRgb + " coordinates is " + x + ',' + y);
                         return Optional.of(new int[] {x, y});
                     }
                 }
@@ -156,8 +157,6 @@ public class FindPixels implements FindPixelsInImage {
                                                  int[] ancillaryRgb,
                                                  int[] coordsArea) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        BufferedImage screenShot;
-        capture = Capture.instance();
         for (int i=0; i < 4; i++) {
             screenShot = capture.takeScreenShot();
             xy = findPixelsInImageInArea(screenShot,
@@ -306,7 +305,6 @@ public class FindPixels implements FindPixelsInImage {
             int[] subImgCoord,
             int[] ancillaryRgb,
             int[] excludeArea) {
-
         List<int[]> listCoords = new ArrayList<>();
         for (int y = 0; y < screenShot.getHeight(); y++) {
             for (int x = 0; x < screenShot.getWidth(); x++) {
