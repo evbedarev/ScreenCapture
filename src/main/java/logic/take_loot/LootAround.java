@@ -5,7 +5,7 @@ import checks.check_hp.CheckHP;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.RgbParameter;
 import logic.hands_rgb.Hands;
 import main.Prop;

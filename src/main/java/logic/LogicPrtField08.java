@@ -11,8 +11,8 @@ import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
 import logic.move_by_card.PointsPrtField08;
+import logic.screen_shot.Capture;
 import logic.take_loot.*;
 import main.Prop;
 

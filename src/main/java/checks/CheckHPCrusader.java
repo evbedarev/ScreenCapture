@@ -6,7 +6,7 @@ import checks.afterDeath.AfterDeath;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 
 import java.awt.*;

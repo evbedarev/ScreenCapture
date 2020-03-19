@@ -5,7 +5,7 @@
 //import find_image.FindImageHard;
 //import key_and_mouse.Keys;
 //import key_and_mouse.Mouse;
-//import logic.Capture;
+//import logic.screen_shot.Capture;
 //import logic.kill_monster.KillMonster;
 //import main.Prop;
 //import main.Settings;

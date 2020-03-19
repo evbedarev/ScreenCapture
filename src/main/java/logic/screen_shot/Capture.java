@@ -1,4 +1,4 @@
-package logic;
+package logic.screen_shot;
 
 import main.Prop;
 import storage_image.StorageImage;
@@ -44,6 +44,4 @@ public class Capture {
         }
         return  instance;
     }
-
-
 }

@@ -1,6 +1,6 @@
 package checks.location;
 
-import logic.Capture;
+import logic.screen_shot.Capture;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

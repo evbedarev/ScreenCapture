@@ -6,7 +6,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.RgbParameter;
 import main.Prop;
 

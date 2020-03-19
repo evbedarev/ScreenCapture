@@ -2,10 +2,9 @@ package checks;
 
 import actions.SleepTime;
 import email.MsgFromPlayer;
-import email.MsgLocationChanged;
 import email.SendMessage;
 import find_image.FindPixels;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import org.apache.log4j.Logger;
 
 import java.awt.*;

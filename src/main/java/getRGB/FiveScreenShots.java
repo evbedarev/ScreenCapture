@@ -1,7 +1,7 @@
 package getRGB;
 
 import actions.SleepTime;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 import storage_image.StorageImageFile;
 

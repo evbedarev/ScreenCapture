@@ -1,4 +1,4 @@
-import logic.Capture;
+import logic.screen_shot.Capture;
 import org.junit.Before;
 import org.junit.Test;
 import storage_image.StorageImageFile;

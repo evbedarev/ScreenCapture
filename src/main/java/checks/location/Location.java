@@ -1,7 +1,7 @@
 package checks.location;
 
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 
 import java.awt.image.BufferedImage;
 import java.util.function.Function;

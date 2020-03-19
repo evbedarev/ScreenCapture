@@ -10,7 +10,7 @@ import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.move_by_card.MoveByCard;
 import main.Prop;
 import storage_image.StorageImageFile;

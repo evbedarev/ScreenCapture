@@ -1,7 +1,7 @@
 package checks;
 
 import find_image.FindPixels;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.RgbParameter;
 
 import java.awt.*;

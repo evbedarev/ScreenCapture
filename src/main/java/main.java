@@ -3,7 +3,7 @@
 //import find_image.FindImageHard;
 //import key_and_mouse.Keys;
 //import key_and_mouse.Mouse;
-//import logic.Capture;
+//import logic.screen_shot.Capture;
 //import storage_image.StorageImage;
 //import storage_image.StorageImageFile;
 //

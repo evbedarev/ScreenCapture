@@ -2,7 +2,7 @@ package getRGB;
 
 import actions.SleepTime;
 import find_image.FindPixels;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 

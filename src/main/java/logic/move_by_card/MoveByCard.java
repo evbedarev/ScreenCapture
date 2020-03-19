@@ -9,16 +9,13 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.LogicLocation;
 import logic.RgbParameter;
-import logic.kill_monster.Human;
 import logic.kill_monster.KillMonster;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.BufferOverflowException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

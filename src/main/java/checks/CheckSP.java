@@ -2,7 +2,7 @@ package checks;
 
 import actions.Actions;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 
 import java.awt.*;

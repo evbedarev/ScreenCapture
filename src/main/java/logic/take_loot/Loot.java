@@ -6,7 +6,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.RgbParameter;
 
 import java.awt.*;
@@ -22,7 +22,7 @@ public class Loot implements TakeLoot {
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
-    LootAround lootAround = LootAround.getInstance();
+//    LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
         capture = Capture.instance();

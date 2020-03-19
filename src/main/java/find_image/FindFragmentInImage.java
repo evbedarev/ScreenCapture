@@ -1,7 +1,7 @@
 package find_image;
 
 import find_fragments.FindFragmentFiles;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;

@@ -6,7 +6,7 @@ import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;

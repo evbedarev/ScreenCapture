@@ -1,7 +1,6 @@
 package find_image;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
-import org.apache.log4j.Logger;
 import static java.lang.Math.abs;
 
 import java.awt.*;

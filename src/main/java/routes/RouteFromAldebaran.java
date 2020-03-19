@@ -3,7 +3,7 @@ package routes;
 import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

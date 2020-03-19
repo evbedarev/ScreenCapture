@@ -15,9 +15,8 @@ import logic.kill_monster.GreenPlant;
 import logic.kill_monster.ShiningPlant;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsHerbLocation1;
+import logic.screen_shot.Capture;
 import logic.take_loot.BlueHerb;
-import logic.take_loot.Card;
-import logic.take_loot.Coupon;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 

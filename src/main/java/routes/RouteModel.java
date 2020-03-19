@@ -7,7 +7,7 @@ import checks.location.VerifyMap;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 
 import java.awt.*;

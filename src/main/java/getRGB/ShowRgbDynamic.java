@@ -2,8 +2,7 @@ package getRGB;
 
 import actions.SleepTime;
 import find_image.FindPixels;
-import logger.LoggerSingle;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import logic.RgbParameter;
 
 import java.awt.*;

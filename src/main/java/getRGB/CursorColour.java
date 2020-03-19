@@ -2,7 +2,7 @@ package getRGB;
 
 import actions.SleepTime;
 import key_and_mouse.Mouse;
-import logic.Capture;
+import logic.screen_shot.Capture;
 
 import java.awt.image.BufferedImage;
 

@@ -5,7 +5,7 @@ import actions.SleepTime;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.Capture;
+import logic.screen_shot.Capture;
 import main.Prop;
 import org.apache.log4j.Logger;
 import java.awt.*;
