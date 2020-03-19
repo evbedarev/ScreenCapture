@@ -11,6 +11,7 @@ import logic.attacks.Attack;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
@@ -143,7 +144,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     public BufferedImage takeScreenShot() {
-        return capture.takeScreenShot();
+        return Prop.context.getBean(ScreenShotStack.class).pop();
     }
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;

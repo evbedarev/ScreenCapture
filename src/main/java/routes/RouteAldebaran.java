@@ -6,6 +6,8 @@ import checks.location.Aldebaran;
 import checks.location.YunField01;
 import checks.location.YunField07;
 import checks.location.YunField11;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,14 +20,14 @@ public class RouteAldebaran extends RouteModel {
 
     public void tpUntil() throws Exception {
         LocationCheck locationCheck = new LocationCheck(new Aldebaran());
-        BufferedImage screenshot = capture.takeScreenShot();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
         boolean Location1 = checkLocationTP(screenshot, new int[] {1507,1517,57,62});
 
         while (!Location1) {
             locationCheck.locationCheck();
             actions.teleport();
             SleepTime.sleep(2000);
-            screenshot = capture.takeScreenShot();
+            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             Location1 = checkLocationTP(screenshot, new int[] {1490,1500,93,121});
         }
 

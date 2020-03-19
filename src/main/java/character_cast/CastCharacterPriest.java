@@ -3,6 +3,7 @@ package character_cast;
 import find_image.FindPixels;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -88,7 +89,7 @@ public class CastCharacterPriest extends CastCharacter {
         Optional<int[]> cachedXY = Optional.empty();
 
 
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         for (RgbParameter parameter: Prop.charRgb) {
             Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(image,
                     parameter.getMainRgb(),

@@ -7,6 +7,7 @@ import checks.afterDeath.*;
 import checks.check_hp.*;
 import checks.location.*;
 import logic.*;
+import logic.screen_shot.TakeScreenShotThread;
 import logic.take_loot.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class Prop {
     /////////////////GLOBAL////////////////////
     public static Logic logic;
+    public static TakeScreenShotThread takeScreenShotThread;
     public static final boolean SUPER_PREMIUM = false;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathYun04();

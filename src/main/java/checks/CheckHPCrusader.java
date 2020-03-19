@@ -7,6 +7,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -52,7 +53,7 @@ public class CheckHPCrusader {
         if (!checkHp)
             return;
         checkSilence();
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
 
         if (checkHptoRun(image)) {
             locationCheck.locationCheck();
@@ -68,7 +69,7 @@ public class CheckHPCrusader {
                 SleepTime.sleep(2000);
                 actions.heal();
                 SleepTime.sleep(1000);
-                image = capture.takeScreenShot();
+                image = Prop.context.getBean(ScreenShotStack.class).pop();
             }
         }
 
@@ -94,14 +95,14 @@ public class CheckHPCrusader {
     }
 
     private void needHeal() throws Exception{
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             actions.heal();
         }
     }
 
     private void checkSilence() throws InterruptedException {
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         if (image.getRGB(790,332) == -1) {
             keys.keyPress(KeyEvent.VK_F4);
         }

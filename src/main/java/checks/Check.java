@@ -6,6 +6,7 @@ import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import org.apache.log4j.Logger;
 import java.awt.*;
@@ -63,8 +64,7 @@ public class Check {
      * @throws AWTException
      */
     public boolean checkIsThereWing() throws AWTException {
-        Capture capture = Capture.instance();
-        BufferedImage screenShot = capture.takeScreenShot();
+        BufferedImage screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
         return screenShot.getRGB(1340, 881) != -1;
     }
 

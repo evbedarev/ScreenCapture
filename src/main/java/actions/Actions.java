@@ -169,8 +169,6 @@ public class Actions {
             slide();
     }
 
-
-
     public void dropItem(String dirInventory, String dirLoot) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
@@ -222,12 +220,11 @@ public class Actions {
     }
 
     private void slide() throws InterruptedException {
-//        int x =(int) (Math.random() * 1600);
-//        mouse.pressRight();
-//        SleepTime.sleep(50);
-//        mouse.mouseMove(x, 540);
-//        SleepTime.sleep(50);
-//        mouse.releaseRight();
+        int x =(int) (Math.random() * 1600);
+        mouse.pressRight();
+        SleepTime.sleep(50);
+        mouse.mouseMove(x, 540);
+        SleepTime.sleep(50);
+        mouse.releaseRight();
     }
-
 }

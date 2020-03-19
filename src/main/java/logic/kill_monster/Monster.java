@@ -11,6 +11,9 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -43,7 +46,7 @@ public class Monster implements KillMonster {
     @Override
     public boolean kill() throws Exception {
         for (int i = 0; i < 2; i++) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
             if (findAndKill(image)) return true;
         }
         return false;
@@ -121,7 +124,7 @@ public class Monster implements KillMonster {
                 int x = xy.get()[0];
                 int y = xy.get()[1];
                 action(x, y);
-                BufferedImage image = capture.takeScreenShot();
+                BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[] {600, 800});
                 }
@@ -170,7 +173,7 @@ public class Monster implements KillMonster {
     @Override
     public boolean killArround() throws Exception {
         for (int i = 0; i < 2; i++) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
             if (findAndKillAround(image)) return true;
         }
         return false;
@@ -197,7 +200,7 @@ public class Monster implements KillMonster {
 //                if (attackBySpell)
 //                    mouse.mouseClick(x + 5, y + 10);
                 if (rndInt < 1000) {
-                    BufferedImage image = capture.takeScreenShot();
+                    BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
                     if (checkDialogWindow(image)) {
                         actions.stepAside(new int[]{600, 800});
                     }
@@ -264,7 +267,7 @@ public class Monster implements KillMonster {
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
         while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
-            image = capture.takeScreenShot();
+            image = Prop.context.getBean(ScreenShotStack.class).pop();
             mouse.mouseMove(0,0);
             SleepTime.sleep(500);
             LoggerSingle.logInfo(this.toString(), "In dialog");

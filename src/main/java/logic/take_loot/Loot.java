@@ -8,6 +8,8 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -97,7 +99,7 @@ public class Loot implements TakeLoot {
     @Override
     public void pickUp(BufferedImage screenShot) throws Exception {
         while (takeLoot(screenShot)) {
-            screenShot = capture.takeScreenShot();
+            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             SleepTime.sleep(1000);
             checkHP.checkHp();
         }

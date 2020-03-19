@@ -1,9 +1,11 @@
 package logic.screen_shot;
 
+import main.Prop;
+
 import java.awt.*;
 
 public class TakeScreenShotThread extends Thread{
-    private ScreenShotStack screenShotStack = new ScreenShotStack();
+    private ScreenShotStack screenShotStack = Prop.context.getBean(ScreenShotStack.class);
     private Capture capture = Capture.instance();
 
     public TakeScreenShotThread() throws AWTException {

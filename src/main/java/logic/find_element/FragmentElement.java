@@ -43,7 +43,7 @@
 //
 //    @Override
 //    public boolean kill() throws Exception {
-//        BufferedImage screenShot = capture.takeScreenShot();
+//        BufferedImage screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
 //        return findAndKill(screenShot);
 //    }
 //

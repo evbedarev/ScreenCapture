@@ -4,6 +4,8 @@ import actions.SleepTime;
 import find_image.FindPixels;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +23,7 @@ public class ShowRgbDynamic {
         SleepTime.sleep(5000);
 
         while (true) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
             System.out.println("First rgb is " + image.getRGB(xy[0], xy[1]));
 //            System.out.println("Second rgb is " + image.getRGB(xy1[0], xy1[1]));
 
@@ -41,7 +43,7 @@ public class ShowRgbDynamic {
 
         Capture capture = Capture.instance();
         for (RgbParameter parameter: rgbParameterList) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     image,
                     parameter.getMainRgb(),

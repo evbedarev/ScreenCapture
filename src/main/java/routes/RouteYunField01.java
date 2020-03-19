@@ -3,6 +3,8 @@ import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.YunField01;
 import checks.location.YunField12;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,12 +18,12 @@ public class RouteYunField01 extends RouteModel{
 
     public void tpUntil() throws Exception {
         LocationCheck locationCheck = new LocationCheck(new YunField01());
-        BufferedImage screenshot = capture.takeScreenShot();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             while (!checkLocationTP(screenshot, new int[] {1473,1486,78,89})) {
             locationCheck.locationCheck();
             actions.teleport();
             SleepTime.sleep(1000);
-            screenshot = capture.takeScreenShot();
+            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             if (checkDie.check()) break;
         }
 

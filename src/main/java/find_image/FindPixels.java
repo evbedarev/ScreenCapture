@@ -1,5 +1,6 @@
 package find_image;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import static java.lang.Math.abs;
 
@@ -65,7 +66,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
         for (int i=0; i < 2; i++) {
-            screenShot = capture.takeScreenShot();
+            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
                     mainRgb,
@@ -92,7 +93,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
         for (int i=0; i < 2; i++) {
-            screenShot = capture.takeScreenShot();
+            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
                     mainRgb,
@@ -157,7 +158,7 @@ public class FindPixels implements FindPixelsInImage {
                                                  int[] coordsArea) throws AWTException {
         Optional<int[]> xy = Optional.empty();
         for (int i=0; i < 4; i++) {
-            screenShot = capture.takeScreenShot();
+            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             xy = findPixelsInImageInArea(screenShot,
                                         mainRgb,
                                         subImgCoord,

@@ -3,6 +3,7 @@ package checks.check_hp;
 import actions.SleepTime;
 import checks.LocationCheck;
 import logic.move_by_card.MoveByCard;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -49,7 +50,7 @@ public class CheckHpMS extends CheckHpByClass {
 
     @Override
     void needHeal() throws Exception{
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             keys.keyPress(KeyEvent.VK_F3);
         }

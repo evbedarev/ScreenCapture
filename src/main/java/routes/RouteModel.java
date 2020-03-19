@@ -8,6 +8,7 @@ import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -123,11 +124,11 @@ public abstract class RouteModel implements RouteToLocation {
     public abstract void tpUntil() throws Exception;
 
     private void moveByX(Route route, int[] clickXy) throws Exception {
-        BufferedImage screenshot = capture.takeScreenShot();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
         while (!checkLocationX(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             SleepTime.sleep(500);
-            screenshot = capture.takeScreenShot();
+            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             if (checkCount()) {
                 break;
             }
@@ -140,11 +141,11 @@ public abstract class RouteModel implements RouteToLocation {
     }
 
     private void moveByY(Route route, int[] clickXy) throws Exception{
-        BufferedImage screenshot = capture.takeScreenShot();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
         while (!checkLocationY(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             SleepTime.sleep(500);
-            screenshot = capture.takeScreenShot();
+            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             if (checkCount()) {
                 break;
             }

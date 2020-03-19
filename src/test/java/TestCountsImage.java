@@ -1,5 +1,7 @@
 import find_image.FindPixels;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,7 +12,7 @@ public class TestCountsImage {
         final FindPixels findImageHard = new FindPixels();
         BufferedImage screenShot;
         Capture capture = Capture.instance();
-        screenShot = capture.takeScreenShot();
+        screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
         Thread.sleep(3000);
         Optional<Integer> someInt = findImageHard.findCountsFragmentsInImageInArea(
                 screenShot,

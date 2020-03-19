@@ -7,6 +7,7 @@ import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -55,12 +56,12 @@ public abstract class CheckDie implements AfterDeath {
         keys = Keys.getInstance();
         if (!Prop.CHECK_DIE) return false;
         if (checkDeathLabel()) return true;
-        image = capture.takeScreenShot();
+        image = Prop.context.getBean(ScreenShotStack.class).pop();
         if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP_DEATH) {
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
-                image = capture.takeScreenShot();
+                image = Prop.context.getBean(ScreenShotStack.class).pop();
                 if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP_DEATH) return false;
             }
             return true;
@@ -77,7 +78,7 @@ public abstract class CheckDie implements AfterDeath {
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
-                image = capture.takeScreenShot();
+                image = Prop.context.getBean(ScreenShotStack.class).pop();
                 if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) != Prop.RGB_HP_DEATH) return false;
             }
             return true;

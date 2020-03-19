@@ -9,6 +9,7 @@ public class start {
     public static void main(String[] args) throws Exception {
         SleepTime.sleep(5000);
         Prop.initialize();
+        Prop.takeScreenShotThread.start();
         Prop.logic.createThread();
     }
 }

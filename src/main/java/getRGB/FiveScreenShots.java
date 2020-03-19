@@ -2,6 +2,7 @@ package getRGB;
 
 import actions.SleepTime;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import storage_image.StorageImageFile;
 
@@ -17,7 +18,7 @@ public class FiveScreenShots {
         Capture capture = Capture.instance();
         SleepTime.sleep(5000);
         for (int i = 0; i < COUNT_SCREENSHOTS; i++) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
            storageImageFile.save(image, PATH_TO_SAVE + "fragment" + i + ".png");
            SleepTime.sleep(1000);
         }

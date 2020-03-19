@@ -3,6 +3,8 @@ package checks;
 import find_image.FindPixels;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -40,7 +42,7 @@ public class CheckSitDown {
         }
 
         for (RgbParameter parameter: rgbParameterList) {
-            BufferedImage image = capture.takeScreenShot();
+            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     image,
                     parameter.getMainRgb(),

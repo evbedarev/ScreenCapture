@@ -4,6 +4,9 @@ import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -88,9 +91,9 @@ public class RouteFromAldebaran {
             int count = 0;
             mouse.mouseClick(route.coordsToMove[0], route.coordsToMove[1]);
 //            SleepTime.sleep(route.getSleepTime());
-//            BufferedImage screenshot = capture.takeScreenShot();
+//            BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
 //            while (!checkLocation(screenshot, route)) {
-//                screenshot = capture.takeScreenShot();
+//                screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
 //                if (count > 40) break;
 //                SleepTime.sleep(500);
 //                System.out.println(count);
@@ -113,11 +116,11 @@ public class RouteFromAldebaran {
         for (Route route: routes) {
             int count = 0;
 //            SleepTime.sleep(route.getSleepTime());
-            BufferedImage screenshot = capture.takeScreenShot();
+            BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             while (!checkLocation(screenshot, route)) {
                 mouse.mouseClick(790, 520);
 //                SleepTime.sleep(200);
-                screenshot = capture.takeScreenShot();
+                screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
 //                System.out.println(count);
                 count++;
             }

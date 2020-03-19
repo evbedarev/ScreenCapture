@@ -4,6 +4,8 @@ import checks.LocationCheck;
 import checks.location.GefField10;
 import checks.location.GefField11;
 import logger.LoggerSingle;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,13 +19,13 @@ public class RouteGefField10 extends RouteModel{
 
     public void tpUntil() throws Exception {
         LocationCheck locationCheck = new LocationCheck(new GefField10());
-        BufferedImage screenshot = capture.takeScreenShot();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
 
         while (!checkLocationTP(screenshot, new int[] {1478,1492,134,146})) {
             locationCheck.locationCheck();
             actions.teleport();
             SleepTime.sleep(1000);
-            screenshot = capture.takeScreenShot();
+            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
             if (checkDie.check()) break;
         }
 

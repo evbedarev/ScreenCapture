@@ -1,6 +1,8 @@
 package getRGB;
 
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
+import main.Prop;
 import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 
@@ -47,7 +49,7 @@ public class ForRoute {
 
     public static void showRGB(int[] xy) throws Exception {
         Capture capture = Capture.instance();
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         System.out.println(image.getRGB(xy[0], xy[1]));
 
     }

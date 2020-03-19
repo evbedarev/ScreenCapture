@@ -8,6 +8,7 @@ import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -37,7 +38,7 @@ public class Character implements Characters {
 
         LoggerSingle.logDebug(this.toString(), "Finding character ");
 
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         for (RgbParameter parameter: Prop.charRgb) {
             Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(image,
                             parameter.getMainRgb(),

@@ -3,6 +3,7 @@ package checks.check_hp;
 import actions.SleepTime;
 import checks.LocationCheck;
 import logger.LoggerSingle;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ public class CheckHpStalker extends CheckHpByClass {
 
     @Override
     public void checkHp() throws Exception {
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         checkSilenceStatus();
         if (checkHptoRun(image)) {
             /* TEST */
@@ -45,7 +46,7 @@ public class CheckHpStalker extends CheckHpByClass {
                 SleepTime.sleep(1000);
                 actions.heal();
 //                checkSP.regenSP();
-                image = capture.takeScreenShot();
+                image = Prop.context.getBean(ScreenShotStack.class).pop();
             }
         }
         if (Prop.NEED_HEAL) {
@@ -78,7 +79,7 @@ public class CheckHpStalker extends CheckHpByClass {
                 }
                 SleepTime.sleep(1000);
                 actions.heal();
-                image = capture.takeScreenShot();
+                image = Prop.context.getBean(ScreenShotStack.class).pop();
             }
         }
         if (Prop.NEED_HEAL) {

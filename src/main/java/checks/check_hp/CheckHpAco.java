@@ -34,7 +34,7 @@ public class CheckHpAco extends CheckHpByClass {
     }
 
     public void checkHp(BufferedImage image) throws Exception {
-//        BufferedImage image = capture.takeScreenShot();
+//        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
 //        if (checkHptoRun(image)) {
 //            date = new Date();
 //            storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");

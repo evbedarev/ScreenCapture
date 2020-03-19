@@ -12,6 +12,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.screen_shot.Capture;
 import logic.move_by_card.MoveByCard;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import storage_image.StorageImageFile;
 
@@ -62,7 +63,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     }
 
     void needHeal() throws Exception{
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             actions.heal();
         }

@@ -8,6 +8,7 @@ import logger.LoggerSingle;
 import logic.screen_shot.Capture;
 import logic.RgbParameter;
 import logic.hands_rgb.Hands;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -72,7 +73,7 @@ public class LootAround implements TakeLoot {
 
     private void checkHand(int x, int y) throws Exception {
         BufferedImage bufferedImage;
-        bufferedImage = capture.takeScreenShot();
+        bufferedImage = Prop.context.getBean(ScreenShotStack.class).pop();
 //        LoggerSingle.logInfo();
         System.out.println(bufferedImage.getRGB(x + 1, y + 1));
         if (bufferedImage.getRGB(x + 1, y + 1) > -2000000) {

@@ -13,6 +13,7 @@ import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsPrtField08;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import logic.take_loot.*;
 import main.Prop;
 
@@ -99,7 +100,7 @@ public class LogicPrtField08 extends LogicLocation {
     private Optional<int[]> takeCoordsFromMap() throws Exception {
         FindPixels findImageHard = new FindPixels();
         Capture capture = Capture.instance();
-        BufferedImage screenShot = capture.takeScreenShot();
+        BufferedImage screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

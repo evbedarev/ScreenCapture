@@ -3,6 +3,7 @@ package checks;
 import actions.Actions;
 import logger.LoggerSingle;
 import logic.screen_shot.Capture;
+import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 
 import java.awt.*;
@@ -39,13 +40,13 @@ public class CheckSP {
     }
 
     public boolean enoghtSP() {
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         enoughSP = image.getRGB(Prop.X_SP, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
     private boolean regenerateSP() {
-        BufferedImage image = capture.takeScreenShot();
+        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
         enoughSP = image.getRGB(Prop.X_SP_ENOUGHT, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
