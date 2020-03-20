@@ -15,7 +15,7 @@ public class StepAside {
     private Mouse mouse = Mouse.getInstance();
     private List<int[]> stepAsideList = new ArrayList<>();
     private int i = 0;
-    private int[] radius = new int[]{600, 800};
+    private int[] radius = new int[]{80, 80};
 
     public StepAside() throws AWTException {
     }

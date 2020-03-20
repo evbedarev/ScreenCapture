@@ -92,7 +92,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        for (int i=0; i < 2; i++) {
+//        for (int i=0; i < 2; i++) {
             screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
@@ -102,7 +102,7 @@ public class FindPixels implements FindPixelsInImage {
                     new int[] {600, 1000, 300, 600}
             );
             if (xy.isPresent()) return xy;
-        }
+//        }
         return xy;
     }
 
@@ -186,7 +186,7 @@ public class FindPixels implements FindPixelsInImage {
         return listCoords.get(0);
     }
 
-    /**
+    /*
      * @param screenshot - снимок экрана
      * @param xy - 2 координаты точки вокруг которой надо вырезать изображение
      * @param subImgCoord - половина ширины и высоты вырезаемого участка.

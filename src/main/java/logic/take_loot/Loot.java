@@ -1,5 +1,6 @@
 package logic.take_loot;
 
+import actions.Actions;
 import actions.SleepTime;
 import checks.check_hp.CheckHP;
 import find_image.FindPixels;
@@ -19,15 +20,14 @@ import java.util.Optional;
 
 public class Loot implements TakeLoot {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
-    Capture capture;
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
+    private Actions actions = Actions.instance();
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
 //    LootAround lootAround = LootAround.getInstance();
 
     public Loot() throws AWTException {
-        capture = Capture.instance();
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
     }
@@ -90,10 +90,13 @@ public class Loot implements TakeLoot {
 
     @Override
     public void pickUp() throws Exception {
+        int repeat = 0;
         while (take()) {
             SleepTime.sleep(1000);
-            checkHP.checkHp();
+            if (repeat++ % 4 == 0)
+                actions.stepAside(new int[] {75, 150} );
         }
+        checkHP.checkHp();
     }
 
     @Override
@@ -101,7 +104,7 @@ public class Loot implements TakeLoot {
         while (takeLoot(screenShot)) {
             screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
             SleepTime.sleep(1000);
-            checkHP.checkHp();
         }
+        checkHP.checkHp();
     }
 }

@@ -148,8 +148,9 @@ public class Actions {
             for (TakeLoot takeLoot : loot) {
                 takeLoot.pickUp();
             }
-            if (REPEAT_LOOT++ % 4 == 0)
-                slide();
+//            if (REPEAT_LOOT++ % 4 == 0)
+//                stepAside(locationCheck, new int[] {75, 150} );
+////                slide();
         }
     }
 
@@ -157,16 +158,16 @@ public class Actions {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp();
         }
-        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
-            slide();
+//        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
+//            slide();
     }
 
     public void pickUpCard(BufferedImage screenShot) throws Exception {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp(screenShot);
         }
-        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
-            slide();
+//        if (REPEAT_USEFUL_LOOT++ % 4 == 0)
+//            slide();
     }
 
     public void dropItem(String dirInventory, String dirLoot) throws Exception {

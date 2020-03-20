@@ -31,6 +31,7 @@ public class Prop {
     public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
     public static void initialize() throws Exception {
+        takeScreenShotThread = new TakeScreenShotThread();
         logic = new LogicCmdField02();
         cast = new CastGunslinger(0);
         checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));

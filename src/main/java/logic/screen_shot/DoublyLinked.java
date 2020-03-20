@@ -18,14 +18,14 @@ public class DoublyLinked {
 
     public void insertFirst(BufferedImage dd) {
         Link temLink = new Link(dd);
-        if (isEmpty()) {
-            last = temLink;
-        } else {
-            first.setPrevious(temLink);
-        }
-        temLink.setNext(first);
+//        if (isEmpty()) {
+//            last = temLink;
+//        } else {
+//            first.setPrevious(temLink);
+//        }
+//        temLink.setNext(first);
         first = temLink;
-        size++;
+//        size++;
     }
 
     public void insertLast(BufferedImage dd) {
@@ -41,15 +41,7 @@ public class DoublyLinked {
     }
 
     public Link deleteFirst() {
-       Link tempLink = first;
-       if (first.getNext() == null) {
-           last = null;
-       } else {
-           first.getNext().setPrevious(null);
-       }
-       first = first.getNext();
-       size--;
-       return tempLink;
+        return first;
     }
 
     public Link deleteLast() {
