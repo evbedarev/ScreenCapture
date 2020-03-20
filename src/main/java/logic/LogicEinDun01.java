@@ -14,29 +14,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LogicEinDun01 extends LogicLocation {
-
     private static final int COUNT_OF_ATTACKS = 100;
 
     public LogicEinDun01() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new EinDun01());
         lootAround.initialize(new HandYun04());
-
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersEinDun01");
-
-        loot = new TakeLoot[] {
-                new GunPowder(),
-                new Steel()
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Shield(),
-                new Coupon(),
-        };
-
+        loot = (TakeLoot[]) Prop.context.getBean("lootEinDun01");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulLootEinDun01");
         checkAgressorIsNear.initialize(Stream
                 .of(new Ungoliant())
                 .collect(Collectors.toList()));

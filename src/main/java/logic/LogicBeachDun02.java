@@ -19,22 +19,13 @@ public class LogicBeachDun02 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackBeachDun02();
         actions = Actions.instance();
-        
+
         locationCheck = new LocationCheck(new BeachDun02());
         lootAround.initialize(new HandBeachDun02());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersBeachDun02");
-
-        loot = new TakeLoot[] {
-                new Brigan(),
-                new MudLamp()
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-                new Elunium()
-        };
+        loot = (TakeLoot[]) Prop.context.getBean("lootBeachDun02");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulLootBeachDun02");
     }
 
     @Override

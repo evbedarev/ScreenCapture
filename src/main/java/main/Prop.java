@@ -29,7 +29,7 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
     public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main",
-            "logic.kill_monster");
+            "logic.kill_monster", "logic.take_loot");
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();

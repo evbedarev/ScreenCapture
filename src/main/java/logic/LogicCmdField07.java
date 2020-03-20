@@ -26,20 +26,8 @@ public class LogicCmdField07 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream.of(new Raggler()).collect(Collectors.toList());
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-//            new Clothes(logger),
-                new Shield(),
-//                new Mask(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-                new Cyfar(),
-                new WindOfVerdure()
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulLootCmdField07");
+        loot = (TakeLoot[]) Prop.context.getBean("lootCmdField07");
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())
                 .collect(Collectors.toList()));

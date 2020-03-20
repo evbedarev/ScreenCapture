@@ -31,20 +31,8 @@ public class LogicCmdField04 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersCmdField04");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-                new Cyfar(),
-                new SeaOtterFur(),
-                new GlassBead()
-
-
-//            new PowderOfButterfly(logger),
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulLootCmdField04");
+        loot = (TakeLoot[]) Prop.context.getBean("lootCmdField04");
     }
 
     @Override

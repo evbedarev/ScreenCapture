@@ -35,17 +35,8 @@ public class LogicGefField04 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream.of(new Mandragora()).collect(Collectors.toList());
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-                new Stem()
-        };
-
-        loot = new TakeLoot[] {
-//            new PowderOfButterfly(),
-//                new Honey()
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulGefField04");
+        loot = (TakeLoot[]) Prop.context.getBean("lootGefField04");
     }
 
     @Override

@@ -19,24 +19,12 @@ public class LogicGefField03 extends LogicLocation {
         countOfAttacks = COUNT_OF_ATTACKS;
         attack = new AttackYun11();
         actions = Actions.instance();
-        
         locationCheck = new LocationCheck(new GefField03());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField03");
-
-        loot = new TakeLoot[] {
-                new AntelopeSkin(),
-                new BlueHerb(),
-                new Bottle()
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Bottle(),
-                new BlueHerb(),
-                new Coupon(),
-        };
+        loot = (TakeLoot[]) Prop.context.getBean("lootGefField03");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulGefField03");
     }
 
     @Override
