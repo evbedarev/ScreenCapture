@@ -1,19 +1,18 @@
 package logic;
 
-import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.PrtField07;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Rocker;
-import logic.kill_monster.SavageBaby;
+import logic.kill_monster.KillMonster;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsPrtField07;
-import logic.move_by_card.PointsPrtField08;
 import logic.take_loot.*;
 import main.Prop;
+
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,11 +30,7 @@ public class LogicPrtField07 extends LogicLocation {
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new PrtField07());
         lootAround.initialize(new HandYun11());
-        killMonsterList = Stream
-                .of(new Rocker(),
-                        new SavageBaby())
-                .collect(Collectors.toList());
-
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPrtField07");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

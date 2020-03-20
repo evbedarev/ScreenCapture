@@ -41,10 +41,7 @@ public class LogicMocField01 extends LogicLocation {
         locationCheck = new LocationCheck(new PrtField08());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                    new PecoPeco()
-                ).collect(Collectors.toList());
+        killMonsterList = Stream.of(new PecoPeco()).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

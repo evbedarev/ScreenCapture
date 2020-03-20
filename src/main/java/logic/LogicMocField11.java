@@ -1,23 +1,18 @@
 package logic;
 
 import actions.Actions;
-import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.MocField11;
-import checks.location.PrtField08;
-import find_image.FindPixels;
 import key_and_mouse.Mouse;
-import logger.LoggerSingle;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsMocField01;
 import logic.move_by_card.PointsMocField11;
 import logic.take_loot.*;
 import main.Prop;
 
-import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,12 +33,7 @@ public class LogicMocField11 extends LogicLocation {
         locationCheck = new LocationCheck(new MocField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Scorpion(),
-                        new BabyDesertWolf(),
-                        new Condor()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersMocField11");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

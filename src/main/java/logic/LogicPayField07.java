@@ -6,18 +6,15 @@ import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
-import logic.kill_monster.monstersOnLocation.MonstersPay07;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
 import logic.move_by_card.PointsPayField07;
 import logic.take_loot.Card;
 import logic.take_loot.Coupon;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicPayField07 extends LogicLocation {
 
@@ -35,10 +32,7 @@ public class LogicPayField07 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                    new MonstersPay07()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPayField12");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

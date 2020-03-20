@@ -6,7 +6,6 @@ import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
-import logic.kill_monster.monstersOnLocation.MonstersGef05;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
@@ -14,11 +13,8 @@ import main.Prop;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicGefField05 extends LogicLocation {
-
     private static final int COUNT_OF_ATTACKS = 100;
     private final static AtomicInteger ATOMIC_GUARD = new AtomicInteger(0);
     private final static AtomicInteger ATOMIC_AWAKENING = new AtomicInteger(0);

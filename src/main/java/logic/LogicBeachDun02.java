@@ -6,17 +6,10 @@ import checks.LocationCheck;
 import checks.location.BeachDun02;
 import logic.attacks.AttackBeachDun02;
 import logic.hands_rgb.HandBeachDun02;
-import logic.hands_rgb.HandYun11;
 import logic.kill_monster.KillMonster;
-import logic.kill_monster.Megalith;
-import logic.kill_monster.StalacticGolem;
-import logic.kill_monster.TriJoint;
 import logic.take_loot.*;
 import main.Prop;
-
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicBeachDun02 extends LogicLocation {
 

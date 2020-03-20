@@ -5,19 +5,16 @@ import checks.LocationCheck;
 import checks.location.GefField05;
 import logic.attacks.AttackGef05;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.monstersOnLocation.MonstersGef05;
-import logic.kill_monster.monstersOnLocation.MonstersInSphinx3;
+import logic.kill_monster.KillMonster;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
 import logic.move_by_card.PointsInSphinx3;
 import logic.take_loot.Card;
 import logic.take_loot.Coupon;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicInSphinx3 extends LogicLocation {
 
@@ -35,10 +32,7 @@ public class LogicInSphinx3 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new MonstersInSphinx3()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersInSphinx3");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

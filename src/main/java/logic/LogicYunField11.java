@@ -4,16 +4,14 @@ import actions.Actions;
 import checks.LocationCheck;
 import checks.location.YunField11;
 import logic.attacks.AttackYun11;
-import logic.hands_rgb.HandYun07;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsGefFields05;
 import logic.move_by_card.PointsYunField11;
 import logic.take_loot.*;
 import main.Prop;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import java.util.List;
 
 public class LogicYunField11 extends LogicLocation {
 
@@ -27,9 +25,7 @@ public class LogicYunField11 extends LogicLocation {
         locationCheck = new LocationCheck(new YunField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(new Goat())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField11");
 
         loot = new TakeLoot[] {
                 new AntelopeSkin(),

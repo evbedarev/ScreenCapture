@@ -3,17 +3,16 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.MocField12;
-import checks.location.PrtField08;
 import key_and_mouse.Mouse;
 import logic.attacks.AttackGef11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.move_by_card.PointsMocField11;
 import logic.move_by_card.PointsMocField12;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,13 +33,7 @@ public class LogicMocField12 extends LogicLocation {
         locationCheck = new LocationCheck(new MocField12());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Picky(),
-                        new PecoPecoEgg(),
-                        new Condor(),
-                        new Drops()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersMocField12");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

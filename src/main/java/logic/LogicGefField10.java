@@ -8,14 +8,11 @@ import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGefField10;
-import logic.move_by_card.PointsMocField12;
 import logic.take_loot.*;
 import main.Prop;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicGefField10 extends LogicLocation {
 

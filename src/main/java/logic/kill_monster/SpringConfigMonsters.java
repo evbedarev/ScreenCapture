@@ -45,4 +45,53 @@ public class SpringConfigMonsters {
     public List<KillMonster> monstersGlChurch() throws AWTException {
         return Stream.of(new WraithDeath(), new EvilDruid(), new Wraith(), new Mimic()).collect(Collectors.toList());
     }
+    @Bean
+    public List<KillMonster> monstersHerbLocation01() throws AWTException {
+        return Stream.of(new GreenPlant(), new BluePlant(), new ShiningPlant()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersInSphinx3() throws AWTException {
+        return Stream.of(new Pasana(), new Marduk(), new Mimic()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersMocField11() throws AWTException {
+        return Stream.of(new Scorpion(), new BabyDesertWolf(), new Condor()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersMocField12() throws AWTException {
+        return Stream.of(new Picky(), new PecoPecoEgg(), new Condor(), new Drops()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersPayField12() throws AWTException {
+        return Stream.of(new Bigfoot(), new Caramel(), new Creamy()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersPrtField07() throws AWTException {
+        return Stream.of(new Rocker(), new SavageBaby()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersPrtField08() throws AWTException {
+        return Stream.of(new Poring()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersYunField04() throws AWTException {
+        return Stream.of(new Harpy()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersYunField07() throws AWTException {
+        return Stream.of(new Harpy(), new Goat()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersYunField08() throws AWTException {
+        return Stream.of(new Goat(), new GrandPecoPeco(), new Geographer()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersYunField11() throws AWTException {
+        return Stream.of(new Goat()).collect(Collectors.toList());
+    }
+    @Bean
+    public List<KillMonster> monstersYunField12() throws AWTException {
+        return Stream.of(new Mantis(), new Geographer()).collect(Collectors.toList());
+    }
+
 }

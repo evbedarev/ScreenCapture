@@ -5,17 +5,13 @@ import checks.LocationCheck;
 import checks.location.YunField12;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Geographer;
-import logic.kill_monster.Goat;
-import logic.kill_monster.Mantis;
-import logic.kill_monster.monstersOnLocation.MonstersYun12;
+import logic.kill_monster.KillMonster;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsYunField12;
 import logic.take_loot.*;
 import main.Prop;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
 
 public class LogicYunField12 extends LogicLocation {
 
@@ -29,9 +25,7 @@ public class LogicYunField12 extends LogicLocation {
         locationCheck = new LocationCheck(new YunField12());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(new MonstersYun12())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField12");
 
         loot = new TakeLoot[] {
         };

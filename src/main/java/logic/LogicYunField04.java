@@ -5,12 +5,12 @@ import checks.LocationCheck;
 import checks.location.YunField04;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
-import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Harpy;
-import logic.kill_monster.MonstersYun07;
+import logic.kill_monster.KillMonster;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,9 +23,7 @@ public class LogicYunField04 extends LogicLocation {
         attack = new AttackYun11();
         locationCheck = new LocationCheck(new YunField04());
         lootAround.initialize(new HandYun04());
-        killMonsterList = Stream
-                .of(new Harpy())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField04");
 
         loot = new TakeLoot[] {
                 new HarpyFeather(),

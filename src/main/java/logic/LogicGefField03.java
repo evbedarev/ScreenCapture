@@ -3,19 +3,13 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.GefField03;
-import checks.location.YunField11;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
-import logic.kill_monster.Goat;
 import logic.kill_monster.KillMonster;
-import logic.kill_monster.Orc;
-import logic.kill_monster.OrcLady;
 import logic.take_loot.*;
 import main.Prop;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicGefField03 extends LogicLocation {
 

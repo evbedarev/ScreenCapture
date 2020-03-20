@@ -2,14 +2,11 @@ package logic;
 
 import checks.LocationCheck;
 import checks.location.GefField08;
-import checks.location.GlChurch;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun04;
 import logic.kill_monster.*;
-import logic.kill_monster.monstersOnLocation.MonstersGef08;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGefField08;
-import logic.move_by_card.PointsGlChurch;
 import logic.take_loot.*;
 import main.Prop;
 

@@ -7,6 +7,8 @@ import logic.hands_rgb.HandYun07;
 import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
+
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,9 +21,7 @@ public class LogicYunField07 extends LogicLocation {
         attack = new AttackYun07();
         locationCheck = new LocationCheck(Prop.context.getBean(YunField07.class));
         lootAround.initialize(new HandYun07());
-        killMonsterList = Stream
-                .of(new MonstersYun07())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField07");
 
         loot = new TakeLoot[] {
 //                new BlueHerb(),

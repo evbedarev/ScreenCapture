@@ -17,6 +17,7 @@ import logic.take_loot.*;
 import main.Prop;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,10 +38,7 @@ public class LogicPrtField08 extends LogicLocation {
         locationCheck = new LocationCheck(new PrtField08());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                    new Poring()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPrtField08");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
