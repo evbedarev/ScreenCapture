@@ -13,8 +13,7 @@ import logic.kill_monster.Goblin;
 import logic.kill_monster.PecoPeco;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsMocField01;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import logic.take_loot.Bottle;
 import logic.take_loot.Card;
 import logic.take_loot.Coupon;
@@ -102,8 +101,7 @@ public class LogicMocField01 extends LogicLocation {
 
     private Optional<int[]> takeCoordsFromMap() throws Exception {
         FindPixels findImageHard = new FindPixels();
-        Capture capture = Capture.instance();
-        BufferedImage screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage screenShot = Prop.context.getBean(ScreenShot.class).pop();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

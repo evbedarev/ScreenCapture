@@ -1,14 +1,10 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class PrtField07 extends Location {
 
-    public PrtField07() throws AWTException {
-        capture = Capture.instance();
+    public PrtField07() {
     }
 
     /**

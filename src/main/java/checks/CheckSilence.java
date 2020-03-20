@@ -2,9 +2,8 @@ package checks;
 
 import find_image.FindPixels;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -19,13 +18,11 @@ import java.util.Optional;
  */
 public class CheckSilence {
     private static CheckSilence instance;
-    private Capture capture;
     private FindPixels findImageHard = new FindPixels();
     private int[] rgbSitDown = new int[] {-65811, -19, -18, -275};
     private  List<RgbParameter> rgbParameterList = new ArrayList<>();
 
     private CheckSilence() throws AWTException {
-        capture = Capture.instance();
         for (int i: rgbSitDown) {
             rgbParameterList.add(new RgbParameter(i,
                     new int[] {2,2},
@@ -42,7 +39,7 @@ public class CheckSilence {
 
     public boolean check() {
         for (RgbParameter parameter: rgbParameterList) {
-            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+            BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     image,
                     parameter.getMainRgb(),

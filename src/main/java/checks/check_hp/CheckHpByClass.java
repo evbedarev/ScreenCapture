@@ -10,9 +10,8 @@ import checks.afterDeath.AfterDeath;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
-import logic.screen_shot.Capture;
 import logic.move_by_card.MoveByCard;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import storage_image.StorageImageFile;
 
@@ -25,7 +24,6 @@ import java.util.Date;
 public abstract class CheckHpByClass implements CheckHitPoints {
     Date date;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd'_'hh_mm");
-    Capture capture;
     Keys keys;
     Mouse mouse;
     Actions actions;
@@ -40,7 +38,6 @@ public abstract class CheckHpByClass implements CheckHitPoints {
 
     public CheckHpByClass(LocationCheck locationCheck) throws AWTException {
         this.locationCheck = locationCheck;
-        capture = Capture.instance();
         checkDie = Prop.checkDie;
         mouse = Mouse.getInstance();
         keys  = Keys.getInstance();
@@ -63,7 +60,7 @@ public abstract class CheckHpByClass implements CheckHitPoints {
     }
 
     void needHeal() throws Exception{
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             actions.heal();
         }

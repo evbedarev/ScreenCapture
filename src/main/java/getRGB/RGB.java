@@ -3,7 +3,7 @@ package getRGB;
 import actions.SleepTime;
 import find_image.FindPixels;
 import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import storage_image.StorageImage;
 import storage_image.StorageImageFile;
@@ -62,7 +62,7 @@ public class RGB {
 
     public static void showRGB(int[] xy) throws Exception {
         Capture capture = Capture.instance();
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         System.out.println(image.getRGB(xy[0], xy[1]));
 
     }
@@ -71,7 +71,7 @@ public class RGB {
         Capture capture = Capture.instance();
         FindPixels findImageHard = new FindPixels();
         BufferedImage screenShot;
-        screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+        screenShot = Prop.context.getBean(ScreenShot.class).pop();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

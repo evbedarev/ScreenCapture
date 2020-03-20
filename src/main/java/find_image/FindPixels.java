@@ -1,6 +1,5 @@
 package find_image;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import static java.lang.Math.abs;
 
@@ -11,15 +10,7 @@ import java.util.List;
 
 public class FindPixels implements FindPixelsInImage {
 //    final Logger logger = Logger.getLogger(this.getClass());
-    static Capture capture;
     BufferedImage screenShot;
-    static {
-        try {
-            capture = Capture.instance();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Ищет изображение по пикселям на картинке
@@ -66,7 +57,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
         for (int i=0; i < 2; i++) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
                     mainRgb,
@@ -93,7 +84,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
 //        for (int i=0; i < 2; i++) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
                     mainRgb,
@@ -158,7 +149,7 @@ public class FindPixels implements FindPixelsInImage {
                                                  int[] coordsArea) throws AWTException {
         Optional<int[]> xy = Optional.empty();
         for (int i=0; i < 4; i++) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(screenShot,
                                         mainRgb,
                                         subImgCoord,

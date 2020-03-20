@@ -1,16 +1,12 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class Aldebaran extends Location {
 
 
-    public Aldebaran() throws AWTException {
-        capture = Capture.instance();
+    public Aldebaran() {
     }
 
     /**

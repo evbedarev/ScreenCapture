@@ -1,16 +1,10 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 
 import java.awt.image.BufferedImage;
 
 public class YunField11 extends Location {
 
-    public YunField11() throws AWTException {
-        capture = Capture.instance();
-    }
     @Override
     public boolean onDesiredLocation() {
         PORTAL_RGB = new int[] {1489,50, -6280000, -1200000};

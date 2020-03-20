@@ -9,11 +9,10 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.LogicLocation;
 import logic.RgbParameter;
 import logic.kill_monster.KillMonster;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -33,7 +32,6 @@ public class MoveByCard {
     private static Actions actions;
     private static FindPixels findImageHard;
     private static LogicLocation logicLocation;
-    private static Capture capture;
     private static BufferedImage screenShot;
     private static Optional<int[]> xy;
     private static AfterDeath checkDie = Prop.checkDie;
@@ -50,7 +48,6 @@ public class MoveByCard {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
         findImageHard = new FindPixels();
-        capture = Capture.instance();
         MoveByCard.logicLocation = logicLocation;
         interfaceActions = InterfaceActions.getInstance();
         MoveByCard.pointsOnCard = pointsOnCard;
@@ -148,7 +145,7 @@ public class MoveByCard {
                 Prop.cast.cast();
                 logicLocation.getLocationCheck().locationCheck(screenShot);
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-                screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+                screenShot = Prop.context.getBean(ScreenShot.class).pop();
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
 //
@@ -203,7 +200,7 @@ public class MoveByCard {
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
         while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
-            image = Prop.context.getBean(ScreenShotStack.class).pop();
+            image = Prop.context.getBean(ScreenShot.class).pop();
             mouse.mouseMove(0,0);
             SleepTime.sleep(500);
             LoggerSingle.logInfo(this.toString(), "In dialog");
@@ -252,7 +249,7 @@ public class MoveByCard {
      */
     private boolean checkMonsterUnderCoursor(int[] coords, List<KillMonster> killMonsterList) {
         List<RgbParameter> rgbParameter;
-        screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+        screenShot = Prop.context.getBean(ScreenShot.class).pop();
 
         for (KillMonster killMonster : killMonsterList) {
             rgbParameter = killMonster.getRgbParameterList();
@@ -272,7 +269,7 @@ public class MoveByCard {
     }
 
     private static Optional<int[]> takeCoordsFromMap() throws Exception {
-        screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+        screenShot = Prop.context.getBean(ScreenShot.class).pop();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

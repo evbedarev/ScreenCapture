@@ -25,7 +25,6 @@
 //    private final FindImageHard findImageHard;
 //
 //    public FragmentElement() throws AWTException {
-//        capture = Capture.instance();
 //        mouse = new Mouse();
 //        keys = new Keys();
 //        findImageHard = new FindImageHard();

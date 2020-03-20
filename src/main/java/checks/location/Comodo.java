@@ -1,14 +1,10 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Comodo extends Location {
 
-    public Comodo() throws AWTException {
-        capture = Capture.instance();
+    public Comodo() {
     }
 
     /**

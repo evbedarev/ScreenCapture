@@ -7,9 +7,8 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -93,8 +92,10 @@ public class Loot implements TakeLoot {
         int repeat = 0;
         while (take()) {
             SleepTime.sleep(1000);
-            if (repeat++ % 4 == 0)
-                actions.stepAside(new int[] {75, 150} );
+            if (repeat++ % 4 == 0) {
+                actions.stepAside(new int[]{75, 150});
+                SleepTime.sleep(1000);
+            }
         }
         checkHP.checkHp();
     }
@@ -102,7 +103,7 @@ public class Loot implements TakeLoot {
     @Override
     public void pickUp(BufferedImage screenShot) throws Exception {
         while (takeLoot(screenShot)) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             SleepTime.sleep(1000);
         }
         checkHP.checkHp();

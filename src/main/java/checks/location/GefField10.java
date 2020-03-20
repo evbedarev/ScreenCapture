@@ -1,14 +1,12 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GefField10 extends Location {
 
-    public GefField10() throws AWTException {
-        capture = Capture.instance();
+    public GefField10() {
     }
 
     /**

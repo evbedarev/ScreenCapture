@@ -2,7 +2,7 @@ package find_image;
 
 import find_fragments.FindFragmentFiles;
 import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.image.BufferedImage;
@@ -44,7 +44,7 @@ public class FindFragmentInImage {
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findImageHard.findImageInArea(screenShot, image,
                     screen);
             if (xy.isPresent())
@@ -89,7 +89,7 @@ public class FindFragmentInImage {
         Optional<int[]> xy;
         for (int i = 0; i < 3; i++) {
             for (BufferedImage image: imageList) {
-                screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+                screenShot = Prop.context.getBean(ScreenShot.class).pop();
                 xy = findImageHard.findImageInArea(screenShot, image,
                         screen);
                 if (xy.isPresent())
@@ -104,7 +104,7 @@ public class FindFragmentInImage {
         imageList = findFragmentFiles.fragments("frag*", dir);
         Optional<int[]> xy;
         for (BufferedImage image: imageList) {
-            screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findImageHard.findImageExcludeArea(screenShot, image,
                     screen);
             if (xy.isPresent())

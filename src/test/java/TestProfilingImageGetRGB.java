@@ -1,5 +1,5 @@
 import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class TestProfilingImageGetRGB {
     public void profilingBufferedImage() throws Exception {
         double timeBefore = System.currentTimeMillis();
 //        image = storageImageFile.load("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
-        image = Prop.context.getBean(ScreenShotStack.class).pop();
+        image = Prop.context.getBean(ScreenShot.class).pop();
         image.getRGB(800, 450);
         double timeAfter = System.currentTimeMillis();
         System.out.println("profilingBufferedImage: " + (timeAfter - timeBefore));
@@ -34,7 +34,7 @@ public class TestProfilingImageGetRGB {
         double timeBefore = System.currentTimeMillis();
         int [] rgb = null;
 //        image = storageImageFile.load("C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
-        image = Prop.context.getBean(ScreenShotStack.class).pop();
+        image = Prop.context.getBean(ScreenShot.class).pop();
         double timeAfter = System.currentTimeMillis();
         System.out.println(rgb.length);
         System.out.println("profilingArray: " + (timeAfter - timeBefore));

@@ -1,14 +1,19 @@
 package getRGB;
 
 import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
 import main.Prop;
 import storage_image.StorageImage;
 import storage_image.StorageImageFile;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ForRoute {
+    Capture capture = Capture.instance();
+
+    public ForRoute() throws AWTException {
+    }
+
     public static void main(String[] args) throws Exception {
 
         findPixelRgb(-1606855, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
@@ -49,7 +54,7 @@ public class ForRoute {
 
     public static void showRGB(int[] xy) throws Exception {
         Capture capture = Capture.instance();
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = capture.takeScreenShot();
         System.out.println(image.getRGB(xy[0], xy[1]));
 
     }

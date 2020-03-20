@@ -3,7 +3,7 @@ package checks.check_hp;
 import actions.SleepTime;
 import checks.LocationCheck;
 import logger.LoggerSingle;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -19,7 +19,7 @@ public class CheckHpWizard extends CheckHpByClass {
     @Override
     public void checkHp() throws Exception {
 //        checkSilenceStatus();
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         if (checkHptoRun(image)) {
             date = new Date();
             storageImageFile.save(image, Prop.ROOT_DIR + dateFormat.format(date) + ".png");

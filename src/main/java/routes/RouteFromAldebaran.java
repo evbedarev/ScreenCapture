@@ -3,8 +3,7 @@ package routes;
 import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -17,12 +16,10 @@ public class RouteFromAldebaran {
     List<Route> routes = new ArrayList<>();
     FindPixels findImageHard;
     Mouse mouse;
-    Capture capture;
 
     public RouteFromAldebaran() throws AWTException {
         findImageHard = new FindPixels();
         mouse = Mouse.getInstance();
-        capture = Capture.instance();
 //        routes.add(new Route(new int[] {55,703}, 3000, new int[] {1521,106}));
 //        //Aldebaran
         routes.add(new Route(new int[] {55,703}, new int[] {1516,121}));
@@ -116,11 +113,11 @@ public class RouteFromAldebaran {
         for (Route route: routes) {
             int count = 0;
 //            SleepTime.sleep(route.getSleepTime());
-            BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+            BufferedImage screenshot = Prop.context.getBean(ScreenShot.class).pop();
             while (!checkLocation(screenshot, route)) {
                 mouse.mouseClick(790, 520);
 //                SleepTime.sleep(200);
-                screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+                screenshot = Prop.context.getBean(ScreenShot.class).pop();
 //                System.out.println(count);
                 count++;
             }

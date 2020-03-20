@@ -1,15 +1,8 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GefField11 extends Location {
-
-    public GefField11() throws AWTException {
-        capture = Capture.instance();
-    }
 
     /**
      * Проверяет находится ли RGB пикселя в нужном промежутке значений.

@@ -1,15 +1,13 @@
 package checks.location;
 
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.image.BufferedImage;
 import java.util.function.Function;
 
 public abstract class Location implements VerifyMap {
-    protected Capture capture;
     protected static int[] PORTAL_RGB;
     protected static int[] PORTAL_RGB_1;
 
@@ -36,7 +34,7 @@ public abstract class Location implements VerifyMap {
 
 
     boolean checkRgbLocation() {
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         return rgbLocation.apply(image);
     }
 

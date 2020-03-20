@@ -5,7 +5,7 @@ import main.Prop;
 import java.awt.*;
 
 public class TakeScreenShotThread extends Thread{
-    private ScreenShotStack screenShotStack = Prop.context.getBean(ScreenShotStack.class);
+    private ScreenShots screenShotStack = Prop.context.getBean(ScreenShot.class);
     private Capture capture = Capture.instance();
 
     public TakeScreenShotThread() throws AWTException {
@@ -15,7 +15,7 @@ public class TakeScreenShotThread extends Thread{
         try {
 
             while (true) {
-               screenShotStack.push(capture.takeScreenShot());
+               screenShotStack.take(capture.takeScreenShot());
                Thread.sleep(50);
             }
         } catch (InterruptedException e) {

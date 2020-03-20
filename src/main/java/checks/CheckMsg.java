@@ -4,8 +4,7 @@ import actions.SleepTime;
 import email.MsgFromPlayer;
 import email.SendMessage;
 import find_image.FindPixels;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import org.apache.log4j.Logger;
 
@@ -16,13 +15,11 @@ import java.util.Optional;
 public class CheckMsg {
     Logger logger;
     FindPixels findImageHard;
-    Capture capture;
     SendMessage sendMessage = new SendMessage();
 
     public CheckMsg(Logger logger) throws AWTException {
         this.logger = logger;
         findImageHard = new FindPixels();
-        capture = Capture.instance();
     }
 
     public boolean checkPixelInArea(BufferedImage screenShot, int[] area) throws
@@ -49,7 +46,7 @@ public class CheckMsg {
     }
 
     public void check() throws InterruptedException {
-        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShot.class).pop();
         if (checkPixelInArea(screenshot, new int[] {269,279,171,181})) {
             sendMessage.send(new MsgFromPlayer());
             while (true) {

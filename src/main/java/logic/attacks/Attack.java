@@ -4,7 +4,6 @@ import actions.SleepTime;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,12 +12,10 @@ import java.util.Optional;
 
 public class Attack implements AttackInterface {
     List<RgbParameter> rgbParameterList = new ArrayList<>();
-    Capture capture;
     final Mouse mouse;
     final FindPixels findImageHard;
 
     public Attack() throws AWTException {
-        capture = Capture.instance();
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
     }

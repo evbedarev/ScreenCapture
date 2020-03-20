@@ -4,7 +4,7 @@ import actions.SleepTime;
 import checks.LocationCheck;
 import logger.LoggerSingle;
 import logic.move_by_card.MoveByCard;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -37,7 +37,7 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
 
     @Override
     void needHeal() throws Exception{
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         if (image.getRGB(Prop.X_HP_HEAL,Prop.Y_HP) != Prop.RGB_HP) {
             keys.keyPress(KeyEvent.VK_F3);
         }

@@ -6,9 +6,8 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Character implements Characters {
-    Capture capture;
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     final FindPixels findImageHard;
@@ -27,7 +25,6 @@ public class Character implements Characters {
 
 
     public Character() throws AWTException {
-        capture = Capture.instance();
         mouse = Mouse.getInstance();
         findImageHard = new FindPixels();
         findFragmentInImage = FindFragmentInImage.getInstance();
@@ -38,7 +35,7 @@ public class Character implements Characters {
 
         LoggerSingle.logDebug(this.toString(), "Finding character ");
 
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         for (RgbParameter parameter: Prop.charRgb) {
             Optional<int[]> xy = findImageHard.findPixelsInImageExcludeArea(image,
                             parameter.getMainRgb(),

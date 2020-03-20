@@ -1,16 +1,9 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class Sphinx03 extends Location {
-
-    public Sphinx03() throws AWTException {
-        capture = Capture.instance();
-    }
 
     /**
      * Проверяет находится ли RGB пикселя в нужном промежутке значений.

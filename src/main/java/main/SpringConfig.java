@@ -2,15 +2,16 @@ package main;
 
 import checks.LocationCheck;
 import checks.location.*;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
+import logic.screen_shot.ScreenShots;
 import org.springframework.context.annotation.Bean;
 
 import java.awt.*;
 
 public class SpringConfig {
     @Bean
-    public ScreenShotStack screenShotStack() {
-        return new ScreenShotStack();
+    public ScreenShots screenShotStack() {
+        return new ScreenShot();
     }
     @Bean
     public LocationCheck locationCheck() throws AWTException {

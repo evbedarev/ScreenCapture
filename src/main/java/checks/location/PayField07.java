@@ -1,15 +1,9 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class PayField07 extends Location {
-
-    public PayField07() throws AWTException {
-        capture = Capture.instance();
-    }
 
     /**
      * Проверяет находится ли RGB пикселя в нужном промежутке значений.

@@ -1,15 +1,12 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class CmdField07 extends Location {
 
-    public CmdField07() throws AWTException {
-        capture = Capture.instance();
+    public CmdField07() {
     }
 
     /**

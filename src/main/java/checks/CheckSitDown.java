@@ -1,12 +1,10 @@
 package checks;
 
 import find_image.FindPixels;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +16,13 @@ import java.util.Optional;
  */
 public class CheckSitDown {
     private static CheckSitDown instance;
-    private Capture capture;
     private FindPixels findImageHard = new FindPixels();
     private int[] rgbSitDown = new int[] {-1, -2, -65794, -258};
 
-    private CheckSitDown() throws AWTException {
-        capture = Capture.instance();
+    private CheckSitDown() {
     }
 
-    static public CheckSitDown getInstance() throws AWTException {
+    static public CheckSitDown getInstance() {
         if (instance == null) {
             instance = new CheckSitDown();
         }
@@ -42,7 +38,7 @@ public class CheckSitDown {
         }
 
         for (RgbParameter parameter: rgbParameterList) {
-            BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+            BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     image,
                     parameter.getMainRgb(),

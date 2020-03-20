@@ -1,16 +1,9 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 //Change to propery file!!
 public class YunField08 extends Location {
-
-    public YunField08() throws AWTException {
-        capture = Capture.instance();
-    }
 
     /**
      * Проверяет находится ли RGB пикселя в нужном промежутке значений.

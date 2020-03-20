@@ -7,8 +7,7 @@ import checks.location.VerifyMap;
 import find_image.FindPixels;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -19,7 +18,6 @@ public abstract class RouteModel implements RouteToLocation {
     AfterDeath checkDie = Prop.checkDie;
     FindPixels findImageHard;
     Mouse mouse;
-    Capture capture;
     boolean onRoute;
     Actions actions;
     VerifyMap verifyMap;
@@ -29,7 +27,6 @@ public abstract class RouteModel implements RouteToLocation {
         onRoute = true;
         findImageHard = new FindPixels();
         mouse = Mouse.getInstance();
-        capture = Capture.instance();
         actions = Actions.instance();
     }
 
@@ -124,11 +121,11 @@ public abstract class RouteModel implements RouteToLocation {
     public abstract void tpUntil() throws Exception;
 
     private void moveByX(Route route, int[] clickXy) throws Exception {
-        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShot.class).pop();
         while (!checkLocationX(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             SleepTime.sleep(500);
-            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenshot = Prop.context.getBean(ScreenShot.class).pop();
             if (checkCount()) {
                 break;
             }
@@ -141,11 +138,11 @@ public abstract class RouteModel implements RouteToLocation {
     }
 
     private void moveByY(Route route, int[] clickXy) throws Exception{
-        BufferedImage screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage screenshot = Prop.context.getBean(ScreenShot.class).pop();
         while (!checkLocationY(screenshot, route)) {
             mouse.mouseClick(clickXy[0], clickXy[1]);
             SleepTime.sleep(500);
-            screenshot = Prop.context.getBean(ScreenShotStack.class).pop();
+            screenshot = Prop.context.getBean(ScreenShot.class).pop();
             if (checkCount()) {
                 break;
             }

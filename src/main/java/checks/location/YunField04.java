@@ -1,16 +1,9 @@
 package checks.location;
 
-import logic.screen_shot.Capture;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class YunField04 extends Location {
 
-
-    public YunField04() throws AWTException {
-        capture = Capture.instance();
-    }
 
     @Override
     public boolean onDesiredLocation() {

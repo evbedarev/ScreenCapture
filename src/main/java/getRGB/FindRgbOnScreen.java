@@ -2,9 +2,8 @@ package getRGB;
 
 import actions.SleepTime;
 import find_image.FindPixels;
-import logic.screen_shot.Capture;
 import logic.RgbParameter;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -18,14 +17,13 @@ public class FindRgbOnScreen {
     static int[] rgbSitDown = new int[] {-1, -2, -65794, -258};
     public static void main(String[] args) throws AWTException, InterruptedException {
         List<RgbParameter> rgbParameterList = new ArrayList<>();
-        Capture capture = Capture.instance();
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         rgbParameterList.add(new RgbParameter(-610655,
                 new int[] {2,2},
                 new int[] {-610655}));
         SleepTime.sleep(5000);
         for (RgbParameter parameter: rgbParameterList) {
-            image = Prop.context.getBean(ScreenShotStack.class).pop();
+            image = Prop.context.getBean(ScreenShot.class).pop();
             Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                     image,
                     parameter.getMainRgb(),

@@ -10,8 +10,7 @@ import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
@@ -38,7 +37,6 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
     private Keys keys;
-    Capture capture;
     BufferedImage screenShot;
     private int cntAttack;
 
@@ -50,7 +48,6 @@ public abstract class LogicLocation extends Thread implements Logic {
             actions = Actions.instance();
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();
-            capture = Capture.instance();
             while (true) {
                 mainHandle();
             }
@@ -144,7 +141,7 @@ public abstract class LogicLocation extends Thread implements Logic {
     }
 
     public BufferedImage takeScreenShot() {
-        return Prop.context.getBean(ScreenShotStack.class).pop();
+        return Prop.context.getBean(ScreenShot.class).pop();
     }
     public abstract void mainHandle() throws Exception;
     abstract void runFromMonster() throws Exception;

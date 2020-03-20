@@ -11,9 +11,8 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
 import logic.LogicLocation;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -34,7 +33,6 @@ public class MoveToLocation {
     private static Actions actions;
     private static FindPixels findImageHard;
     private static LogicLocation logicLocation;
-    private static Capture capture;
     private static BufferedImage screenShot;
     private static Optional<int[]> xy;
     private static AfterDeath checkDie = Prop.checkDie;
@@ -51,7 +49,6 @@ public class MoveToLocation {
         mouse = Mouse.getInstance();
         check = Check.getInstance();
         findImageHard = new FindPixels();
-        capture = Capture.instance();
         interfaceActions = InterfaceActions.getInstance();
         MoveToLocation.pointsOnCard = pointsOnCard;
         findNearest.setPoints(pointsOnCard.getPoints());
@@ -139,7 +136,7 @@ public class MoveToLocation {
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
 //                logicLocation.getLocationCheck().locationCheck(screenShot);
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
-                screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+                screenShot = Prop.context.getBean(ScreenShot.class).pop();
                 mouse.mouseClick(coords[0], coords[1]);
 //
                 if (checkDialogWindow(screenShot)) {
@@ -189,7 +186,7 @@ public class MoveToLocation {
     private boolean checkDialogWindow(BufferedImage image) throws Exception {
         boolean wasDialog = false;
         while (interfaceActions.pressNext(image) || interfaceActions.pressClose(image) || interfaceActions.pressOk(image)) {
-            image = Prop.context.getBean(ScreenShotStack.class).pop();
+            image = Prop.context.getBean(ScreenShot.class).pop();
             mouse.mouseMove(0,0);
             SleepTime.sleep(500);
             LoggerSingle.logInfo(this.toString(), "In dialog");
@@ -231,7 +228,7 @@ public class MoveToLocation {
     }
 
     private static Optional<int[]> takeCoordsFromMap() throws Exception {
-        screenShot = Prop.context.getBean(ScreenShotStack.class).pop();
+        screenShot = Prop.context.getBean(ScreenShot.class).pop();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

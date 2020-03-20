@@ -2,8 +2,7 @@ package checks;
 
 import actions.Actions;
 import logger.LoggerSingle;
-import logic.screen_shot.Capture;
-import logic.screen_shot.ScreenShotStack;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 
 import java.awt.*;
@@ -11,7 +10,6 @@ import java.awt.image.BufferedImage;
 
 public class CheckSP {
     private static volatile CheckSP instance;
-    private Capture capture;
     private Actions actions;
     public static boolean enoughSP;
     private CheckSitDown checkSitDown;
@@ -34,19 +32,18 @@ public class CheckSP {
 
     public void initialize() throws
             AWTException {
-        capture = Capture.instance();
         actions = Actions.instance();
         checkSitDown = CheckSitDown.getInstance();
     }
 
     public boolean enoghtSP() {
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         enoughSP = image.getRGB(Prop.X_SP, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
 
     private boolean regenerateSP() {
-        BufferedImage image = Prop.context.getBean(ScreenShotStack.class).pop();
+        BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
         enoughSP = image.getRGB(Prop.X_SP_ENOUGHT, Prop.Y_SP) == Prop.SP_RGB;
         return enoughSP;
     }
