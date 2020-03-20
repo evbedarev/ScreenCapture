@@ -6,12 +6,14 @@ import checks.location.CmdField02;
 import logic.attacks.AttackCmdField02;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Galapago;
+import logic.kill_monster.KillMonster;
 import logic.kill_monster.Seal;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsCmdField02;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,12 +30,7 @@ public class LogicCmdField02 extends LogicLocation {
         locationCheck = new LocationCheck(Prop.context.getBean(CmdField02.class));
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Seal(),
-                        new Galapago()
-
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersCmdField02");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

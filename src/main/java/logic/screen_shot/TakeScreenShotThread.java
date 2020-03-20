@@ -1,7 +1,6 @@
 package logic.screen_shot;
 
 import main.Prop;
-
 import java.awt.*;
 
 public class TakeScreenShotThread extends Thread{
@@ -13,7 +12,6 @@ public class TakeScreenShotThread extends Thread{
 
     public void run() {
         try {
-
             while (true) {
                screenShotStack.take(capture.takeScreenShot());
                Thread.sleep(50);

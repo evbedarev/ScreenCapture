@@ -13,6 +13,7 @@ import logic.move_by_card.PointsGlChurch;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,9 +27,7 @@ public class LogicGefField08 extends LogicLocation {
         moveByCard = MoveByCard.getInstance(this, new PointsGefField08());
         locationCheck = new LocationCheck(new GefField08());
         lootAround.initialize(new HandYun04());
-        killMonsterList = Stream
-                .of(new MonstersGef08())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField08");
 
         loot = new TakeLoot[] {
                 new WhiteHerb(),

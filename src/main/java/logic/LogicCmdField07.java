@@ -25,10 +25,7 @@ public class LogicCmdField07 extends LogicLocation {
         locationCheck = new LocationCheck(new CmdField07());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Raggler()
-                ).collect(Collectors.toList());
+        killMonsterList = Stream.of(new Raggler()).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

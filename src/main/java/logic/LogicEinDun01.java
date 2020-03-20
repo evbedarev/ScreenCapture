@@ -13,6 +13,7 @@ import logic.kill_monster.*;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,9 +28,7 @@ public class LogicEinDun01 extends LogicLocation {
         locationCheck = new LocationCheck(new EinDun01());
         lootAround.initialize(new HandYun04());
 
-        killMonsterList = Stream
-                .of(new Pitman(), new Porcellio(), new Noxous() )
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersEinDun01");
 
         loot = new TakeLoot[] {
                 new GunPowder(),

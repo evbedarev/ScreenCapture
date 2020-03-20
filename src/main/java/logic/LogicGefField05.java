@@ -12,6 +12,7 @@ import logic.move_by_card.PointsGefFields05;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,12 +33,7 @@ public class LogicGefField05 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField05());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new ThiefBug(),
-                        new Creamy(),
-                        new Smokie()
-                ).collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField05");
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

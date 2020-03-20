@@ -86,24 +86,18 @@ public class MoveByCard {
 //        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
         y2 = Math.abs(450 + y2);
         x = 800;
-
-        if (x2 == 800 && y2 > 450) {
+        if (x2 == 800 && y2 > 450)
             return new int[] {800, 800};
-        }
-        if (x2 == 800 && y2 < 450) {
+        if (x2 == 800 && y2 < 450)
             return new int[] {800, 100};
-        }
 
         if (x1 > x2)
             x = x2 - 400;
         if (x1 < x2)
             x = x2 + 400;
-
         y = ((x - x1)/(x2 - x1))*(y2 - y1) + y1;
-
 //        LoggerSingle.logDebug(this.toString(),"Calculated x2 " + x2);
 //        LoggerSingle.logDebug(this.toString(),"Calculated y2 " + y2);
-
         if (y >= 900 || y < 0) {
 //            LoggerSingle.logDebug(this.toString(),"Calculated by Y ");
             x1 = 800;
@@ -112,7 +106,6 @@ public class MoveByCard {
 
             if (y1 > y2)
                 y = y2 - 350;
-
             if (y1 < y2)
                 y = y2 + 350;
 
@@ -148,7 +141,6 @@ public class MoveByCard {
                 screenShot = Prop.context.getBean(ScreenShot.class).pop();
                 mouse.mouseClick(coords[0], coords[1]);
                 logicLocation.checkMyHp(screenShot);
-//
                 if (checkDialogWindow(screenShot)) {
                     wingAway();
                     break;
@@ -162,7 +154,6 @@ public class MoveByCard {
                     if (countMoves > 1) {
                         wingAway();
                         LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
-                        countMoves = 0;
                         break;
                     }
                     countMoves++;

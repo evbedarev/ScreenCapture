@@ -28,7 +28,8 @@ public class Prop {
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
-    public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+    public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main",
+            "logic.kill_monster");
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();

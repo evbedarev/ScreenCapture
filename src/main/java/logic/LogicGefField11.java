@@ -23,10 +23,7 @@ public class LogicGefField11 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField11());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Goblin()
-                ).collect(Collectors.toList());
+        killMonsterList = Stream.of(new Goblin()).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),

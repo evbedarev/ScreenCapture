@@ -8,12 +8,14 @@ import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsGlChurch;
 import    logic.take_loot.*;
+import main.Prop;
+
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-    public class LogicGlChurch extends LogicLocation {
-
-        private static final int COUNT_OF_ATTACKS = 100;
+public class LogicGlChurch extends LogicLocation {
+    private static final int COUNT_OF_ATTACKS = 100;
 
     public LogicGlChurch() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
@@ -21,12 +23,7 @@ import java.util.stream.Stream;
         moveByCard = MoveByCard.getInstance(this, new PointsGlChurch());
         locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
-        killMonsterList = Stream
-                .of(    new WraithDeath(),
-                        new EvilDruid(),
-                        new Wraith(),
-                        new Mimic())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGlChurch");
 
         loot = new TakeLoot[] {
                 new Fabric(),

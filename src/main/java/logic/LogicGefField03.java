@@ -7,11 +7,13 @@ import checks.location.YunField11;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.Goat;
+import logic.kill_monster.KillMonster;
 import logic.kill_monster.Orc;
 import logic.kill_monster.OrcLady;
 import logic.take_loot.*;
 import main.Prop;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,10 +29,7 @@ public class LogicGefField03 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField03());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of( new Orc(),
-                        new OrcLady())
-                .collect(Collectors.toList());
+        killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField03");
 
         loot = new TakeLoot[] {
                 new AntelopeSkin(),

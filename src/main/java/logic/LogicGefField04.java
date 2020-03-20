@@ -37,10 +37,7 @@ public class LogicGefField04 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField04());
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
-        killMonsterList = Stream
-                .of(
-                        new Mandragora()
-                ).collect(Collectors.toList());
+        killMonsterList = Stream.of(new Mandragora()).collect(Collectors.toList());
 
         usefulLoot = new TakeLoot[] {
                 new Card(),
