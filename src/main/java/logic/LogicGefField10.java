@@ -30,18 +30,8 @@ public class LogicGefField10 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField03");
-
-        usefulLoot = new TakeLoot[]{
-                new Card(),
-//            new Clothes(logger),
-//                new Shield(),
-//                new Mask(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-//            new PowderOfButterfly(logger, lootAround),
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulGefField10");
+        loot = (TakeLoot[]) Prop.context.getBean("lootGefField10");
     }
 
     @Override

@@ -8,8 +8,6 @@ import logic.hands_rgb.HandYun11;
 import logic.kill_monster.*;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsPayField07;
-import logic.take_loot.Card;
-import logic.take_loot.Coupon;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
@@ -33,18 +31,8 @@ public class LogicPayField07 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPayField12");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-//            new Clothes(),
-//                new Shield(),
-//            new Mask(logger),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-//            new PowderOfButterfly(logger),
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulPayField07");
+        loot = (TakeLoot[]) Prop.context.getBean("lootPayField07");
     }
 
     @Override
@@ -54,16 +42,6 @@ public class LogicPayField07 extends LogicLocation {
 
     public void mainHandle() throws Exception {
         moveByCard.move(killMonsterList);
-
-//        locationCheck.locationCheck();
-//        checkSP.enoghtSP();
-//        killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
-//        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-//        teleport();
-//        count++;
-//        Prop.cast.cast();
     }
 
     public void checkMyHp() throws Exception {

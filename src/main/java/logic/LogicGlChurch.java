@@ -24,18 +24,8 @@ public class LogicGlChurch extends LogicLocation {
         locationCheck = new LocationCheck(new GlChurch());
         lootAround.initialize(new HandYun04());
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGlChurch");
-
-        loot = new TakeLoot[] {
-                new Fabric(),
-                new YggdrasilLeaf(),
-                new WhiteHerb(),
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-        };
-
+        loot = (TakeLoot[]) Prop.context.getBean("lootGlChurch");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulGlChurch");
         checkAgressorIsNear.initialize(Stream
                 .of(new Harpy())
                 .collect(Collectors.toList()));

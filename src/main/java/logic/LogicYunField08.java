@@ -26,20 +26,8 @@ public class LogicYunField08 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField07");
-
-        loot = new TakeLoot[] {
-        };
-        
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new MastellaFruit(),
-                new WindOfVerdure(),
-                new BlueHerb(),
-                new Bottle(),
-                new PecoFeather(),
-                new Coupon()
-        };
+        loot = (TakeLoot[]) Prop.context.getBean("lootYunField08");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulYunField08");
     }
 
     @Override

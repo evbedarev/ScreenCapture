@@ -11,10 +11,7 @@ import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsPrtField07;
 import logic.take_loot.*;
 import main.Prop;
-
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LogicPrtField07 extends LogicLocation {
     private static final int COUNT_OF_ATTACKS = 100;
@@ -31,15 +28,8 @@ public class LogicPrtField07 extends LogicLocation {
         locationCheck = new LocationCheck(new PrtField07());
         lootAround.initialize(new HandYun11());
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPrtField07");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Shield(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulPrtField07");
+        loot = (TakeLoot[]) Prop.context.getBean("lootPrtField07");
     }
 
     @Override
@@ -48,13 +38,6 @@ public class LogicPrtField07 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-//        moveByCard.initialize(new int[] {1473, 1575, 52, 155});
-//        locationCheck.locationCheck();
-//        checkDie.check();
-//        checkHP.checkHp();
-//        moveByCard.move(locationCheck, killMonsterList);
-//        killMonsterList.forEach(this::findAndKill);
-//        count++;
         moveByCard.move(killMonsterList);
     }
 

@@ -25,19 +25,8 @@ public class LogicGefField08 extends LogicLocation {
         locationCheck = new LocationCheck(new GefField08());
         lootAround.initialize(new HandYun04());
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersGefField08");
-
-        loot = new TakeLoot[] {
-                new WhiteHerb(),
-                new DragonTail(),
-                new Zargon()
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Elunium(),
-                new Coupon(),
-        };
-
+        loot = (TakeLoot[]) Prop.context.getBean("lootGefField08");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("lootGefField08");
         checkAgressorIsNear.initialize(Stream
                 .of(new Harpy())
                 .collect(Collectors.toList()));

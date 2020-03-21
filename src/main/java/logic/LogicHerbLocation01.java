@@ -14,7 +14,6 @@ import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsHerbLocation1;
 import logic.screen_shot.Capture;
 import logic.screen_shot.ScreenShot;
-import logic.take_loot.BlueHerb;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
@@ -41,15 +40,8 @@ public class LogicHerbLocation01 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersHerbLocation01");
-
-        usefulLoot = new TakeLoot[] {
-                new BlueHerb()
-        };
-
-        loot = new TakeLoot[] {
-
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulHerbLocation01");
+        loot = (TakeLoot[]) Prop.context.getBean("lootHerbLocation01");
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())
                 .collect(Collectors.toList()));
@@ -61,16 +53,7 @@ public class LogicHerbLocation01 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-
-//        moveByCard.initialize(new int[] {1484, 1538, 58, 121});
-//        locationCheck.locationCheck();
-//        checkDie.check();
         moveByCard.move(killMonsterList);
-//        killMonsterList.forEach(this::findAndKill);
-//        checkMyHp();
-//        actions.pickUpCard();
-//        actions.pickUpLoot(locationCheck);
-//        count++;
     }
 
     public void checkMyHp() throws Exception {

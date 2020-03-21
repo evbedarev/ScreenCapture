@@ -14,9 +14,6 @@ import logic.kill_monster.PecoPeco;
 import logic.move_by_card.MoveByCard;
 import logic.move_by_card.PointsMocField01;
 import logic.screen_shot.ScreenShot;
-import logic.take_loot.Bottle;
-import logic.take_loot.Card;
-import logic.take_loot.Coupon;
 import logic.take_loot.TakeLoot;
 import main.Prop;
 
@@ -42,16 +39,8 @@ public class LogicMocField01 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream.of(new PecoPeco()).collect(Collectors.toList());
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-//                new Clothes()
-        };
-
-        loot = new TakeLoot[] {
-            new Bottle(),
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulMocField01");
+        loot = (TakeLoot[]) Prop.context.getBean("lootMocField01");
 
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())

@@ -39,14 +39,7 @@ public class LogicPrtField08 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersPrtField08");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Bottle(),
-                new Coupon(),
-//                new Clothes()
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulPrtField07");
         loot = new TakeLoot[] {
             new Bottle(),
         };

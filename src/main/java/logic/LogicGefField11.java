@@ -24,19 +24,8 @@ public class LogicGefField11 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = Stream.of(new Goblin()).collect(Collectors.toList());
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-//            new Clothes(logger),
-                new Shield(),
-//                new Mask(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-//            new Scell(logger),
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulGefField11");
+        loot = (TakeLoot[]) Prop.context.getBean("lootGefField11");
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())
                 .collect(Collectors.toList()));

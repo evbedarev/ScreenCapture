@@ -24,17 +24,8 @@ public class LogicYunField04 extends LogicLocation {
         locationCheck = new LocationCheck(new YunField04());
         lootAround.initialize(new HandYun04());
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersYunField04");
-
-        loot = new TakeLoot[] {
-                new HarpyFeather(),
-                new HarpyTalon()
-        };
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-        };
-
+        loot = (TakeLoot[]) Prop.context.getBean("lootYunField04");
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulYunField04");
         checkAgressorIsNear.initialize(Stream
                 .of(new Harpy())
                 .collect(Collectors.toList()));

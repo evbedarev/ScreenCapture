@@ -34,17 +34,8 @@ public class LogicMocField11 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersMocField11");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-                new Clothes()
-        };
-
-        loot = new TakeLoot[] {
-            new Bottle(),
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("lootMocField11");
+        loot = (TakeLoot[]) Prop.context.getBean("usefulMocField11");
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())
                 .collect(Collectors.toList()));

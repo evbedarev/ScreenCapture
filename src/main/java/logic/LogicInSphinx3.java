@@ -33,15 +33,8 @@ public class LogicInSphinx3 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersInSphinx3");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon()
-        };
-
-        loot = new TakeLoot[] {
-//            new PowderOfButterfly(logger),
-        };
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulInSphinx3");
+        loot = (TakeLoot[]) Prop.context.getBean("lootInSphinx3");
     }
 
     @Override
@@ -52,11 +45,6 @@ public class LogicInSphinx3 extends LogicLocation {
     public void mainHandle() throws Exception {
         moveByCard.move(killMonsterList);
     }
-
-//    public void checkMyHp() throws Exception {
-////        actions.pickUpCard();
-////        checkHP.checkHp();
-//    }
 
     void teleport() throws Exception {
         runFromMonster();

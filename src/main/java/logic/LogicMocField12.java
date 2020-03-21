@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LogicMocField12 extends LogicLocation {
-
     private static final int COUNT_OF_ATTACKS = 100;
     Mouse mouse;
     private MoveByCard moveByCard;
@@ -34,18 +33,8 @@ public class LogicMocField12 extends LogicLocation {
         lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersMocField12");
-
-        usefulLoot = new TakeLoot[] {
-                new Card(),
-                new Coupon(),
-                new Bottle(),
-//                new Clothes()
-        };
-
-        loot = new TakeLoot[] {
-            new Bottle(),
-        };
-
+        usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulMocField12");
+        loot = (TakeLoot[]) Prop.context.getBean("lootMocField12");
         checkAgressorIsNear.initialize(Stream
                 .of(new Goblin())
                 .collect(Collectors.toList()));
