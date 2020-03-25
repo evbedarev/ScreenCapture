@@ -10,5 +10,6 @@ public class Galapago extends Monster {
                 new int[] {100,100},
                 new int[] {-14086136, -4356964, -9745846}));
 
+        super.timeToKillMonster = 100;
     }
 }

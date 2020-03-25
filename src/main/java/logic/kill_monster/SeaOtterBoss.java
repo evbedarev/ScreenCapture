@@ -10,5 +10,6 @@ public class SeaOtterBoss extends Monster {
                 new int[] {100,100},
                 new int[] {-5332225, -6787585, -2829057}));
 
+        super.timeToKillMonster = 5000;
     }
 }

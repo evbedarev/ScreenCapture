@@ -22,6 +22,7 @@ import java.util.Optional;
 
 public class Monster implements KillMonster {
     protected List<RgbParameter> rgbParameterList = new ArrayList<>();
+    protected int timeToKillMonster = 1000;
     public InterfaceActions interfaceActions;
     public Actions actions;
     final Mouse mouse;
@@ -158,7 +159,8 @@ public class Monster implements KillMonster {
                 check.checkResources(image);
 //                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster");
-                sleepAfterAttack();
+//                sleepAfterAttack();
+                timeForKill();
                 value = true;
                 break;
             }
@@ -290,5 +292,10 @@ public class Monster implements KillMonster {
 //                attackBySpell = true;
 //            }
 //        }
+    }
+
+    @Override
+    public void timeForKill() {
+        SleepTime.sleep(timeToKillMonster);
     }
 }

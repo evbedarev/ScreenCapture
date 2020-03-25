@@ -37,7 +37,7 @@ public class Mouse {
         robot.mousePress(button_mask);
         SleepTime.sleep(sleepTime);
         robot.mouseRelease(button_mask);
-        LoggerSingle.logInfo(this.toString(),("Count mouse click = " + countMouseClick));
+//        LoggerSingle.logInfo(this.toString(),("Count mouse click = " + countMouseClick));
     }
 
     public void leftClick() throws InterruptedException {

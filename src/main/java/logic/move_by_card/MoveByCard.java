@@ -286,6 +286,14 @@ public class MoveByCard {
         sbMessage.append(cord2);
         sbMessage.append("}");
     }
+    private int calculateTimeToSleep(int[] xy) {
+        double x1 = xy[0];
+        double y1 = xy[1];
+        double x_lenght = Math.pow(Math.abs(x1 - 800),2);
+        double y_lenght = Math.pow(Math.abs(y1 - 450), 2);
+        int z = (int) Math.sqrt(x_lenght + y_lenght);
+        return z * 3;
+    }
 }
 
 

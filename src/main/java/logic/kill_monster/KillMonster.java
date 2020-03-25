@@ -31,4 +31,5 @@ public interface KillMonster {
             Exception;
 
     List<RgbParameter> getRgbParameterList();
+    void timeForKill();
 }

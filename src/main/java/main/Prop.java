@@ -5,12 +5,10 @@ import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.*;
-import checks.location.*;
 import logic.*;
 import logic.screen_shot.TakeScreenShotThread;
 import logic.take_loot.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +31,7 @@ public class Prop {
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
-        logic = new LogicCmdField02();
+        logic = new LogicCmdField04();
         cast = new CastGunslinger(0);
         checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();

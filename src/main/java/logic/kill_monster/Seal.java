@@ -10,5 +10,6 @@ public class Seal extends Monster {
                 new int[] {100,100},
                 new int[] {-1184258,-8491377}));
 
+        super.timeToKillMonster = 100;
     }
 }

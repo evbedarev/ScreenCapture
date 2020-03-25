@@ -53,12 +53,21 @@ public class Loot implements TakeLoot {
 
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
-                SleepTime.sleep(100);
+                SleepTime.sleep(calculateTimeToSleep(new int[] {x, y}));
                 mouse.mouseMove(0,0);
                 return true;
             }
         }
         return false;
+    }
+
+    private int calculateTimeToSleep(int[] xy) {
+        double x1 = xy[0];
+        double y1 = xy[1];
+        double x_lenght = Math.pow(Math.abs(x1 - 800),2);
+        double y_lenght = Math.pow(Math.abs(y1 - 450), 2);
+        int z = (int) Math.sqrt(x_lenght + y_lenght);
+        return z * 3;
     }
 
     @Override
@@ -79,7 +88,7 @@ public class Loot implements TakeLoot {
 
                 mouse.mouseClick(x, y);
                 LoggerSingle.logInfo(this.toString(),"Taking loot, coordinates: x="  + x + " y=" + y);
-                SleepTime.sleep(100);
+                SleepTime.sleep(calculateTimeToSleep(new int[] {x, y}));
                 mouse.mouseMove(0,0);
                 return true;
             }
@@ -92,9 +101,9 @@ public class Loot implements TakeLoot {
         int repeat = 0;
         while (take()) {
             SleepTime.sleep(1000);
-            if (repeat++ % 4 == 0) {
+            if (repeat++ % 12 == 0) {
                 actions.stepAside(new int[]{75, 150});
-                SleepTime.sleep(1000);
+                SleepTime.sleep(1400);
             }
         }
         checkHP.checkHp();
