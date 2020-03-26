@@ -9,5 +9,6 @@ public class Mantis extends Monster {
         rgbParameterList.add(new RgbParameter(-9206702,
                 new int[] {20,20},
                 new int[] {-1067644, -2168923}));
+        super.timeToKillMonster = 1000;
     }
 }

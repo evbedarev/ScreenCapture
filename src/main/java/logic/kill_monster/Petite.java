@@ -9,5 +9,6 @@ public class Petite extends Monster {
         rgbParameterList.add(new RgbParameter(-5990219,
                 new int[] {50,50},
                 new int[] {-3619617, -7173469}));
+        super.timeToKillMonster = 1000;
     }
 }

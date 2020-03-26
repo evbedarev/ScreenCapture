@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class LogicLocation extends Thread implements Logic {
     static int countStartProgram = 0;
     static int countOfAttacks = 100;
-    static List<KillMonster> killMonsterList;
+    static public List<KillMonster> killMonsterList;
     static TakeLoot[] loot;
     static TakeLoot[] usefulLoot;
     static AfterDeath checkDie = Prop.checkDie;

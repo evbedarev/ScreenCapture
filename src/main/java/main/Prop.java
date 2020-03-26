@@ -31,7 +31,7 @@ public class Prop {
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
-        logic = new LogicCmdField04();
+        logic = new LogicGefField08();
         cast = new CastGunslinger(0);
         checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();

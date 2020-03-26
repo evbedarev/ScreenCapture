@@ -24,7 +24,7 @@ public class PointsComodo implements Points{
         points.add(new int[] {1569, 110});
         points.add(new int[] {1571, 110});
         points.add(new int[] {1573, 110});
-    }
+}
 
 
     @Override

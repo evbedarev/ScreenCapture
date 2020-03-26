@@ -3,18 +3,27 @@ package logic.move_by_card.points_operation;
 public class DoublyLinkedQueue {
     private Point first;
     private Point last;
+    IteratorList iterator = new IteratorList(this);
 
-    public void insertFirst(int[] coords) {
+    public void insertLast(int[] coords) {
        Point point = new Point(coords);
-       if (first == null) {
-           last = point;
+       if (last == null) {
+           first = point;
        } else {
-           point.setNext(first);
-           first.setPrevious(point);
+           last.setPrevious(point);
+           point.setNext(last);
        }
-       first = point;
+       last = point;
+    }
+    public Point getFirst() {
+        return first;
     }
 
+    public IteratorList getIterator() {
+        return iterator;
+    }
 
-
+    public boolean isEmpty() {
+        return last == null;
+    }
 }
