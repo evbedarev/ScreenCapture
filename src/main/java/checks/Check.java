@@ -2,6 +2,8 @@ package checks;
 
 import actions.InterfaceActions;
 import actions.SleepTime;
+import actions.kafra_actions.put_loot.KafraActionsPutLoot;
+import actions.kafra_actions.put_loot.PutLoot;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -9,6 +11,7 @@ import logic.screen_shot.ScreenShot;
 import main.Prop;
 import org.apache.log4j.Logger;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
@@ -22,6 +25,7 @@ public class Check {
     private final Logger logger = Logger.getLogger(this.getClass());
     private final Keys keys;
     private final Mouse mouse;
+    private final KafraActionsPutLoot putLoot = new PutLoot();
 
     private Check() throws AWTException {
         keys = Keys.getInstance();
@@ -43,13 +47,26 @@ public class Check {
         xy = Optional.empty();
         findFragmentInImage.setScreen(screenSize);
     }
+    public boolean haveWings(BufferedImage screenShot) {
+        return screenShot.getRGB(1340, 881) != -1;
+    }
+    public boolean havePotion(BufferedImage screenShot) {
+       return screenShot.getRGB(1399, 887) != -1;
+    }
+    public boolean haveButWings(BufferedImage screenShot) {
+        return screenShot.getRGB(1516, 877) != -1;
+    }
 
-    public void checkResources(BufferedImage screenShot) {
-        if ((screenShot.getRGB(1340, 881) == -1) ||
-                (screenShot.getRGB(1399, 887) == -1) ||
-                (screenShot.getRGB(1364, 875) == -1)) {
-            SleepTime.loopSleep();
-        }
+    public void checkResources(BufferedImage screenShot) throws Exception {
+        if (!haveWings(screenShot) || !havePotion(screenShot))
+            if (!haveButWings(screenShot)) {
+                SleepTime.loopSleep();
+            } else {
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(20000);
+                putLoot.putLootToKafra();
+                SleepTime.loopSleep();
+            }
     }
 
     public void checkIsThereWing(BufferedImage screenShot) {

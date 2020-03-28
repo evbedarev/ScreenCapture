@@ -1,6 +1,8 @@
 package checks.check_hp;
 
 import actions.SleepTime;
+import actions.kafra_actions.put_loot.KafraActionsPutLoot;
+import actions.kafra_actions.put_loot.PutLoot;
 import checks.LocationCheck;
 import logger.LoggerSingle;
 import logic.move_by_card.MoveByCard;
@@ -12,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CheckHpAndBulletsGuns extends CheckHpByClass {
+    private final KafraActionsPutLoot putLoot = new PutLoot();
 
     public CheckHpAndBulletsGuns(LocationCheck locationCheck) throws AWTException {
         super(locationCheck);
@@ -22,7 +25,6 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
         if (checkDie.check()) {
             SleepTime.loopSleep();
         }
-
         if (Prop.NEED_HEAL) {
             needHeal();
         }
@@ -51,9 +53,21 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
         return false;
     }
 
+    public boolean haveButWings(BufferedImage screenShot) {
+        return screenShot.getRGB(1516, 877) != -1;
+    }
+
     @Override
     public void checkHp(BufferedImage image) throws Exception {
-        if (checkDie.check(image) || checkBullets(image)) {
+        if (checkDie.check(image)) {
+            SleepTime.loopSleep();
+        }
+        if (checkBullets(image)) {
+            if (haveButWings(image)) {
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(20000);
+                putLoot.putLootToKafra();
+            }
             SleepTime.loopSleep();
         }
 

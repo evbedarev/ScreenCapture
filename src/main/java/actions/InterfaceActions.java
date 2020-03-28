@@ -130,7 +130,9 @@ public class InterfaceActions {
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
             mouse.pressLeft();
+            SleepTime.sleep(500);
             moveCoursorToWarehouse();
+            SleepTime.sleep(500);
             mouse.releaseLeft();
             SleepTime.sleep(500);
             keys.keyPress(KeyEvent.VK_ENTER);
@@ -138,9 +140,38 @@ public class InterfaceActions {
         }
     }
 
+    public void getItemToKafra (String dirInventory, String dirLoot) throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
+        xy = findFragmentInImage.findImage(dirInventory);
+        if (xy.isPresent()) {
+            mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
+        }
+        SleepTime.sleep(1000);
+        xy = findFragmentInImage.findImage(dirLoot);
+        if (xy.isPresent()) {
+            mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
+            mouse.pressLeft();
+            SleepTime.sleep(500);
+            moveCoursorToInventory();
+            SleepTime.sleep(500);
+            mouse.releaseLeft();
+            SleepTime.sleep(500);
+            keys.keyPress(KeyEvent.VK_ENTER);
+            SleepTime.sleep(700);
+        }
+    }
+
+    public void moveCoursorToInventory() throws Exception {
+        Optional<int[]> xy;
+        findFragmentInImage.setScreen(new int[]{0, 1600, 0, 900});
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\BeretInInventory\\");
+        xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
+    }
+
     public void moveCoursorToWarehouse() throws Exception {
         Optional<int[]> xy;
-        findFragmentInImage.setScreen(new int[]{0, 800, 0, 900});
+        findFragmentInImage.setScreen(new int[]{0, 1600, 0, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HoneyInKafra\\");
         xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
     }

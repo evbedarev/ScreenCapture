@@ -8,15 +8,10 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import main.Prop;
 import routes.*;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class AfterDeathYun07 extends CheckDie {
-
-    public AfterDeathYun07() {
-    }
-
 
     @Override
     public void startActions() throws Exception {

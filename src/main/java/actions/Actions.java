@@ -162,6 +162,7 @@ public class Actions {
 //            slide();
     }
 
+    //depricated
     public void pickUpCard(BufferedImage screenShot) throws Exception {
         for (TakeLoot takeLoot: usefulLoot) {
             takeLoot.pickUp(screenShot);

@@ -81,7 +81,7 @@ public class CastGunslinger extends Cast {
                 LoggerSingle.logInfo(this.toString(), "cast FLIP_COINS");
                 keys.keyPress(KeyEvent.VK_F6);
                 SleepTime.sleep(1500);
-                keys.keyPress(KeyEvent.VK_F4);
+//                keys.keyPress(KeyEvent.VK_F4);
 //                SleepTime.sleep(1500);
 //                keys.keyPress(KeyEvent.VK_F6);
                 SleepTime.sleep(500);

@@ -1,6 +1,7 @@
 package main;
 
 import actions.InterfaceActions;
+import actions.kafra_actions.put_loot.LootToKafra;
 import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
@@ -27,11 +28,12 @@ public class Prop {
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
     public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main",
-            "logic.kill_monster", "logic.take_loot");
+            "logic.kill_monster", "logic.take_loot", "actions.kafra_actions.put_loot");
+    public static List<LootToKafra> lootToKafra = (List<LootToKafra>) context.getBean("lootToKafraCmdField02");
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
-        logic = new LogicGefField08();
+        logic = new LogicCmdField02();
         cast = new CastGunslinger(0);
         checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
