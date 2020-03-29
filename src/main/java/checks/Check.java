@@ -26,8 +26,6 @@ public class Check {
     private final Keys keys;
     private final Mouse mouse;
     private final KafraActionsPutLoot putLoot = new PutLoot();
-    private final InterfaceActions interfaceActions = InterfaceActions.getInstance();
-
     private Check() throws AWTException {
         keys = Keys.getInstance();
         mouse = Mouse.getInstance();
@@ -71,7 +69,7 @@ public class Check {
         if (checkOtherPlayerNear(screenShot)) {
            keys.keyPress(KeyEvent.VK_F1);
            SleepTime.sleep(3000);
-           interfaceActions.goToCharSelect();
+           Prop.interfaceActions.goToCharSelect();
            if (checkInCharSelect()) {
                SleepTime.sleep(40000);
                keys.keyPress(KeyEvent.VK_ENTER);
@@ -129,14 +127,14 @@ public class Check {
      * @return
      */
     public boolean checkOtherPlayerNear(BufferedImage screenShot) {
-       if (screenShot.getRGB(13, 844) != -65536 ||
-               screenShot.getRGB(13, 855) != -65536 ||
-               screenShot.getRGB(13, 870) != -65536) {
+       if (screenShot.getRGB(13, 840) == -65536 ||
+               screenShot.getRGB(13, 865) == -65536 ||
+               screenShot.getRGB(13, 877) == -65536) {
            return true;
        }
-       if (screenShot.getRGB(11, 840) != -256 ||
-               screenShot.getRGB(11, 855) != -256 ||
-               screenShot.getRGB(11, 870) != -256) {
+       if (screenShot.getRGB(11, 850) == -256 ||
+               screenShot.getRGB(11, 865) == -256 ||
+               screenShot.getRGB(11, 877) == -256) {
            return true;
        }
        return false;

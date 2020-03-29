@@ -189,10 +189,10 @@ public class InterfaceActions {
                 LoggerSingle.logInfo("InterfaceActions", "in character select...");
                 return true;
             }
-//            if (!check.checkIsThereWing()) {
-//                LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
-//                SleepTime.loopSleep();
-//            }
+            if (!check.checkIsThereWing()) {
+                LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
+                SleepTime.loopSleep();
+            }
             keys.keyPress(Prop.WING_KEY);
             SleepTime.sleep(4000);
         }

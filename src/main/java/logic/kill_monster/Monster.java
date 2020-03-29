@@ -130,6 +130,7 @@ public class Monster implements KillMonster {
 //                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster");
                 sleepAfterAttack();
+                check.checkResources(image);
                 return true;
             }
         }
