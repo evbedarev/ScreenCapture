@@ -128,12 +128,16 @@ public class Check {
      */
     public boolean checkOtherPlayerNear(BufferedImage screenShot) {
        if (screenShot.getRGB(13, 840) == -65536 ||
+               screenShot.getRGB(13, 857) == -65536 ||
                screenShot.getRGB(13, 865) == -65536 ||
+               screenShot.getRGB(13, 871) == -65536 ||
                screenShot.getRGB(13, 877) == -65536) {
            return true;
        }
        if (screenShot.getRGB(11, 850) == -256 ||
+               screenShot.getRGB(11, 840) == -256 ||
                screenShot.getRGB(11, 865) == -256 ||
+               screenShot.getRGB(11, 871) == -256 ||
                screenShot.getRGB(11, 877) == -256) {
            return true;
        }
