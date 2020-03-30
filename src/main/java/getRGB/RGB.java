@@ -19,16 +19,16 @@ public class RGB {
 //Map rgb -2374501
 //        findPixelRgb(-2374501);
 
-        showRGB(new int[] {14,844}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Interface\\CheckIsAttackMonsterOtherPlayer\\checkAttackOtherPlayer.png");
+//        showRGB(new int[] {14,844}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Interface\\CheckIsAttackMonsterOtherPlayer\\checkAttackOtherPlayer.png");
 //        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        findPixelRgb(-3219746);
 
-//        while (true) {
-//            Optional<int[]> xy = takeCoordsFromMap();
-//            if (xy.isPresent()) {
-//                System.out.println("points.add(new int[] {" + xy.get()[0] +", " + xy.get()[1] +"});");
-//            }
-//        }
+        while (true) {
+            Optional<int[]> xy = takeCoordsFromMap();
+            if (xy.isPresent()) {
+                System.out.println("points.add(new int[] {" + xy.get()[0] +", " + xy.get()[1] +"});");
+            }
+        }
     }
 // Coursor rgb -16250872
 //-3552801/-65794
@@ -71,7 +71,7 @@ public class RGB {
         Capture capture = Capture.instance();
         FindPixels findImageHard = new FindPixels();
         BufferedImage screenShot;
-        screenShot = Prop.context.getBean(ScreenShot.class).pop();
+        screenShot = capture.takeScreenShot();
         Optional<int[]> xy = findImageHard.findPixelsInImageInArea(
                 screenShot,
                 -2752512,

@@ -14,14 +14,14 @@ public class CmdField02 extends Location {
 
     @Override
     public boolean onDesiredLocation() {
-        PORTAL_RGB = new int[] {1575,137, -6280000, -300000};
+        PORTAL_RGB = new int[] {1572,137, -6280000, -300000};
         PORTAL_RGB_1 = new int[] {1530,48, -6280000, -200000};
         return checkRgbLocation();
     }
 
     @Override
     public boolean onDesiredLocation(BufferedImage screenShot) {
-        PORTAL_RGB = new int[] {1575,137, -6280000, -300000};
+        PORTAL_RGB = new int[] {1572,137, -6280000, -300000};
         PORTAL_RGB_1 = new int[] {1530,48, -6280000, -200000};
         return checkRgbLocation(screenShot);
     }
