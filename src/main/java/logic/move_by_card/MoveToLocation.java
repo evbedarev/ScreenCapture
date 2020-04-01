@@ -303,7 +303,6 @@ public class MoveToLocation {
                 LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
                 return false;
             }
-            check.checkResources(screenShot);
 
             while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
                 int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
