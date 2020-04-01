@@ -3,17 +3,19 @@ package logic;
 import actions.Actions;
 import checks.LocationCheck;
 import checks.location.BeachDun03;
+import checks.location.VerifyMap;
 import logic.attacks.AttackYun11;
 import logic.hands_rgb.HandYun11;
 import logic.kill_monster.KillMonster;
 import logic.move_by_card.*;
 import logic.take_loot.*;
 import main.Prop;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
 
 public class LogicBeachDun03 extends LogicLocation {
-
+    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main");
     private static final int COUNT_OF_ATTACKS = 100;
 
     public LogicBeachDun03() throws Exception {
@@ -38,7 +40,7 @@ public class LogicBeachDun03 extends LogicLocation {
         if (countStartProgram == 0) {
             MoveToLocation moveToLocation = new MoveToLocation(this, new PointsComodo());
             moveToLocation.move();
-            moveToLocation.lastAction(new int[]{965, 429});
+            moveToLocation.lastAction(new int[]{965, 429}, (VerifyMap) context.getBean("beachDun03"));
         }
         moveByCard.move(killMonsterList);
         countStartProgram++;

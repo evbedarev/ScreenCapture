@@ -64,6 +64,10 @@ public class SpringConfig {
         return new GefField05();
     }
     @Bean
+    public VerifyMap cmdField01() {
+        return new CmdField01();
+    }
+    @Bean
     public VerifyMap gefField08() {
         return new GefField08();
     }

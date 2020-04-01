@@ -21,6 +21,7 @@ public class RGB {
 
 //        showRGB(new int[] {14,844}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Interface\\CheckIsAttackMonsterOtherPlayer\\checkAttackOtherPlayer.png");
 //        showRGB(new int[] {1073,375}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+//        showRGB(new int[] {1515,51}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\Screenshot_8.png");
 //        findPixelRgb(-3219746);
 
         while (true) {

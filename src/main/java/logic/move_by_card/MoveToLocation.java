@@ -7,6 +7,7 @@ import checks.Check;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
 import checks.location.BeachDun03;
+import checks.location.VerifyMap;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
@@ -256,12 +257,12 @@ public class MoveToLocation {
         sbMessage.append("}");
     }
 
-    public void lastAction(int[] coordsToClick) throws Exception {
+    public void lastAction(int[] coordsToClick, VerifyMap location) throws Exception {
         SleepTime.sleep(4000);
         mouse.mouseClick(coordsToClick[0], coordsToClick[1]);
         mouse.mouseClick(coordsToClick[0], coordsToClick[1]);
         SleepTime.sleep(4000);
-        LocationCheck locationCheck = new LocationCheck(new BeachDun03());
+        LocationCheck locationCheck = new LocationCheck(location);
         locationCheck.locationCheck();
         System.out.println("all right");
 //        keys.keyPress(KeyEvent.VK_F7);

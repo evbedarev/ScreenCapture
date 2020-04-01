@@ -2,6 +2,8 @@ package checks;
 
 import actions.InterfaceActions;
 import actions.SleepTime;
+import actions.after_return_to_kafra.ReturnFromCmdField02;
+import actions.after_return_to_kafra.ReturnToKafra;
 import actions.kafra_actions.put_loot.KafraActionsPutLoot;
 import actions.kafra_actions.put_loot.PutLoot;
 import find_image.FindFragmentInImage;
@@ -25,7 +27,6 @@ public class Check {
     private final Logger logger = Logger.getLogger(this.getClass());
     private final Keys keys;
     private final Mouse mouse;
-    private final KafraActionsPutLoot putLoot = new PutLoot();
     private Check() throws AWTException {
         keys = Keys.getInstance();
         mouse = Mouse.getInstance();
@@ -62,9 +63,7 @@ public class Check {
                 SleepTime.loopSleep();
             } else {
                 keys.keyPress(KeyEvent.VK_F7);
-                SleepTime.sleep(20000);
-                putLoot.putLootToKafra();
-                SleepTime.loopSleep();
+                Prop.returnFromField.startAction();
             }
         if (checkOtherPlayerNear(screenShot)) {
            keys.keyPress(KeyEvent.VK_F1);

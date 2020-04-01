@@ -14,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-public class GetResourcesGunslinger {
+public class GetResourcesGunslinger implements GetResources{
     private Check check = Check.getInstance();
     private InterfaceActions interfaceActions = InterfaceActions.getInstance();
     private FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
@@ -25,7 +25,7 @@ public class GetResourcesGunslinger {
     public GetResourcesGunslinger() throws AWTException {
     }
 
-    public boolean haveBullets(BufferedImage image) {
+    private boolean haveBullets(BufferedImage image) {
         if (image.getRGB(1370,880) == -1) {
             LoggerSingle.logInfo(this.getClass().toString(), "No bullets for shot, sleeping");
             return false;
@@ -33,6 +33,7 @@ public class GetResourcesGunslinger {
         return true;
     }
 
+    @Override
     public void get() throws Exception {
         BufferedImage screenShot = Prop.context.getBean(ScreenShot.class).pop();
         wasScrolled = false;
@@ -77,6 +78,7 @@ public class GetResourcesGunslinger {
                 mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
             }
         }
+        SleepTime.sleep(1000);
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\Bullets\\");
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
@@ -97,6 +99,8 @@ public class GetResourcesGunslinger {
             keys.keyPress(KeyEvent.VK_ENTER);
             SleepTime.sleep(700);
             keys.keyPress(KeyEvent.VK_F2);
+        } else {
+            SleepTime.loopSleep();
         }
     }
     private void scrollDownInKafra() throws Exception {
@@ -129,6 +133,8 @@ public class GetResourcesGunslinger {
             keys.keyPress(KeyEvent.VK_ENTER);
             SleepTime.sleep(700);
             keys.keyPress(KeyEvent.VK_F2);
+        } else {
+            SleepTime.loopSleep();
         }
     }
     public void getWings() throws Exception {
@@ -148,6 +154,8 @@ public class GetResourcesGunslinger {
             keys.keyPress(KeyEvent.VK_0);
             SleepTime.sleep(200);
             keys.keyPress(KeyEvent.VK_ENTER);
+        } else {
+            SleepTime.loopSleep();
         }
     }
 
@@ -166,6 +174,8 @@ public class GetResourcesGunslinger {
             keys.keyPress(KeyEvent.VK_0);
             SleepTime.sleep(200);
             keys.keyPress(KeyEvent.VK_ENTER);
+        } else {
+            SleepTime.loopSleep();
         }
     }
 }

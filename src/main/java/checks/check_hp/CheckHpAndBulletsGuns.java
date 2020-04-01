@@ -65,10 +65,10 @@ public class CheckHpAndBulletsGuns extends CheckHpByClass {
         if (checkBullets(image)) {
             if (haveButWings(image)) {
                 keys.keyPress(KeyEvent.VK_F7);
-                SleepTime.sleep(20000);
-                putLoot.putLootToKafra();
+                Prop.returnFromField.startAction();
+            } else {
+                SleepTime.loopSleep();
             }
-            SleepTime.loopSleep();
         }
 
         if (image.getRGB(Prop.X_HP_TO_RUN,Prop.Y_HP) != Prop.RGB_HP) {
