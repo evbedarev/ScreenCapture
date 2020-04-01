@@ -269,6 +269,82 @@ public class MoveToLocation {
         SleepTime.sleep(3000);
     }
 
+    public void move(boolean move) throws Exception {
+        List<int[]> points = pointsOnCard.getPoints();
+        for (int[] point : points) {
+            if (flagOfNewPoints) {
+                if (!xy.isPresent()) {
+                    wingAway();
+                    LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
+                    continue;
+                }
+                flagOfNewPoints = false;
+                createMessage("Coordinates after teleporting is : ", xy.get()[0], xy.get()[1]);
+                LoggerSingle.logInfo(this.toString(), sbMessage.toString());
+                pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
+                break;
+            }
+            moveToPoint(point, move);
+        }
+    }
+
+    public boolean moveToPoint(int[] point, boolean move) {
+        try {
+            int countMoves = 0;
+            long before = System.currentTimeMillis();
+            xy = takeCoordsFromMap();
+            keys = Keys.getInstance();
+
+            createMessage("Going to point cooords : {", point[0], point[1]);
+            LoggerSingle.logInfo(this.toString(), sbMessage.toString());
+
+            if (!xy.isPresent()) {
+                wingAway();
+                LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
+                return false;
+            }
+            check.checkResources(screenShot);
+
+            while (Math.abs(xy.get()[0] - point[0]) > 2 | Math.abs(xy.get()[1] - point[1]) > 2) {
+                int[] coords = moveMouseDirectly(point[0] - xy.get()[0], point[1] - xy.get()[1]);
+                screenShot = Prop.context.getBean(ScreenShot.class).pop();
+                mouse.mouseClick(coords[0], coords[1]);
+                if (checkDialogWindow(screenShot)) {
+                    wingAway();
+                    break;
+                }
+
+                if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
+                    if (countMoves > 10) {
+                        wingAway();
+                        LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
+                        break;
+                    }
+                    countMoves++;
+                } else {
+                    prevPos = new int[] {xy.get()[0],  xy.get()[1]};
+                }
+
+                checkDie.check(screenShot);
+                xy = takeCoordsFromMap();
+
+                if (!xy.isPresent()) {
+                    xy = Optional.of(prevPos);
+                    mouse.mouseClick(coords[0], coords[1]);
+                }
+
+                long after = System.currentTimeMillis();
+                createMessage("Time going to point is: ", (int)(after - before),0);
+                LoggerSingle.logInfo(this.toString(), sbMessage.toString());
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            while (true) {
+                SleepTime.sleep(5000);
+            }
+        }
+        return true;
+    }
 }
 
 

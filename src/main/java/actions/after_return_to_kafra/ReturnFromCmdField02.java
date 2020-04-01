@@ -28,7 +28,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     private void moveInComodo() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo());
-        moveToLocation.move();
+        moveToLocation.move(true);
         mouse.mouseClick(1240,790);
         Thread.sleep(2000);
         mouse.mouseClick(1340,120);
@@ -38,7 +38,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     public void moveInComodoDung() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo2());
-        moveToLocation.move();
+        moveToLocation.move(true);
         mouse.mouseClick(1090,850);
         Thread.sleep(2000);
         mouse.mouseClick(1200,260);
@@ -48,7 +48,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     public void movePapuchichaaForest() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsPapuchichaForest());
-        moveToLocation.move();
+        moveToLocation.move(true);
         mouse.mouseClick(1090,600);
         Thread.sleep(2000);
         mouse.mouseClick(470,700);
