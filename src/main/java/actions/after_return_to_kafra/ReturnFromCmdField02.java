@@ -3,6 +3,7 @@ import actions.SleepTime;
 import actions.kafra_actions.get_resources.GetResourcesGunslinger;
 import checks.location.VerifyMap;
 import logic.LogicBeachDun03;
+import logic.LogicCmdField02;
 import logic.move_by_card.MoveToLocation;
 import logic.move_by_card.PointsComodo;
 import logic.move_by_card.PointsComodo2;
@@ -27,7 +28,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
 
     }
     private void moveInComodo() throws Exception {
-        moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo());
+        moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsComodo());
         moveToLocation.move(true);
         mouse.mouseClick(1240,790);
         Thread.sleep(2000);
@@ -37,7 +38,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
         Thread.sleep(2000);
     }
     public void moveInComodoDung() throws Exception {
-        moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo2());
+        moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsComodo2());
         moveToLocation.move(true);
         mouse.mouseClick(1090,850);
         Thread.sleep(2000);
@@ -47,7 +48,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
         SleepTime.sleep(1000);
     }
     public void movePapuchichaaForest() throws Exception {
-        moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsPapuchichaForest());
+        moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsPapuchichaForest());
         moveToLocation.move(true);
         mouse.mouseClick(1090,600);
         Thread.sleep(2000);
