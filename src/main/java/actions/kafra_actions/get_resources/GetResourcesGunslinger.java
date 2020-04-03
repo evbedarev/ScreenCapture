@@ -119,6 +119,7 @@ public class GetResourcesGunslinger implements GetResources{
             scrollDownInKafra();
             wasScrolled = true;
         }
+        findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
         Optional<int[]> xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\ButterflyWing\\");
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
@@ -140,7 +141,9 @@ public class GetResourcesGunslinger implements GetResources{
     public void getWings() throws Exception {
         if (!wasScrolled)
             scrollDownInKafra();
+        findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
         Optional<int[]> xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\Wing\\");
+        SleepTime.sleep(1000);
         if (xy.isPresent()) {
             mouse.mouseMove(xy.get()[0] + 5, xy.get()[1] + 5);
             mouse.pressLeft();
@@ -155,6 +158,7 @@ public class GetResourcesGunslinger implements GetResources{
             SleepTime.sleep(200);
             keys.keyPress(KeyEvent.VK_ENTER);
         } else {
+            System.out.println("not find");
             SleepTime.loopSleep();
         }
     }
