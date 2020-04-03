@@ -8,6 +8,7 @@ import logic.move_by_card.PointsComodo;
 import logic.move_by_card.PointsComodo2;
 import logic.move_by_card.PointsPapuchichaForest;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class ReturnFromCmdField02 extends ReturnFrom{
     public ReturnFromCmdField02() throws AWTException {
@@ -28,7 +29,13 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     private void moveInComodo() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo());
-        moveToLocation.move(true);
+        boolean hasComeComodo = moveToLocation.move(true);
+        while (!hasComeComodo) {
+            keys.keyPress(KeyEvent.VK_F7);
+            SleepTime.sleep(2000);
+            getResources.get();
+            hasComeComodo = moveToLocation.move(true);
+        }
         mouse.mouseClick(1240,790);
         Thread.sleep(2000);
         mouse.mouseClick(1340,120);
@@ -38,7 +45,15 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     public void moveInComodoDung() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo2());
-        moveToLocation.move(true);
+        boolean hasComeComodoDung = moveToLocation.move(true);
+        while (!hasComeComodoDung) {
+            keys.keyPress(KeyEvent.VK_F7);
+            SleepTime.sleep(2000);
+            getResources.get();
+            moveInComodo();
+            moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo2());
+            hasComeComodoDung = moveToLocation.move(true);
+        }
         mouse.mouseClick(1090,850);
         Thread.sleep(2000);
         mouse.mouseClick(1200,260);
@@ -48,7 +63,16 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     public void movePapuchichaaForest() throws Exception {
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsPapuchichaForest());
-        moveToLocation.move(true);
+        boolean papuchForest = moveToLocation.move(true);
+        while (!papuchForest ) {
+            keys.keyPress(KeyEvent.VK_F7);
+            SleepTime.sleep(2000);
+            getResources.get();
+            moveInComodo();
+            moveInComodoDung();
+            moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsPapuchichaForest());
+            papuchForest = moveToLocation.move(true);
+        }
         mouse.mouseClick(1090,600);
         Thread.sleep(2000);
         mouse.mouseClick(470,700);

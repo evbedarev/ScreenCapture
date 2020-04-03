@@ -6,7 +6,6 @@ import actions.SleepTime;
 import checks.Check;
 import checks.LocationCheck;
 import checks.afterDeath.AfterDeath;
-import checks.location.BeachDun03;
 import checks.location.VerifyMap;
 import find_image.FindPixels;
 import key_and_mouse.Keys;
@@ -269,8 +268,9 @@ public class MoveToLocation {
         SleepTime.sleep(3000);
     }
 
-    public void move(boolean move) throws Exception {
+    public boolean move(boolean move) throws Exception {
         List<int[]> points = pointsOnCard.getPoints();
+        boolean isMoving = true;
         for (int[] point : points) {
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
@@ -284,8 +284,11 @@ public class MoveToLocation {
                 pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
                 break;
             }
-            moveToPoint(point, move);
+            isMoving = moveToPoint(point, move);
+            if (!isMoving)
+                return false;
         }
+        return true;
     }
 
     public boolean moveToPoint(int[] point, boolean move) {
@@ -294,10 +297,8 @@ public class MoveToLocation {
             long before = System.currentTimeMillis();
             xy = takeCoordsFromMap();
             keys = Keys.getInstance();
-
             createMessage("Going to point cooords : {", point[0], point[1]);
             LoggerSingle.logInfo(this.toString(), sbMessage.toString());
-
             if (!xy.isPresent()) {
                 wingAway();
                 LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
@@ -312,26 +313,21 @@ public class MoveToLocation {
                     wingAway();
                     break;
                 }
-
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
                     if (countMoves > 10) {
-                        wingAway();
                         LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
-                        break;
+                        return false;
                     }
                     countMoves++;
                 } else {
                     prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 }
-
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
-
                 if (!xy.isPresent()) {
                     xy = Optional.of(prevPos);
                     mouse.mouseClick(coords[0], coords[1]);
                 }
-
                 long after = System.currentTimeMillis();
                 createMessage("Time going to point is: ", (int)(after - before),0);
                 LoggerSingle.logInfo(this.toString(), sbMessage.toString());
