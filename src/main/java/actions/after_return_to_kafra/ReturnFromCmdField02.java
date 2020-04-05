@@ -2,6 +2,7 @@ package actions.after_return_to_kafra;
 import actions.SleepTime;
 import actions.kafra_actions.get_resources.GetResourcesGunslinger;
 import checks.location.VerifyMap;
+import logger.LoggerSingle;
 import logic.LogicCmdField02;
 import logic.move_by_card.MoveToLocation;
 import logic.move_by_card.PointsComodo;
@@ -9,6 +10,7 @@ import logic.move_by_card.PointsComodo2;
 import logic.move_by_card.PointsPapuchichaForest;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
 public class ReturnFromCmdField02 extends ReturnFrom{
     public ReturnFromCmdField02() throws AWTException {
@@ -29,6 +31,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     private void moveInComodo() throws Exception {
         moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsComodo());
+        LoggerSingle.logInfo(this.toString(), "moving around the map Comodo");
         boolean hasComeComodo = moveToLocation.move(true);
         while (!hasComeComodo) {
             keys.keyPress(KeyEvent.VK_F7);
@@ -43,8 +46,10 @@ public class ReturnFromCmdField02 extends ReturnFrom{
         moveToLocation.lastAction(new int[]{965, 429}, (VerifyMap) context.getBean("beachDun03"));
         Thread.sleep(2000);
     }
+
     public void moveInComodoDung() throws Exception {
         moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsComodo2());
+        LoggerSingle.logInfo(this.toString(), "moving around the map Comodo dungeon");
         boolean hasComeComodoDung = moveToLocation.move(true);
         while (!hasComeComodoDung) {
             keys.keyPress(KeyEvent.VK_F7);
@@ -63,6 +68,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
     }
     public void movePapuchichaaForest() throws Exception {
         moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsPapuchichaForest());
+        LoggerSingle.logInfo(this.toString(), "moving around the map papuchaForest");
         boolean papuchForest = moveToLocation.move(true);
         while (!papuchForest ) {
             keys.keyPress(KeyEvent.VK_F7);

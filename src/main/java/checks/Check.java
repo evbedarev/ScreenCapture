@@ -63,6 +63,7 @@ public class Check {
                 SleepTime.loopSleep();
             } else {
                 keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(4000);
                 Prop.returnFromField.startAction();
             }
         if (checkOtherPlayerNear(screenShot)) {

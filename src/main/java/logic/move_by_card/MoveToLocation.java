@@ -315,7 +315,7 @@ public class MoveToLocation {
                 }
                 if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
                     if (countMoves > 10) {
-                        LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
+                        LoggerSingle.logInfo(this.toString(), "Don't moving. Use butterFly wing");
                         return false;
                     }
                     countMoves++;

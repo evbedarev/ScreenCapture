@@ -191,7 +191,10 @@ public class InterfaceActions {
             }
             if (!check.checkIsThereWing()) {
                 LoggerSingle.logInfo("InterfaceActions", "no wings, sleeping");
-                SleepTime.loopSleep();
+                keys.keyPress(KeyEvent.VK_F7);
+                SleepTime.sleep(4000);
+                Prop.returnFromField.startAction();
+                break;
             }
             keys.keyPress(Prop.WING_KEY);
             SleepTime.sleep(4000);

@@ -54,7 +54,6 @@ public class PointsPapuchichaForest implements Points{
         points.add(new int[] {1528, 154});
         points.add(new int[] {1529, 157});
         points.add(new int[] {1530, 159});
-        points.add(new int[] {1530, 159});
         points.add(new int[] {1530, 160});
     }
 
