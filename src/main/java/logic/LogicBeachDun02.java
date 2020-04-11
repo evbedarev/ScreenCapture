@@ -1,12 +1,17 @@
 package logic;
 
 import actions.Actions;
-import actions.SleepTime;
 import checks.LocationCheck;
 import checks.location.BeachDun02;
+import checks.location.CmdField02;
 import logic.attacks.AttackBeachDun02;
+import logic.attacks.AttackCmdField02;
 import logic.hands_rgb.HandBeachDun02;
+import logic.hands_rgb.HandYun11;
 import logic.kill_monster.KillMonster;
+import logic.move_by_card.MoveByCard;
+import logic.move_by_card.PointsBeachDun02;
+import logic.move_by_card.PointsCmdField02;
 import logic.take_loot.*;
 import main.Prop;
 import java.util.List;
@@ -17,15 +22,15 @@ public class LogicBeachDun02 extends LogicLocation {
 
     public LogicBeachDun02() throws Exception {
         countOfAttacks = COUNT_OF_ATTACKS;
-        attack = new AttackBeachDun02();
+        attack = new AttackCmdField02();
         actions = Actions.instance();
-
-        locationCheck = new LocationCheck(new BeachDun02());
-        lootAround.initialize(new HandBeachDun02());
+        moveByCard = MoveByCard.getInstance(this,  new PointsBeachDun02());
+        locationCheck = new LocationCheck(Prop.context.getBean(BeachDun02.class));
+        lootAround.initialize(new HandYun11());
         checkHP.initialize(true, Prop.checkHitPoints);
         killMonsterList = (List<KillMonster>) Prop.context.getBean("monstersBeachDun02");
-        loot = (TakeLoot[]) Prop.context.getBean("lootBeachDun02");
         usefulLoot = (TakeLoot[]) Prop.context.getBean("usefulLootBeachDun02");
+        loot = (TakeLoot[]) Prop.context.getBean("lootBeachDun02");
     }
 
     @Override
@@ -34,20 +39,7 @@ public class LogicBeachDun02 extends LogicLocation {
     }
 
     public void mainHandle() throws Exception {
-        Prop.cast.cast();
-        if (checkDie.check()) {
-            while (true) {
-                SleepTime.sleep(5000);
-            }
-        }
-        locationCheck.locationCheck();
-        checkSP.enoghtSP();
-        killMonsterList.forEach(this::findAndKill);
-        checkMyHp();
-        actions.pickUpCard();
-        actions.pickUpLoot(locationCheck);
-        teleport();
-        count++;
+        moveByCard.move(killMonsterList);
     }
 
     public void checkMyHp() throws Exception {

@@ -143,19 +143,14 @@ public class MoveToLocation {
                     wingAway();
                     break;
                 }
-
-                if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    if (countMoves > 5) {
-                        wingAway();
-                        LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
-                        countMoves = 0;
-                        break;
-                    }
-                    countMoves++;
-                } else {
-                    prevPos = new int[] {xy.get()[0],  xy.get()[1]};
+                if (countMoves > 5) {
+                    wingAway();
+                    LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
+                    countMoves = 0;
+                    break;
                 }
-
+                countMoves++;
+                prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
 
@@ -313,15 +308,12 @@ public class MoveToLocation {
                     wingAway();
                     break;
                 }
-                if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    if (countMoves > 10) {
-                        LoggerSingle.logInfo(this.toString(), "Don't moving. Use butterFly wing");
-                        return false;
-                    }
-                    countMoves++;
-                } else {
-                    prevPos = new int[] {xy.get()[0],  xy.get()[1]};
+                if (countMoves > 10) {
+                    LoggerSingle.logInfo(this.toString(), "Don't moving. Use butterFly wing");
+                    return false;
                 }
+                countMoves++;
+                prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
                 if (!xy.isPresent()) {

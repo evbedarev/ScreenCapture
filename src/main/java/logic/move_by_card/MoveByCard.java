@@ -149,18 +149,13 @@ public class MoveByCard {
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
                 }
-
-                if (prevPos[0] == xy.get()[0] && prevPos[1] == xy.get()[1]) {
-                    if (countMoves > 1) {
-                        wingAway();
-                        LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
-                        break;
-                    }
-                    countMoves++;
-                } else {
-                    prevPos = new int[] {xy.get()[0],  xy.get()[1]};
+                if (countMoves > 5) {
+                    wingAway();
+                    LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
+                    break;
                 }
-
+                countMoves++;
+                prevPos = new int[] {xy.get()[0],  xy.get()[1]};
                 checkDie.check(screenShot);
                 xy = takeCoordsFromMap();
 
