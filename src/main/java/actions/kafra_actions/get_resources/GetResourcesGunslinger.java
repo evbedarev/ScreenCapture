@@ -20,7 +20,7 @@ public class GetResourcesGunslinger implements GetResources{
     private FindFragmentInImage findFragmentInImage = FindFragmentInImage.getInstance();
     private Mouse mouse = Mouse.getInstance();
     private Keys keys = Keys.getInstance();
-    boolean wasScrolled;
+    private boolean wasScrolled;
 
     public GetResourcesGunslinger() throws AWTException {
     }
@@ -116,6 +116,7 @@ public class GetResourcesGunslinger implements GetResources{
     }
     public void getButWings() throws Exception {
         if (!wasScrolled) {
+            wasScrolled = true;
             scrollDownInKafra();
             wasScrolled = true;
         }

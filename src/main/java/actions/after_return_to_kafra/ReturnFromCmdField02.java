@@ -4,13 +4,9 @@ import actions.kafra_actions.get_resources.GetResourcesGunslinger;
 import checks.location.VerifyMap;
 import logger.LoggerSingle;
 import logic.LogicCmdField02;
-import logic.move_by_card.MoveToLocation;
-import logic.move_by_card.PointsComodo;
-import logic.move_by_card.PointsComodo2;
-import logic.move_by_card.PointsPapuchichaForest;
+import logic.move_by_card.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.logging.Logger;
 
 public class ReturnFromCmdField02 extends ReturnFrom{
     public ReturnFromCmdField02() throws AWTException {
@@ -66,6 +62,7 @@ public class ReturnFromCmdField02 extends ReturnFrom{
         moveToLocation.lastAction(new int[]{910, 540}, (VerifyMap) context.getBean("cmdField01"));
         SleepTime.sleep(1000);
     }
+
     public void movePapuchichaaForest() throws Exception {
         moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsPapuchichaForest());
         LoggerSingle.logInfo(this.toString(), "moving around the map papuchaForest");
