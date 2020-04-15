@@ -94,6 +94,29 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
+    public void findAndKillWithoutTakingLoot() {
+        try {
+            for (KillMonster monster: killMonsterList) {
+                cntAttack = 0;
+                while (monster.kill()) {
+                    SleepTime.sleep(200);
+                    attackBySwordOrSpell(monster);
+                    SleepTime.sleep(200);
+                    if (cntAttack > 4) {
+                        actions.useWing();
+                        SleepTime.sleep(500);
+                        cntAttack = 0;
+                        LoggerSingle.logInfo("LogicLocation.findAndKill",
+                                "use wing. can't walk to the monster");
+                        break;
+                    }
+                }
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     void attackBySwordOrSpell(KillMonster monster) throws Exception{
         if (Prop.NEED_SPELL_ATTACK && CheckSP.enoughSP) {
             checkMyHp();

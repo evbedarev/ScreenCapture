@@ -12,7 +12,7 @@ public class SpringConfigLoot {
         return new TakeLoot[] {new Brigan(), new MudLamp()};
     }
     @Bean TakeLoot[] usefulLootBeachDun02() throws AWTException {
-        return new TakeLoot[] {new Card(), new Coupon(), new Elunium()};
+        return new TakeLoot[] {new Card(),new Shield(), new Coupon(), new Elunium()};
     }
     @Bean
     public TakeLoot[] lootBeachDun03() throws AWTException {

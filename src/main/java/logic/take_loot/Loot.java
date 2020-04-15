@@ -7,6 +7,7 @@ import find_image.FindPixels;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
+import logic.LogicLocation;
 import logic.RgbParameter;
 import logic.screen_shot.ScreenShot;
 import main.Prop;
@@ -22,6 +23,7 @@ public class Loot implements TakeLoot {
     final Mouse mouse;
     final Keys keys = Keys.getInstance();
     private Actions actions = Actions.instance();
+    private static LogicLocation logicLocation;
     final FindPixels findImageHard;
     CheckHP checkHP = CheckHP.instance();
 //    LootAround lootAround = LootAround.getInstance();
@@ -101,6 +103,7 @@ public class Loot implements TakeLoot {
         int repeat = 0;
         while (take()) {
             SleepTime.sleep(1000);
+            Prop.logic.findAndKillWithoutTakingLoot();
             if (repeat++ % 12 == 0) {
                 actions.stepAside(new int[]{75, 150});
                 SleepTime.sleep(1400);

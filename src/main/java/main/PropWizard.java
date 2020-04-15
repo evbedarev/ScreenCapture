@@ -9,7 +9,7 @@ import checks.check_hp.CheckHitPoints;
 import checks.check_hp.CheckHpStalker;
 import checks.location.YunField04;
 import logic.Logic;
-import logic.LogicWizard.LogicWizardYunField04;
+//import logic.LogicWizard.LogicWizardYunField04;
 import logic.take_loot.TakeLoot;
 
 import java.awt.event.KeyEvent;
@@ -28,7 +28,7 @@ public class PropWizard {
 
 
     public static void initialize() throws Exception {
-        logic = new LogicWizardYunField04(0);
+//        logic = new LogicWizardYunField04(0);
         cast = new CastStalker(0);
         locationCheck = new LocationCheck(new YunField04());
         checkHitPoints = new CheckHpStalker(locationCheck);

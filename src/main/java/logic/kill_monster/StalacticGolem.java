@@ -9,5 +9,6 @@ public class StalacticGolem extends Monster {
         rgbParameterList.add(new RgbParameter(-5995389,
                 new int[] {120,120},
                 new int[] {-4179,-12375505,-7444883}));
+        super.timeToKillMonster = 2000;
     }
 }

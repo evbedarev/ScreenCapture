@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class SpringConfigMonsters {
     @Bean
     public List<KillMonster> monstersBeachDun02() throws AWTException {
-        return Stream.of(new Megalith(),new StalacticGolem(), new Nereid()).collect(Collectors.toList());
+        return Stream.of(new Nereid(), new Megalith(),new StalacticGolem(), new TriJoint()).collect(Collectors.toList());
     }
     @Bean
     public List<KillMonster> monstersBeachDun03() throws AWTException {
