@@ -149,8 +149,8 @@ public class MoveByCard {
                 for (KillMonster killMonster : killMonsterlist) {
                     logicLocation.findAndKill(killMonster);
                 }
-//                actions.pickUpLoot(logicLocation.getLocationCheck());
-//                actions.pickUpCard();
+                actions.pickUpLoot(logicLocation.getLocationCheck());
+                actions.pickUpCard();
                 if (countMoves > 5) {
                     wingAway();
                     LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
