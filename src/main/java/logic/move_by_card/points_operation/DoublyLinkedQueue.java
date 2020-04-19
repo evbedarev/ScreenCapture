@@ -5,13 +5,13 @@ public class DoublyLinkedQueue {
     private Point last;
     IteratorList iterator = new IteratorList(this);
 
-    public void insertLast(int[] coords) {
+    private void insertLast(int[] coords) {
        Point point = new Point(coords);
        if (last == null) {
            first = point;
        } else {
-           last.setPrevious(point);
-           point.setNext(last);
+           last.setNext(point);
+           point.setPrevious(last);
        }
        last = point;
     }
@@ -25,5 +25,8 @@ public class DoublyLinkedQueue {
 
     public boolean isEmpty() {
         return last == null;
+    }
+    public void add(int[] coords) {
+         insertLast(coords);
     }
 }

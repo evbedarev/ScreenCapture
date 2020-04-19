@@ -1,10 +1,8 @@
 package logic.move_by_card;
+import logic.move_by_card.points_operation.IteratorList;
+import logic.move_by_card.points_operation.PointsAbstr;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class PointsBeachDun02 implements Points{
-    private List<int[]> points = new ArrayList<>();
+public class PointsBeachDun02 extends PointsAbstr {
 
     public PointsBeachDun02() {
         points.add(new int[] {1525, 159});
@@ -296,12 +294,8 @@ public class PointsBeachDun02 implements Points{
     }
 
     @Override
-    public void setPoints(List<int[]> points) {
-        this.points = points;
+    public IteratorList getIterator() {
+        return points.getIterator();
     }
 
-    @Override
-    public List<int[]> getPoints() {
-        return points;
-    }
 }

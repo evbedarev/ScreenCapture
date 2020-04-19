@@ -1,10 +1,9 @@
 package logic.move_by_card;
 
-import java.util.ArrayList;
-import java.util.List;
+import logic.move_by_card.points_operation.IteratorList;
+import logic.move_by_card.points_operation.PointsAbstr;
 
-public class PointsInSphinx3 implements Points{
-    private List<int[]> points = new ArrayList<>();
+public class PointsInSphinx3 extends PointsAbstr {
 
     public PointsInSphinx3() {
         points.add(new int[] {1571, 147});
@@ -92,15 +91,8 @@ public class PointsInSphinx3 implements Points{
         points.add(new int[] {1464, 98});
         points.add(new int[] {1464, 112});
     }
-
-
     @Override
-    public void setPoints(List<int[]> points) {
-        this.points = points;
-    }
-
-    @Override
-    public List<int[]> getPoints() {
-        return points;
+    public IteratorList getIterator() {
+        return points.getIterator();
     }
 }

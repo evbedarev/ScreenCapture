@@ -1,11 +1,8 @@
 package logic.move_by_card;
+import logic.move_by_card.points_operation.IteratorList;
+import logic.move_by_card.points_operation.PointsAbstr;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class PointsYunField11 implements Points{
-    private List<int[]> points = new ArrayList<>();
+public class PointsYunField11 extends PointsAbstr {
 
     public PointsYunField11() {
         points.add(new int[] {1521, 117});
@@ -504,96 +501,8 @@ public class PointsYunField11 implements Points{
         points.add(new int[] {1474, 85});
     }
 
-    private List<int[]> getPointsLeftMountain() {
-        List<int[]> points = new ArrayList<>();
-        List<int[]> pointsLeftMountainRev = new ArrayList<>();
-        points.add(new int[] {1476, 69});
-        points.add(new int[] {1476, 69});
-        points.add(new int[] {1476, 69});
-        points.add(new int[] {1476, 69});
-        points.add(new int[] {1476, 69});
-        points.add(new int[] {1477, 68});
-        points.add(new int[] {1480, 68});
-        points.add(new int[] {1481, 68});
-        points.add(new int[] {1481, 67});
-        points.add(new int[] {1479, 66});
-        points.add(new int[] {1479, 66});
-        points.add(new int[] {1479, 65});
-        points.add(new int[] {1479, 62});
-        points.add(new int[] {1479, 60});
-        points.add(new int[] {1479, 58});
-        points.add(new int[] {1479, 58});
-        points.add(new int[] {1478, 58});
-        points.add(new int[] {1476, 57});
-        points.add(new int[] {1475, 56});
-        points.add(new int[] {1475, 56});
-        points.add(new int[] {1473, 55});
-        points.add(new int[] {1471, 53});
-        points.add(new int[] {1472, 51});
-        points.add(new int[] {1472, 50});
-        points.add(new int[] {1471, 51});
-        points.add(new int[] {1470, 53});
-        points.add(new int[] {1470, 56});
-        points.add(new int[] {1470, 58});
-        points.add(new int[] {1469, 60});
-        points.add(new int[] {1470, 62});
-        points.add(new int[] {1470, 64});
-        points.add(new int[] {1472, 65});
-        points.add(new int[] {1472, 67});
-        points.add(new int[] {1471, 69});
-        points.add(new int[] {1471, 70});
-        points.add(new int[] {1469, 71});
-        points.add(new int[] {1469, 73});
-        points.add(new int[] {1471, 75});
-        points.add(new int[] {1472, 76});
-        points.add(new int[] {1473, 77});
-        points.add(new int[] {1474, 77});
-        points.add(new int[] {1476, 76});
-        points.add(new int[] {1478, 74});
-        points.add(new int[] {1480, 74});
-        points.add(new int[] {1482, 75});
-        points.add(new int[] {1484, 76});
-        points.add(new int[] {1485, 77});
-        points.add(new int[] {1484, 76});
-        points.add(new int[] {1483, 75});
-        points.add(new int[] {1481, 75});
-        points.add(new int[] {1479, 76});
-        points.add(new int[] {1477, 78});
-        points.add(new int[] {1476, 79});
-        points.add(new int[] {1475, 81});
-        points.add(new int[] {1476, 83});
-        points.add(new int[] {1475, 85});
-        points.add(new int[] {1474, 87});
-        points.add(new int[] {1474, 89});
-        points.add(new int[] {1475, 90});
-        points.add(new int[] {1477, 89});
-        points.add(new int[] {1479, 89});
-        points.add(new int[] {1481, 91});
-        points.add(new int[] {1480, 92});
-        points.add(new int[] {1478, 94});
-        points.add(new int[] {1477, 96});
-        points.add(new int[] {1475, 97});
-        points.add(new int[] {1473, 96});
-        points.add(new int[] {1472, 94});
-        points.add(new int[] {1470, 93});
-        points.add(new int[] {1471, 91});
-        points.add(new int[] {1472, 89});
-        points.add(new int[] {1473, 87});
-        points.add(new int[] {1474, 85});
-
-        pointsLeftMountainRev.addAll(points);
-        Collections.reverse(pointsLeftMountainRev);
-        points.addAll(pointsLeftMountainRev);
-        return points;
-    }
-
     @Override
-    public void setPoints(List<int[]> points) {
-        this.points = points;
-    }
-
-    @Override
-    public List<int[]> getPoints() {
-        return points;
+    public IteratorList getIterator() {
+        return points.getIterator();
     }
 }

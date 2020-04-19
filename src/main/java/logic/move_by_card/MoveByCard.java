@@ -12,6 +12,7 @@ import logger.LoggerSingle;
 import logic.LogicLocation;
 import logic.RgbParameter;
 import logic.kill_monster.KillMonster;
+import logic.move_by_card.points_operation.IteratorList;
 import logic.screen_shot.ScreenShot;
 import main.Prop;
 import java.awt.*;
@@ -38,10 +39,9 @@ public class MoveByCard {
     private static Keys keys;
     private static Check check;
     private static Points pointsOnCard;
-    private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
     private static StringBuilder sbMessage = new StringBuilder();
-    private int[] prevPos = new int[] {0,0};
+    private int[] prevPos;
 
     private MoveByCard(LogicLocation logicLocation, Points pointsOnCard) throws AWTException {
         actions = Actions.instance();
@@ -51,7 +51,6 @@ public class MoveByCard {
         MoveByCard.logicLocation = logicLocation;
         interfaceActions = InterfaceActions.getInstance();
         MoveByCard.pointsOnCard = pointsOnCard;
-        findNearest.setPoints(pointsOnCard.getPoints());
         check = Check.getInstance();
     }
 
@@ -211,8 +210,9 @@ public class MoveByCard {
     }
 
     public void move(List<KillMonster> killMonsters) throws Exception {
-        List<int[]> points = pointsOnCard.getPoints();
-        for (int[] point : points) {
+        IteratorList points = pointsOnCard.getIterator();
+        int[] point = points.next();
+        while(point != null){
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
                     wingAway();
@@ -222,10 +222,11 @@ public class MoveByCard {
                 flagOfNewPoints = false;
                 createMessage("Coordinates after teleporting is : ", xy.get()[0], xy.get()[1]);
                 LoggerSingle.logInfo(this.toString(), sbMessage.toString());
-                pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
+                points.findNearest(new int[] {xy.get()[0], xy.get()[1]});
                 break;
             }
             moveToPoint(point, killMonsters);
+            point = points.next();
         }
     }
 

@@ -1,10 +1,12 @@
 package logic.move_by_card;
 
+import logic.move_by_card.points_operation.IteratorList;
+import logic.move_by_card.points_operation.PointsAbstr;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointsComodo2 implements Points{
-    private List<int[]> points = new ArrayList<>();
+public class PointsComodo2 extends PointsAbstr {
 
     public PointsComodo2() {
         points.add(new int[] {1471, 60});
@@ -55,16 +57,9 @@ public class PointsComodo2 implements Points{
         points.add(new int[] {1578, 142});
         points.add(new int[] {1578, 142});
         points.add(new int[] {1578, 142});
-}
-
-
-    @Override
-    public void setPoints(List<int[]> points) {
-        this.points = points;
     }
-
     @Override
-    public List<int[]> getPoints() {
-        return points;
+    public IteratorList getIterator() {
+        return points.getIterator();
     }
 }

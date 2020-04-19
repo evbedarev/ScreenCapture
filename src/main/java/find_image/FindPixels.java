@@ -56,7 +56,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        for (int i=0; i < 2; i++) {
+        for (int i=0; i < 4; i++) {
             screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,
@@ -83,7 +83,7 @@ public class FindPixels implements FindPixelsInImage {
                                               int[] subImgCoord,
                                               int[] ancillaryRgb) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        for (int i=0; i < 2; i++) {
+        for (int i=0; i < 4; i++) {
             screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(
                     screenShot,

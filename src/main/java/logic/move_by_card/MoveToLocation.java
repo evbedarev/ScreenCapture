@@ -12,6 +12,7 @@ import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.LogicLocation;
+import logic.move_by_card.points_operation.IteratorList;
 import logic.screen_shot.ScreenShot;
 import main.Prop;
 
@@ -39,7 +40,6 @@ public class MoveToLocation {
     private static Keys keys;
     private static Check check;
     private static Points pointsOnCard;
-    private static PointsFindNearest findNearest = new PointsFindNearest();
     private static boolean flagOfNewPoints = false;
     private static StringBuilder sbMessage = new StringBuilder();
     private int[] prevPos = new int[] {0,0};
@@ -51,7 +51,6 @@ public class MoveToLocation {
         findImageHard = new FindPixels();
         interfaceActions = InterfaceActions.getInstance();
         MoveToLocation.pointsOnCard = pointsOnCard;
-        findNearest.setPoints(pointsOnCard.getPoints());
         check = Check.getInstance();
     }
 
@@ -204,8 +203,9 @@ public class MoveToLocation {
     }
 
     public void move() throws Exception {
-        List<int[]> points = pointsOnCard.getPoints();
-        for (int[] point : points) {
+        IteratorList points = pointsOnCard.getIterator();
+        int[] point = points.nextOneWay();
+        while(point != null){
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
                     wingAway();
@@ -215,10 +215,11 @@ public class MoveToLocation {
                 flagOfNewPoints = false;
                 createMessage("Coordinates after teleporting is : ", xy.get()[0], xy.get()[1]);
                 LoggerSingle.logInfo(this.toString(), sbMessage.toString());
-                pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
+                points.findNearest(new int[] {xy.get()[0], xy.get()[1]});
                 break;
             }
             moveToPoint(point);
+            point = points.nextOneWay();
         }
     }
 
@@ -264,9 +265,10 @@ public class MoveToLocation {
     }
 
     public boolean move(boolean move) throws Exception {
-        List<int[]> points = pointsOnCard.getPoints();
-        boolean isMoving = true;
-        for (int[] point : points) {
+        boolean isMoving;
+        IteratorList points = pointsOnCard.getIterator();
+        int[] point = points.nextOneWay();
+        while(point != null){
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
                     wingAway();
@@ -276,10 +278,11 @@ public class MoveToLocation {
                 flagOfNewPoints = false;
                 createMessage("Coordinates after teleporting is : ", xy.get()[0], xy.get()[1]);
                 LoggerSingle.logInfo(this.toString(), sbMessage.toString());
-                pointsOnCard.setPoints(findNearest.findNearestPoint(new int[] {xy.get()[0], xy.get()[1]}));
+                points.findNearest(new int[] {xy.get()[0], xy.get()[1]});
                 break;
             }
             isMoving = moveToPoint(point, move);
+            point = points.nextOneWay();
             if (!isMoving)
                 return false;
         }

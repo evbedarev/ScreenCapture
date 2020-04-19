@@ -1,10 +1,9 @@
 package logic.move_by_card;
 
-import java.util.ArrayList;
-import java.util.List;
+import logic.move_by_card.points_operation.IteratorList;
+import logic.move_by_card.points_operation.PointsAbstr;
 
-public class PointsPrtField08 implements Points{
-    private List<int[]> points = new ArrayList<>();
+public class PointsPrtField08 extends PointsAbstr {
 
     public PointsPrtField08() {
         points.add(new int[] {1506, 56});
@@ -212,12 +211,8 @@ public class PointsPrtField08 implements Points{
     }
 
     @Override
-    public void setPoints(List<int[]> points) {
-        this.points = points;
+    public IteratorList getIterator() {
+        return points.getIterator();
     }
 
-    @Override
-    public List<int[]> getPoints() {
-        return points;
-    }
 }
