@@ -90,25 +90,31 @@ public class InterfaceActions {
 
     public void pressClose() throws Exception{
         pressOnImage.press(context.getBean("pressClose", PropsForPress.class));
+        SleepTime.sleep(500);
     }
 
     public void pressKafraTeleport() throws Exception{
         pressOnImage.press(context.getBean("pressOnKafraTeleportButton", PropsForPress.class));
+        SleepTime.sleep(500);
     }
 
     public void pressDownArrow() throws Exception{
         pressOnImage.press(context.getBean("PressOnDownArrow", PropsForPress.class));
+        SleepTime.sleep(500);
     }
 
     public void pressCmdField07() throws Exception{
         pressOnImage.press(context.getBean("pressCmdField07", PropsForPress.class));
+        SleepTime.sleep(500);
     }
 
     public void pressGefField10() throws Exception{
         pressOnImage.press(context.getBean("TeleportGefField10", PropsForPress.class));
+        SleepTime.sleep(500);
     }
 
     public void openInventory() throws InterruptedException {
+        LoggerSingle.logInfo(this.toString(), "Open Inventory.");
         SleepTime.sleep(500);
         keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_E);
         SleepTime.sleep(1000);
@@ -173,6 +179,8 @@ public class InterfaceActions {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{0, 1600, 0, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HoneyInKafra\\");
+        if (xy.isPresent())
+            xy = Optional.of(new int[] {xy.get()[0], xy.get()[1] + 20});
         xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
     }
 

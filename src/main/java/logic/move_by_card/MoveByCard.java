@@ -20,7 +20,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
 
-
 /**
  * Класс который отлеживает передвижение по карте, перемещает персонажа по заданным точкам
  */
@@ -79,8 +78,7 @@ public class MoveByCard {
 
     public int[] moveMouseDirectly(int x2, int y2) {
         double x, y, x1, y1;
-        x1 = 800;
-        y1 = 450;
+        x1 = 800; y1 = 450;
         x2 = 800 + x2;
 //        LoggerSingle.logDebug(this.toString(), "Take y2 = " + y2);
         y2 = Math.abs(450 + y2);

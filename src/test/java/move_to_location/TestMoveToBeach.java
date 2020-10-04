@@ -41,6 +41,14 @@ public class TestMoveToBeach {
 
     @Test
     public void moveInComodo() throws Exception {
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
         moveToLocation = new MoveToLocation(new LogicBeachDun03(), new PointsComodo());
         moveToLocation.move(true);
         mouse.mouseClick(1240,790);

@@ -62,5 +62,4 @@ public class LogicBeachDun03 extends LogicLocation {
 
     void runFromMonster() throws Exception {
     }
-
 }

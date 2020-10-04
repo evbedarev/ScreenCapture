@@ -173,5 +173,4 @@ public abstract class LogicLocation extends Thread implements Logic {
         return locationCheck;
     }
 
-
 }

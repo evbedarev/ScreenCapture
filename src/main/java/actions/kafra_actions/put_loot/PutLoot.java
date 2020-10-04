@@ -2,6 +2,7 @@ package actions.kafra_actions.put_loot;
 
 import actions.InterfaceActions;
 import actions.SleepTime;
+import logger.LoggerSingle;
 import main.Prop;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class PutLoot implements  KafraActionsPutLoot{
 
     @Override
     public void putLootToKafra() throws Exception {
+        LoggerSingle.logInfo(this.toString(), "Start putting loot in kafra");
         InterfaceActions interfaceActions = InterfaceActions.getInstance();
         interfaceActions.pressOnKafra();
         interfaceActions.pressNext();

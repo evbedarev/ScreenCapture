@@ -2,10 +2,6 @@ package checks;
 
 import actions.InterfaceActions;
 import actions.SleepTime;
-import actions.after_return_to_kafra.ReturnFromCmdField02;
-import actions.after_return_to_kafra.ReturnToKafra;
-import actions.kafra_actions.put_loot.KafraActionsPutLoot;
-import actions.kafra_actions.put_loot.PutLoot;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;

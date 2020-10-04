@@ -26,6 +26,12 @@ public class ReturnFromCmdField02 extends ReturnFrom{
 
     }
     private void moveInComodo() throws Exception {
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
+        mouse.mouseClick(1395,78);
+        SleepTime.sleep(5000);
         moveToLocation = new MoveToLocation(new LogicCmdField02(), new PointsComodo());
         LoggerSingle.logInfo(this.toString(), "moving around the map Comodo");
         boolean hasComeComodo = moveToLocation.move(true);

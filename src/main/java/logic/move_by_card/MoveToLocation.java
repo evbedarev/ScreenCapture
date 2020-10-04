@@ -204,12 +204,14 @@ public class MoveToLocation {
 
     public void move() throws Exception {
         IteratorList points = pointsOnCard.getIterator();
+        points.reset();
         int[] point = points.nextOneWay();
         while(point != null){
+            LoggerSingle.logInfo(pointsOnCard.toString(), "moving");
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
                     wingAway();
-                    LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
+                    LoggerSingle.logInfo(pointsOnCard.toString(), "No location coords value present! Use wing");
                     continue;
                 }
                 flagOfNewPoints = false;
@@ -267,12 +269,14 @@ public class MoveToLocation {
     public boolean move(boolean move) throws Exception {
         boolean isMoving;
         IteratorList points = pointsOnCard.getIterator();
+        points.reset();
         int[] point = points.nextOneWay();
         while(point != null){
+            LoggerSingle.logInfo(pointsOnCard.toString(), "moving");
             if (flagOfNewPoints) {
                 if (!xy.isPresent()) {
                     wingAway();
-                    LoggerSingle.logInfo(this.toString(), "No location coords value present! Use wing");
+                    LoggerSingle.logInfo(pointsOnCard.toString(), "No location coords value present! Use wing");
                     continue;
                 }
                 flagOfNewPoints = false;

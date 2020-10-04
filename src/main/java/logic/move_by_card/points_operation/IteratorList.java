@@ -27,8 +27,14 @@ public class IteratorList {
             current = queue.getFirst();
         } else if (current.getNext() == null) {
             return null;
+        } else {
+            current = current.getNext();
         }
         return current.getCoordinates();
+    }
+
+    public void reset() {
+        current = null;
     }
 
     public int[] findNearest(int[] myPoint) {

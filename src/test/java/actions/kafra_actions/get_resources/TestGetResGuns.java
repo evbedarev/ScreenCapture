@@ -1,8 +1,6 @@
 package actions.kafra_actions.get_resources;
 
-import checks.LocationCheck;
-import checks.location.VerifyMap;
-import logic.LogicLocation;
+import actions.kafra_actions.put_loot.PutLoot;
 import main.Prop;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +9,7 @@ import java.awt.*;
 
 public class TestGetResGuns {
     GetResourcesGunslinger getRes = new GetResourcesGunslinger();
+    PutLoot putLoot = new PutLoot();
 
     public TestGetResGuns() throws AWTException {
     }
@@ -24,6 +23,7 @@ public class TestGetResGuns {
 
     @Test
     public void getBullets() throws Exception {
+        putLoot.putLootToKafra();
         getRes.get();
     }
 }

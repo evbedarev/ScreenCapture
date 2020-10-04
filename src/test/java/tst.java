@@ -9,13 +9,5 @@ import java.util.List;
 public class tst {
 
     public static void main(String[] args) throws Exception {
-        PointsFindNearestTest pnts = new PointsFindNearestTest();
-        PointsMocField11 pointsMocField11 = new PointsMocField11();
-        pnts.setPoints(pointsMocField11.getPoints());
-
-        List<int[]> pointsList = pnts.findNearestPoint(new int[] {1496,116});
-        for (int[] ints : pointsList) {
-            System.out.println("coord {" + ints[0] + "," + ints[1] + "}");
-        }
     }
 }

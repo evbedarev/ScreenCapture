@@ -34,20 +34,21 @@ public class GetResourcesGunslinger implements GetResources{
     }
 
     @Override
-    public void get() throws Exception {
-        BufferedImage screenShot = Prop.context.getBean(ScreenShot.class).pop();
-        wasScrolled = false;
-        interfaceActions.pressOnKafra();
-        interfaceActions.pressNext();
-        interfaceActions.openWarehouse();
-        interfaceActions.pressOk();
-        interfaceActions.pressClose();
-        interfaceActions.openInventory();
-        findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
-        Optional<int[]> xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\MarkerInventory\\2\\");
-        if (xy.isPresent()) {
-            mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
-        }
+        public void get() throws Exception {
+            LoggerSingle.logInfo(this.toString(), "Start taking things out of kafra.");
+            BufferedImage screenShot = Prop.context.getBean(ScreenShot.class).pop();
+            wasScrolled = false;
+            interfaceActions.pressOnKafra();
+            interfaceActions.pressNext();
+            interfaceActions.openWarehouse();
+            interfaceActions.pressOk();
+            interfaceActions.pressClose();
+            interfaceActions.openInventory();
+            findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
+            Optional<int[]> xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\MarkerInventory\\2\\");
+            if (xy.isPresent()) {
+                mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
+            }
 
         if (!check.havePotion(screenShot)) {
             getWhitePotions();
@@ -103,10 +104,10 @@ public class GetResourcesGunslinger implements GetResources{
             SleepTime.loopSleep();
         }
     }
-    private void scrollDownInKafra() throws Exception {
+    private void scrollDownInKafra(int count) throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{800,1600, 0, 900});
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < count; i++) {
             xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\downArrowKafra\\");
             if (xy.isPresent()) {
                 mouse.mouseClick(xy.get()[0] + 5, xy.get()[1] + 5);
@@ -117,7 +118,7 @@ public class GetResourcesGunslinger implements GetResources{
     public void getButWings() throws Exception {
         if (!wasScrolled) {
             wasScrolled = true;
-            scrollDownInKafra();
+            scrollDownInKafra(14);
             wasScrolled = true;
         }
         findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
@@ -141,7 +142,7 @@ public class GetResourcesGunslinger implements GetResources{
     }
     public void getWings() throws Exception {
         if (!wasScrolled)
-            scrollDownInKafra();
+            scrollDownInKafra(14);
         findFragmentInImage.setScreen(new int[]{0,1600, 0, 900});
         Optional<int[]> xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\Wing\\");
         SleepTime.sleep(1000);
