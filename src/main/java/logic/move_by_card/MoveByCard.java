@@ -148,7 +148,8 @@ public class MoveByCard {
                 }
                 actions.pickUpLoot(logicLocation.getLocationCheck());
                 actions.pickUpCard();
-                if (countMoves > 5) {
+                //change
+                if (countMoves > 15) {
                     wingAway();
                     LoggerSingle.logInfo(this.toString(), "Don't moving. Wing away");
                     break;

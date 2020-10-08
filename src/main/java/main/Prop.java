@@ -8,6 +8,8 @@ import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.*;
+import checks.location.PayField07;
+import checks.location.PrtField03;
 import logic.*;
 import logic.screen_shot.TakeScreenShotThread;
 import logic.take_loot.*;
@@ -36,10 +38,10 @@ public class Prop {
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
-        logic = new LogicCmdField02();
+        logic = new LogicPrtField03();
         returnFromField= new ReturnFromCmdField02();
-        cast = new CastGunslinger(0);
-        checkHitPoints = new CheckHpAndBulletsGuns(context.getBean("locationCheck", LocationCheck.class));
+        cast = new CastMS(0);
+        checkHitPoints = new CheckHpMS(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
         initializeCharacter();
         cast.begin();
@@ -75,9 +77,9 @@ public class Prop {
     public static final boolean NEED_HEAL = true;
     public static final int HEAL_KEY = KeyEvent.VK_F3;
 
-    public static final int X_HP_HEAL = 110; //Only for acolyte
-    public static final int X_HP_TO_RUN = 66;
-    public static final int X_HP_TO_END_RUN = 110;
+    public static final int X_HP_HEAL = 140; //Only for acolyte
+    public static final int X_HP_TO_RUN = 109;
+    public static final int X_HP_TO_END_RUN = 140;
     ///////////////////////////////////////////////
 
     //////////////////SP///////////////////////////

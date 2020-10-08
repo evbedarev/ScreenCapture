@@ -17,7 +17,7 @@ public class SpringConfig {
     }
     @Bean
     public LocationCheck locationCheck() throws AWTException {
-        return new LocationCheck(cmdField02());
+        return new LocationCheck(payField07());
     }
     @Bean
     public VerifyMap cmdField02() {

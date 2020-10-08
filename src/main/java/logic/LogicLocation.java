@@ -140,15 +140,16 @@ public abstract class LogicLocation extends Thread implements Logic {
         int countAttack = 0;
         keys = Keys.getInstance();
         boolean killAll = false;
-        while(monster.findAndKillAround()) {
-//            duringTheFight();
+        while(monster.findAndKillAround() ) {
+            duringTheFight();
             countAttack++;
             checkMyHp();
-            SleepTime.sleep(500);
+            //change
+            SleepTime.sleep(550);
             LoggerSingle.logInfo("LogicLocation.killMonstersAround",
                     "Find monster around, killing");
             killAll = true;
-            if (countAttack > 2) return false;
+            if (countAttack > 20) return false;
         }
         return killAll;
     }

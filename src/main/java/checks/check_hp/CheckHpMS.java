@@ -22,7 +22,8 @@ public class CheckHpMS extends CheckHpByClass {
         }
 
         if (Prop.NEED_HEAL) {
-            needHeal();
+//            needHeal();
+            needHeal(Prop.context.getBean(ScreenShot.class).pop());
         }
     }
 

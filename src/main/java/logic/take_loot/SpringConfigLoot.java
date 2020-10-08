@@ -131,7 +131,7 @@ public class SpringConfigLoot {
     }
     @Bean
     public TakeLoot[] lootPayField07() throws AWTException {
-        return new TakeLoot[] {};
+        return new TakeLoot[] {new Card()};
     }
     @Bean TakeLoot[] usefulPayField07() throws AWTException {
         return new TakeLoot[] {new Card(), new Coupon()};

@@ -114,7 +114,7 @@ public class FindPixels implements FindPixelsInImage {
      *                   coordsArea[3] - нижняя точка по Y
      * @return
      */
-
+//change
     @Override
     public Optional<int[]> findPixelsInImageInArea (
             BufferedImage screenShot,
@@ -122,16 +122,8 @@ public class FindPixels implements FindPixelsInImage {
             int[] subImgCoord,
             int[] ancillaryRgb,
             int[] coordsArea) {
-        for (int y = 0; y < screenShot.getHeight(); y++) {
-            for (int x = 0; x < screenShot.getWidth(); x++) {
-
-                if (x < coordsArea[0]
-                        || x > coordsArea[1]
-                        || y < coordsArea[2]
-                        || y > coordsArea[3] ) {
-                    continue;
-                }
-
+        for (int y = coordsArea[2]; y < coordsArea[3]; y++) {
+            for (int x = coordsArea[0]; x < coordsArea[1]; x++) {
                 if (screenShot.getRGB(x, y) == mainRgb) {
                     if (getSubImage(screenShot, new int[] {x, y}, subImgCoord, ancillaryRgb)) {
                         return Optional.of(new int[] {x, y});
@@ -148,7 +140,8 @@ public class FindPixels implements FindPixelsInImage {
                                                  int[] ancillaryRgb,
                                                  int[] coordsArea) throws AWTException {
         Optional<int[]> xy = Optional.empty();
-        for (int i=0; i < 2; i++) {
+        //change
+        for (int i=0; i < 3; i++) {
             screenShot = Prop.context.getBean(ScreenShot.class).pop();
             xy = findPixelsInImageInArea(screenShot,
                                         mainRgb,

@@ -94,7 +94,8 @@ public class Monster implements KillMonster {
                 break;
             }
         }
-        checkHP.checkHp(image);
+        //change
+        checkHP.checkHp();
         return value;
     }
 
@@ -156,7 +157,7 @@ public class Monster implements KillMonster {
                 if (checkDialogWindow(image)) {
                     actions.stepAside(new int[]{600, 800});
                 }
-                checkHP.checkHp(image);
+                checkHP.checkHp();
                 check.checkResources(image);
 //                LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster , coordinates: x=" + x + " y=" + y);
                 LoggerSingle.logInfo(this.toString() + ".findAndKill", "Killing monster");
@@ -190,7 +191,7 @@ public class Monster implements KillMonster {
                     parameter.getMainRgb(),
                     parameter.getSubImageSize(),
                     parameter.getAncillaryRgb(),
-                    new int[] {0, 1600, 100, 900});
+                    new int[] {650, 900, 300, 530});
 
             if (xy.isPresent()) {
                 int rndInt = (int)(Math.random() * 5000);
@@ -238,7 +239,7 @@ public class Monster implements KillMonster {
                     actions.stepAside(new int[]{600, 800});
                 }
 
-                checkHP.checkHp(image);
+                checkHP.checkHp();
 
 //                LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster , coordinates: x=" + x + " y=" + y);
                 LoggerSingle.logInfo(this.toString() + ".findAndKillAround", "Killing monster");

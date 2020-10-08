@@ -61,6 +61,10 @@ public class CastMS extends Cast {
                     SleepTime.loopSleep();
                 }
             }
+            if (ATOMIC_AWAKENING.get() > 1800) {
+                actions.drinkAwaikeningPotion();
+                ATOMIC_AWAKENING.set(0);
+            }
 
             if (ADRENALINE_RUSH.get() > 150) {
                 LoggerSingle.logInfo(this.toString(), "cast ADRENALINE_RUSH");
@@ -79,9 +83,9 @@ public class CastMS extends Cast {
 
     @Override
     public void incrementValues() throws InterruptedException {
-        incrementConst();
-        POWER_THRUST.incrementAndGet();
-        ADRENALINE_RUSH.incrementAndGet();
+//        incrementConst();
+//        POWER_THRUST.incrementAndGet();
+//        ADRENALINE_RUSH.incrementAndGet();
         sleep(1000);
     }
 }

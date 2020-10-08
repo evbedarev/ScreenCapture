@@ -94,4 +94,8 @@ public class SpringConfigMonsters {
         return Stream.of(new Mantis(), new Geographer()).collect(Collectors.toList());
     }
 
+    @Bean
+    public List<KillMonster> monstersPrtField03() throws AWTException {
+        return Stream.of(new YoYo(),new Horn()).collect(Collectors.toList());
+    }
 }

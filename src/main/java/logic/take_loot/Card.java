@@ -9,8 +9,8 @@ public class Card extends Loot {
                 new int[] {50,50},
                 new int[] {-8418418, -4999009}));
 
-//        rgbParameterList.add(new RgbParameter(-4864314,
-//                new int[] {50,50},
-//                new int[] {-4864314}));
+        rgbParameterList.add(new RgbParameter(-4864314,
+                new int[] {50,50},
+                new int[] {-4864314}));
     }
 }
