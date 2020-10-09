@@ -10,14 +10,14 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class CastMS extends Cast {
+public class CastAlchemist extends Cast {
+    private InterfaceActions interfaceActions = InterfaceActions.getInstance();
     private final int threadId;
     private Mouse mouse;
     private int randomTime;
-    final static AtomicInteger ADRENALINE_RUSH = new AtomicInteger(0);
-    final static AtomicInteger POWER_THRUST = new AtomicInteger(0);
+    final static AtomicInteger FEED_HOM = new AtomicInteger(0);
 
-    public CastMS(int threadId) throws AWTException {
+    public CastAlchemist(int threadId) throws AWTException {
         randomTime = 80 + (30 * (int) Math.random());
         this.threadId = threadId;
         mouse = Mouse.getInstance();
@@ -26,7 +26,7 @@ public class CastMS extends Cast {
 
     @Override
     public void begin() throws AWTException {
-        Thread thread = new CastMS(1);
+        Thread thread = new CastAlchemist(1);
         thread.start();
     }
 
@@ -52,18 +52,13 @@ public class CastMS extends Cast {
                 ATOMIC_AWAKENING.set(0);
             }
 
-            if (ADRENALINE_RUSH.get() > 150) {
-                LoggerSingle.logInfo(this.toString(), "cast ADRENALINE_RUSH");
-//                keys.keyPress(KeyEvent.VK_F4);
-                ADRENALINE_RUSH.set(0);
+            if (FEED_HOM.get() > 350) {
+                LoggerSingle.logInfo(this.toString(), "Feeding homunculus");
+                interfaceActions.feedHomOnLocation();
+                FEED_HOM.set(0);
                 SleepTime.sleep(1000);
             }
 
-            if (POWER_THRUST.get() > 100) {
-                LoggerSingle.logInfo(this.toString(), "cast POWER_THRUST");
-//                keys.keyPress(KeyEvent.VK_F5);
-                POWER_THRUST.set(0);
-            }
             goToCharSelect();
         }
     }
@@ -87,8 +82,8 @@ public class CastMS extends Cast {
 
     @Override
     public void incrementValues() throws InterruptedException {
-//        incrementConst();
-//        POWER_THRUST.incrementAndGet();
+        incrementConst();
+        FEED_HOM.incrementAndGet();
 //        ADRENALINE_RUSH.incrementAndGet();
         sleep(1000);
     }

@@ -40,7 +40,7 @@ public class Prop {
         takeScreenShotThread = new TakeScreenShotThread();
         logic = new LogicPrtField03();
         returnFromField= new ReturnFromCmdField02();
-        cast = new CastMS(0);
+        cast = new CastAlchemist(0);
         checkHitPoints = new CheckHpMS(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
         initializeCharacter();
@@ -99,7 +99,6 @@ public class Prop {
 
     public static final int EXCLUDE_X_LEFT = 715;
     public static final int EXCLUDE_X_RIGHT = 740;
-
     public static final int EXCLUDE_Y_UP = 105;
     public static final int EXCLUDE_Y_DOWN = 130;
 
@@ -122,6 +121,8 @@ public class Prop {
     public static final double FIND_LOOT_SMALL_RADIUS = 65;
     public static final double FIND_LOOT_LARGE_RADIUS = 95;
 
+    //type of attack("mele","ranged","magic")
+    public static final String TYPE_OF_ATTACK="mele";
     /////CHARACTER//////
     public static List<RgbParameter> charRgb = new ArrayList<>();
 

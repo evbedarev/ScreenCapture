@@ -8,6 +8,7 @@ import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
 import key_and_mouse.Mouse;
 import logger.LoggerSingle;
+import logic.screen_shot.ScreenShot;
 import main.Prop;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -227,5 +228,40 @@ public class InterfaceActions {
         returnValue = pressOnImage.press(context.getBean("pressCharSelect", PropsForPress.class));
         Thread.sleep(4000);
         return returnValue;
+    }
+
+    public void openHomunculusInfo() throws Exception {
+        LoggerSingle.logInfo(this.toString(), "Open Homunculus Info.");
+        SleepTime.sleep(500);
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_R);
+        SleepTime.sleep(1000);
+    }
+    public void closeHomunculusInfo() throws Exception {
+        openHomunculusInfo();
+    }
+
+    public void pressFeed() throws Exception {
+        Optional<int[]> xy;
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\FeedHom\\", new int[] {0,400,170,815});
+        xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
+        mouse.leftClick();
+        SleepTime.sleep(500);
+        pressOk();
+    }
+
+    public void feedHomOnLocation() throws Exception {
+        openHomunculusInfo();
+        feedHomStatic();
+        closeHomunculusInfo();
+    }
+    public void feedHomStatic() throws Exception {
+        Optional<int[]> xy;
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HungerHom\\", new int[] {0,400,170,815});
+        if (xy.isPresent()) {
+            BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
+            if (image.getRGB(xy.get()[0] + 3, xy.get()[1]+14) == -65536) {
+                pressFeed();
+            }
+        }
     }
 }

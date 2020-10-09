@@ -52,6 +52,19 @@ public class FindFragmentInImage {
         }
         return Optional.empty();
     }
+    public Optional<int[]> findImage(String dir, int[] scrn) throws Exception{
+        capture = Capture.instance();
+        imageList = findFragmentFiles.fragments("frag*", dir);
+        Optional<int[]> xy;
+        for (BufferedImage image: imageList) {
+            screenShot = Prop.context.getBean(ScreenShot.class).pop();
+            xy = findImageHard.findImageInArea(screenShot, image,
+                    scrn);
+            if (xy.isPresent())
+                return xy;
+        }
+        return Optional.empty();
+    }
 
     /**
      * Находи файлы начинающиеся с 'frag' в директории и ищет их на скриншоте.

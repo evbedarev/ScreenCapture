@@ -20,7 +20,7 @@ public class RGB {
 //        findPixelRgb(-2374501);
 
 //        showRGB(new int[] {14,844}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\Interface\\CheckIsAttackMonsterOtherPlayer\\checkAttackOtherPlayer.png");
-//        showRGB(new int[] {1464,72}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
+        showRGB(new int[] {107,323}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\fragment.png");
 //        showRGB(new int[] {1515,51}, "C:\\TEMP\\ScreenCapture\\src\\main\\resources\\getRGB\\Screenshot_8.png");
 //        findPixelRgb(-3219746);
 
