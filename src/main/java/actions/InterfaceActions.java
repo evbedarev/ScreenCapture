@@ -56,8 +56,8 @@ public class InterfaceActions {
         return pressOnImage.press(getPropsForImagesWithScreenShot(screenShot, "pressOkWithScreenShot"));
     }
 
-    public void pressReturnToLastSavepoint() throws Exception {
-        pressOnImage.press(context.getBean("pressReturnToLastSavepoint", PropsForPress.class));
+    public boolean pressReturnToLastSavepoint() throws Exception {
+        return pressOnImage.press(context.getBean("pressReturnToLastSavepoint", PropsForPress.class));
     }
 
     public void pressOnKafra() throws Exception {

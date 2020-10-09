@@ -2,6 +2,7 @@ package checks.check_hp;
 
 import actions.SleepTime;
 import checks.LocationCheck;
+import logger.LoggerSingle;
 import logic.move_by_card.MoveByCard;
 import logic.screen_shot.ScreenShot;
 import main.Prop;
@@ -18,6 +19,7 @@ public class CheckHpMS extends CheckHpByClass {
     @Override
     public void checkHp() throws Exception {
         if (checkDie.check()) {
+            LoggerSingle.logInfo(this.toString(),"Die...");
             SleepTime.loopSleep();
         }
 

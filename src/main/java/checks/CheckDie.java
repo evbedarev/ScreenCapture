@@ -6,6 +6,7 @@ import actions.SleepTime;
 import checks.afterDeath.AfterDeath;
 import find_image.FindFragmentInImage;
 import key_and_mouse.Keys;
+import key_and_mouse.Mouse;
 import logic.screen_shot.ScreenShot;
 import main.Prop;
 import java.awt.*;
@@ -22,7 +23,7 @@ public abstract class CheckDie implements AfterDeath {
     public Actions actions;
     private BufferedImage image;
     private Keys keys;
-//    private
+    protected Mouse mouse;
 
     public CheckDie() {
     }
@@ -37,11 +38,13 @@ public abstract class CheckDie implements AfterDeath {
         }
     }
 
-    private boolean checkDeathLabel() throws Exception {
+    protected boolean checkDeathLabel() throws Exception {
         Optional<int[]> xy;
         findFragmentInImage.setScreen(new int[]{600, 1000, 500, 900});
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\CheckDie\\");
         if (xy.isPresent()) {
+            mouse = Mouse.getInstance();
+            mouse.mouseClick(xy.get()[0],xy.get()[1]);
             startActions();
             return true;
         }
@@ -55,6 +58,8 @@ public abstract class CheckDie implements AfterDeath {
         if (checkDeathLabel()) return true;
         image = Prop.context.getBean(ScreenShot.class).pop();
         if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP_DEATH) {
+            mouse = Mouse.getInstance();
+            mouse.mouseMove(0,0);
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);
@@ -72,6 +77,8 @@ public abstract class CheckDie implements AfterDeath {
         if (!Prop.CHECK_DIE) return false;
         if (checkDeathLabel()) return true;
         if (image.getRGB(Prop.X_HP_AFTER_DEATH,Prop.Y_HP) == Prop.RGB_HP_DEATH) {
+            mouse = Mouse.getInstance();
+            mouse.mouseMove(0,0);
             while (!checkDeathLabel()) {
                 keys.keyPress(KeyEvent.VK_ESCAPE);
                 SleepTime.sleep(2000);

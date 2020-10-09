@@ -27,7 +27,7 @@ public class Prop {
     public static TakeScreenShotThread takeScreenShotThread;
     public static final boolean SUPER_PREMIUM = false;
     public static final boolean CHECK_DIE = true;
-    public static final AfterDeath checkDie = new AfterDeathYun04();
+    public static final AfterDeath checkDie = new AfterDeathPrt03();
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
