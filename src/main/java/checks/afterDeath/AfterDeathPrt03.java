@@ -18,7 +18,6 @@ public class AfterDeathPrt03 extends CheckDie {
     @Override
     public void startActions() throws Exception {
         actions = Actions.instance();
-        Keys keys = Keys.getInstance();
         InterfaceActions interfaceActions = InterfaceActions.getInstance();
         interfaceActions.pressReturnToLastSavepoint();
         mouse = Mouse.getInstance();

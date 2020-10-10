@@ -2,6 +2,7 @@ package main;
 
 import actions.InterfaceActions;
 import actions.after_return_to_kafra.ReturnFromCmdField02;
+import actions.after_return_to_kafra.ReturnFromDefault;
 import actions.after_return_to_kafra.ReturnToKafra;
 import actions.kafra_actions.put_loot.LootToKafra;
 import cast.*;
@@ -39,7 +40,7 @@ public class Prop {
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
         logic = new LogicPrtField03();
-        returnFromField= new ReturnFromCmdField02();
+        returnFromField= new ReturnFromDefault();
         cast = new CastAlchemist(0);
         checkHitPoints = new CheckHpMS(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
