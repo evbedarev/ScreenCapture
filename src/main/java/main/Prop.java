@@ -9,10 +9,7 @@ import cast.*;
 import checks.LocationCheck;
 import checks.afterDeath.*;
 import checks.check_hp.*;
-import checks.location.PayField07;
-import checks.location.PrtField03;
 import logic.*;
-import logic.screen_shot.TakeScreenShotThread;
 import logic.take_loot.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import java.awt.event.KeyEvent;
@@ -25,7 +22,7 @@ import java.util.List;
 public class Prop {
     /////////////////GLOBAL////////////////////
     public static Logic logic;
-    public static TakeScreenShotThread takeScreenShotThread;
+//    public static TakeScreenShotThread takeScreenShotThread;
     public static final boolean SUPER_PREMIUM = false;
     public static final boolean CHECK_DIE = true;
     public static final AfterDeath checkDie = new AfterDeathPrt03();
@@ -38,7 +35,7 @@ public class Prop {
     public static ReturnToKafra returnFromField;
 
     public static void initialize() throws Exception {
-        takeScreenShotThread = new TakeScreenShotThread();
+//        takeScreenShotThread = new TakeScreenShotThread();
         logic = new LogicPrtField03();
         returnFromField= new ReturnFromDefault();
         cast = new CastAlchemist(0);

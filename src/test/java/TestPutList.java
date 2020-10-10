@@ -8,7 +8,7 @@ public class TestPutList {
     @Before
     public void before() throws Exception {
         Prop.initialize();
-        Prop.takeScreenShotThread.start();
+//        Prop.takeScreenShotThread.start();
         Thread.sleep(2000);
     }
     @Test
@@ -17,8 +17,7 @@ public class TestPutList {
         Thread.sleep(5000);
         loot.putLootToKafra();
     }
-    @After
-    public void after() {
-        Prop.takeScreenShotThread.interrupt();
-    }
+//    public void after() {
+//        Prop.takeScreenShotThread.interrupt();
+//    }
 }

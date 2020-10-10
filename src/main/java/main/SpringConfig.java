@@ -12,7 +12,7 @@ import java.awt.*;
 @Configuration
 public class SpringConfig {
     @Bean
-    public ScreenShots screenShotStack() {
+    public ScreenShots screenShotStack() throws AWTException {
         return new ScreenShot();
     }
     @Bean

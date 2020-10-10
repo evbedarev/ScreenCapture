@@ -6,6 +6,7 @@ import checks.*;
 import checks.afterDeath.AfterDeath;
 import checks.check_hp.CheckHP;
 import key_and_mouse.Keys;
+import key_and_mouse.Mouse;
 import logger.LoggerSingle;
 import logic.attacks.Attack;
 import logic.kill_monster.*;
@@ -14,7 +15,10 @@ import logic.screen_shot.ScreenShot;
 import logic.take_loot.LootAround;
 import logic.take_loot.TakeLoot;
 import main.Prop;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,8 +41,9 @@ public abstract class LogicLocation extends Thread implements Logic {
     static LootAround lootAround = LootAround.getInstance();
     static MoveByCard moveByCard;
     private Keys keys;
-    BufferedImage screenShot;
+    private Mouse mouse;
     private int cntAttack;
+    private static List<int[]> coordsArround = new ArrayList<>();
 
     public abstract void createThread() throws Exception;
 
@@ -48,6 +53,8 @@ public abstract class LogicLocation extends Thread implements Logic {
             actions = Actions.instance();
             actions.initialize(loot, usefulLoot);
             checkSP.initialize();
+            mouse = Mouse.getInstance();
+            feelListCoordsArround();
             while (true) {
                 mainHandle();
             }
@@ -72,7 +79,8 @@ public abstract class LogicLocation extends Thread implements Logic {
             cntAttack = 0;
             while (monster.kill()) {
                 SleepTime.sleep(200);
-                attackBySwordOrSpell(monster);
+//                attackBySwordOrSpell(monster);
+                findMonsterArround();
                 SleepTime.sleep(200);
                 if (cntAttack > 4) {
                     actions.useWing();
@@ -154,6 +162,30 @@ public abstract class LogicLocation extends Thread implements Logic {
         return killAll;
     }
 
+    public void findMonsterArround() throws InterruptedException, AWTException {
+        SleepTime.sleep(1000);
+        for (int[] ints : coordsArround) {
+            mouse.mouseMove(ints[0], ints[1]);
+            checkToAttack(ints[0], ints[1]);
+        }
+    }
+
+    public void checkToAttack(int x, int y) throws InterruptedException, AWTException {
+        boolean isAttackC = true;
+        SleepTime.sleep(100);
+        while (isAttackC) {
+            BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
+            int rgb = image.getRGB(x + 21, y + 16);
+            if (rgb > -9500000 && rgb < -9200000) {
+                mouse.leftClick();
+                SleepTime.sleep(1500);
+            } else {
+                isAttackC = false;
+            }
+            SleepTime.sleep(100);
+        }
+    }
+
 
     public void checkMyHp() throws Exception {
         actions.pickUpCard();
@@ -164,6 +196,17 @@ public abstract class LogicLocation extends Thread implements Logic {
         checkHP.checkHp(image);
     }
 
+    private void feelListCoordsArround() {
+        coordsArround.add(new int[] {810,410});
+        coordsArround.add(new int[] {810,367});
+        coordsArround.add(new int[] {845,390});
+        coordsArround.add(new int[] {855,445});
+        coordsArround.add(new int[] {845,495});
+        coordsArround.add(new int[] {810,492});
+        coordsArround.add(new int[] {770,482});
+        coordsArround.add(new int[] {760,450});
+        coordsArround.add(new int[] {770,412});
+    }
     public BufferedImage takeScreenShot() {
         return Prop.context.getBean(ScreenShot.class).pop();
     }

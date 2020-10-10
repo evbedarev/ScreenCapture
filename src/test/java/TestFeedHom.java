@@ -21,7 +21,7 @@ public class TestFeedHom {
     @Before
     public void before() throws Exception {
         Prop.initialize();
-        Prop.takeScreenShotThread.start();
+//        Prop.takeScreenShotThread.start();
         Thread.sleep(2000);
     }
 
