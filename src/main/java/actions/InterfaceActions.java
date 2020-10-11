@@ -242,7 +242,7 @@ public class InterfaceActions {
 
     public void pressFeed() throws Exception {
         Optional<int[]> xy;
-        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\FeedHom\\", new int[] {0,400,170,815});
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\FeedHom\\", new int[] {0,800,170,815});
         xy.ifPresent(ints -> mouse.mouseMove(ints[0], ints[1]));
         mouse.leftClick();
         SleepTime.sleep(500);
@@ -256,7 +256,7 @@ public class InterfaceActions {
     }
     public void feedHomStatic() throws Exception {
         Optional<int[]> xy;
-        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HungerHom\\", new int[] {0,400,170,815});
+        xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HungerHom\\", new int[] {0,800,170,815});
         if (xy.isPresent()) {
             BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             if (image.getRGB(xy.get()[0] + 3, xy.get()[1]+14) == -65536) {
