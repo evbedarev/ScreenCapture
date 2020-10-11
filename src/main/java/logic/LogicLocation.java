@@ -172,8 +172,10 @@ public abstract class LogicLocation extends Thread implements Logic {
 
     public void checkToAttack(int x, int y) throws Exception {
         boolean isAttackC = true;
+        int count = 0;
         SleepTime.sleep(100);
         while (isAttackC) {
+            count++;
             BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             int rgb = image.getRGB(x + 21, y + 16);
             if (rgb > -9500000 && rgb < -9200000) {
@@ -184,6 +186,8 @@ public abstract class LogicLocation extends Thread implements Logic {
                 isAttackC = false;
             }
             SleepTime.sleep(100);
+            if (count > 30)
+                break;
         }
     }
 
