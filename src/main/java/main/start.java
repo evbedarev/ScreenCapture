@@ -11,7 +11,7 @@ public class start {
         webServer.start();
         SleepTime.sleep(5000);
         Prop.initialize();
-//        Prop.takeScreenShotThread.start();
+        Prop.takeScreenShotThread.start();
         Thread.sleep(2000);
         Prop.logic.createThread();
     }

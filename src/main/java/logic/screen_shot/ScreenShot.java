@@ -17,7 +17,7 @@ public class ScreenShot implements ScreenShots {
 
     @Override
     public synchronized BufferedImage pop() {
-        take(capture.takeScreenShot());
+//        take(capture.takeScreenShot());
         return screenShot;
     }
 }

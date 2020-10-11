@@ -162,7 +162,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         return killAll;
     }
 
-    public void findMonsterArround() throws InterruptedException, AWTException {
+    public void findMonsterArround() throws Exception {
         SleepTime.sleep(1000);
         for (int[] ints : coordsArround) {
             mouse.mouseMove(ints[0], ints[1]);
@@ -170,7 +170,7 @@ public abstract class LogicLocation extends Thread implements Logic {
         }
     }
 
-    public void checkToAttack(int x, int y) throws InterruptedException, AWTException {
+    public void checkToAttack(int x, int y) throws Exception {
         boolean isAttackC = true;
         SleepTime.sleep(100);
         while (isAttackC) {
@@ -179,6 +179,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             if (rgb > -9500000 && rgb < -9200000) {
                 mouse.leftClick();
                 SleepTime.sleep(1500);
+                checkMyHp();
             } else {
                 isAttackC = false;
             }

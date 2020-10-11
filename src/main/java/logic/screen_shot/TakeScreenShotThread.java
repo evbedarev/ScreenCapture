@@ -14,7 +14,7 @@ public class TakeScreenShotThread extends Thread{
         try {
             while (true) {
                screenShotStack.take(capture.takeScreenShot());
-               Thread.sleep(50);
+               Thread.sleep(10);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
