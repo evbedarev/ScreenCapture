@@ -52,7 +52,7 @@ public class CastAlchemist extends Cast {
                 ATOMIC_AWAKENING.set(0);
             }
 
-            if (FEED_HOM.get() > 350) {
+            if (FEED_HOM.get() > 180) {
                 LoggerSingle.logInfo(this.toString(), "Feeding homunculus");
                 interfaceActions.feedHomOnLocation();
                 FEED_HOM.set(0);

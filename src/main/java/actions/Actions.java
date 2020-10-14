@@ -74,17 +74,19 @@ public class Actions {
         SleepTime.sleep(500);
         LoggerSingle.logInfo(this.toString(), "Teleporting without locationCheck");
     }
-
+//change
     public void useWing() throws Exception {
         keys.keyPress(Prop.WING_KEY);
         LoggerSingle.logInfo(this.getClass().toString(), " Use Wing Key.");
         SleepTime.sleep(3000);
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_T);
     }
 
     public void useWing(LocationCheck locationCheck) throws Exception {
         keys.keyPress(Prop.WING_KEY);
         LoggerSingle.logInfo(this.getClass().toString(), " Use Wing Key.");
         SleepTime.sleep(3000);
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_T);
         locationCheck.locationCheck();
     }
 

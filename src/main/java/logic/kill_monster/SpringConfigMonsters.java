@@ -22,6 +22,10 @@ public class SpringConfigMonsters {
         return Stream.of(new Seal(), new Galapago()).collect(Collectors.toList());
     }
     @Bean
+    public List<KillMonster> monstersCmdField01() throws AWTException {
+        return Stream.of(new Flora(), new Iguana()).collect(Collectors.toList());
+    }
+    @Bean
     public List<KillMonster> monstersCmdField04() throws AWTException {
         return Stream.of(new SeaOtterBoss(),new SeaOtter(), new Galapago()).collect(Collectors.toList());
     }

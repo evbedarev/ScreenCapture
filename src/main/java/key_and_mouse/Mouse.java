@@ -5,6 +5,7 @@ import logger.LoggerSingle;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.util.Random;
 
 public class Mouse {
     private static volatile Mouse instance;
@@ -27,6 +28,9 @@ public class Mouse {
 
     public synchronized void mouseClick(int x, int y)
             throws AWTException, InterruptedException {
+        if ((y > 817 && y < 825) && (x > 519 && x < 821)) {
+            y = y + 20;
+        }
         mouseClick(x, y, InputEvent.BUTTON1_MASK, 100);
     }
 
@@ -42,7 +46,7 @@ public class Mouse {
 
     public void leftClick() throws InterruptedException {
         robot.mousePress(InputEvent.BUTTON1_MASK);
-        SleepTime.sleep(50);
+        SleepTime.sleep(750);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 

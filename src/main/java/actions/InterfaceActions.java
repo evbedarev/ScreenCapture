@@ -251,17 +251,26 @@ public class InterfaceActions {
 
     public void feedHomOnLocation() throws Exception {
         openHomunculusInfo();
-        feedHomStatic();
+        feedHomStatic(0);
         closeHomunculusInfo();
+        keys.combinationPress(KeyEvent.VK_ALT, KeyEvent.VK_T);
     }
-    public void feedHomStatic() throws Exception {
+    public void feedHomStatic(int count) throws Exception {
         Optional<int[]> xy;
         xy = findFragmentInImage.findImage(Prop.ROOT_DIR + "Interface\\HungerHom\\", new int[] {0,800,170,815});
+        if (count > 2) {
+            return;
+        }
         if (xy.isPresent()) {
             BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             if (image.getRGB(xy.get()[0] + 3, xy.get()[1]+14) == -65536) {
                 pressFeed();
             }
+        } else {
+            keys.keyPress(KeyEvent.VK_F6);
+            SleepTime.sleep(5000);
+            openHomunculusInfo();
+            feedHomStatic(++count);
         }
     }
 }

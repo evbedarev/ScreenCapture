@@ -21,7 +21,7 @@ public class TestFeedHom {
     @Before
     public void before() throws Exception {
         Prop.initialize();
-//        Prop.takeScreenShotThread.start();
+        Prop.takeScreenShotThread.start();
         Thread.sleep(2000);
     }
 
@@ -31,7 +31,7 @@ public class TestFeedHom {
         SleepTime.sleep(1000);
         InterfaceActions interfaceActions = InterfaceActions.getInstance();
         while (true) {
-            interfaceActions.feedHomStatic();
+            interfaceActions.feedHomStatic(0);
             SleepTime.sleep(random.nextInt(100000));
         }
         //104,309

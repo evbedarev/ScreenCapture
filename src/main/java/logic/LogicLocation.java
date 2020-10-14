@@ -82,7 +82,7 @@ public abstract class LogicLocation extends Thread implements Logic {
 //                attackBySwordOrSpell(monster);
                 findMonsterArround();
                 SleepTime.sleep(200);
-                if (cntAttack > 4) {
+                if (cntAttack > 6) {
                     actions.useWing();
                     SleepTime.sleep(500);
                     cntAttack = 0;
@@ -90,6 +90,7 @@ public abstract class LogicLocation extends Thread implements Logic {
                             "use wing. can't walk to the monster");
                     break;
                 }
+                cntAttack++;
                 wasAttack = true;
             }
             if (wasAttack) {
@@ -168,6 +169,7 @@ public abstract class LogicLocation extends Thread implements Logic {
             mouse.mouseMove(ints[0], ints[1]);
             checkToAttack(ints[0], ints[1]);
         }
+        actions.stepAside(new int[]{50, 100});
     }
 
     public void checkToAttack(int x, int y) throws Exception {
