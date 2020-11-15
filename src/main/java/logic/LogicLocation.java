@@ -180,7 +180,10 @@ public abstract class LogicLocation extends Thread implements Logic {
             count++;
             BufferedImage image = Prop.context.getBean(ScreenShot.class).pop();
             int rgb = image.getRGB(x + 21, y + 16);
+            if (image.getRGB(x + 9, y + 7) < -1780000 || image.getRGB(x + 9, y + 7) > 1850000 )
+                break;
             if (rgb > -9500000 && rgb < -9200000) {
+                System.out.println("RGB attack: " + image.getRGB(x + 9, y + 7));
                 mouse.leftClick();
                 SleepTime.sleep(1500);
                 checkMyHp();

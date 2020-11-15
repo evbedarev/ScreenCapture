@@ -1,4 +1,4 @@
-package main;
+package spring_config;
 
 import checks.LocationCheck;
 import checks.location.*;

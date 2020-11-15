@@ -59,7 +59,7 @@ public class CastAlchemist extends Cast {
                 SleepTime.sleep(1000);
             }
 
-            goToCharSelect();
+//            goToCharSelect();
         }
     }
 

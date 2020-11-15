@@ -16,12 +16,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.awt.*;
 
-public class TestMoveToBeach {
+public class TestMoveToCmd01 {
     MoveToLocation moveToLocation;
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("spring_config");
     Mouse mouse = Mouse.getInstance();
 
-    public TestMoveToBeach() throws AWTException {
+    public TestMoveToCmd01() throws AWTException {
     }
 
     @Before
@@ -59,7 +59,7 @@ public class TestMoveToBeach {
         Thread.sleep(2000);
         moveInComodoDung();
         Thread.sleep(4000);
-        movePapuchichaaForest();
+//        movePapuchichaaForest();
     }
 //    @Test
     public void moveInComodoDung() throws Exception {

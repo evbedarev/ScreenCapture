@@ -1,11 +1,8 @@
 package key_and_mouse;
 
 import actions.SleepTime;
-import logger.LoggerSingle;
-
 import java.awt.*;
 import java.awt.event.InputEvent;
-import java.util.Random;
 
 public class Mouse {
     private static volatile Mouse instance;
@@ -28,9 +25,7 @@ public class Mouse {
 
     public synchronized void mouseClick(int x, int y)
             throws AWTException, InterruptedException {
-        if ((y > 817 && y < 825) && (x > 519 && x < 821)) {
-            y = y + 20;
-        }
+
         mouseClick(x, y, InputEvent.BUTTON1_MASK, 100);
     }
 
@@ -72,6 +67,9 @@ public class Mouse {
 
 
     public void mouseMove(int x, int y) {
+        if ((y > 817 && y < 845) && (x > 1 && x < 600)) {
+            y = y - 50;
+        }
         robot.mouseMove(x, y);
     }
 }

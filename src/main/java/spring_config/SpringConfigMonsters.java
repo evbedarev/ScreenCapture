@@ -1,5 +1,6 @@
-package logic.kill_monster;
+package spring_config;
 
+import logic.kill_monster.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class SpringConfigMonsters {
     }
     @Bean
     public List<KillMonster> monstersCmdField01() throws AWTException {
-        return Stream.of(new Flora(), new Iguana()).collect(Collectors.toList());
+        return Stream.of(new Iguana()).collect(Collectors.toList());
     }
     @Bean
     public List<KillMonster> monstersCmdField04() throws AWTException {

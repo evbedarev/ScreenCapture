@@ -1,5 +1,6 @@
-package logic.take_loot;
+package spring_config;
 
+import logic.take_loot.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,7 +27,7 @@ public class SpringConfigLoot {
         return new TakeLoot[] {};
     }
     @Bean TakeLoot[] usefulLootCmdField02() throws AWTException {
-        return new TakeLoot[] {new Card(), new Coupon(), new BlueHerb(), new Cyfar(), new Zargon(), new Panacea()};
+        return new TakeLoot[] {new Coupon(), new BlueHerb(), new Cyfar(), new Zargon(), new Panacea()};
     }
     @Bean
     public TakeLoot[] lootCmdField04() throws AWTException {

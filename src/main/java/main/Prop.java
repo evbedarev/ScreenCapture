@@ -30,16 +30,15 @@ public class Prop {
     public static Cast cast;
     public static CheckHitPoints checkHitPoints;
     public static InterfaceActions interfaceActions;
-    public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main",
-            "logic.kill_monster", "logic.take_loot", "actions.kafra_actions.put_loot");
+    public static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("main","spring_config");
     public static List<LootToKafra> lootToKafra = (List<LootToKafra>) context.getBean("lootToKafraCmdField02");
     public static ReturnToKafra returnFromField;
 
     public static void initialize() throws Exception {
         takeScreenShotThread = new TakeScreenShotThread();
-        logic = new LogicPrtField03();
-        returnFromField= new ReturnFromDefault();
-        cast = new CastAlchemist(0);
+        logic = new LogicPrtField03(); //!!!
+        returnFromField= new ReturnFromDefault(); //!!!
+        cast = new CastAlchemist(0); //!!!
         checkHitPoints = new CheckHpMS(context.getBean("locationCheck", LocationCheck.class));
         interfaceActions  = InterfaceActions.getInstance();
         initializeCharacter();

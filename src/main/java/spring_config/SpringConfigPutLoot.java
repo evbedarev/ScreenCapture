@@ -1,5 +1,6 @@
-package actions.kafra_actions.put_loot;
+package spring_config;
 
+import actions.kafra_actions.put_loot.LootToKafra;
 import main.Prop;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
